@@ -175,7 +175,8 @@ export default function SanatanHIPage() {
               </span>
               <div className="min-w-0 leading-tight">
                 <h1 className="font-display text-lg font-semibold tracking-wide text-sanatan-gold-2">
-                  SANATAN <span className="text-sanatan-cream-2">HI</span>
+                  SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
+                  <span className="text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90">[ HUMAN INTELLIGENCE ]</span>
                 </h1>
                 <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 sm:block">
                   ऑफ़लाइन सनातन-ज्ञान AI · गीता · रामायण · महाभारत · वेद · पुराण
@@ -283,7 +284,7 @@ export default function SanatanHIPage() {
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2 text-[0.64rem]">
             <span className="font-deva text-sanatan-cream-2/90">
-              सनातन HI · श्रीमद्भगवद्गीता · रामायण · महाभारत · भागवत · शिव पुराण · वेद · उपनिषद्
+              सनातन HI [ HUMAN INTELLIGENCE ] · श्रीमद्भगवद्गीता · रामायण · महाभारत · भागवत · शिव पुराण · वेद · उपनिषद्
             </span>
             <span className="text-sanatan-gold-2/80">
               100% Offline Corpus · Sanskrit + Hindi + English ·{" "}

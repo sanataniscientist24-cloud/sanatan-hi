@@ -56,6 +56,9 @@ export function Hero({ onSuggestion }: HeroProps) {
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-wide text-sanatan-maroon sm:text-[2.75rem]">
           SANATAN <span className="text-sanatan-saffron">HI</span>
         </h1>
+        <p className="mt-0.5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-sanatan-gold sm:text-xs">
+          [ HUMAN INTELLIGENCE ]
+        </p>
         <p className="mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/75">
           भगवद्गीता · वाल्मीकि रामायण · महाभारत · भागवत व शिव पुराण · चारों वेद · उपनिषद् · हनुमान चालीसा —{" "}

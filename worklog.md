@@ -28,3 +28,21 @@ Stage Summary:
 - Deliverable: complete offline SANATAN HI app at `/` — 11 scripture collections, ~150 curated trilingual entries, local retrieval engine with 10 intents, trilingual UI, dark mode, chat persistence.
 - Key decisions: no external LLM (user asked for offline); localStorage instead of DB; corpus entries carry all three languages so every answer is natively trilingual; engine hot-reloads with the corpus.
 - All lint/dev-log/browser checks green.
+
+---
+Task ID: 2
+Agent: main (Z.ai Code)
+Task: Rebrand app name to "SANATAN HI [ HUMAN INTELLIGENCE ]" — add bracket expansion everywhere the name appears.
+
+Work Log:
+- Updated `src/app/page.tsx`: header h1 now shows `SANATAN HI [ HUMAN INTELLIGENCE ]` (bracket in small tracked gold text); footer line updated with bracket.
+- Updated `src/components/sanatan/hero.tsx`: masthead keeps big "SANATAN HI" title with a new `[ HUMAN INTELLIGENCE ]` subtitle line in gold uppercase letter-spacing.
+- Updated `src/components/sanatan/chat-message.tsx`: per-reply footer label now reads `सनातन HI [ HUMAN INTELLIGENCE ] · intent · ms · ऑफ़लाइन कोश`.
+- Updated `src/lib/ai/engine.ts`: GREETING in all three languages (hi/en/sa) now introduces itself as SANATAN HI [ HUMAN INTELLIGENCE ].
+- Updated `src/app/layout.tsx`: metadata title + author name include the bracket.
+- Ran `bun run lint` — clean; dev server hot-reloaded all changes (GET / 200).
+- Agent Browser verification: page title updated; "HUMAN INTELLIGENCE" text found on page; sent greeting "namaste" → reply contains "I am SANATAN HI [ HUMAN INTELLIGENCE ]"; console error-free.
+- VLM screenshot review (desktop + 390px mobile): bracket visible, not cut off, no overlap, no horizontal overflow (scrollWidth ≤ 390).
+
+Stage Summary:
+- Brand is now consistently "SANATAN HI [ HUMAN INTELLIGENCE ]" across header, hero, chat replies, greetings (hi/en/sa), footer, and page metadata. All checks green.

@@ -60,7 +60,7 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
             <div className="mt-2 flex items-center gap-2 text-[0.62rem] text-sanatan-gold/80">
               <Sparkles className="h-3 w-3" aria-hidden />
               <span className="font-deva">
-                सनातन HI · {message.intent ?? "उत्तर"}
+                सनातन HI [ HUMAN INTELLIGENCE ] · {message.intent ?? "उत्तर"}
                 {message.timeMs !== undefined && message.timeMs >= 0
                   ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · ऑफ़लाइन कोश"}`
                   : " · ऑफ़लाइन कोश"}

@@ -21,6 +21,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "तप और स्वाध्याय में तत्पर वचन-विद्या में श्रेष्ठ नारद मुनि से वाल्मीकि मुनि ने पूछा — इसी श्लोक से विश्व का पहला महाकाव्य आरम्भ होता है।",
     english:
       "The sage Valmiki, versed in penance and self-study, questioned Narada, best of eloquent sages — with this verse the world's first epic begins.",
+    spanish:
+      "El sabio Valmiki, versado en la penitencia y el estudio de sí mismo, interrogó a Narada, el mejor de los sabios elocuentes — con este verso comienza la primera epopeya del mundo.",
     tags: ["valmiki", "narada", "first shloka", "origin", "वाल्मीकि", "नारद", "प्रथम श्लोक", "आदि काव्य"],
   },
   {
@@ -39,6 +41,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "हे निषाद! तू अनंत काल तक प्रतिष्ठा न पाएगा, क्योंकि तूने काम में मोहित क्रौंच-पक्षी के जोड़े का एक पक्षी मार डाला। शोक-क्रोध से वाल्मीकि के मुख से निकला यही संसार का प्रथम श्लोक बना — श्लोक का जन्म यहीं हुआ।",
     english:
       "O hunter, may you never find rest for endless years, for you slew one of the pair of krauncha birds absorbed in love. Uttered by Valmiki in grief-fueled compassion, this curse became the first shloka ever composed — the birth of poetry itself.",
+    spanish:
+      "Oh cazador, que nunca encuentres reposo durante años sin fin, porque diste muerte a uno de la pareja de aves krauncha absortas en el amor. Pronunciada por Valmiki en una compasión avivada por el duelo, esta maldición se convirtió en el primer shloka jamás compuesto — el nacimiento mismo de la poesía.",
     tags: ["first shloka", "krauncha bird", "valmiki", "origin of poetry", "प्रथम श्लोक", "क्रौंच", "वाल्मीकि शोक", "भाषा जन्म"],
   },
   {
@@ -56,6 +60,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "राम को, रामभद्र को, रामचन्द्र को, वेधसे (सृष्टा रूप को), रघुनाथ को, स्वामी नाथ को और सीता के पति को नमस्कार। राम-नाम की चारों संज्ञाओं का अद्भुत समावेश है।",
     english:
       "Salutations to Rama, the auspicious one, Rama the moon-faced, the creator, lord of the Raghu clan, the lord of lords, and the husband of Sita — a compact treasury of Rama's names.",
+    spanish:
+      "Salutaciones a Rama, el auspicioso; a Rama, el de rostro de luna; al creador; al señor del linaje Raghu; al señor de los señores; y al esposo de Sita — un tesoro compacto de los nombres de Rama.",
     tags: ["rama", "r nama", "shloka", "राम नाम", "रामचन्द्र", "रघुनाथ", "सीतापति", "namaskara"],
   },
   {
@@ -73,6 +79,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "जब तक पृथ्वी पर पर्वत खड़े रहेंगे और नदियाँ बहती रहेंगी, तब तक लोकों में रामायण की कथा प्रचलित रहेगी।",
     english:
       "As long as mountains stand and rivers flow on this earth, so long the story of the Ramayana shall live among the worlds.",
+    spanish:
+      "Mientras las montañas se yergan y los ríos fluyan sobre esta tierra, tanto tiempo vivirá entre los mundos la historia del Ramayana.",
     tags: ["ramayana eternal", "final verse", "अमर कथा", "पर्वत", "नदी", "रामायण कथा", "eternity"],
   },
   {
@@ -87,6 +95,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "राज्य के दिवस में ही कैकेयी के दो वरदानों ने चौदह वर्ष का वनवास माँग लिया। श्रीराम ने मुस्कुराकर कहा — 'पिता का वचन मेरे लिए वेद से बढ़कर है।' स्वयं सीता ने भी प्रस्थान किया — 'पत्नी का धर्म पति के साथ है', और लक्ष्मण ने पग-पग पर निरंतरता दी। भरत ने वन से पादुकाएँ लाकर सिंहासन पर रखीं और चौदह वर्ष नगर से बाहर निवास कर राम के नाम से राज किया। रामायण 'वचन के लिए त्याग' और 'मर्यादा' का विश्व-महाकाव्य है।",
     english:
       "In the very hour of coronation, Kaikeyi's two boons demanded fourteen years of exile. Rama smiled and said: 'A father's word stands above the Vedas themselves for me.' Sita insisted on accompanying him — 'the wife's dharma is where her husband is' — and Lakshmana followed every step. Bharata brought back Rama's wooden sandals, set them on the throne, and ruled outside the city in Rama's name. The Ramayana is the world's epic of sacrifice for one's word and of maryada — sacred boundary and decorum.",
+    spanish:
+      "En la mismísima hora de la coronación, los dos dones de Kaikeyi exigieron catorce años de destierro. Rama sonrió y dijo: 'La palabra de un padre está para mí por encima de los propios Vedas.' Sita insistió en acompañarlo — 'el dharma de la esposa está donde está su esposo' — y Lakshmana lo siguió paso a paso. Bharata trajo de regreso las sandalias de madera de Rama, las puso sobre el trono y gobernó desde fuera de la ciudad en nombre de Rama. El Ramayana es la epopeya del mundo del sacrificio por la palabra empeñada y de la maryada — frontera sagrada y decoro.",
     tags: ["rama", "exile", "word", "bharata", "kaikeyi", "वनवास", "वचन", "मर्यादा", "भरत", "पादुका", "exile", "sita", "lakshmana"],
   },
   {
@@ -101,6 +111,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "सागर के सामने खड़े हनुमान ने राम के नाम का स्मरण किया और एक छलाँग में सौ योजन समुद्र लाँघ डाला। लंका में मैथिली विदेहिनी सीता को अशोक वाटिका में खोजा, राम की मुद्रिका दिखाकर असीम विश्वास दिलाया, अक्ष-कुमार को वध किया और अपनी पूँछ से लंका जलाई। वापसी पर कहा — 'देख लिया सीता माता को!' श्रीराम ने उन्हें आलिंगन कर कहा — 'तुम मुझे भरत के समान प्रिय हो।' हनुमान की भक्ति यही सिखाती है — शक्ति भक्ति से जन्म लेती है।",
     english:
       "Before the boundless ocean Hanuman remembered Rama's name and leaped a hundred yojanas in a single bound. In Lanka he found Mother Sita in the Ashoka grove, showed her Rama's ring to restore her faith, slew the warrior Aksha, and set Lanka ablaze with his burning tail. Returning, he uttered the dearest of words: 'I have seen Janaki!' Rama embraced him: 'You are as dear to me as Bharata.' Hanuman's devotion teaches that power is born of love — where there is shraddha, there is shakti.",
+    spanish:
+      "Ante el océano sin orillas, Hanuman evocó el nombre de Rama y saltó cien yojanas de un solo brinco. En Lanka halló a la madre Sita en el bosque de Ashoka, le mostró el anillo de Rama para devolverle la fe, dio muerte al guerrero Aksha e incendió Lanka con su cola ardiendo. Al regresar, pronunció las más queridas de las palabras: '¡He visto a Janaki!' Rama lo abrazó: 'Eres para mí tan querido como Bharata.' La devoción de Hanuman enseña que el poder nace del amor — donde hay shraddha, hay shakti.",
     tags: ["hanuman", "devotion", "ocean leap", "sundara kanda", "हनुमान", "सीता", "लंका", "भक्ति", "छलाँग", "मुद्रिका"],
   },
   {
@@ -115,6 +127,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "पंपा सरोवर के पास शबरी नाम की बूढ़ी भीलनी वर्षों से राम की प्रतीक्षा में जुटी थी। जब राम आए, उन्होंने पहले खुद चखकर मीठे बेर रख दिए — 'भगवान् को कड़वा तो न लग जाए!' राम ने उन बेरों को प्रेम से ग्रहण किया और कहा — नदी कितनी भी स्वच्छ हो, प्यासा कुएँ खोदता है; भक्ति में बाहरी योग्यता नहीं, भाव देखा जाता है।",
     english:
       "By Lake Pampa the aged tribal woman Shabari had waited for years with gathered berries for Rama's arrival. When He came, she had first tasted each berry to keep only the sweet ones for the Lord — 'what if the Lord finds one bitter!' Rama accepted those fruits with relish, teaching that devotion is measured not by ritual worthiness but by the love within.",
+    spanish:
+      "Junto al lago Pampa, la anciana mujer tribal Shabari había esperado años, con bayas recogidas, la llegada de Rama. Cuando Él llegó, había probado antes cada baya para guardar al Señor solo las dulces — '¡no vaya a encontrar el Señor una amarga!' Rama aceptó aquellos frutos con deleite, enseñando que la devoción no se mide por la dignidad ritual sino por el amor que hay dentro.",
     tags: ["shabari", "berries", "bhakti", "love", "शबरी", "बेर", "भक्ति", "प्रेम", "राम", "pampa"],
   },
   {
@@ -129,6 +143,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "रावण सीता को हरण कर ऊपर उड़ रहा था, तब वृद्ध गृधराज जटायु ने डटकर सामना किया — 'राम-लक्ष्मण की सेवा का यही अवसर है।' अपनी नाचीज़ क्षमता से महाबली रावण के साथ युद्ध करते हुए कटी पंखों के बीच गिर पड़ा, किंतु राम को रावण की दिशा बताकर कार्य सिद्ध किया। राम ने उस पक्षी के लिये अपने हाथों से अग्नि-संस्कार किया — सेवा की सार्थकता वृद्धावस्था या शक्ति से नहीं, श्रद्धा से होती है।",
     english:
       "As Ravana flew away with Sita, the aged vulture-king Jatayu barred his path — 'This body is worth offering in Rama's service.' He fought the mighty rakshasa until his wings were severed, falling to earth, yet fulfilled his purpose by revealing Ravana's direction to Rama. Rama himself performed the funerary rites for the bird: service is measured by shraddha, not by strength or age.",
+    spanish:
+      "Mientras Ravana alzaba el vuelo con Sita, el anciano rey de los buitres Jatayu le cerró el paso — 'Este cuerpo bien vale ofrecerse al servicio de Rama.' Combatió al poderoso rakshasa hasta que le cercenaron las alas y cayó a tierra, mas cumplió su propósito señalando a Rama la dirección de Ravana. El propio Rama celebró los ritos funerarios del ave: el servicio se mide por la shraddha, no por la fuerza ni por la edad.",
     tags: ["jatayu", "sacrifice", "ravana", "सीता हरण", "जटायु", "बलिदान", "रावण", "सेवा"],
   },
   {
@@ -143,6 +159,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "चौदह वर्ष बाद अयोध्या में श्रीराम का राज्याभिषेक हुआ। रामराज्य में न कोई शोकग्रस्त था, न अभावग्रस्त; वन-फल अमृत-सम थे, सब धर्म-परायण थे; चोर-लुटेरे दूर थे, वृद्ध अनाथों के रक्षक थे; स्त्रियाँ पति-परायण, पुत्र माता-पिता के आज्ञाकारी थे। 'रामराज्य' आज भी आदर्श शासन का पर्याय है — न्याय, समता, सुख और धर्म का प्रतीक।",
     english:
       "After fourteen years, Rama's coronation in Ayodhya ushered in Rama Rajya — no one grieved, none lacked; forest fruits were sweet as nectar; all turned to dharma; thieves vanished; the old and orphaned were protected; women and children lived unafraid. Even today 'Rama Rajya' is the Indian ideal of governance — the very synonym for justice, equality, prosperity and righteousness.",
+    spanish:
+      "Tras catorce años, la coronación de Rama en Ayodhya inauguró el Rama Rajya — nadie estaba de duelo, a nadie le faltaba nada; los frutos del bosque eran dulces como el néctar; todos se volcaban al dharma; los ladrones desaparecieron; los ancianos y los huérfanos quedaban protegidos; mujeres y niños vivían sin temor. Aun hoy el 'Rama Rajya' es el ideal indio de gobierno — el sinónimo mismo de justicia, igualdad, prosperidad y rectitud.",
     tags: ["rama rajya", "ideal state", "governance", "रामराज्य", "आदर्श", "न्याय", "शासन", "अयोध्या", "coronation"],
   },
   {
@@ -159,6 +177,8 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "हे सुमुखी! 'राम' नाम का तीन बार उच्चारण समस्त सहस्रनाम-पाठ के समान फल देता है — यह राम-रक्षा स्तोत्र का प्रसिद्ध वचन है। बुध कौशिक ऋषि द्वारा रचित इस स्तोत्र में राम-नाम की रक्षा-शक्ति का वर्णन है।",
     english:
       "O beautiful-faced one — the name of Rama, thrice repeated, equals the recitation of His thousand names: the celebrated verse of the Ram Raksha Stotra composed by Budha Kaushika, on the protective power of Rama's name.",
+    spanish:
+      "Oh, la de hermoso rostro — el nombre de Rama, repetido tres veces, equivale a la recitación de Sus mil nombres: el celebrado verso del Ram Raksha Stotra, compuesto por Budha Kaushika, sobre el poder protector del nombre de Rama.",
     tags: ["rama raksha", "protection", "stotra", "राम रक्षा", "राम नाम", "सहस्रनाम", "रक्षा", "protection mantra"],
   },
 ];

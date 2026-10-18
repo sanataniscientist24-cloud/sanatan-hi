@@ -60,10 +60,10 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
             <div className="mt-2 flex items-center gap-2 text-[0.62rem] text-sanatan-gold/80">
               <Sparkles className="h-3 w-3" aria-hidden />
               <span className="font-deva">
-                सनातन HI [ HUMAN INTELLIGENCE ] · {message.intent ?? "उत्तर"}
+                SANATAN HI [ HUMAN INTELLIGENCE ] · {message.intent ?? "answer"}
                 {message.timeMs !== undefined && message.timeMs >= 0
-                  ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · ऑफ़लाइन कोश"}`
-                  : " · ऑफ़लाइन कोश"}
+                  ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · offline corpus"}`
+                  : " · offline corpus"}
               </span>
             </div>
           )}
@@ -106,7 +106,7 @@ export function TypingIndicator() {
       </div>
       <div className="flex items-center gap-2.5 rounded-2xl rounded-tl-sm border border-sanatan-gold-2/50 bg-sanatan-parchment px-4 py-3">
         <span className="font-deva text-sanatan-saffron text-xl flame-breathe">ॐ</span>
-        <div className="flex items-center gap-1" aria-label="सोच रहा है">
+        <div className="flex items-center gap-1" aria-label="Thinking">
           {[0, 1, 2].map((i) => (
             <span
               key={i}
@@ -117,7 +117,7 @@ export function TypingIndicator() {
             />
           ))}
         </div>
-        <span className="text-[0.72rem] text-sanatan-gold font-deva">ग्रंथ-कोश से खोज रहा हूँ…</span>
+        <span className="text-[0.72rem] text-sanatan-gold font-deva">Consulting the scriptures…</span>
       </div>
     </div>
   );

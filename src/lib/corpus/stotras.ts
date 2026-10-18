@@ -16,6 +16,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "गोस्वामी तुलसीदास जी द्वारा रचित हनुमान चालीसा — विश्व में सर्वाधिक पढ़ी जाने वाली भक्ति-रचना। 40 चौपाइयों में श्रीहनुमान जी का परिचय है: ज्ञान-गुण का सागर, तीन लोकों का उजागरक, अतुलित बल का धाम, संकट-मोचन, नासै रोग हरै सब पीरा, जो सुमिरै हनुमत बलबीरा। बुद्धि, बल, विद्या और निरोग कामना से पढ़ी जाती है।",
     english:
       "The Hanuman Chalisa of Goswami Tulsidas — the most recited devotional hymn on earth. In forty chaupais it sings Hanuman's glory: ocean of wisdom and virtue, light of the three worlds, home of matchless strength, reliever of all afflictions — 'all ills vanish, every pain is destroyed, for whoever remembers the mighty son of the wind.' Recited for intellect, strength, learning and healing.",
+    spanish:
+      "El Hanuman Chalisa de Goswami Tulsidas — el himno devocional más recitado de la tierra. En cuarenta chaupais canta la gloria de Hanuman: océano de sabiduría y virtud, luz de los tres mundos, morada de una fuerza sin igual, aliviador de todas las aflicciones — 'toda enfermedad se desvanece, todo dolor es destruido, para quien recuerda al poderoso hijo del viento.' Se recita para el intelecto, la fuerza, el aprendizaje y la sanación.",
     tags: ["hanuman chalisa", "tulsidas", "40 chaupais", "हनुमान चालीसा", "तुलसीदास", "चालीसा", "संकटमोचन", "हनुमान", "famous", "hanuman"],
   },
   {
@@ -32,6 +34,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "मैं शरीर-मन को बुद्धि-हीन जानकर पवन-पुत्र हनुमान जी का स्मरण करता हूँ — वे बल, बुद्धि और विद्या दें और मेरे दुःख-दोष दूर करें। चालीसा का यह दोहा छात्रों का सर्वप्रिय वाक्य है।",
     english:
       "Knowing my body-mind to be wanting in wisdom, I remember the son of the wind — grant me strength, intellect and knowledge, and remove my afflictions. The most beloved couplet of the Chalisa, especially cherished by students.",
+    spanish:
+      "Sabiendo que mi cuerpo-mente carece de sabiduría, recuerdo al hijo del viento — concédeme fuerza, intelecto y conocimiento, y aparta mis aflicciones. El dístico más querido del Chalisa, especialmente atesorado por los estudiantes.",
     tags: ["buddhi", "vidya", "student prayer", "बुद्धिहीन", "बल बुधि विद्या", "छात्र", "स्मरण"],
   },
   {
@@ -48,6 +52,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "वीर हनुमान जी का निरंतर जप करने से रोग नष्ट होते हैं और समस्त पीड़ा हर ली जाती है।",
     english:
       "Diseases are destroyed and every pain is dispelled by ceaselessly repeating the name of the valiant Hanuman.",
+    spanish:
+      "Las enfermedades se destruyen y todo dolor se disipa al repetir sin cesar el nombre del valiente Hanuman.",
     tags: ["healing", "japa", "नासै रोग", "जप", "आरोग्य", "healing"],
   },
   {
@@ -64,6 +70,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "हे वक्रतुण्ड (मोड़ी सूँड वाले) महाकाय (विशाल शरीर वाले) देव! जो कोटि सूर्यों के समान प्रभामय हैं — मेरे समस्त कार्यों में सदा निर्विघ्नता दें। शुभ-आरम्भ का मंगल मंत्र।",
     english:
       "O curved-trunked, colossal Lord, radiant as ten million suns — remove all obstacles from my undertakings, always. The auspicious mantra of new beginnings.",
+    spanish:
+      "Oh Señor colosal de la trompa curva, radiante como diez millones de soles — aparta siempre todos los obstáculos de mis empresas. El mantra auspicioso de los nuevos comienzos.",
     tags: ["ganesha", "obstacles", "vakratunda", "गणेश", "वक्रतुण्ड", "निर्विघ्न", "शुभ आरम्भ", "beginnings"],
   },
   {
@@ -80,6 +88,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "श्वेत वस्त्र धारण करते, चंद्रमा के समान गौर वर्ण वाले, चार भुजाओं वाले और प्रसन्न मुख वाले विनायक का ध्यान करें — समस्त विघ्नों की शान्ति के लिए। हर शुभ कार्य से पहले विनायक-स्मरण।",
     english:
       "One meditates on Vinayaka clad in white, moon-complexioned, four-armed and serenely faced, for the pacification of every obstacle — the first remembrance before every auspicious act.",
+    spanish:
+      "Se medita en Vinayaka, vestido de blanco, de tez lunar, de cuatro brazos y rostro sereno, para la pacificación de todo obstáculo — el primer recuerdo antes de cada acto auspicioso.",
     tags: ["ganesha", "dhyana", "vinayaka", "गणेश ध्यान", "विनायक", "शुक्लाम्बर", "prayer before work"],
   },
   {
@@ -94,6 +104,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "ॐ गं गणपतये नमः — गणों के स्वामी गणपति को नमस्कार। मंगल-आरम्भ, विद्या-प्राप्ति और विघ्न-नाश का बीज-मंत्र।",
     english:
       "Om Gam Ganapataye Namah — salutations to the lord of hosts. The seed-mantra for auspicious beginnings, learning and the removal of obstacles.",
+    spanish:
+      "Om Gam Ganapataye Namah — salutaciones al señor de las huestes. El mantra-semilla para los comienzos auspiciosos, el aprendizaje y la remoción de los obstáculos.",
     tags: ["ganesh beej", "gam", "गणपति", "बीज मंत्र", "जप"],
   },
   {
@@ -110,6 +122,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "जो देवी समस्त प्राणियों में शक्ति के रूप में स्थित हैं — उन दुर्गा को बार-बार नमस्कार। देवी-उपासना का सबसे रहस्यमयी और प्रिय स्तुति-सूत्र: शक्ति केवल मंदिर में नहीं, प्रत्येक कण में है।",
     english:
       "To that Devi who abides in all beings as power — salutations, salutations, salutations again and again. The most beloved verse of Goddess worship: Shakti lives not only in the shrine but in every particle of existence.",
+    spanish:
+      "A aquella Devi que mora en todos los seres como poder — salutaciones, salutaciones, salutaciones una y otra vez. El verso más querido del culto a la Diosa: Shakti no vive solo en el santuario, sino en cada partícula de la existencia.",
     tags: ["devi", "shakti", "durga", "या देवी", "शक्ति", "दुर्गा", "नवरात्रि", "famous", "goddess"],
   },
   {
@@ -124,6 +138,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "ॐ दुं दुर्गायै नमः — दुर्ग (संकट) को दूर करने वाली माँ दुर्गा को नमस्कार। संकट-नाश और रक्षा-कवच का मंत्र।",
     english:
       "Om Dum Durgayai Namah — salutations to Mother Durga, who carries across every fortress of distress. The mantra of protection and the removal of danger.",
+    spanish:
+      "Om Dum Durgayai Namah — salutaciones a la Madre Durga, que nos conduce a través de toda fortaleza de aflicción. El mantra de la protección y la remoción del peligro.",
     tags: ["durga mantra", "protection", "दुर्गा मंत्र", "रक्षा", "दुं", "sankat"],
   },
   {
@@ -138,6 +154,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "ॐ श्रीं महालक्ष्म्यै नमः — समृद्धि-स्वरूपा महालक्ष्मी को नमस्कार। श्री-वृद्धि, ऐश्वर्य और सकारात्मकता का बीज-मंत्र।",
     english:
       "Om Shreem Mahalakshmyai Namah — salutations to Mahalakshmi, the embodiment of prosperity. The seed-syllable of abundance, wealth and positivity.",
+    spanish:
+      "Om Shreem Mahalakshmyai Namah — salutaciones a Mahalakshmi, la encarnación de la prosperidad. La sílaba-semilla de la abundancia, la riqueza y la positividad.",
     tags: ["lakshmi", "shreem", "wealth", "लक्ष्मी", "श्रीं", "समृद्धि", "धन"],
   },
   {
@@ -154,6 +172,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "जो देवी कुमुद-कुसुम, चंद्र, हिम-राशि और मोती के हार जैसी धवल हैं, शुभ्र वस्त्र पहनती हैं, वीणा-वर-दण्ड से युक्त हाथों वाली हैं, श्वेत कमल पर आसीन हैं और ब्रह्मा-विष्णु-शंकर आदि देवों द्वारा सदा वंदित हैं — वही भगवती सरस्वती हमारी रक्षा करें और अज्ञान-जड़ता को हर लें। विद्या-प्राप्ति का सर्वप्रिय स्तोत्र।",
     english:
       "White as the jasmine, the moon, an icicle and a string of pearls; robed in purity, her hands gracing the veena and blessing; seated on the white lotus; eternally worshipped by Brahma, Vishnu and Shiva — may that supreme Saraswati protect me and remove all ignorance. The most beloved prayer for learning.",
+    spanish:
+      "Blanca como el jazmín, la luna, un carámbano y una sarta de perlas; vestida de pureza, con las manos engalanando la veena y bendiciendo; sentada sobre el loto blanco; eternamente adorada por Brahma, Vishnu y Shiva — que esa suprema Saraswati me proteja y disipe toda ignorancia. La plegaria más querida para el aprendizaje.",
     tags: ["saraswati", "knowledge", "veena", "सरस्वती", "या कुन्देन्दु", "वीणा", "विद्या", "students", "famous"],
   },
   {
@@ -170,6 +190,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "हरे कृष्ण महामंत्र — कलियुग में सर्वश्रेष्ठ साधन बताया गया मंत्र (कलिसंतरण उपनिषद्): 16 नामों-शब्दों का जप हृदय-शुद्धि और परम-प्रेम-प्राप्ति का सर्व-सुलभ द्वार है। 'हरे' — ऊर्जा (राधा/सीता), 'कृष्ण' — सर्वाकर्षक परमात्मा, 'राम' — परम-आनन्द-स्रोत।",
     english:
       "The Hare Krishna Mahamantra — declared the supreme means for the age of Kali (Kalisantarna Upanishad). Sixteen words whose chanting is the simplest gate to purification and divine love: 'Hare' — the divine energy; 'Krishna' — the all-attractive Lord; 'Rama' — the reservoir of joy.",
+    spanish:
+      "El Hare Krishna Mahamantra — declarado el medio supremo para la era de Kali (Kalisantarna Upanishad). Dieciséis palabras cuyo canto es la puerta más sencilla a la purificación y el amor divino: 'Hare' — la energía divina; 'Krishna' — el Señor todo-atractivo; 'Rama' — el manantial de la alegría.",
     tags: ["mahamantra", "hare krishna", "chanting", "हरे कृष्ण", "महामंत्र", "जप", "kaliyuga", "famous", "chant"],
   },
   {
@@ -186,6 +208,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "ॐ जय जगदीश हरे — विश्व की सर्वाधिक गाई जाने वाली आरती। 'हे जगत के स्वामी! भक्तों के संकट क्षण-भर में मिटा देने वाले, जो ध्यान करे उसे फल मिलता है, मन का दुःख बिनस जाता है।' तुम मेरे माता-पिता हो, विपत्ति में तुम्हीं सहारा हो — यह रहस्यमय आरती संध्या-पूजा का समापन है।",
     english:
       "Om Jai Jagadish Hare — the most sung aarti of the world. 'Victory to the Lord of the universe, who removes the devotee's afflictions in an instant; whoever meditates on Him receives the fruit, and sorrow perishes.' You are my mother and father, my only refuge in adversity — with this mystic prayer ends every evening worship.",
+    spanish:
+      "Om Jai Jagadish Hare — la aarti más cantada del mundo. 'Victoria al Señor del universo, que elimina en un instante las aflicciones del devoto; quien medita en Él recibe el fruto, y la pena perece.' Tú eres mi madre y mi padre, mi único refugio en la adversidad — con esta mística plegaria concluye todo culto vespertino.",
     tags: ["aarti", "jagadish", "evening prayer", "आरती", "जगदीश", "पूजा", "evening", "famous"],
   },
   {
@@ -200,6 +224,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "ॐ नमो भगवते वासुदेवाय — वासुदेव (कृष्ण) को नमस्कार। चारों वेदों का सार कहा गया अष्टाक्षरी मंत्र: 'अहं भगवत्-स्वरूप को प्रणाम करता हूँ।' ध्रुव ने इसी के जप से विष्णु-दर्शन पाया।",
     english:
       "Om Namo Bhagavate Vasudevaya — salutations to Vasudeva (Krishna). The eight-syllabled mantra called the essence of all four Vedas. It was by its japa that the child Dhruva attained the vision of Vishnu.",
+    spanish:
+      "Om Namo Bhagavate Vasudevaya — salutaciones a Vasudeva (Krishna). El mantra de ocho sílabas, llamado la esencia de los cuatro Vedas. Fue mediante su japa que el niño Dhruva alcanzó la visión de Vishnu.",
     tags: ["krishna mantra", "ashtakshari", "वासुदेवाय", "ध्रुव", "जप", "अष्टाक्षरी"],
   },
   {
@@ -214,6 +240,8 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "श्री राम जय राम जय जय राम — तारक मंत्र, जो संसार-सागर से तारता है। 'राम' शब्द में ही 24 देवताओं का निवास माना गया है; संकट-नाश और मन-शान्ति हेतु सबसे सरल उपासना।",
     english:
       "Shri Ram Jai Ram Jai Jai Ram — the taraka mantra that carries across the ocean of worldly existence. The single word 'Rama' is held to contain the presence of the gods themselves: the simplest sadhana for peace and the removal of distress.",
+    spanish:
+      "Shri Ram Jai Ram Jai Jai Ram — el mantra taraka que lleva a través del océano de la existencia mundana. La sola palabra 'Rama' se considera que contiene la presencia de los propios dioses: la sadhana más sencilla para la paz y la remoción de la angustia.",
     tags: ["rama mantra", "taraka", "राम जय राम", "तारक", "जप", "peace"],
   },
 ];

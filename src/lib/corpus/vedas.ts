@@ -20,6 +20,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "मैं यज्ञ का पुरोहित, देवताओं का हवी-भाजक और रत्न-भाजन रूप होता अग्नि की स्तुति करता हूँ। विश्व के प्रथम ग्रंथ ऋग्वेद का प्रथम ऋचा — सृष्टि के आरम्भ में सबसे पहले अग्नि का आह्वान।",
     english:
       "I laud Agni, the household priest of the sacrifice, the divine minister of the rite, the invoker, bestower of treasures. The very first verse of the Rigveda — the first book of humanity — invokes Fire at the beginning of creation.",
+    spanish:
+      "Elogio a Agni, el sacerdote del hogar del sacrificio, el divino ministro del rito, el invocador, otorgador de tesoros. El primer verso del Rig Veda — el primer libro de la humanidad — invoca al Fuego en el comienzo de la creación.",
     tags: ["agni", "fire", "first verse", "rigveda opening", "अग्नि", "प्रथम ऋचा", "यज्ञ", "ऋग्वेद", "fire god"],
   },
   {
@@ -37,6 +39,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "ॐ — भूः (पृथ्वी), भुवः (अंतरिक्ष), स्वः (स्वर्ग)। हम उस प्रियतम, उत्तम तेजस्वी, दिव्य सविता (सूर्य-परमात्मा) के तेज का ध्यान करें; वह हमारी बुद्धि को प्रेरित एवं निर्देशित करे। संध्या-वंदन का मूल मंत्र — गायत्री, वेदों की माता।",
     english:
       "Om — earth, atmosphere, heaven. May we meditate on the adorable glory of the divine Sun (Savitr); may He illumine and guide our intellect. The Gayatri — mother of the Vedas and the heart of the daily sandhya prayer.",
+    spanish:
+      "Om — tierra, atmósfera, cielo. Meditemos en la adorable gloria del Sol divino (Savitr); que Él ilumine y guíe nuestro intelecto. El Gayatri — madre de los Vedas y corazón de la oración diaria del sandhya.",
     tags: ["gayatri", "sandhya", "sun", "savitur", "intellect", "गायत्री मंत्र", "संध्या", "सूर्य", "बुद्धि", "famous", "daily prayer"],
   },
   {
@@ -54,6 +58,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "सहस्र सिर, सहस्र नेत्र और सहस्र पावों वाले पुरुष ने सम्पूर्ण पृथ्वी को व्याप्त कर दस अंगुल ऊपर ठहरे हैं। यह समस्त जगत् — जो रहा, जो है, जो होगा — पुरुष ही है; वही अमृतत्व के स्वामी हैं। समस्त प्राणी उनका एक चतुर्थांश (पाद) हैं — अमर तीन चतुर्थांश दिवि (परम धाम) में शोभित हैं। समस्त वेद-रूपों में विराजमान ईश्वर का वर्णन।",
     english:
       "The Cosmic Person has a thousand heads, a thousand eyes, a thousand feet; He pervades the whole earth and stands ten fingers beyond. All this universe — what was, is and shall be — is the Purusha; He is the lord of immortality. All beings are but one quarter of Him; three quarters are immortal in heaven. The grand Vedic vision of the all-pervading Lord.",
+    spanish:
+      "La Persona Cósmica tiene mil cabezas, mil ojos, mil pies; Él penetra la tierra entera y se alza diez dedos más allá. Todo este universo — lo que fue, es y será — es el Purusha; Él es el señor de la inmortalidad. Todos los seres son apenas un cuarto de Él; tres cuartos son inmortales en el cielo. La grandiosa visión védica del Señor que todo lo penetra.",
     tags: ["purusha sukta", "cosmic being", "virat", "पुरुष सूक्त", "विराट", "सहस्र शीर्ष", "ब्रह्मांड", "creation", "famous"],
   },
   {
@@ -71,6 +77,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "उस समय न असत् था, न सत् था; न रज था, न व्योम — किसकी आश्रय-शक्ति थी, कहाँ था और किसका जल-सागर? न मृत्यु थी, न अमृत; न रात्रि, न दिवस — केवल वह एक तत्त्व अपनी स्वधा से निःश्वासवान् था; उसके सिवा और कुछ नहीं था। सृष्टि-पूर्व अवस्था का ऋषि-दर्शन — विश्व का सबसे प्राचीन दार्शनिक गीत।",
     english:
       "Then even non-being was not, nor being; no air, no sky beyond — what covered it, where, in whose shelter, was that water, the deep abyss? There was no death, no immortality; no night, no day — only That One breathed, self-supported, without wind; other than It, nothing existed. The seer's vision of the state before creation — the most ancient philosophical poem of the world.",
+    spanish:
+      "Entonces ni siquiera el no-ser era, ni el ser; ni aire, ni cielo más allá — ¿qué lo cubría, dónde, bajo el abrigo de quién, estaba aquella agua, el abismo profundo? No había muerte, ni inmortalidad; ni noche, ni día — solo Aquel Uno respiraba, sosteniéndose a sí mismo, sin viento; aparte de Eso, nada existía. La visión del vidente del estado previo a la creación — el poema filosófico más antiguo del mundo.",
     tags: ["nasadiya", "creation", "philosophy", "before creation", "नासदीय सूक्त", "सृष्टि", "पूर्व", "असत्", "philosophy", "famous"],
   },
   {
@@ -88,6 +96,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "सब ओर से हमारे पास कल्याणकारी विचार आएँ — सत्य की खोज में किसी भी दिशा से आया अच्छा विचार ग्रहण करने योग्य है; इसी ऋचा से भारतीय ज्ञान-परम्परा की उदारता अभिव्यक्त होती है।",
     english:
       "Let noble thoughts come to us from every side — the verse that reveals the openness of Indian learning: truth is welcome from any direction.",
+    spanish:
+      "Que los pensamientos nobles lleguen a nosotros desde todas partes — el verso que revela la apertura del saber indio: la verdad es bienvenida desde cualquier dirección.",
     tags: ["bhadra", "noble thoughts", "openness", "आ नो भद्रा", "उत्तम विचार", "ज्ञान", "उदारता", "famous"],
   },
   {
@@ -105,6 +115,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "तीन नेत्रों वाले त्र्यम्बक (शिव) की हम उपासना करें; सुगंधित, पोषक (पुष्टि-वर्धक) परमेश्वर की — वे हमें फल की डाली के सदृश बंधन से (मृत्यु से) निर्लिप्त कर मृत्यु के पार अमृत में स्थापित करें। महामृत्युंजय जप रोग, भय और मृत्यु-भंजन के लिए शिव-उपासना का सर्वश्रेष्ठ मंत्र है।",
     english:
       "We worship the three-eyed Lord Tryambaka, the fragrant nourisher of all; may He liberate us from the bond of death, like a cucumber from its stalk, and grant us immortality. The great death-conquering mantra of Shiva — the supreme prayer for healing, fearlessness and liberation from mortality.",
+    spanish:
+      "Adoramos al señor de tres ojos Tryambaka, el fragante nutridor de todo; que Él nos libere del vínculo de la muerte, como un pepino de su tallo, y nos conceda la inmortalidad. El gran mantra vencedor de la muerte de Shiva — la suprema plegaria por la sanación, la intrepidez y la liberación de la mortalidad.",
     tags: ["mrityunjaya", "tryambakam", "shiva", "immortality", "death", "महामृत्युंजय", "त्र्यम्बकं", "मृत्यु", "शिव", "healing", "famous", "मंत्र"],
   },
   {
@@ -122,6 +134,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "पृथ्वी मेरी माता है और मैं उस पृथ्वी का पुत्र हूँ। भूमि-सूक्त पृथ्वी को जीवंत माता के रूप में स्तुति करता है — पारिस्थितिक चेतना का वैदिक उद्गम।",
     english:
       "The Earth is my mother and I am her son. The Bhumi Sukta praises the planet as a living mother — the Vedic origin of ecological consciousness.",
+    spanish:
+      "La Tierra es mi madre y yo soy su hijo. El Bhumi Sukta alaba al planeta como a una madre viva — el origen védico de la conciencia ecológica.",
     tags: ["earth", "mother", "bhumi", "ecology", "माता भूमि", "पृथ्वी", "पुत्र", "पर्यावरण", "environment"],
   },
   {
@@ -138,6 +152,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "कल्याण-स्वरूप शिव को नमस्कार और उनसे भी अधिक कल्याणकारी शिवतर को नमस्कार। श्रीरुद्रम् में रुद्र-देव का अनेक रूपों में स्तुति हुई है — 'नमः शिवाय' का मूल स्रोत यही श्रुति है।",
     english:
       "Salutations to Shiva, the auspicious, and to the Shiva-than-Shiva, the yet more auspicious. The Shri Rudram hymns Rudra in His countless forms — this very line is the scriptural source of the mantra Om Namah Shivaya.",
+    spanish:
+      "Salutaciones a Shiva, el auspicioso, y al más-que-Shiva, el aún más auspicioso. El Shri Rudram ensalza a Rudra en sus incontables formas — esta misma línea es la fuente escritural del mantra Om Namah Shivaya.",
     tags: ["rudram", "namah shivaya", "shiva", "yajurveda", "रुद्रम्", "नमः शिवाय", "शिव", "यजुर्वेद", "shruti"],
   },
   {
@@ -154,6 +170,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "मित्र हमारे लिए कल्याणकारी हों, वरुण, भग (आदित्य), इन्द्र, बृहस्पति और विषाल-क्रमी विष्णु भी कल्याणकारी हों। ब्रह्म को नमस्कार, वायु को नमस्कार — तुम ही साक्षात् ब्रह्म हो। शास्त्र-अध्ययन से पूर्व पढ़ा जाने वाला प्रार्थना-सूक्त।",
     english:
       "May Mitra, Varuna, Bhaga, Indra, Brihaspati and the vast-striding Vishnu be auspicious to us. Salutation to Brahman, salutation to Vayu — You alone are the visible Brahman. The prayer recited before every scriptural study.",
+    spanish:
+      "Que Mitra, Varuna, Bhaga, Indra, Brihaspati y el Vishnu de vasto paso nos sean auspiciosos. Salutación a Brahman, salutación a Vayu — Tú solo eres el Brahman visible. La plegaria recitada antes de todo estudio escritural.",
     tags: ["shanti", "prayer", "study", "mitra", "varuna", "शान्ति पाठ", "प्रार्थना", "अध्ययन", "वायु", "ब्रह्म"],
   },
   {
@@ -166,6 +184,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "'वेद' शब्द 'विद्' (जानना) धातु से बना है — ज्ञान या जानने का साधन। वेद श्रुति हैं: ऋषियों ने ध्यान में जो ऋचाएँ 'सुनीं', वे गायत्री छंद में पीढ़ी-दर-पीढ़ी वेदांग-विधि से शुद्ध सुराखीं — इसलिए ये अपौरुषेय (मनुष्य-रचित नहीं) मानी जाती हैं। वेद के भाग: संहिता (मंत्र), ब्राह्मण (कर्मकांड-विधि), आरण्यक (वन-चिंतन), उपनिषद् (ब्रह्म-ज्ञान)। 'वेदोऽखिलो धर्ममूलम्' — समस्त धर्म का मूल वेद ही है।",
     english:
       "The word 'Veda' comes from 'vid', to know — knowledge itself. The Vedas are shruti: hymns 'heard' by rishi in meditation, then transmitted for millennia with faultless oral precision — hence called apaurusheya, not of human authorship. Each Veda has four strata: Samhita (mantras), Brahmana (ritual), Aranyaka (forest contemplation) and Upanishad (supreme knowledge). 'Vedo akhilo dharmamulam' — the whole of dharma is rooted in the Vedas.",
+    spanish:
+      "La palabra 'Veda' proviene de 'vid', conocer — el conocimiento mismo. Los Vedas son shruti: himnos 'escuchados' por los rishis en meditación, transmitidos luego durante milenios con impecable precisión oral — por eso se los llama apaurusheya, no de autoría humana. Cada Veda tiene cuatro estratos: Samhita (mantras), Brahmana (ritual), Aranyaka (contemplación del bosque) y Upanishad (conocimiento supremo). 'Vedo akhilo dharmamulam' — todo el dharma está enraizado en los Vedas.",
     tags: ["veda", "shruti", "apaurusheya", "structure", "वेद क्या है", "श्रुति", "अपौरुषेय", "संहिता", "what is veda"],
   },
   {
@@ -178,6 +198,8 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
       "सामवेद ऋग्वेद की ऋचाओं का साधु-संगीत रूप में गायन है — भारतीय संगीत (संगीत शब्द स्वयं 'साम' से बना) का उद्गम। गीता में कृष्ण ने कहा — 'वेदानां सामवेदोऽस्मि' (वेदों में मैं सामवेद हूँ)। यज्ञ में उद्गाता-पुरोहित साम-गान से देवताओं का आह्वान करते हैं।",
     english:
       "The Samaveda sings Rigvedic verses in sacred melody — the fountainhead of Indian music (the very word sangeet derives from sama). Krishna declares in the Gita: 'Among Vedas I am the Sama Veda.' In the sacrifice, the udgatri priest invokes the gods through saman chant.",
+    spanish:
+      "El Samaveda canta en sagrada melodía los versos del Rig Veda — la fuente de la música india (la propia palabra sangeet deriva de sama). Krishna declara en el Gita: 'Entre los Vedas, yo soy el Sama Veda.' En el sacrificio, el sacerdote udgatri invoca a los dioses mediante el canto saman.",
     tags: ["samaveda", "music", "sama", "सामवेद", "संगीत", "गान", "गीता", "music veda"],
   },
 ];
@@ -202,6 +224,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "इस चराचर जगत् में जो कुछ है, वह सब ईश (भगवान्) का निवास-रूप है — इस ज्ञान से त्याग करके भोग कर, और इस ज्ञान-भाव से युक्त होकर भुंज; किसका धन है, इस प्रकार 'माँगने' वाली कामना रखना उचित नहीं। ईशोपनिषद् का प्रथम मंत्र — त्याग-भाव से भोग का अनुपम सूत्र।",
     english:
       "All this — whatever moves in this moving world — is pervaded by the Lord. Enjoy what He gives, offering it back to Him; do not covet, for whose is this wealth? The opening mantra of the Isha Upanishad — the matchless formula of enjoying through renunciation.",
+    spanish:
+      "Todo esto — cuanto se mueve en este mundo en movimiento — está penetrado por el Señor. Disfruta lo que Él da, ofreciéndoselo de vuelta; no codicies, ¿de quién es acaso esta riqueza? El mantra inicial del Isha Upanishad — la fórmula incomparable de disfrutar mediante la renunciación.",
     tags: ["isha", "renunciation", "enjoy", "ईशा वास्यम्", "त्याग", "ईश", "जगत्", "renounce", "famous"],
   },
   {
@@ -219,6 +243,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "जो पुरुष समस्त प्राणियों को अपने आत्मा में देखता है और समस्त प्राणियों में अपने आत्मा को, वह किसी से घृणा नहीं करता। एकता-दर्शन का शाश्वत सूत्र।",
     english:
       "One who sees all beings in the Self, and the Self in all beings, feels revulsion toward none. The eternal law of seeing oneness.",
+    spanish:
+      "Quien ve a todos los seres en el Sí mismo, y el Sí mismo en todos los seres, no siente repulsión hacia nadie. La ley eterna de ver la unidad.",
     tags: ["unity", "self in all", "oneness", "एकता", "सर्वभूत", "आत्म-दर्शन", "oneness"],
   },
   {
@@ -236,6 +262,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "सत्य का मुख सुनहरे पात्र से ढका है; हे पूषन! तू उस आवरण को भक्त के सत्य-धर्म दर्शन के लिये हटा दे। ... हे अग्ने! तू हमें सुख-मार्ग से ने के लिये ले चल; हमसे समस्त लोभ-दोष दूर कर — हम तुझ पर बहुत नमस्कार करते हैं।",
     english:
       "The face of truth is covered with a golden vessel; O Nourisher, remove that veil for the seeker of truth. ... O Fire, lead us by the good path to felicity; burn away our crooked sins — we offer you our salutations again and again.",
+    spanish:
+      "El rostro de la verdad está cubierto por un recipiente dorado; oh Sustentador, retira ese velo para el buscador de la verdad. ... ¡oh Fuego!, condúcenos por el buen camino hacia la dicha; abrasa nuestros pecados torcidos — te ofrecemos nuestras salutaciones una y otra vez.",
     tags: ["truth", "veil", "final prayer", "सत्य", "हिरण्मय", "पात्र", "आवरण", "अग्ने नय", "supatha"],
   },
   {
@@ -253,6 +281,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "आत्मा अणु से भी सूक्ष्म और महत् से भी बड़ा है; यह जीव के हृदय-गुफा में विराजमान है। वीतशोक (शोक-रहित) और संयत-इंद्रिय पुरुष ईश्वर-कृपा से उस आत्मा के यथार्थ महिमा को देखता है। नचिकेता को यमराज का उत्तर।",
     english:
       "The Self is smaller than the smallest, greater than the greatest; it dwells in the cave of every heart. The desireless, tranquil seer, by the grace of the Creator, beholds the glory of the Self. Yama's answer to young Nachiketa.",
+    spanish:
+      "El Sí mismo es más pequeño que lo más pequeño, más grande que lo más grande; mora en la cueva de cada corazón. El vidente sin deseos y sereno, por la gracia del Creador, contempla la gloria del Sí mismo. La respuesta de Yama al joven Nachiketa.",
     tags: ["katha", "nachiketa", "yama", "subtle", "self", "कठ", "नचिकेता", "यम", "आत्मा", "सूक्ष्म", "famous"],
   },
   {
@@ -270,6 +300,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "आत्मा को रथी जानो, शरीर रथ है, बुद्धि सारथि, मन लगाम; इंद्रियाँ घोड़े हैं और विषय उनके विचरण-भूमि। इंद्रिय-मन से युक्त आत्मा भोक्ता कहलाता है। ज्ञान-यात्रा का प्रसिद्ध रथ-कल्पना — जीवन की संपूर्ण मनोविज्ञान-दृष्टि।",
     english:
       "Know the Self as the charioteer, the body as the chariot; the intellect is the driver, the mind the reins; the senses are the horses, the sense-objects their roads. The Self joined with senses and mind becomes the enjoyer. The celebrated chariot analogy — a complete psychology of life in two verses.",
+    spanish:
+      "Conoce al Sí mismo como el auriga y al cuerpo como el carro; el intelecto es el conductor, la mente las riendas; los sentidos son los caballos y los objetos de los sentidos sus caminos. El Sí mismo unido a los sentidos y a la mente se convierte en el experimentador. La célebre analogía del carro — una psicología completa de la vida en dos versos.",
     tags: ["chariot", "katha", "psychology", "रथ", "सारथि", "लगाम", "घोड़े", "बुद्धि", "मन", "analogy", "famous"],
   },
   {
@@ -287,6 +319,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "जो अशब्द, अस्पर्श, अरूप, अव्यय, रस-रहित, नित्य, अगन्ध है; जो अनादि-अनन्त है और शब्द-महा-भूत से परे है — उस आत्मा को बुद्धि और अभ्यास से विचार कर जानना चाहिए।",
     english:
       "Soundless, touchless, formless, imperishable; likewise tasteless, constant, odorless; without beginning and end, beyond the great element — by such discrimination the Self is to be known through practice.",
+    spanish:
+      "Sin sonido, sin tacto, sin forma, imperecedero; igualmente sin sabor, constante, inodoro; sin comienzo ni fin, más allá del gran elemento — mediante tal discernimiento, el Sí mismo debe conocerse a través de la práctica.",
     tags: ["self qualities", "formless", "अशब्द", "अरूप", "अनादि", "आत्म-धर्म", "discrimination"],
   },
   {
@@ -304,6 +338,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "हे श्वेतकेतु! तत् (वह परम तत्त्व) त्वम् (तू) असि (ही है)। पिता उद्दालक ने पुत्र से जो महावाक्य कहा — वह अद्वैत का आधार-सूत्र बन गया। सत् से सृष्टि, तत् में लय — 'तू स्वयं वही है।'",
     english:
       "That thou art, O Shvetaketu. The great saying (mahavakya) spoken by father Uddalaka to his son — the foundational declaration of Advaita: the innermost Self and the Absolute are one.",
+    spanish:
+      "Eso eres tú, oh Shvetaketu. El gran dicho (mahavakya) pronunciado por el padre Uddalaka a su hijo — la declaración fundacional del Advaita: el Sí mismo más íntimo y el Absoluto son uno.",
     tags: ["tat tvam asi", "mahavakya", "advaita", "shvetaketu", "तत् त्वम् असि", "महावाक्य", "अद्वैत", "श्वेतकेतु", "famous", "mahavakya"],
   },
   {
@@ -321,6 +357,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "हे सुमुख! आदि में एक 'सत्' ही था, एक ही — दूसरा कुछ नहीं था। सृष्टि-पूर्व एकमात्र सत् का अस्तित्व — उद्दालक-श्वेतकेतु संवाद का उद्घोष।",
     english:
       "In the beginning, my dear, this was Being alone — one only, without a second. The proclamation of the primal Unity that began Uddalaka's teaching.",
+    spanish:
+      "En el comienzo, querido mío, esto era el Ser, solo — uno único, sin segundo. La proclamación de la Unidad primordial con la que comenzó la enseñanza de Uddalaka.",
     tags: ["sat", "one without second", "creation", "सदेव", "एकमेवाद्वितीयम्", "अद्वैत", "सृष्टि", "unity"],
   },
   {
@@ -338,6 +376,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "मैं ब्रह्म हूँ। याज्ञवल्क्य-मैत्रेयी संवाद से उद्भूत यह महावाक्य घोषणा करता है कि जीव का स्वरूप परम ब्रह्म ही है — ज्ञान का उत्कर्ष यही अनुभूति है।",
     english:
       "I am Brahman. The great saying arising from the Yajnavalkya-Maitreyi dialogue — the Self of every being is none other than the Absolute; the culmination of knowledge is this realization.",
+    spanish:
+      "Yo soy Brahman. El gran dicho surgido del diálogo entre Yajnavalkya y Maitreyi — el Sí mismo de cada ser no es otro que el Absoluto; la culminación del conocimiento es esta realización.",
     tags: ["aham brahmasmi", "mahavakya", "self", "अहं ब्रह्मास्मि", "याज्ञवल्क्य", "महावाक्य", "ब्रह्म", "famous"],
   },
   {
@@ -355,6 +395,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "मुझे असत्य से सत्य की ओर ले चलो, अंधकार से प्रकाश की ओर ले चलो, मृत्यु से अमरता की ओर ले चलो। ॐ शान्तिः शान्तिः शान्तिः — विश्व की सर्वाधिक प्रार्थित मंत्र-पंक्ति।",
     english:
       "Lead me from the unreal to the real; lead me from darkness to light; lead me from death to immortality. Om, peace, peace, peace — the most beloved prayer-line of the world.",
+    spanish:
+      "Guíame de lo irreal a lo real; guíame de la oscuridad a la luz; guíame de la muerte a la inmortalidad. Om, paz, paz, paz — la línea de plegaria más amada del mundo.",
     tags: ["asato ma sadgamaya", "prayer", "light", "immortality", "असतो मा सद्गमय", "तमसो मा ज्योतिर्गमय", "मृत्योर्मा", "famous", "peace"],
   },
   {
@@ -371,6 +413,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "सब सुखी हों, सब निरोगी हों, सब का कल्याण हो और कोई दुःखी न हो — सामूहिक कल्याण की सर्वोत्तम प्रार्थना।",
     english:
       "May all be happy, may all be free from illness, may all see goodness, may none suffer — the supreme prayer for collective well-being.",
+    spanish:
+      "Que todos sean felices, que todos estén libres de enfermedad, que todos vean el bien, que nadie sufra — la suprema plegaria por el bienestar colectivo.",
     tags: ["sarve bhavantu", "well-being", "peace", "सर्वे भवन्तु सुखिनः", "कल्याण", "निरामय", "famous", "welfare"],
   },
   {
@@ -388,6 +432,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "एक ही वृक्ष पर दो पक्षी — सखा-सम — परस्पर आश्रित हैं; उनमें एक स्वादिष्ट फल खाता है, दूसरा (आत्मा) उसकी त्रुटि के बिना ज्ञान-दृष्टि से देखता है। जीव-परमात्मा का अमर कल्पना।",
     english:
       "Two birds, companions ever-united, cling to the same tree; one eats the sweet fruit while the other simply watches — the timeless image of the individual soul and the divine witness sharing one body.",
+    spanish:
+      "Dos aves, compañeras siempre unidas, se aferran al mismo árbol; una come el dulce fruto mientras la otra simplemente observa — la imagen atemporal del alma individual y el testigo divino compartiendo un mismo cuerpo.",
     tags: ["two birds", "mundaka", "witness", "द्वा सुपर्णा", "पक्षी", "साक्षी", "witness", "famous"],
   },
   {
@@ -405,6 +451,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "उस परम तत्त्व के दर्शन से (जो परे और अपरे दोनों है) हृदय की ग्रंथि खुल जाती है, समस्त संशय कट जाते हैं और कर्म लय हो जाते हैं — ज्ञान के परम फल का वर्णन।",
     english:
       "When the supreme — immanent and transcendent — is beheld, the knot of the heart is untied, all doubts are severed, and all karma melts away — the final fruit of realization.",
+    spanish:
+      "Cuando lo supremo — inmanente y trascendente — es contemplado, el nudo del corazón se desata, todas las dudas se cortan y todo el karma se disuelve — el fruto final de la realización.",
     tags: ["realization", "doubts", "knot of heart", "हृदयग्रन्थि", "संशय", "कर्म नाश", "liberation"],
   },
   {
@@ -422,6 +470,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "ॐ — यही अक्षर (अविनाशी शब्द-ब्रह्म) समस्त जगत् है; वही विगत-अतीत, वही अद्वितीय परम तत्त्व है। बारह मंत्रों की माण्डूक्य उपनिषद् समस्त वेदांत का सार मानी जाती है।",
     english:
       "Om — this imperishable syllable is all this universe; its explanation: the past, the future and what exists beyond — all is Om, the nondual Absolute. The twelve-mantra Mandukya is honored as the whole of Vedanta in miniature.",
+    spanish:
+      "Om — esta sílaba imperecedera es todo este universo; su explicación: el pasado, el futuro y cuanto existe más allá — todo es Om, el Absoluto no dual. El Mandukya de doce mantras es honrado como el Vedanta entero en miniatura.",
     tags: ["om", "mandukya", "nondual", "ॐ", "माण्डूक्य", "अद्वैत", "प्रणव", "famous"],
   },
   {
@@ -439,6 +489,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "सत्य, ज्ञान और अनंत — यही ब्रह्म है। जो हृदय-गुफा में, परम आकाश में निहित उसे जानता है, वह ब्रहम-सहित समस्त भोग्यों को भोगता है। पंच-कोश विद्या (अन्नमय से आनन्दमय) भी तैत्तिरीय की देन है।",
     english:
       "Truth, Knowledge, Infinity — that is Brahman; one who knows It, lodged in the cave of the heart in the supreme space, enjoys all desires together with Brahman. The Taittiriya also gifts the five-sheath teaching from the food-sheath to the bliss-sheath.",
+    spanish:
+      "Verdad, Conocimiento, Infinito — eso es Brahman; quien lo conoce, depositado en la cueva del corazón en el espacio supremo, disfruta de todos los deseos junto con Brahman. El Taittiriya regala además la enseñanza de los cinco envoltorios, del envoltorio del alimento al envoltorio de la dicha.",
     tags: ["satyam jnanam anantam", "brahman", "bliss", "सत्यं ज्ञानमनन्तं", "ब्रह्म", "पंच कोश", "आनन्दमय", "famous"],
   },
   {
@@ -456,6 +508,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "वह एक ही रुद्र है, उनके समान दूसरा कोई नहीं; इन सब लोकों का शासक वही है। आयुधों में अग्रेसर बनकर, रक्षक बनकर वह समस्त विश्व में समाहित विराजमान है।",
     english:
       "Rudra is one, without a second; He rules all these worlds. Standing sentinel over all, weapon in hand, He pervades and protects the whole universe.",
+    spanish:
+      "Rudra es uno, sin segundo; Él rige todos estos mundos. Erguido como centinela sobre todo, con el arma en la mano, Él penetra y protege el universo entero.",
     tags: ["rudra", "one", "shiva", "एको हि रुद्रो", "शिव", "एकत्व", "shaiva"],
   },
   {
@@ -473,6 +527,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "प्रज्ञान (चेतना, विज्ञान-रूप ज्ञान) ही ब्रह्म है — चार महावाक्यों में चौथा। जो सब देखता, सुनता और जानता है, साक्षी-चेतना वही परम तत्त्व है।",
     english:
       "Consciousness is Brahman — the fourth of the great sayings. That which sees, hears and knows all — the witness-consciousness — is the supreme Reality.",
+    spanish:
+      "La conciencia es Brahman — el cuarto de los grandes dichos. Aquello que ve, oye y conoce todo — la conciencia-testigo — es la suprema Realidad.",
     tags: ["prajnanam brahma", "mahavakya", "consciousness", "प्रज्ञानं ब्रह्म", "चेतना", "महावाक्य", "witness"],
   },
   {
@@ -490,6 +546,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "वह अन्य है जो जाना जाने वाला है; जो जानने वाला है वह वस्तु ही नहीं जाना जा सकता — जानने वाले को कौन जान सकता है? चेतना के पार का चेतन-तत्त्व।",
     english:
       "It is other than the known and beyond the unknown — the knower by whom all is known cannot itself be known as an object.",
+    spanish:
+      "Es distinto de lo conocido y está más allá de lo desconocido — el conocedor gracias al cual todo se conoce no puede, en sí mismo, ser conocido como objeto.",
     tags: ["kena", "knower", "beyond knowledge", "केन", "विज्ञाता", "ज्ञान से परे"],
   },
   {
@@ -506,6 +564,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "ॐ वह पूर्ण है, यह पूर्ण है; पूर्ण से पूर्ण निकलता है और पूर्ण से पूर्ण लेने पर भी पूर्ण ही शेष रहता है। अद्वैत-गणित का सुंदरतम शान्ति-मंत्र।",
     english:
       "Om — That is full; this is full; from the full the full emerges; taking the full from the full, the full alone remains. The most beautiful peace-shanti mantra of nondual mathematics.",
+    spanish:
+      "Om — Aquello es pleno; esto es pleno; de la plenitud emerge la plenitud; tomando la plenitud de la plenitud, solo la plenitud permanece. El mantra de paz (shanti) más hermoso de la matemática no dual.",
     tags: ["purnamadah", "fullness", "peace", "पूर्णमदः", "शान्ति मंत्र", "पूर्ण", "famous", "invocation"],
   },
   {
@@ -522,6 +582,8 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
       "हम दोनों की साथ-साथ रक्षा हो, साथ-साथ भोग हो, साथ-साथ पराक्रम करें; हमारा अध्ययन तेजस्वी हो, हम आपस में द्वेष न करें। गुरु-शिष्य संवाद की शाश्वत मंगलाचरण।",
     english:
       "May we both be protected together, may we both be nourished together, may we both work with vigor together; may our study be radiant, may we never quarrel. The timeless invocation between master and student.",
+    spanish:
+      "Que ambos seamos protegidos juntos, que ambos seamos nutridos juntos, que ambos actuemos con vigor juntos; que nuestro estudio sea radiante, que nunca riñamos. La invocación atemporal entre maestro y discípulo.",
     tags: ["sahanavavatu", "together", "study", "सह नाववतु", "गुरु शिष्य", "अध्ययन", "famous", "invocation"],
   },
 ];

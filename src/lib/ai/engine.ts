@@ -16,7 +16,7 @@ import {
   tokenize,
 } from "./translit";
 
-export type ResponseLang = "hi" | "en" | "sa";
+export type ResponseLang = "hi" | "en" | "sa" | "es";
 
 export interface ChatResult {
   reply: string;
@@ -176,11 +176,11 @@ export function search(query: string, limit = 6): Array<{ entry: CorpusEntry; sc
 /* ──────────────────────────── intent detection ─────────────────────────── */
 
 const GREETING_RE =
-  /^(hi+|hello+|hey+|yo|namaste+|namaskar+|namaskaram+|pranam+|pranaam+|jai+ *(shri|shree|siya)? *ram+|radhe+ *radhe+|hari+ *om+|hari+har+|jai+ *shiv+|jai+ *maa+|vanakkam|नमस्ते|नमस्कार|प्रणाम|जय श्री राम|जय श्रीराम|राधे राधे|हरि ॐ|हरिः ओम्|हेलो|हाय|दंडवत|जय जय|hello ji|namaskar ji)(?![\p{L}\p{N}])/iu;
+  /^(hi+|hello+|hey+|yo|namaste+|namaskar+|namaskaram+|pranam+|pranaam+|jai+ *(shri|shree|siya)? *ram+|radhe+ *radhe+|hari+ *om+|hari+har+|jai+ *shiv+|jai+ *maa+|vanakkam|hola+|buenos* *d[ií]as|buenas+ *(tardes|noches)|saludos|नमस्ते|नमस्कार|प्रणाम|जय श्री राम|जय श्रीराम|राधे राधे|हरि ॐ|हरिः ओम्|हेलो|हाय|दंडवत|जय जय|hello ji|namaskar ji)(?![\p{L}\p{N}])/iu;
 
-const THANKS_RE = /(\bthank(s| you)\b|dhanya?vad|धन्यवाद|शुक्रिया|shukriya|आभार)/i;
+const THANKS_RE = /(\bthank(s| you)\b|dhanya?vad|धन्यवाद|शुक्रिया|shukriya|आभार|\bgracias\b|\bmuchas gracias\b)/i;
 const HELP_RE = /(help|what can you|how to use|कैसे इस्तेमाल|कैसे use|क्या कर सकते|मदद|उपयोग|कैसे पूछूँ|कैसे पूछे|guide|बताओ कैसे)/i;
-const RANDOM_RE = /(random|any (shloka|verse|sloka)|koi (shloka|sloka|doha|chaupai|verse|वचन)|कोई (श्लोक|दोहा|चौपाई|प्रेरणा|वचन)|verse of the day|shloka of the day|aaj ka|आज का|दैनिक|daily|inspire|motivat|प्रेरणा|बेस्ट श्लोक|best verse)/i;
+const RANDOM_RE = /(random|any (shloka|verse|sloka)|koi (shloka|sloka|doha|chaupai|verse|वचन)|कोई (श्लोक|दोहा|चौपाई|प्रेरणा|वचन)|verse of the day|shloka of the day|aaj ka|आज का|दैनिक|daily|inspire|motivat|प्रेरणा|बेस्ट श्लोक|best verse|verso del d[ií]a|vers[ií]culo del d[ií]a|un verso)/i;
 const STATS_RE = /(kitne|कितने|कुल|how many (verse|shlok|book|entries)|stats|statistics|आँकड़|आकड़|कोरपस|corpus|कितनी|किता|total)/i;
 const BOOKLIST_RE = /(list (of )?books|all books|सभी (ग्रंथ|किताब|पुस्तक)|book list|ग्रंथ सूची|कौन कौन से|which books)/i;
 
@@ -195,35 +195,45 @@ const EN_NUM: Record<string, string> = { one: "1", two: "2", three: "3", four: "
 /* ──────────────────────────── response strings ─────────────────────────── */
 
 const GREETING: Record<ResponseLang, string> = {
-  hi: "॥ ॐ नमः शिवाय ॥\n🙏 **नमस्ते! मैं SANATAN HI [ HUMAN INTELLIGENCE ] हूँ** — आपका पूर्णतः **ऑफ़लाइन** सनातन-ज्ञान सहायक।\nमेरे ग्रंथ-कोश में **भगवद्गीता, वाल्मीकि रामायण, महाभारत, भागवत एवं शिव पुराण, वेद, उपनिषद्, हनुमान चालीसा** आदि शास्त्रों के श्लोक **संस्कृत, हिंदी और अंग्रेज़ी** — तीनों भाषाओं में सुरक्षित हैं।\n\nआप पूछ सकते हैं — कर्म, आत्मा, धर्म, मोक्ष, भक्ति के विषय पर; किसी अध्याय की जानकारी; या सीधा **\"गीता 2.47\"** जैसे संदर्भ। 🙏",
-  en: "॥ Om Namah Shivaya ॥\n🙏 **Namaste! I am SANATAN HI [ HUMAN INTELLIGENCE ]** — your fully **offline** Sanatan-knowledge companion.\nMy scripture corpus holds verses from the **Bhagavad Gita, Valmiki Ramayana, Mahabharata, Bhagavata & Shiva Purana, the Vedas, Upanishads, Hanuman Chalisa** and more — each in **Sanskrit, Hindi and English**.\n\nAsk me about karma, atman, dharma, moksha or bhakti; request any chapter's summary; or cite a reference directly, like **\"Gita 2.47\"**. 🙏",
-  sa: "॥ ॐ नमः शिवाय ॥\n🙏 **नमस्ते। अहं सनातन HI [ HUMAN INTELLIGENCE ] अस्मि** — सम्पूर्णतः **निरपेक्ष-जाल (offline) शास्त्र-कोशः**।\nगीता-रामायण-महाभारत-पुराण-वेद-उपनिषद्-चालीसादीनां श्लोकाः **संस्कृत-हिन्दी-आङ्ग्लभाषासु** सन्निहिताः सन्ति।\nपृच्छतु — कर्म, आत्मा, धर्म, मोक्ष, भक्ति विषये; अध्याय-परिचय; किंवा **\"गीता 2.47\"** इति संदर्भ। 🙏",
+  hi: "॥ ॐ नमः शिवाय ॥\n🙏 **नमस्ते! मैं SANATAN HI [ HUMAN INTELLIGENCE ] हूँ** — आपका पूर्णतः **ऑफ़लाइन** सनातन-ज्ञान सहायक।\nमेरे ग्रंथ-कोश में **भगवद्गीता, वाल्मीकि रामायण, महाभारत, भागवत एवं शिव पुराण, वेद, उपनिषद्, हनुमान चालीसा** आदि शास्त्रों के श्लोक **संस्कृत, हिंदी, अंग्रेज़ी और स्पेनिश** — चारों भाषाओं में सुरक्षित हैं।\n\nआप पूछ सकते हैं — कर्म, आत्मा, धर्म, मोक्ष, भक्ति के विषय पर; किसी अध्याय की जानकारी; या सीधा **\"गीता 2.47\"** जैसे संदर्भ। 🙏",
+  en: "॥ Om Namah Shivaya ॥\n🙏 **Namaste! I am SANATAN HI [ HUMAN INTELLIGENCE ]** — your fully **offline** Sanatan-knowledge companion.\nMy scripture corpus holds verses from the **Bhagavad Gita, Valmiki Ramayana, Mahabharata, Bhagavata & Shiva Purana, the Vedas, Upanishads, Hanuman Chalisa** and more — each in **Sanskrit, Hindi, English and Spanish**.\n\nAsk me about karma, atman, dharma, moksha or bhakti; request any chapter's summary; or cite a reference directly, like **\"Gita 2.47\"**. 🙏",
+  sa: "॥ ॐ नमः शिवाय ॥\n🙏 **नमस्ते। अहं सनातन HI [ HUMAN INTELLIGENCE ] अस्मि** — सम्पूर्णतः **निरपेक्ष-जाल (offline) शास्त्र-कोशः**।\nगीता-रामायण-महाभारत-पुराण-वेद-उपनिषद्-चालीसादीनां श्लोकाः **संस्कृत-हिन्दी-आङ्ग्ल-स्पेनिशभाषासु** सन्निहिताः सन्ति।\nपृच्छतु — कर्म, आत्मा, धर्म, मोक्ष, भक्ति विषये; अध्याय-परिचय; किंवा **\"गीता 2.47\"** इति संदर्भ। 🙏",
+  es: "॥ Om Namah Shivaya ॥\n🙏 **¡Namaste! Soy SANATAN HI [ HUMAN INTELLIGENCE ]** — tu compañero de conocimiento sanatan, **completamente sin conexión** (offline).\nMi corpus guarda versos del **Bhagavad Gita, el Ramayana de Valmiki, el Mahabharata, los Puranas de Bhagavata y Shiva, los cuatro Vedas, los Upanishads, el Hanuman Chalisa** y más — cada uno en **sánscrito, hindi, inglés y español**.\n\nPregúntame sobre karma, atman, dharma, moksha o bhakti; pide el resumen de cualquier capítulo; o cita una referencia directa, como **\"Gita 2.47\"**. 🙏",
 };
 
 const SUGGESTIONS: Record<ResponseLang, string[]> = {
   hi: ["गीता 2.47 का अर्थ", "कर्म योग क्या है?", "हनुमान चालीसा सुनाओ", "12 ज्योतिर्लिंग बताओ", "आज का श्लोक", "मृत्यु पर गीता क्या कहती है?"],
   en: ["Gita 2.47 meaning", "What is Karma Yoga?", "Tell me about Shiva", "The 12 Jyotirlingas", "Verse of the day", "What happens after death?"],
   sa: ["गीता २.४७", "कर्म योगः किम्?", "शिवः कः?", "अद्य श्लोकः", "आत्मा का?", "ज्योतिर्लिङ्गानि ब्रूहि"],
+  es: ["Significado de Gita 2.47", "¿Qué es el karma yoga?", "Cuéntame sobre Shiva", "Los 12 jyotirlingas", "Verso del día", "¿Qué ocurre después de la muerte?"],
 };
 
 const FOUND_INTRO: Record<ResponseLang, string> = {
   hi: "इस विषय पर मेरे ग्रंथ-कोश से ये प्रमाण मिले —",
   en: "Here is what the scriptures of my corpus hold on this —",
   sa: "अस्मिन् विषये शास्त्र-कोशात् इदं लभ्यते —",
+  es: "Esto es lo que guardan las escrituras de mi corpus sobre este tema —",
 };
 
 const NOT_FOUND: Record<ResponseLang, string> = {
   hi: "🙏 इस विषय पर मेरे वर्तमान ग्रंथ-कोश में स्पष्ट प्रमाण नहीं मिला।\n\n**मैं इन विषयों में सहायक हूँ** — कर्म · धर्म · आत्मा · ब्रह्म · मोक्ष · भक्ति · योग · माया · गुरु · युग · अवतार · मृत्यु · शान्ति · राम · कृष्ण · शिव · हनुमान · देवी · गंगा · ज्योतिर्लिंग ...\n\nकुछ और शब्दों में पूछने का प्रयास करें, या नीचे के सुझाव चुनें।",
   en: "🙏 I could not find clear references on this in my current corpus.\n\n**I can help with** — karma · dharma · atman · Brahman · moksha · bhakti · yoga · maya · guru · yugas · avatars · death · peace · Rama · Krishna · Shiva · Hanuman · Devi · Ganga · jyotirlingas ...\n\nTry rephrasing, or pick a suggestion below.",
   sa: "🙏 अस्मिन् विषये मम कोशे स्पष्टं प्रमाणं न लभ्यते।\n\n**अहं एतेषु विषयेषु साहाय्यं करोमि** — कर्म · धर्म · आत्मा · ब्रह्म · मोक्ष · भक्ति · योग · माया · गुरुः · युगानि · अवताराः · मृत्युः · रामः · कृष्णः · शिवः ...\n\nअन्येन शब्देन पृच्छतु।",
+  es: "🙏 No encontré referencias claras sobre este tema en mi corpus actual.\n\n**Puedo ayudarte con** — karma · dharma · atman · Brahman · moksha · bhakti · yoga · maya · guru · los yugas · avatares · la muerte · la paz · Rama · Krishna · Shiva · Hanuman · Devi · Ganga · los jyotirlingas ...\n\nIntenta reformular la pregunta, o elige una sugerencia de abajo.",
 };
 
 /* ──────────────────────────── helpers ─────────────────────────── */
 
 function detectLang(query: string, forced: ResponseLang | "auto"): ResponseLang {
   if (forced !== "auto") return forced;
-  return devanagariRatio(query) > 0.25 ? "hi" : "en";
+  if (devanagariRatio(query) > 0.25) return "hi";
+  if (SPANISH_RE.test(query)) return "es";
+  return "en";
 }
+
+/** Distinctive Spanish markers (word-bounded, unaccented variants included). */
+const SPANISH_RE =
+  /\b(hola|gracias|por favor|que es|qué es|cómo|como|cuál|cual|cuáles|cuales|dime|cuéntame|cuentame|háblame|hablame|significa|explica|enséñame|ensename|muéstrame|muestrame|quiero saber|traduce|español|espanol|capítulo|capitulo|versículo|versiculo|cuéntame sobre|señor|los vedas|habla de)\b/i;
 
 function pickSuggestions(lang: ResponseLang, used: string[] = []): string[] {
   const pool = SUGGESTIONS[lang];
@@ -267,6 +277,14 @@ function bookReply(book: BookInfo, lang: ResponseLang): { text: string; verses: 
       verses,
     };
   }
+  if (lang === "es") {
+    const sectionsPreview = book.sections.slice(0, 4).map((s, i) => `${i + 1}. **${s.name}** — ${s.descEn}`).join("\n");
+    const more = book.sections.length > 4 ? `\n*…y ${book.sections.length - 4} capítulos más.*` : "";
+    return {
+      text: `📖 **${book.name}** (${book.nameSa})\n${book.descEn}\n\n**Autor:** ${book.author} · **Época:** ${book.era}\n\n**Estructura:**\n${sectionsPreview}${more}\n\nMi corpus guarda **${bookEntries.length} entradas de referencia** de esta escritura. Pregunta por cualquier capítulo — p. ej. *"${book.id === "bhagavad-gita" ? "Gita capítulo 2" : "capítulos de " + book.name}"*.`,
+      verses,
+    };
+  }
   const sectionsPreview = book.sections.slice(0, 4).map((s, i) => `${i + 1}. **${s.name}** — ${s.descHi}`).join("\n");
   const more = book.sections.length > 4 ? `\n*…और ${book.sections.length - 4} अध्याय।*` : "";
   return {
@@ -280,15 +298,24 @@ function chapterReply(book: BookInfo, chapterNo: number, lang: ResponseLang): { 
   const sec = book.sections[idx];
   if (!sec) {
     const en = lang === "en";
+    const es = lang === "es";
     return {
       text: en
         ? `Chapter ${chapterNo} — I could not find this chapter. ${book.name} has **${book.sections.length} chapters**.`
-        : `अध्याय ${chapterNo} — यह अध्याय नहीं मिला। ${book.nameHi} में **${book.sections.length} अध्याय** हैं।`,
+        : es
+          ? `No encontré el capítulo ${chapterNo}. ${book.name} tiene **${book.sections.length} capítulos**.`
+          : `अध्याय ${chapterNo} — यह अध्याय नहीं मिला। ${book.nameHi} में **${book.sections.length} अध्याय** हैं।`,
       verses: [],
     };
   }
   const verses = CORPUS.filter((e) => e.bookId === book.id && e.chapter === String(chapterNo)).slice(0, 3);
   const label = sec.label ?? "";
+  if (lang === "es") {
+    return {
+      text: `📖 **${book.name} — ${label ? label + " · " : ""}${sec.name}** (${sec.nameEn})\n\n${sec.descEn}\n\n${verses.length ? "Versos clave de este capítulo:" : "Pregúntame por versos concretos, p. ej. 'Gita 2.47'."}`,
+      verses,
+    };
+  }
   if (lang === "en") {
     return {
       text: `📖 **${book.name} — ${label ? label + " · " : ""}${sec.name}** (${sec.nameEn})\n\n${sec.descEn}\n\n${verses.length ? "Key verses from this chapter:" : "Ask me for specific verses, e.g. 'Gita 2.47'."}`,
@@ -320,14 +347,14 @@ function verseLookup(bookId: string | null, ch: number, vs: number, lang: Respon
   });
   if (candidates.length > 0) {
     const v = candidates[0];
-    const t = { hi: `📜 **${v.sectionHi ?? v.section}** — श्लोक ${v.verse}\n\nनीचे संस्कृत, हिंदी अर्थ और अंग्रेज़ी अनुवाद प्रस्तुत है —`, en: `📜 **${v.section} — verse ${v.verse}**\n\nSanskrit text, Hindi meaning and English translation below —`, sa: `📜 **${v.sectionHi} — श्लोकः ${v.verse}**\n\nसंस्कृतम्, हिन्दी-अर्थः, आङ्ग्लानुवादः अधः —` };
+    const t = { hi: `📜 **${v.sectionHi ?? v.section}** — श्लोक ${v.verse}\n\nनीचे संस्कृत, हिंदी अर्थ और अंग्रेज़ी अनुवाद प्रस्तुत है —`, en: `📜 **${v.section} — verse ${v.verse}**\n\nSanskrit text, Hindi meaning and English translation below —`, sa: `📜 **${v.sectionHi} — श्लोकः ${v.verse}**\n\nसंस्कृतम्, हिन्दी-अर्थः, आङ्ग्लानुवादः अधः —`, es: `📜 **${v.section} — verso ${v.verse}**\n\nTexto en sánscrito, significado en hindi y traducciones en inglés y español abajo —` };
     return { text: t[lang], verses: [v] };
   }
   // fallback to chapter
   const book = BOOK_MAP[targetBook];
   if (book) {
     const r = chapterReply(book, ch, lang);
-    const t = { hi: `इस ग्रंथ में अध्याय ${ch} का श्लोक ${vs} मेरे कोश में विशेष रूप से संकलित नहीं है — किंतु अध्याय का परिचय यह रहा:`, en: `Verse ${vs} of chapter ${ch} is not individually compiled in my corpus — here is the chapter's overview:`, sa: `अध्याय ${ch} श्लोकः ${vs} कोशे नास्ति — अध्याय-परिचयः:` };
+    const t = { hi: `इस ग्रंथ में अध्याय ${ch} का श्लोक ${vs} मेरे कोश में विशेष रूप से संकलित नहीं है — किंतु अध्याय का परिचय यह रहा:`, en: `Verse ${vs} of chapter ${ch} is not individually compiled in my corpus — here is the chapter's overview:`, sa: `अध्याय ${ch} श्लोकः ${vs} कोशे नास्ति — अध्याय-परिचयः:`, es: `El verso ${vs} del capítulo ${ch} no está compilado individualmente en mi corpus — aquí tienes la visión general del capítulo:` };
     return { text: t[lang] + "\n\n" + r.text, verses: r.verses };
   }
   return { text: NOT_FOUND[lang], verses: [] };
@@ -354,14 +381,16 @@ export function chat(message: string, forced: ResponseLang | "auto" = "auto"): C
       hi: "🙏 आपका सेवा में। शास्त्र-ज्ञान की यही साधना है — पूछते रहिए, बढ़ते रहिए।\n\n*असतो मा सद्गमय — असत्य से सत्य की ओर बढ़ते रहें।*",
       en: "🙏 Ever at your service. This is the sadhana of scripture — keep asking, keep growing.\n\n*Asato ma sadgamaya — from the unreal, lead me to the Real.*",
       sa: "🙏 सेवायै सदा तत्परः। पृच्छतु, वर्धतु।",
+      es: "🙏 A tu servicio, siempre. Esta es la sadhana de las escrituras — sigue preguntando, sigue creciendo.\n\n*Asato ma sadgamaya — de lo irreal, llévame a lo Real.*",
     };
     return finish("thanks", t[lang], [], pickSuggestions(lang), lang, 0, started);
   }
   if (HELP_RE.test(query)) {
     const t = {
-      hi: "🪔 **SANATAN HI के साथ —**\n\n• **विषय पूछें** — कर्म, आत्मा, भक्ति, मोक्ष, मृत्यु, मन की शान्ति...\n• **संदर्भ दें** — *गीता 2.47, गीता अध्याय 12*\n• **ग्रंथ का परिचय** — *रामायण के बारे में बताओ*\n• **स्तोत्र-मंत्र** — *हनुमान चालीसा, गायत्री मंत्र, ज्योतिर्लिंग स्तोत्र*\n• **कथाएँ** — *प्रह्लाद, गजेन्द्र मोक्ष, समुद्र मन्थन, ध्रुव*\n• **आज का श्लोक** — *daily verse*\n\nमैं पूर्णतः ऑफ़लाइन चलता हूँ — तीन भाषाओं (हिंदी · संस्कृत · English) में उत्तर देता हूँ।",
-      en: "🪔 **With SANATAN HI you can —**\n\n• **Ask a topic** — karma, atman, bhakti, moksha, death, peace of mind...\n• **Cite a reference** — *Gita 2.47, Gita chapter 12*\n• **Get a book overview** — *tell me about Ramayana*\n• **Stotras & mantras** — *Hanuman Chalisa, Gayatri, Jyotirlinga Stotra*\n• **Stories** — *Prahlada, Gajendra Moksha, Samudra Manthan, Dhruva*\n• **Verse of the day** — *daily verse*\n\nI run fully offline — answering in three languages (Hindi · Sanskrit · English).",
+      hi: "🪔 **SANATAN HI के साथ —**\n\n• **विषय पूछें** — कर्म, आत्मा, भक्ति, मोक्ष, मृत्यु, मन की शान्ति...\n• **संदर्भ दें** — *गीता 2.47, गीता अध्याय 12*\n• **ग्रंथ का परिचय** — *रामायण के बारे में बताओ*\n• **स्तोत्र-मंत्र** — *हनुमान चालीसा, गायत्री मंत्र, ज्योतिर्लिंग स्तोत्र*\n• **कथाएँ** — *प्रह्लाद, गजेन्द्र मोक्ष, समुद्र मन्थन, ध्रुव*\n• **आज का श्लोक** — *daily verse*\n\nमैं पूर्णतः ऑफ़लाइन चलता हूँ — चार भाषाओं (हिंदी · संस्कृत · English · Español) में उत्तर देता हूँ।",
+      en: "🪔 **With SANATAN HI you can —**\n\n• **Ask a topic** — karma, atman, bhakti, moksha, death, peace of mind...\n• **Cite a reference** — *Gita 2.47, Gita chapter 12*\n• **Get a book overview** — *tell me about Ramayana*\n• **Stotras & mantras** — *Hanuman Chalisa, Gayatri, Jyotirlinga Stotra*\n• **Stories** — *Prahlada, Gajendra Moksha, Samudra Manthan, Dhruva*\n• **Verse of the day** — *daily verse*\n\nI run fully offline — answering in four languages (Hindi · Sanskrit · English · Spanish).",
       sa: "🪔 **सनातन HI सह — विषयः, संदर्भः, ग्रन्थ-परिचयः, स्तोत्राणि, कथाः, अद्यश्लोकः च।**",
+      es: "🪔 **Con SANATAN HI puedes —**\n\n• **Preguntar por un tema** — karma, atman, bhakti, moksha, la muerte, la paz mental...\n• **Citar una referencia** — *Gita 2.47, Gita capítulo 12*\n• **Obtener la visión de un libro** — *háblame del Ramayana*\n• **Stotras y mantras** — *Hanuman Chalisa, Gayatri, Jyotirlinga Stotra*\n• **Historias** — *Prahlada, Gajendra Moksha, el Samudra Manthan, Dhruva*\n• **Verso del día** — *verso del día*\n\nFunciono completamente sin conexión — respondo en cuatro idiomas (hindi · sánscrito · inglés · español).",
     };
     return finish("help", t[lang], [], pickSuggestions(lang), lang, 0, started);
   }
@@ -370,8 +399,9 @@ export function chat(message: string, forced: ResponseLang | "auto" = "auto"): C
   if (STATS_RE.test(query)) {
     const t = {
       hi: `📊 **मेरा ग्रंथ-कोश (offline corpus)**\n\n• **ग्रंथ-संग्रह:** ${CORPUS_STATS.books}\n• **कुल प्रविष्टियाँ:** ${CORPUS_STATS.entries}\n• **संस्कृत श्लोक/स्तोत्र:** ${CORPUS_STATS.versesWithSanskrit}\n• **दार्शनिक अवधारणाएँ:** ${CORPUS_STATS.concepts}\n• **कथाएँ:** ${CORPUS_STATS.stories}\n• **भाषाएँ:** संस्कृत · हिंदी · English\n\n*ग्रंथ: भगवद्गीता · वाल्मीकि रामायण · महाभारत · भागवत पुराण · शिव पुराण · विष्णु पुराण · चारों वेद · 10 प्रमुख उपनिषद् · स्तोत्र-संग्रह (हनुमान चालीसा आदि) · धार्मिक अवधारणाएँ*`,
-      en: `📊 **My scripture corpus (offline)**\n\n• **Scripture collections:** ${CORPUS_STATS.books}\n• **Total reference entries:** ${CORPUS_STATS.entries}\n• **Sanskrit verses/hymns:** ${CORPUS_STATS.versesWithSanskrit}\n• **Philosophical concepts:** ${CORPUS_STATS.concepts}\n• **Stories:** ${CORPUS_STATS.stories}\n• **Languages:** Sanskrit · Hindi · English\n\n*Books: Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · Four Vedas · 10 major Upanishads · Stotras (Hanuman Chalisa…) · Dharma concepts*`,
-      sa: `📊 **कोशः — ${CORPUS_STATS.books} ग्रन्थाः, ${CORPUS_STATS.entries} प्रविष्टयः। संस्कृत-हिन्दी-आङ्ग्लभाषाः।**`,
+      en: `📊 **My scripture corpus (offline)**\n\n• **Scripture collections:** ${CORPUS_STATS.books}\n• **Total reference entries:** ${CORPUS_STATS.entries}\n• **Sanskrit verses/hymns:** ${CORPUS_STATS.versesWithSanskrit}\n• **Philosophical concepts:** ${CORPUS_STATS.concepts}\n• **Stories:** ${CORPUS_STATS.stories}\n• **Languages:** Sanskrit · Hindi · English · Spanish\n\n*Books: Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · Four Vedas · 10 major Upanishads · Stotras (Hanuman Chalisa…) · Dharma concepts*`,
+      sa: `📊 **कोशः — ${CORPUS_STATS.books} ग्रन्थाः, ${CORPUS_STATS.entries} प्रविष्टयः। संस्कृत-हिन्दी-आङ्ग्ल-स्पेनिशभाषाः।**`,
+      es: `📊 **Mi corpus de escrituras (offline)**\n\n• **Colecciones de escrituras:** ${CORPUS_STATS.books}\n• **Entradas de referencia en total:** ${CORPUS_STATS.entries}\n• **Versos e himnos en sánscrito:** ${CORPUS_STATS.versesWithSanskrit}\n• **Conceptos filosóficos:** ${CORPUS_STATS.concepts}\n• **Historias:** ${CORPUS_STATS.stories}\n• **Idiomas:** sánscrito · hindi · inglés · español\n\n*Libros: Bhagavad Gita · Ramayana de Valmiki · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · los cuatro Vedas · 10 Upanishads principales · Stotras (Hanuman Chalisa…) · conceptos del dharma*`,
     };
     return finish("stats", t[lang], [], pickSuggestions(lang), lang, 0, started);
   }
@@ -379,21 +409,24 @@ export function chat(message: string, forced: ResponseLang | "auto" = "auto"): C
   // 3. book list
   if (BOOKLIST_RE.test(query)) {
     const lines = BOOKS.map((b) => `• **${b.nameHi}** (${b.name}) — ${CORPUS.filter((e) => e.bookId === b.id).length} प्रविष्टियाँ`).join("\n");
+    const linesEn = BOOKS.map((b) => `• **${b.name}** (${b.nameHi}) — ${CORPUS.filter((e) => e.bookId === b.id).length} entries`).join("\n");
     const t = {
       hi: `📚 **SANATAN HI का ग्रंथ-कोश**\n\n${lines}\n\nकिसी भी ग्रंथ पर क्लिक करें या उसका नाम पूछें।`,
-      en: `📚 **The SANATAN HI corpus**\n\n${BOOKS.map((b) => `• **${b.name}** (${b.nameHi}) — ${CORPUS.filter((e) => e.bookId === b.id).length} entries`).join("\n")}\n\nOpen any book from the sidebar, or ask for it by name.`,
+      en: `📚 **The SANATAN HI corpus**\n\n${linesEn}\n\nOpen any book from the sidebar, or ask for it by name.`,
       sa: `📚 **ग्रन्थकोशः**\n\n${lines}`,
+      es: `📚 **El corpus de SANATAN HI**\n\n${linesEn}\n\nAbre cualquier libro desde el panel lateral, o pregúntame por su nombre.`,
     };
     return finish("book-list", t[lang], [], pickSuggestions(lang), lang, 0, started);
   }
 
   // 4. verse of the day / random
   if (RANDOM_RE.test(query)) {
-    const v = query.toLowerCase().includes("daily") || query.includes("आज") || query.includes("of the day") ? dailyVerse() : randomVerse();
+    const v = query.toLowerCase().includes("daily") || query.includes("आज") || query.includes("of the day") || /del d[ií]a/i.test(query) ? dailyVerse() : randomVerse();
     const t = {
       hi: `🕉️ **आज का दिव्य श्लोक** — *${v.sectionHi ?? v.section}*`,
       en: `🕉️ **Divine verse of the day** — *${v.section}*`,
       sa: `🕉️ **अद्य श्लोकः** — *${v.sectionHi}*`,
+      es: `🕉️ **Verso divino del día** — *${v.section}*`,
     };
     return finish("daily", t[lang], [v], pickSuggestions(lang), lang, 1, started);
   }
@@ -456,6 +489,10 @@ export function chat(message: string, forced: ResponseLang | "auto" = "auto"): C
   if (lang === "en") {
     text = concept
       ? `🕯️ **${concept.title ?? concept.titleHi}**\n\n${concept.english}\n\n${FOUND_INTRO[lang]}`
+      : `${FOUND_INTRO[lang]}`;
+  } else if (lang === "es") {
+    text = concept
+      ? `🕯️ **${concept.title ?? concept.titleHi}**\n\n${concept.spanish ?? concept.english}\n\n${FOUND_INTRO[lang]}`
       : `${FOUND_INTRO[lang]}`;
   } else if (lang === "sa") {
     text = concept

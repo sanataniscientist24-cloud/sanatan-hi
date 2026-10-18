@@ -13,14 +13,14 @@ interface HeroProps {
 }
 
 const STARTER_CHIPS = [
-  "गीता 2.47 का अर्थ",
+  "Gita 2.47 meaning",
   "What is Karma Yoga?",
-  "हनुमान चालीसा सुनाओ",
-  "12 ज्योतिर्लिंग",
-  "आज का श्लोक",
-  "शिव के बारे में बताओ",
-  "What happens after death?",
-  "वेद क्या हैं?",
+  "Hanuman Chalisa",
+  "The 12 Jyotirlingas",
+  "Verse of the day",
+  "Tell me about Shiva",
+  "¿Qué es el dharma?",
+  "What are the Vedas?",
 ];
 
 export function Hero({ onSuggestion }: HeroProps) {
@@ -61,16 +61,16 @@ export function Hero({ onSuggestion }: HeroProps) {
         </p>
         <p className="mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/75">
-          भगवद्गीता · वाल्मीकि रामायण · महाभारत · भागवत व शिव पुराण · चारों वेद · उपनिषद् · हनुमान चालीसा —{" "}
-          <span className="font-semibold text-sanatan-maroon">संस्कृत, हिंदी और English</span> में।
+          Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Hanuman Chalisa —{" "}
+          <span className="font-semibold text-sanatan-maroon">in Sanskrit, Hindi, English & Spanish</span>.
         </p>
 
         {/* stats */}
         <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
           {[
-            { icon: BookOpenText, label: "ग्रंथ-संग्रह", value: "11" },
-            { icon: Sparkles, label: "श्लोक एवं कथाएँ", value: "150+" },
-            { icon: Languages, label: "भाषाएँ", value: "3" },
+            { icon: BookOpenText, label: "Scripture collections", value: "11" },
+            { icon: Sparkles, label: "Verses & stories", value: "150+" },
+            { icon: Languages, label: "Languages", value: "4" },
           ].map(({ icon: Icon, label, value }) => (
             <div
               key={label}
@@ -85,7 +85,7 @@ export function Hero({ onSuggestion }: HeroProps) {
 
         <div className="mt-3 flex items-center gap-1.5 rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/10 px-3 py-1 text-[0.68rem] text-sanatan-gold">
           <WifiOff className="h-3.5 w-3.5" aria-hidden />
-          <span>पूर्णतः ऑफ़लाइन · No internet · स्थानीय ग्रंथ-कोश</span>
+          <span>Fully offline · No internet · Local scripture corpus</span>
         </div>
       </div>
 
@@ -94,8 +94,8 @@ export function Hero({ onSuggestion }: HeroProps) {
         <div className="mb-5">
           <div className="mb-2 flex items-center gap-2 text-sm font-semibold text-sanatan-maroon">
             <Flame className="h-4 w-4 text-sanatan-saffron flame-breathe" aria-hidden />
-            <span className="font-deva">आज का दिव्य श्लोक</span>
-            <span className="text-[0.68rem] font-normal text-foreground/55">Verse of the Day</span>
+            <span className="font-deva">Verse of the Day</span>
+            <span className="text-[0.68rem] font-normal text-foreground/55">आज का दिव्य श्लोक</span>
           </div>
           <VerseCard entry={verse} />
         </div>

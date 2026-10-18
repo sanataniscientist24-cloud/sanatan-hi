@@ -3,7 +3,7 @@ import { chat, type ResponseLang } from "@/lib/ai/engine";
 
 export const dynamic = "force-dynamic";
 
-const LANGS: ResponseLang[] = ["hi", "en", "sa"];
+const LANGS: ResponseLang[] = ["hi", "en", "sa", "es"];
 
 export async function POST(req: Request) {
   try {

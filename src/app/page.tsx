@@ -15,15 +15,16 @@ import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
 import { askSanatan } from "@/lib/client/ask";
 
-type LangMode = "auto" | "hi" | "en" | "sa";
+type LangMode = "auto" | "hi" | "en" | "sa" | "es";
 
-const STORAGE_KEY = "sanatan-hi-chat-v1";
+const STORAGE_KEY = "sanatan-hi-chat-v2";
 
 const LANG_LABELS: Record<LangMode, string> = {
-  auto: "स्वतः (Auto)",
-  hi: "हिंदी",
+  auto: "Auto detect",
+  hi: "हिंदी Hindi",
   en: "English",
-  sa: "संस्कृतम्",
+  sa: "संस्कृत Sanskrit",
+  es: "Español",
 };
 
 function uid() {
@@ -32,7 +33,7 @@ function uid() {
 
 export default function SanatanHIPage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
-  const [langMode, setLangMode] = useState<LangMode>("auto");
+  const [langMode, setLangMode] = useState<LangMode>("en");
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
@@ -142,13 +143,13 @@ export default function SanatanHIPage() {
                   variant="ghost"
                   size="icon"
                   className="lg:hidden h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-gold-2"
-                  aria-label="ग्रंथ-कोश खोलें"
+                  aria-label="Open scripture corpus"
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="left" className="w-[290px] border-sanatan-gold-2/50 bg-sanatan-cream p-0">
-                <SheetTitle className="sr-only">ग्रंथ-कोश</SheetTitle>
+                <SheetTitle className="sr-only">Scripture Corpus</SheetTitle>
                 <SidebarContent onQuery={(q) => void send(q)} onNavigate={() => setSheetOpen(false)} />
               </SheetContent>
             </Sheet>
@@ -164,7 +165,7 @@ export default function SanatanHIPage() {
                   <span className="text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90">[ HUMAN INTELLIGENCE ]</span>
                 </h1>
                 <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 sm:block">
-                  ऑफ़लाइन सनातन-ज्ञान AI · गीता · रामायण · महाभारत · वेद · पुराण
+                  Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
                 </p>
               </div>
               <span className="ml-1 hidden items-center gap-1 rounded-full border border-sanatan-gold-2/50 px-2 py-0.5 text-[0.6rem] text-sanatan-gold-2 md:inline-flex">
@@ -177,7 +178,7 @@ export default function SanatanHIPage() {
             <div className="ml-auto flex items-center gap-1.5">
               <Select value={langMode} onValueChange={(v) => setLangMode(v as LangMode)}>
                 <SelectTrigger
-                  aria-label="उत्तर की भाषा चुनें"
+                  aria-label="Choose answer language"
                   className="h-9 w-[7.4rem] sm:w-36 border-sanatan-gold-2/50 bg-transparent text-xs text-sanatan-cream-2 hover:bg-white/10 [&>svg]:text-sanatan-gold-2"
                 >
                   <SelectValue placeholder={LANG_LABELS[langMode]} />
@@ -198,7 +199,7 @@ export default function SanatanHIPage() {
                     size="icon"
                     onClick={() => setTheme(isDark ? "light" : "dark")}
                     className="h-9 w-9 text-sanatan-gold-2 hover:bg-white/10"
-                    aria-label="थीम बदलें"
+                    aria-label="Toggle theme"
                   >
                     {mounted && <Sun className={isDark ? "hidden" : "h-4.5 w-4.5"} />}
                     {mounted && <Moon className={isDark ? "h-4.5 w-4.5" : "hidden"} />}
@@ -215,7 +216,7 @@ export default function SanatanHIPage() {
                     onClick={newChat}
                     disabled={messagesEnd}
                     className="h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 disabled:opacity-40"
-                    aria-label="नई बातचीत"
+                    aria-label="New conversation"
                   >
                     <MessageSquarePlus className="h-4.5 w-4.5" />
                   </Button>
@@ -258,7 +259,7 @@ export default function SanatanHIPage() {
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-3 pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} />
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                सनातन HI स्थानीय ग्रंथ-कोश से उत्तर देता है · Sanskrit · हिंदी · English ·{" "}
+                SANATAN HI answers from a local scripture corpus · English · हिंदी · संस्कृत · Español ·{" "}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
               </p>
             </div>
@@ -269,10 +270,10 @@ export default function SanatanHIPage() {
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">
           <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2 text-[0.64rem]">
             <span className="font-deva text-sanatan-cream-2/90">
-              सनातन HI [ HUMAN INTELLIGENCE ] · श्रीमद्भगवद्गीता · रामायण · महाभारत · भागवत · शिव पुराण · वेद · उपनिषद्
+              SANATAN HI [ HUMAN INTELLIGENCE ] · Bhagavad Gita · Ramayana · Mahabharata · Bhagavata & Shiva Purana · Vedas · Upanishads
             </span>
             <span className="text-sanatan-gold-2/80">
-              100% Offline Corpus · Sanskrit + Hindi + English ·{" "}
+              100% Offline Corpus · Sanskrit · Hindi · English · Español ·{" "}
               <span aria-hidden>🙏</span>
             </span>
           </div>

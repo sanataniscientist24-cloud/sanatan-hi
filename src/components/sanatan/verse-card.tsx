@@ -27,11 +27,12 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
 
   const copyText = () => {
     const lines = [
-      `${book?.nameSa ?? book?.name ?? ""} — ${entry.sectionHi ?? entry.section ?? ""} ${entry.verse ? `(${entry.verse})` : ""}`,
+      `${book?.name ?? ""} — ${entry.section ?? entry.sectionHi ?? ""} ${entry.verse ? `(${entry.verse})` : ""}`,
       entry.sanskrit ?? entry.titleHi ?? "",
       entry.translit ?? "",
-      `हिंदी: ${entry.hindi}`,
+      entry.spanish ? `Español: ${entry.spanish}` : "",
       `English: ${entry.english}`,
+      `हिंदी: ${entry.hindi}`,
     ].filter(Boolean);
     void navigator.clipboard?.writeText(lines.join("\n\n")).then(() => {
       setCopied(true);
@@ -46,8 +47,8 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
       transition={{ delay: Math.min(index * 0.06, 0.25), duration: 0.35 }}
       className="relative overflow-hidden rounded-xl border border-sanatan-gold-2/70 bg-sanatan-parchment shadow-[0_1px_3px_rgba(105,32,15,0.06)]"
       aria-label={
-        (entry.sectionHi ?? entry.section ?? entry.titleHi ?? entry.title ?? "श्लोक") +
-        (entry.verse ? `, श्लोक ${entry.verse}` : "")
+        (entry.section ?? entry.sectionHi ?? entry.title ?? entry.titleHi ?? "Verse") +
+        (entry.verse ? `, verse ${entry.verse}` : "")
       }
     >
       {/* gold accent spine */}
@@ -61,14 +62,14 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
             className="gap-1.5 border-sanatan-gold/50 bg-sanatan-gold/10 text-sanatan-maroon-2 dark:text-sanatan-maroon hover:bg-sanatan-gold/15"
           >
             {book && <BookIcon icon={book.icon} className="h-3.5 w-3.5" />}
-            <span className="font-deva text-[0.78rem]">{book?.nameHi}</span>
+            <span className="text-[0.78rem]">{book?.name}</span>
           </Badge>
           <span className="text-[0.72rem] sm:text-xs text-sanatan-maroon/80 dark:text-sanatan-maroon/85 truncate max-w-full">
-            {entry.sectionHi ?? entry.section}
+            {entry.section ?? entry.sectionHi}
           </span>
           {entry.verse && (
-            <Badge className="ml-auto shrink-0 bg-sanatan-maroon text-sanatan-cream-2 hover:bg-sanatan-maroon-2 font-deva">
-              श्लोक {entry.verse}
+            <Badge className="ml-auto shrink-0 bg-sanatan-maroon text-sanatan-cream-2 hover:bg-sanatan-maroon-2">
+              Verse {entry.verse}
             </Badge>
           )}
         </div>
@@ -94,15 +95,22 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
           {(showAll || true) && (
             <>
               <LangRow
+                label="English"
+                text={entry.english}
+                className="text-foreground/90"
+              />
+              {entry.spanish && (
+                <LangRow
+                  label="Español"
+                  text={entry.spanish}
+                  className="text-foreground/85"
+                />
+              )}
+              <LangRow
                 label="हिंदी"
                 text={entry.hindi}
                 className="text-sanatan-maroon/95 dark:text-sanatan-maroon/95"
                 fontClass="font-deva"
-              />
-              <LangRow
-                label="English"
-                text={entry.english}
-                className="text-foreground/85"
               />
             </>
           )}
@@ -123,7 +131,7 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
                 onClick={() => setShowAll((v) => !v)}
               >
                 <Languages className="h-3.5 w-3.5" />
-                {showAll ? "संक्षिप्त" : "पूरा"}
+                {showAll ? "Less" : "Full"}
               </Button>
             )}
             <Button
@@ -131,10 +139,10 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
               size="sm"
               className="h-7 gap-1 text-sanatan-maroon-2 dark:text-sanatan-maroon text-xs"
               onClick={copyText}
-              aria-label="श्लोक कॉपी करें"
+              aria-label="Copy verse"
             >
               {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-              {copied ? "कॉपी हुआ" : "कॉपी"}
+              {copied ? "Copied" : "Copy"}
             </Button>
           </div>
         </div>

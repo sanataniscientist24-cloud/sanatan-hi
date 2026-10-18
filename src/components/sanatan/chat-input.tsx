@@ -47,8 +47,8 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
           }}
           rows={1}
           maxLength={600}
-          placeholder={placeholder ?? "पूछें — जैसे 'कर्म क्या है?', 'गीता 2.47', 'हनुमान चालीसा'…"}
-          aria-label="अपना प्रश्न लिखें"
+          placeholder={placeholder ?? "Ask anything — e.g. 'What is karma?', 'Gita 2.47', 'Hanuman Chalisa', '¿Qué es el dharma?'…"}
+          aria-label="Type your question"
           className="max-h-[140px] min-h-[40px] flex-1 resize-none border-0 bg-transparent px-1 py-2 text-[0.92rem] focus-visible:ring-0 focus-visible:ring-offset-0 placeholder:text-sanatan-gold/70"
           disabled={disabled}
         />
@@ -56,7 +56,7 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
           onClick={submit}
           disabled={disabled || !value.trim()}
           size="icon"
-          aria-label="भेजें"
+          aria-label="Send"
           className="h-10 w-10 shrink-0 rounded-xl bg-gradient-to-br from-sanatan-saffron to-sanatan-saffron-2 text-white shadow-sm transition-transform hover:scale-105 disabled:opacity-50 disabled:hover:scale-100"
         >
           <SendHorizonal className="h-4.5 w-4.5" />

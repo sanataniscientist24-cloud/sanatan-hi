@@ -17,6 +17,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "देवता-दानवों ने मेरु पर्वत को मंथन-दण्ड और वासुकि नाग को रस्सी बनाकर समुद्र मथा। सबसे पहले विष के समुद्र से काल-कुट गरल-रूप हलाहल निकला जिससे सृष्टि हिल गई। ब्रह्मा-विष्णु ने आग्रह किया तो महादेव ने उस विष को हाथ-पात्र में लेकर 'नीलकंठ' बन जाने की कीमत पर पी गए। पार्वती ने गले में उतार रोक दिया। संत विष-पान बोध देता है: विष बाहर से कठिन होता है, जो समाज के लिए पिया जाए वह पुरुषार्थ बन जाता है।",
     english:
       "Gods and demons churned the ocean with Mount Mandara and serpent Vasuki. First to arise was the dreadful halahala poison that shook all creation. At Brahma's and Vishnu's pleading, Mahadeva gathered it and drank it — turning blue-throated, Neelakantha — while Parvati held it at his throat. The drinker of universal poison teaches: when suffering is voluntarily borne for the sake of the world, it becomes nectar for the soul.",
+    spanish:
+      "Los dioses y los demonios batieron el océano con el monte Mandara y la serpiente Vasuki. Lo primero en surgir fue el terrible veneno halahala, que estremeció toda la creación. A ruegos de Brahma y Vishnu, Mahadeva lo recogió y lo bebió — volviéndose de garganta azul, Neelakantha — mientras Parvati lo retenía en su garganta. El bebedor del veneno universal enseña: cuando el sufrimiento se soporta voluntariamente por el bien del mundo, se convierte en néctar para el alma.",
     tags: ["samudra manthan", "halahala", "neelakantha", "poison", "समुद्र मन्थन", "हलाहल", "नीलकंठ", "विष पान", "शिव", "churning"],
   },
   {
@@ -31,6 +33,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "भगीरथ के घोर तप से ब्रह्मा-विष्णु ने गंगा को स्वर्ग से पृथ्वी पर उतरने का वरदान दिया; पर उसका वेग पृथ्वी नहीं सह सकती थी। भगीरथ ने शिव की आराधना की — महादेव ने अपनी जटाओं को फैलाकर गंगा के पूरे वेग-प्रपात को स्वीकार किया और उसे वर्षों मानव-कल्याण के लिए मंद सरिता के रूप में धरती पर विराजमान कर दिया। शिव वह आश्रय हैं जो जीवन के आंधी-प्रपात को अमृत-धारा में बदल देता है।",
     english:
       "By Bhagiratha's fierce penance Ganga consented to descend from heaven — but her plunge would shatter the earth. Bhagiratha worshipped Shiva, and Mahadeva spread His matted locks, received the river's entire fury, and released her gently as the redeeming stream. Shiva is the refuge who transforms life's torrents into nectar for the world.",
+    spanish:
+      "Por la feroz penitencia de Bhagiratha, Ganga consintió en descender del cielo — pero su caída habría destrozado la tierra. Bhagiratha adoró a Shiva, y Mahadeva desplegó sus enmarañados mechones, recibió toda la furia del río y la liberó con suavidad como la corriente redentora. Shiva es el refugio que transforma los torrentes de la vida en néctar para el mundo.",
     tags: ["ganga", "bhagiratha", "descent", "jata", "गंगा", "भगीरथ", "जटा", "अवतरण", "shiva refuge"],
   },
   {
@@ -45,6 +49,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "सती के दाह के पश्चात शिव ने वैराग्य लिया। हिमवान्-पुत्री पार्वती ने नारद के उपदेश से शिव-पति की प्राप्ति का अद्भुत व्रत धारण किया — ऋतु-त्यागकर शूल-कठोर सेवा, युगों का तपस्वी-धैर्य। अंत में शिव ने ब्रह्मचारी रूप में परीक्षा ली और शिव के समक्ष ही शिव की निंदा सुनकर पार्वती ने उनका पक्ष लिया। तृप्त होकर शिव ने स्वयं वर माँगने को कहा — 'स्वयं त्वया सह विवाह'। तप ही प्रेम का अंतिम परिपक्वता है।",
     english:
       "After Sati's self-immolation Shiva turned utterly renunciant. Himavana's daughter Parvati took up a staggering vow — seasons of one-pointed austerities, serve forests, silence and fire. Shiva came as a brahmachari to test her and, slandered in his presence, found Parvati defending Him alone. Pleased, He bade her ask a boon — and she asked for none other than the Lord himself. Penance is love's final ripening.",
+    spanish:
+      "Tras la inmolación de Sati, Shiva se volvió un renunciante absoluto. Parvati, hija de Himavana, asumió un voto estremecedor — estaciones de austeridades de mente unánime, al servicio de los bosques, el silencio y el fuego. Shiva acudió como brahmachari para ponerla a prueba y, calumniado en su propia presencia, halló a Parvati defendiéndolo a Él solo. Complacido, le indicó que pidiera una gracia — y ella no pidió nada menos que al propio Señor. La penitencia es la maduración final del amor.",
     tags: ["parvati", "penance", "marriage", "tapasya", "पार्वती", "तप", "विवाह", "सती", "शिव पति"],
   },
   {
@@ -59,6 +65,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "मृगंध मुनि को मात्र बारह वर्ष का आयु-वरदान मिला। बालक मार्कण्डेय ने शिवलिंग को आलिंगन कर तप किया। बारहवें वर्ष पर यम का फंदा पँहुँचा — शिव 'मृत्युंजय' रूप में शिवलिंग से प्रकट हुए और यम-पाश काट डाला; बालक सोलह वर्ष का होकर दीर्घायु तपस्वी बना। महामृत्युंजय मंत्र का मूल-प्रसंग यही है।",
     english:
       "Sage Mrikandu was granted a son with but twelve years of life. The boy Markandeya embraced the Shiva-linga in unbroken devotion. On the appointed day Yama's noose descended — Shiva burst forth as Mritunjaya, severed the noose, and the boy grew to be a deathless sage of sixteen. This is the origin of the Maha Mrityunjaya mantra.",
+    spanish:
+      "Al sabio Mrikandu le fue concedido un hijo con apenas doce años de vida. El niño Markandeya abrazó al Shiva-linga en devoción ininterrumpida. En el día señalado descendió el lazo de Yama — Shiva irrumpió como Mritunjaya, cortó el lazo, y el niño llegó a ser un sabio inmortal de dieciséis años. Este es el origen del mantra Maha Mrityunjaya.",
     tags: ["markandeya", "yama", "mrityunjaya", "death conquered", "मार्कण्डेय", "यम", "मृत्यु जय", "बालक", "linga"],
   },
   {
@@ -75,6 +83,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "सौराष्ट्र में सोमनाथ, श्रीशैल में मल्लिकार्जुन, उज्जयिनी में महाकाल, ओंकार-अमलेश्वर; परली में वैद्यनाथ, डाकिनी में भीमशंकर, सेतुबन्ध पर रामेश्वर, दारुकावन में नागेश; काशी में विश्वनाथ, गौतमी तट पर त्र्यम्बकेश्वर, हिमालय में केदारनाथ और शिवालय (वेरुल) में घृष्णेश्वर — ये बारह ज्योतिर्लिंग हैं; जो नर प्रातः-सायं इनका स्मरण करता है, उसके सात जन्मों का पाप नष्ट हो जाता है।",
     english:
       "Somnath in Saurashtra, Mallikarjuna on Shrishaila, Mahakala at Ujjain, Omkara-Amaleshwara; Vaidyanatha at Parli, Bhimashankara in Dakini, Rameshwara at Setubandha, Nagesha in Darukavana; Vishveshwara at Varanasi, Tryambaka on the Gautami banks, Kedara in the Himalaya and Ghushmesha at Shivayala — twelve jyotirlingas. One who recites them morning and evening is cleansed of seven lifetimes of karma.",
+    spanish:
+      "Somnath en Saurashtra, Mallikarjuna en Shrishaila, Mahakala en Ujjain, Omkara-Amaleshwara; Vaidyanatha en Parli, Bhimashankara en Dakini, Rameshwara en Setubandha, Nagesha en Darukavana; Vishveshwara en Varanasi, Tryambaka a orillas del Gautami, Kedara en el Himalaya y Ghushmesha en Shivayala — doce jyotirlingas. Quien los recita mañana y tarde queda purificado del karma de siete vidas.",
     tags: ["jyotirlinga", "stotra", "12 lingas", "ज्योतिर्लिंग स्तोत्र", "सोमनाथ", "महाकालेश्वर", "काशी विश्वनाथ", "केदारनाथ", "रामेश्वरम्", "twelve", "famous"],
   },
   {
@@ -89,6 +99,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "(1) सोमनाथ — प्रभास पाटन, गुजरात · (2) मल्लिकार्जुन — श्रीशैल, आंध्र · (3) महाकालेश्वर — उज्जैन, मप्र · (4) ओंकारेश्वर-ममलेश्वर — नर्मदा के ओंकार बिंदु, मप्र · (5) वैद्यनाथ (बैजनाथ) — देवघर, झारखंड · (6) भीमाशंकर — पुणे के निकट, महाराष्ट्र · (7) रामेश्वरम् — तमिलनाडु का द्वीप-मंदिर जहाँ राम ने लिंग स्थापित किया · (8) नागेश्वर — द्वारका के निकट · (9) विश्वनाथ — काशी (वाराणसी) · (10) त्र्यम्बकेश्वर — नासिक, गोदावरी-उद्गम · (11) केदारनाथ — हिमालय · (12) घृष्णेश्वर — औरंगाबाद (वेरुल) के निकट।",
     english:
       "(1) Somnath — Prabhas Patan, Gujarat · (2) Mallikarjuna — Srisailam, Andhra · (3) Mahakaleshwar — Ujjain, MP · (4) Omkareshwar-Mamaleshwar — Narmada's Om-shaped island, MP · (5) Vaidyanath — Deoghar, Jharkhand · (6) Bhimashankar — near Pune, Maharashtra · (7) Rameshwaram — Tamil island where Rama installed the linga · (8) Nageshwar — near Dwarka · (9) Vishwanath — Kashi (Varanasi) · (10) Trimbakeshwar — Nasik, source of Godavari · (11) Kedarnath — Himalaya · (12) Grishneshwar — near Aurangabad.",
+    spanish:
+      "(1) Somnath — Prabhas Patan, Guyarat · (2) Mallikarjuna — Srisailam, Andhra · (3) Mahakaleshwar — Ujjain, MP · (4) Omkareshwar-Mamaleshwar — la isla en forma de Om del Narmada, MP · (5) Vaidyanath — Deoghar, Jharkhand · (6) Bhimashankar — cerca de Pune, Maharashtra · (7) Rameshwaram — la isla tamil donde Rama instaló el linga · (8) Nageshwar — cerca de Dwarka · (9) Vishwanath — Kashi (Varanasi) · (10) Trimbakeshwar — Nasik, nacimiento del Godavari · (11) Kedarnath — Himalaya · (12) Grishneshwar — cerca de Aurangabad.",
     tags: ["jyotirlinga", "somnath", "kedarnath", "kashi", "rameshwaram", "बारह ज्योतिर्लिंग", "मंदिर", "स्थान", "pilgrimage", "temples"],
   },
   {
@@ -105,6 +117,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "जिनकी जटाओं से गिरता गंगा-जल उनके हृदय को पवित्र करता है, जिनके गले में विषधर सर्प लिपटा है, जिनका भाल चंद्रमा से शोभित है — रावण रचित इस अद्भुत स्तोत्र में नटराज के ताण्डव का वर्णन है; शिव की जटा-गंगा का निरूपण अद्वितीय है।",
     english:
       "The water flowing from His matted locks purifies His being; serpents coil about His neck; the crescent moon adorns His brow — Ravana's thunderous hymn describes the tandava of Nataraja, Lord of the cosmic dance. The imagery of Ganga in Shiva's hair is without parallel.",
+    spanish:
+      "El agua que fluye de sus enmarañados mechones purifica su ser; las serpientes se enroscan en su cuello; la luna creciente adorna su frente — el atronador himno de Ravana describe el tandava de Nataraja, Señor de la danza cósmica. La imaginería de Ganga en el cabello de Shiva no tiene parangón.",
     tags: ["tandava", "ravana", "nataraja", "dance", "ताण्डव", "रावण", "नटराज", "नृत्य", "जटा", "cosmic dance"],
   },
   {
@@ -121,6 +135,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "ॐ नमः शिवाय — 'शिव को नमस्कार'। शास्त्रों में सर्वश्रेष्ठ मंत्रों में एक: ॐ ब्रह्म-स्मरण, नमः अहं-भाव का समर्पण, शि+वा+य शिव-कल्याण-तत्त्व का आलिंगन। इस मंत्र का निरंतर जप चित्त को संतुलित और शुद्ध करता है।",
     english:
       "Om Namah Shivaya — 'Salutations to Shiva'. Among the most supreme mantras of the shastras: Om invokes the Absolute, namah offers the ego, shi-va-ya embraces the auspicious reality. Constant japa of it steadies and purifies the mind.",
+    spanish:
+      "Om Namah Shivaya — 'Salutaciones a Shiva'. Entre los mantras más supremos de los shastras: Om invoca al Absoluto, namah ofrece el ego, shi-va-ya abraza la realidad auspiciosa. Su japa constante serena y purifica la mente.",
     tags: ["om namah shivaya", "panchakshari", "japa", "ॐ नमः शिवाय", "पंचाक्षरी", "जप", "famous", "shiva mantra"],
   },
   {
@@ -137,6 +153,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "कर्पूर के समान गौर, करुणा के अवतार, संसार का सार-तत्त्व, भुजगेन्द्र (विषधर नागों के स्वामी) का हार धारण करने वाले, हृदय-कमल में सदा निवास करने वाले भव (शिव) को भवानी के सहित नमस्कार। आरती और पूजा का प्रसिद्ध ध्यान-श्लोक।",
     english:
       "White as camphor, embodiment of compassion, the essence of the world, wearing the king of serpents as a garland, ever dwelling in the lotus of the heart — I bow to Bhava together with Bhavani. The beloved dhyana shloka sung at every Shiva aarti.",
+    spanish:
+      "Blanco como el alcanfor, encarnación de la compasión, la esencia del mundo, llevando al rey de las serpientes por collar, morando siempre en el loto del corazón — me prosterno ante Bhava junto con Bhavani. El amado shloka de dhyana que se canta en cada aarti de Shiva.",
     tags: ["karpuragauram", "aarti", "bhavani", "dhyana", "कर्पूरगौरं", "भवानी", "आरती", "ध्यान", "famous"],
   },
   {
@@ -153,6 +171,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "यदि समुद्र के जल को स्याही, काले पर्वत को लेखनी, स्वर्ग के कल्प-वृक्ष की शाखा को कलम और पृथ्वी को पत्र बनाकर सरस्वती सदा लिखती रह जाएँ, तो भी हे ईश! तेरे गुणों का पार नहीं पाया जा सकता — पुष्पदंत की अतुलनीय स्तुति।",
     english:
       "If the ocean were ink, the black mountain a pen, the branch of heaven's wish-tree the stylus, and the earth the page; were Sharada to write forever — still, O Lord, the limit of Your glories would never be reached. Pushpadanta's incomparable praise.",
+    spanish:
+      "Si el océano fuera la tinta, la montaña negra la pluma, la rama del árbol de los deseos del cielo el estilo y la tierra la página; si Sharada escribiera por siempre — aun así, oh Señor, jamás se alcanzaría el límite de Tus glorias. La incomparable alabanza de Pushpadanta.",
     tags: ["mahimna", "pushpadanta", "glories", "शिव महिम्न", "पुष्पदंत", "स्तुति", "महिमा", "infinite"],
   },
   {
@@ -169,6 +189,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "मैं उस ईशान-परमेश्वर का भजन करता हूँ जो निर्वाण-स्वरूप, व्यापक, ब्रह्म-वेद-स्वरूप, निर्गुण, निर्विकल्प, निरीह, चिदाकाश-रूप और आकाश के समान वासी हैं — तुलसीदास विरचित रुद्राष्टकम् का उद्घोष।",
     english:
       "I adore Ishana, the form of nirvana, the all-pervading, the very form of Brahman and the Vedas — attributeless, beyond conception, desireless, the space of consciousness dwelling as space. The opening of Tulsidas's Rudrashtakam.",
+    spanish:
+      "Adoro a Ishana, la forma del nirvana, el que todo lo penetra, la forma misma de Brahman y de los Vedas — sin atributos, más allá de toda concepción, sin deseos, el espacio de la conciencia que mora como el espacio. El comienzo del Rudrashtakam de Tulsidas.",
     tags: ["rudrashtakam", "tulsidas", "nirguna", "रुद्राष्टकम", "तुलसीदास", "निर्गुण", "भजन"],
   },
   {
@@ -185,6 +207,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "मन, बुद्धि, अहंकार, चित्त — मैं नहीं हूँ; न सुनने-चखने-सूँघने-देखने की इंद्रियाँ, न आकाश-पृथ्वी-अग्नि-वायु। मैं चिदानन्द-स्वरूप हूँ — मैं शिव हूँ, मैं शिव हूँ। आदि शंकराचार्य का अद्वैत-घोष।",
     english:
       "I am not the mind, intellect, ego or memory; not the ears, tongue, nose or eyes; nor ether, earth, fire or wind — I am the form of consciousness-bliss: I am Shiva, I am Shiva. Adi Shankaracharya's thunderbolt declaration of Advaita.",
+    spanish:
+      "No soy la mente, el intelecto, el ego ni la memoria; no los oídos, la lengua, la nariz ni los ojos; tampoco el éter, la tierra, el fuego ni el viento — soy la forma de la conciencia-dicha: yo soy Shiva, yo soy Shiva. La declaración fulminante del Advaita de Adi Shankaracharya.",
     tags: ["nirvana shatakam", "shivo aham", "advaita", "shankara", "शिवोऽहम्", "चिदानन्द", "अद्वैत", "शंकराचार्य", "famous"],
   },
   {
@@ -201,6 +225,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "लिंग-पूजा के रहस्य पर आधारित स्तोत्र — लिंग निराकार ब्रह्म का साकार प्रतीक है; जो अनादि-निराकार परमेश्वर का अर्चा-रूप है, उसी के दर्शन-स्पर्श से भक्त निर्वाण पाता है।",
     english:
       "The hymn on the mystery of linga worship — the linga is the form-symbol of the formless Brahman: touching and beholding that archa-form of the beginningless Lord, the devotee attains liberation.",
+    spanish:
+      "El himno sobre el misterio de la adoración del linga — el linga es el símbolo con forma del Brahman sin forma: tocando y contemplando esa forma de archa del Señor sin comienzo, el devoto alcanza la liberación.",
     tags: ["lingashtakam", "linga", "worship", "लिङ्गाष्टकम", "शिवलिंग", "पूजा", "निराकार", "symbol"],
   },
   {
@@ -215,6 +241,8 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "शिव पुराण सात संहिताओं में विभाजित है — विद्येश्वर, रुद्र, शतरुद्र, कोटिरुद्र, उमा, कैलास और वायवीय। इसमें शिव-महिमा, 12 ज्योतिर्लिंग-माहात्म्य, शिव-पार्वती विवाह, गणेश-कार्तिकेय जन्म, समुद्र-मन्थन, गंगा-अवतरण, रुद्र-अवतार, लिंग-प्रतिष्ठा और भक्ति-विधि का विस्तृत निरूपण है। शैव-धर्म का आधार-ग्रंथ।",
     english:
       "The Shiva Purana is divided into seven samhitas — Vidyeshvara, Rudra, Shatarudra, Kotirudra, Uma, Kailasa and Vayaviya. It contains the glory of Shiva, the twelve jyotirlinga magnificences, the wedding of Shiva and Parvati, the births of Ganesha and Kartikeya, the churning of the ocean, the descent of Ganga, the Rudra incarnations, linga installation and the complete method of bhakti — the foundational scripture of Shaivism.",
+    spanish:
+      "El Shiva Purana se divide en siete samhitas — Vidyeshvara, Rudra, Shatarudra, Kotirudra, Uma, Kailasa y Vayaviya. Contiene la gloria de Shiva, las magnificencias de los doce jyotirlingas, la boda de Shiva y Parvati, los nacimientos de Ganesha y Kartikeya, el batido del océano, el descenso de Ganga, las encarnaciones de Rudra, la instalación del linga y el método completo de la bhakti — la escritura fundamental del shivaísmo.",
     tags: ["structure", "samhita", "overview", "शिव पुराण संहिता", "संरचना", "शैव", "overview"],
   },
 ];
@@ -239,6 +267,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "उस परमेश्वर से यह जगत् उत्पन्न होता-स्थित-लीन होता है, जो सब अर्थों में प्रत्यक्ष-परमेष्ट्ठी है; जिसने हृदय से आदिकवि ब्रह्मा को वेद दिए और जिसमें सूरगण भी मोहित हो जाते हैं — भागवत का मंगलाचरण-सूत्र।",
     english:
       "From that Supreme Being this universe emanates, in Him it rests and dissolves; He is directly conscious of every creation; He inspired the Vedas in the heart of Brahma the first seer, and in Him even the gods are bewildered — the auspicious opening thread of the Bhagavata.",
+    spanish:
+      "De ese Ser Supremo emana este universo, en Él reposa y en Él se disuelve; Él conoce directamente cada creación; Él inspiró los Vedas en el corazón de Brahma, el primer vidente, y en Él hasta los dioses se desconciertan — el auspicioso hilo de apertura del Bhagavata.",
     tags: ["bhagavata opening", "creation", "supreme", "जन्माद्यस्य", "भागवत आरम्भ", "ब्रह्मा", "वेद", "famous"],
   },
   {
@@ -256,6 +286,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "पुरुषों का वही परम धर्म है जिससे अधोक्षज (इंद्रियों से परे परमात्मा) में अहेतुक (बिना किसी स्वार्थ के) और अव्याहत (निरंतर बहती) भक्ति हो और जिससे आत्मा परम-प्रसन्न हो जाए। भागवत का केंद्रीय घोषणा।",
     english:
       "That alone is the highest dharma of humanity by which devotion to the transcendent Lord arises — causeless and unobstructed — through which the Self becomes supremely content. The central proclamation of the Bhagavata.",
+    spanish:
+      "Ese, y no otro, es el dharma supremo de la humanidad: aquel por el cual surge la devoción al Señor trascendente — sin causa y sin obstáculos — y mediante el cual el Ser queda supremamente complacido. La proclamación central del Bhagavata.",
     tags: ["dharma", "bhakti", "highest", "परो धर्मो", "अहेतुक भक्ति", "धर्म", "प्रसन्नता", "famous"],
   },
   {
@@ -270,6 +302,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "मथुरा के कारागार में आषाढ़ी अंधेरी रात्रि थी; देवकी की आठवीं गर्भ-रेखा कंस के भय से साँस रोके थी। आधी रात यमुना के निकट कालाबली घनघोर वातावरण में छोटा शिशु प्रकट हुआ — कारागार के द्वार स्वतः खुल गए, प्रहरी सो गए, वसुदेव के हाथ में शिशु सुरक्षित रेखा से यमुना ने रास्ता दिया। गोकुल में यशोदा-नंद की झूली में विश्व-आनंद उतर आया। गोविंद बन बालक ने वत्स-भाव से विश्व को ओत प्रोत कर दिया।",
     english:
       "In Mathura's dungeon, on the black midnight of Shravana, Devaki's eighth pregnancy trembled under Kamsa's terror. At the appointed hour the divine infant appeared — chains snapped open, guards fell asleep, and the river Yamuna parted in flood to make way for Vasudeva carrying the child to Gokula, where the lap of Yashoda received the joy of the worlds. The child who would be Govinda filled the universe with the tenderness of the herdsman's love.",
+    spanish:
+      "En el calabozo de Mathura, en la negra medianoche de Shravana, el octavo embarazo de Devaki temblaba bajo el terror de Kamsa. A la hora señalada apareció el divino infante — las cadenas se abrieron de golpe, los guardias se durmieron y el río Yamuna, en crecida, se apartó para dar paso a Vasudeva, que llevaba al niño a Gokula, donde el regazo de Yashoda recibió la alegría de los mundos. El niño que habría de ser Govinda colmó el universo con la ternura del amor del pastor.",
     tags: ["krishna birth", "devaki", "vasudeva", "yashoda", "कृष्ण जन्म", "देवकी", "वसुदेव", "यशोदा", "कंस", "mathura", "gokula"],
   },
   {
@@ -284,6 +318,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "इंद्र-पूजा के स्थान पर बाल-कृष्ण ने कहा — वर्षा, घास, गौ, ब्रज सब गोवर्धन और कर्म का सहारा है; पर-पूजा से ग्राम्य-देवता की पूजा श्रेष्ठ। इंद्र के अहंकार ने सप्ताह-भर अति-वृष्टि की — तब सात वर्ष के बालक ने गोवर्धन को कनी पर उठा लिया; साढ़े सात दिन ब्रज ने पर्वत-छाता के नीचे निवास किया। इंद्र ने अभिषेक कर क्षमा माँगी — अहंकार जितना बड़ा, विनम्रता उतनी ही गहरी गिरती है।",
     english:
       "In place of Indra's worship, boy Krishna proposed the worship of Govardhan — the hill that gave rain, grass and grazing to the herds. Indra's offended ego poured seven days of devastating rain — whereupon the seven-year-old lifted Govardhan on his little finger, and all Vraja lived beneath the mountain-umbrella. Indra himself came down to bathe the boy in reverence: the greater the pride, the deeper the fall into humility.",
+    spanish:
+      "En lugar de la adoración de Indra, el niño Krishna propuso la adoración de Govardhan — la colina que daba lluvia, hierba y pastos a los rebaños. El ego ofendido de Indra descargó siete días de lluvia devastadora — entonces el niño de siete años alzó Govardhan sobre su meñique, y todo Vraja vivió bajo el paraguas de la montaña. El propio Indra descendió a bañar al niño en señal de reverencia: cuanto mayor es el orgullo, más honda es la caída hacia la humildad.",
     tags: ["govardhan", "indra", "lift", "vrindavan", "गोवर्धन", "इंद्र", "वृन्दावन", "कनी", "mountain"],
   },
   {
@@ -298,6 +334,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "शरद-पूर्णिमा की चाँदनी रात यमुना-तट पर गोपियों के प्रेम-स्वर थे। एक कृष्ण अनेक रूपों में प्रत्येक गोपी के बीच नृत्य करता हुआ प्रत्यक्ष हुआ — जैसे एक ही आत्मा सब हृदयों में है। गर्व दिखाकर एक गोपी के नाच का भार पूरे गिरि-राज जैसा अनुभव हुआ — भक्ति में अहंकार और अद्वैत दोनों का गूढ़ दर्शन। रास-लीला निर्मल प्रेम-तत्त्व का सर्वोच्च काव्य है।",
     english:
       "Under the full-moon of autumn, on the banks of the Yamuna, the gopis' songs of love rose in the night. One Krishna became present between every pair of dancing gopis — as the one Self dwells in all hearts. When one gopi grew proud, her partner's weight became the burden of a mountain — the rasa lila is a profound mystic teaching on ego and nondual love, and the supreme poetry of devotion.",
+    spanish:
+      "Bajo la luna llena del otoño, a orillas del Yamuna, se alzaron en la noche los cantos de amor de las gopis. Un solo Krishna se hizo presente entre cada pareja de gopis danzantes — como el único Ser mora en todos los corazones. Cuando una gopi se envaneció, el peso de su pareja se volvió la carga de una montaña — la rasa lila es una honda enseñanza mística sobre el ego y el amor no dual, y la suprema poesía de la devoción.",
     tags: ["rasa lila", "gopis", "vrindavan", "रास लीला", "गोपियाँ", "प्रेम", "यमुना", "full moon", "devotion"],
   },
   {
@@ -312,6 +350,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "हिरण्यकशिपु ने पुत्र प्रह्लाद से ईश्वर-नाम छुड़वाने को सर्पों, गजों, जहर और अग्नि तक परीक्षण किया — बालक बिना भय उसी का स्मरण करता रहा: 'विष्णु सर्वत्र है।' स्तम्भ में भी? होने लगे होने — स्तम्भ विदीर्ण हुआ और नृसिंह प्रकट: दिन-रात संधि पर, द्वार-पर, नाखूनों से — न देव, न मनुष्य, न अस्त्र। भक्त-रक्षा के लिए भगवान् सीमाओं को भी तोड़ देते हैं।",
     english:
       "Hiranyakashipu tried serpents, elephants, poison and fire to pry the Lord's name from his son Prahlada — the boy only repeated: 'Vishnu is everywhere.' Even in this pillar? Then let Him come — the pillar burst open and Narasimha appeared: at twilight, on the threshold, slaying with nails — neither god nor man, no weapon at all. For the protection of His devotee, the Lord breaks every category.",
+    spanish:
+      "Hiranyakashipu ensayó serpientes, elefantes, veneno y fuego para arrancar el nombre del Señor a su hijo Prahlada — el niño solo repetía: 'Vishnu está en todas partes.' ¿Incluso en esta columna? Entonces que venga — la columna se rasgó y apareció Narasimha: en el crepúsculo, sobre el umbral, matando con las uñas — ni dios ni hombre, sin arma alguna. Para proteger a Su devoto, el Señor rompe toda categoría.",
     tags: ["prahlada", "narasimha", "hiranyakashipu", "devotion", "प्रह्लाद", "नृसिंह", "हिरण्यकशिपु", "भक्त रक्षा", "avatar"],
   },
   {
@@ -326,6 +366,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "ब्राह्मण अजामिल वृद्धावस्था में व्यसन-ग्रस्त जीवन जी रहा था। मृत्यु-पथ पर तीन यमदूत दिखे — मरणासन्न अजामिल ने अपने पुत्र 'नारायण' को पुकारा, और वही नाम भगवान् का स्मरण बन गया। विष्णुदूत आए और बोले — नाम-स्मरण की शक्ति से अब वध्य नहीं। अजामिल ने शेष जीवन शुद्ध भक्ति में बिताया। स्मरण रूप में गुँथा नाम भी अपने उद्धारक लिए पधारता है।",
     english:
       "The brahmin Ajamila had wasted his life in vice. At death's threshold he beheld the three messengers of Yama — and in terror called out for his son, 'Narayana!' — the name itself became remembrance of the Lord. Vishnu's messengers arrived and declared the power of the divine name. Ajamila spent his remaining days in pure devotion: even a name uttered by habit can summon the Redeemer.",
+    spanish:
+      "El brahmín Ajamila había malgastado su vida en el vicio. En el umbral de la muerte contempló a los tres mensajeros de Yama — y aterrorizado llamó a su hijo, '¡Narayana!' — y el nombre mismo se volvió recuerdo del Señor. Los mensajeros de Vishnu llegaron y declararon el poder del nombre divino. Ajamila pasó sus días restantes en devoción pura: incluso un nombre pronunciado por costumbre puede convocar al Redentor.",
     tags: ["ajamila", "nama", "narayana", "yama", "अजामिल", "नारायण", "नाम-स्मरण", "यमदूत", "power of name"],
   },
   {
@@ -340,6 +382,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "गजेन्द्र से मगर ने गोड़ पकड़ लिया; सहस्र वर्षों के संघर्ष में सारी शक्ति, सारा परिवार भी दूर हो गया। तब हाथी ने कमल उखाड़कर अकेले विष्णु-समर्पण से डकारा — साक्षात् शंख-चक्र-गदा-पाणि विष्णु उतरे और दंत से संकट तारते हुए गजराज को सारुप्य-मुक्ति दी। जब करने के सारे साधन थक जाएँ, तब शरणागति अकेली उत्तम साधन है।",
     english:
       "A crocodile seized Gajendra's leg; a thousand years of struggle exhausted all strength while his herd slipped away. The elephant raised a lotus in surrender and called to Vishnu alone — and the Lord descended with His discus and liberated him, granting the very form of liberation. When every means is exhausted, surrender alone remains — and it suffices.",
+    spanish:
+      "Un cocodrilo aferró la pata de Gajendra; mil años de lucha agotaron todas sus fuerzas mientras su manada se deslizaba lejos. El elefante alzó un loto en entrega y llamó solo a Vishnu — y el Señor descendió con Su disco y lo liberó, concediéndole la mismísima forma de la liberación. Cuando todos los medios se agotan, queda solo la entrega — y ella basta.",
     tags: ["gajendra", "surrender", "vishnu", "crocodile", "गजेन्द्र मोक्ष", "शरणागति", "विष्णु", "मगरमच्छ", "famous"],
   },
   {
@@ -354,6 +398,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "पाँच वर्ष के ध्रुव को सौतेली माँ के शब्दों ने कहा — 'वंश-सिंहासन तेरे लिए नहीं'। नारद के उपदेश से उसने मधुवन में उन्मत्त-तप किया — ओम् नमो भगवते वासुदेवाय के जप में षण्मास। प्रसन्न विष्णु ने वर माँगने को कहा — बालक ने वही सिंहासन माँगा जिसके लिए अपमानित हुआ था, पर दिव्य दर्शन के बाद संतुष्ट हो केवल चरण-सेवा चाही। ध्रुवतारा बनकर वह आकाश में नित्य स्थिर — लक्ष्य-साधना और संतोष का अमर उदाहरण।",
     english:
       "Five-year-old Dhruva was told by his stepmother that the throne was not for him. Guided by Narada, he performed ecstatic penance in Madhuvana — six months lost in the japa of Om Namo Bhagavate Vasudevaya. Pleased, Vishnu offered a boon; the child asked first for the throne he had been denied, but after the divine vision asked only for eternal service at the Lord's feet. He became the Pole Star — the immortal emblem of striving crowned by contentment.",
+    spanish:
+      "A Dhruva, de cinco años, su madrastra le dijo que el trono no era para él. Guiado por Narada, realizó una penitencia extática en Madhuvana — seis meses perdido en el japa de Om Namo Bhagavate Vasudevaya. Complacido, Vishnu le ofreció una gracia; el niño pidió primero el trono que se le había negado, pero tras la visión divina pidió únicamente el servicio eterno a los pies del Señor. Se convirtió en la Estrella Polar — el emblema inmortal del esfuerzo coronado por el contentamiento.",
     tags: ["dhruva", "pole star", "narada", "penance", "ध्रुव", "ध्रुवतारा", "नारद", "बाल-तपस्या", "star"],
   },
   {
@@ -368,6 +414,8 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "द्वापर के अंत में कृष्ण ने उद्धव से कहा — अहंकार को जड़ से सहित त्यागो; समता में सुख-दुःख समान हैं; सब प्राणियों में मेरा दर्शन कर; भक्ति-योग, ज्ञान और निष्काम कर्म — तीनों एक ही द्वार से धारा के रूप में बहते हैं। 'जो भाव से मेरा नाम लेता है मैं उसके हृदय में आता हूँ।' उद्धव-गीता भागवत का अंतिम-विरह-रहस्य है।",
     english:
       "At the close of Dvapara, Krishna told Uddhava — uproot ego along with its seed; pleasure and pain are one in equanimity; see Me in every being; devotion, knowledge and selfless action flow as one river through one gate. 'Whoever takes My name with feeling, I enter his heart.' The Uddhava Gita is the Bhagavata's final parting mystery.",
+    spanish:
+      "Al cierre del Dvapara, Krishna dijo a Uddhava — arranca de raíz el ego con su semilla; placer y dolor son uno solo en la ecuanimidad; véeme en todos los seres; devoción, conocimiento y acción desinteresada fluyen como un único río por una única puerta. 'Quien toma Mi nombre con sentimiento, Yo entro en su corazón.' La Uddhava Gita es el postrer misterio de despedida del Bhagavata.",
     tags: ["uddhava gita", "krishna teaching", "farewell", "उद्धव गीता", "कृष्ण उपदेश", "समता", "farewell"],
   },
 ];
@@ -389,6 +437,8 @@ export const VISHNU_PURANA_ENTRIES: CorpusEntry[] = [
       "विष्णु पुराण छह अंशों में है — सृष्टि-वर्णन, भू-वर्णन, कल्प-वृक्ष, सूर्य-चन्द्र वंशावली, कृष्ण-चरित और कल्प-अंत। पराशर मुनि का पुत्र कृत्य-विषय संवाद। इसमें विष्णु-भक्ति का शुद्ध सिद्धांत, भूगोल-खगोल का वैवर्य और धर्म के अध्याय हैं। विष्णु सहस्रनाम का रहस्य यहीं से महाभारत में भी विराजमान है।",
     english:
       "The Vishnu Purana unfolds in six amshas — creation, geography, dynasties of gods and kings, the great genealogies, Krishna's life and cosmic dissolution. It is the dialogue of Parashara and Maitreya, holding pure Vaishnava doctrine, cosmic geography and dharma. The secret of Vishnu's thousand names also flows from here into the Mahabharata.",
+    spanish:
+      "El Vishnu Purana se despliega en seis amshas — la creación, la geografía, las dinastías de dioses y reyes, las grandes genealogías, la vida de Krishna y la disolución cósmica. Es el diálogo de Parashara y Maitreya, que guarda la pura doctrina vaisnava, la geografía cósmica y el dharma. El secreto de los mil nombres de Vishnu fluye también de aquí hacia el Mahabharata.",
     tags: ["vishnu purana", "parashara", "vaishnava", "विष्णु पुराण", "पराशर", "अंश", "overview"],
   },
   {
@@ -405,6 +455,8 @@ export const VISHNU_PURANA_ENTRIES: CorpusEntry[] = [
       "विश्व-रूप, यज्ञ-परायण, भूत-भविष्य-वर्तमान के स्वामी, सृष्टि के कर्ता-धारक, सब प्राणियों की आत्मा — विष्णुसहस्रनाम के आरम्भिक नाम। भीष्म द्वारा उत्तम-विस्तार से गाए गए सहस्र नाम शांति और रक्षा का महान् साधन माने जाते हैं।",
     english:
       "All-pervading One, master of sacrifice, lord of past, future and present, creator and sustainer of beings, Self of all — the opening names of the thousand names of Vishnu, sung by Bhishma at length as the great instrument of peace and protection.",
+    spanish:
+      "El que todo lo penetra, señor del sacrificio, señor del pasado, del futuro y del presente, creador y sustentador de los seres, Ser de todos — los nombres de apertura de los mil nombres de Vishnu, cantados largamente por Bhishma como el gran instrumento de paz y protección.",
     tags: ["vishnu sahasranama", "bhishma", "thousand names", "विष्णुसहस्रनाम", "भीष्म", "सहस्र नाम", "famous"],
   },
   {
@@ -421,6 +473,8 @@ export const VISHNU_PURANA_ENTRIES: CorpusEntry[] = [
       "समस्त वेद, शास्त्र और विज्ञान जनार्दन (विष्णु) में ही हैं; उनके दिव्य सहस्र नामों का संकलन ही सबकी पूर्ति है — नाम-जप स्वयं समस्त शास्त्र-साधना का सार है।",
     english:
       "All the Vedas, shastras and sciences reside in Janardana; the compilation of His thousand divine names completes them all — the recitation of names is itself the essence of every scriptural practice.",
+    spanish:
+      "Todos los Vedas, los shastras y las ciencias residen en Janardana; la recopilación de Sus mil nombres divinos los completa a todos — la recitación de los nombres es en sí misma la esencia de toda práctica escritural.",
     tags: ["names", "phala", "essence of vedas", "नाम-जप", "फल श्रुति", "वेद सार", "janardana"],
   },
 ];

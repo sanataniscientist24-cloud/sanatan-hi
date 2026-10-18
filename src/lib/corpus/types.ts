@@ -39,6 +39,8 @@ export interface CorpusEntry {
   hindi: string;
   /** English explanation / translation */
   english: string;
+  /** Spanish explanation / translation (fourth language) */
+  spanish?: string;
   /** searchable keywords (roman + devanagari) */
   tags: string[];
 }

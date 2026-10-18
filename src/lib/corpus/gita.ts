@@ -12,6 +12,7 @@ function bg(
   translit: string,
   hindi: string,
   english: string,
+  spanish: string,
   tags: string[]
 ): CorpusEntry {
   return {
@@ -26,6 +27,7 @@ function bg(
     translit,
     hindi,
     english,
+    spanish,
     tags,
   };
 }
@@ -38,6 +40,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "dhṛtarāṣṭra uvāca — dharma-kṣetre kuru-kṣetre samavetā yuyutsavaḥ, māmakāḥ pāṇḍavāś ca kim akurvata sañjaya"
     , "धृतराष्ट्र ने पूछा — हे संजय! धर्मभूमि कुरुक्षेत्र में युद्ध की इच्छा से एकत्रित हुए मेरे पुत्रों और पांडवों ने क्या किया?"
     , "Dhritarashtra asked: O Sanjaya, assembled on the holy field of Kurukshetra, eager to fight, what did my sons and the sons of Pandu do?"
+    , "Dhritarashtra preguntó: Oh Sanjaya, reunidos en el sagrado campo de Kurukshetra, ávidos de combatir, ¿qué hicieron mis hijos y los hijos de Pandu?"
     , ["arjuna", "dhritarashtra", "sanjaya", "kurukshetra", "war", "arjun", "अर्जुन", "धृतराष्ट्र", "कुरुक्षेत्र", "युद्ध", "पहला अध्याय"]),
 
   bg("अर्जुन विषाद योग", "47", "1",
@@ -45,6 +48,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "śrī-pārtho viṣīdann iva āsīnam aśru-pūrṇākulaḥ, idaṁ vacanam abravīt"
     , "शोक से व्याप्त, आँसुओं से भरी आँखों वाले अर्जुन ने निराश होकर धनुष रख दिया और यह वचन कहा।"
     , "Overwhelmed by grief, his eyes brimming with tears, the despondent Arjuna laid down his bow and spoke thus."
+    , "Abrumado por el pesar, con los ojos desbordantes de lágrimas, el desalentado Arjuna dejó a un lado su arco y habló así."
     , ["arjuna", "grief", "vishada", "tears", "अर्जुन", "विषाद", "शोक", "depression", "त्याग"]),
 
   // ─── Chapter 2 ───
@@ -53,6 +57,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "aśocyān anvaśocas tvaṁ prajñā-vādāṁś ca bhāṣase, gatāsūn agatāsūṁś ca nānuśocanti paṇḍitāḥ"
     , "हे अर्जुन! जिनके लिए शोक करना उचित नहीं, तू उन्हीं के लिए शोक करता है और वेदांत के वचन बोलता है — विद्वान् मरे हुए और जीवित लोगों दोनों के लिए शोक नहीं करते।"
     , "You grieve for those who should not be grieved for, yet speak words of wisdom — the wise do not mourn for the dead nor for the living."
+    , "Te afliges por quienes no merecen aflicción y, sin embargo, pronuncias palabras de sabiduría — los sabios no se afligen por los muertos ni por los vivos."
     , ["grief", "wisdom", "pandit", "mourning", "शोक", "पंडित", "ज्ञान", "consolation"]),
 
   bg("सांख्य योग", "12", "2",
@@ -60,6 +65,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "na tv evāhaṁ jātu nāsaṁ na tvaṁ neme janādhipāḥ, na caiva na bhaviṣyāmaḥ sarve vayam ataḥ param"
     , "न मैं कभी नहीं था ऐसा समय नहीं आया, न तू, न ये सब राजा; और आगे भी सब हम नहीं होंगे — ऐसा कभी नहीं होगा।"
     , "Never was there a time when I did not exist, nor you, nor all these kings; nor in the future shall any of us cease to be."
+    , "Nunca hubo un tiempo en que Yo no existiera, ni tú, ni todos estos reyes; ni en el futuro dejará alguno de nosotros de ser."
     , ["atman", "soul", "eternal", "existence", "आत्मा", "अमर", "नित्य", "अजन्मा"]),
 
   bg("सांख्य योग", "13", "2",
@@ -67,6 +73,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "dehino 'smin yathā dehe kaumāraṁ yauvanaṁ jarā, tathā dehāntara-prāptir dhīras tatra na muhyati"
     , "जैसे इस देह में जीव की बाल्यावस्था, युवावस्था और वृद्धावस्था होती है, वैसे ही देह छूटने पर दूसरा शरीर मिलता है — धीर पुरुष इसमें मोहित नहीं होता।"
     , "As the embodied soul passes in this body from boyhood to youth to old age, so it passes into another body at death — the self-realized are not bewildered by this."
+    , "Así como el alma encarnada pasa en este cuerpo de la infancia a la juventud y a la vejez, del mismo modo pasa a otro cuerpo en la muerte — los autorrealizados no se desconciertan por ello."
     , ["death", "rebirth", "body", "soul", "मृत्यु", "देह", "आत्मा", "जन्म", "पुनर्जन्म", "body change"]),
 
   bg("सांख्य योग", "14", "2",
@@ -74,6 +81,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "mātrā-sparśās tu kaunteya śītoṣṇa-sukha-duḥkha-dāḥ, āgamāpāyino 'nityās tāṁs titikṣasva bhārata"
     , "हे कुन्तीपुत्र! शीत-गर्म के ताप-स्पर्श से सुख-दुःख उत्पन्न होते हैं, वे आते-जाते रहने वाले और अनित्य हैं — उन्हें सहन करने का अभ्यास कर।"
     , "O son of Kunti, the contacts of the senses with their objects give cold and heat, pleasure and pain — they come and go, they are impermanent. Endure them, O Bharata."
+    , "Oh hijo de Kunti, los contactos de los sentidos con sus objetos dan frío y calor, placer y dolor — vienen y van, son impermanentes. Toléralos, oh Bharata."
     , ["endurance", "titiksha", "pleasure", "pain", "सुख", "दुख", "दुःख", "सहन", "अनित्य", "patience", "तितिक्षा"]),
 
   bg("सांख्य योग", "20", "2",
@@ -81,6 +89,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "na jāyate mriyate vā kadāci-n nāyaṁ bhūtvā bhavitā vā na bhūyaḥ, ajo nityaḥ śāśvato 'yaṁ purāṇo na hanyate hanyamāne śarīre"
     , "आत्मा न कभी जन्म लेता है, न कभी मरता है; यह भूतकाल में उत्पन्न होकर आगे पुनः उत्पन्न नहीं होगा — यह अजन्मा, नित्य, शाश्वत और पुरातन है; शरीर के मारे जाने पर भी यह नहीं मारा जाता।"
     , "The soul is never born, nor does it ever die; having once been, it will never again cease to be. Unborn, eternal, everlasting and primeval — it is not slain when the body is slain."
+    , "El alma jamás nace ni muere; una vez que ha sido, nunca dejará de ser. No nacida, eterna, sempiterna y primigenia — no es matada cuando el cuerpo es matado."
     , ["soul", "atman", "immortal", "eternal", "आत्मा", "अमर", "नित्य", "अविनाशी", "जन्म मृत्यु"]),
 
   bg("सांख्य योग", "22", "2",
@@ -88,6 +97,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "vāsāṁsi jīrṇāni yathā vihāya navāni gṛhṇāti naro 'parāṇi, tathā śarīrāṇi vihāya jīrṇāny anyāni saṁyāti navāni dehī"
     , "जैसे मनुष्य पुराने वस्त्र त्याग कर नए वस्त्र धारण करता है, वैसे ही देही जीर्ण शरीरों को त्याग कर नए शरीरों को प्राप्त होता है।"
     , "As a person casts off worn-out garments and puts on new ones, so the embodied soul casts off worn-out bodies and enters new ones."
+    , "Así como una persona se despoja de las ropas gastadas y viste otras nuevas, así el alma encarnada abandona los cuerpos desgastados y entra en otros nuevos."
     , ["death", "body", "garment", "soul", "मृत्यु", "शरीर", "वस्त्र", "आत्मा", "बदलाव"]),
 
   bg("सांख्य योग", "23-24", "2",
@@ -95,6 +105,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "nainaṁ chindanti śastrāṇi nainaṁ dahati pāvakaḥ, na cainaṁ kledayanty āpo na śoṣayati mārutaḥ — acchedyo 'yam adāhyo 'yam akledyo 'śoṣya eva ca, nityaḥ sarva-gataḥ sthāṇur acalo 'yam sanātanaḥ"
     , "आत्मा को शस्त्र नहीं काट सकते, आग नहीं जला सकती, जल गला नहीं सकता और वायु सुखा नहीं सकती। यह अखंडनीय, अदाह्य, अक्लेद्य और असूश्य है — नित्य, सर्वव्यापी, स्थिर, अचल और सनातन है।"
     , "Weapons cannot cut the soul, nor can fire burn it, water cannot wet it, nor wind dry it. It is unbreakable, unburnable, unwetable and undryable — eternal, all-pervading, fixed, immovable and everlasting."
+    , "Ni las armas pueden cortar el alma, ni el fuego puede quemarla, ni el agua puede mojarla, ni el viento puede secarla. Es irrompible, incombustible, no puede humedecerse ni desecarse — eterna, omnipresente, fija, inamovible y sempiterna."
     , ["invincible", "eternal", "soul", "अविनाशी", "अखंडनीय", "आत्मा", "नित्य", "अजेय"]),
 
   bg("सांख्य योग", "47", "2",
@@ -102,6 +113,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "karmaṇy evādhikāras te mā phaleṣu kadācana, mā karma-phala-hetur bhūr mā te saṅgo 'stv akarmaṇi"
     , "कर्म करने में ही तेरा अधिकार है, उसके फलों में कभी नहीं। तू कर्मफल का हेतु (कारण) मत बन, न ही तेरी आसक्ति अकर्म में रहे।"
     , "You have a right to perform your prescribed duties, but never to the fruits of your actions. Never consider yourself the cause of the results of your activities, nor let your attachment be to inaction."
+    , "Tienes derecho a realizar tus deberes prescritos, pero nunca a los frutos de tus acciones. Jamás te consideres la causa de los resultados de tus actividades, ni dejes que tu apego se fije en la inacción."
     , ["karma", "action", "fruit", "duty", "nishkama", "कर्म", "फल", "कर्तव्य", "अधिकार", "आसक्ति", "famous", "निष्काम कर्म"]),
 
   bg("सांख्य योग", "48", "2",
@@ -109,6 +121,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yoga-sthaḥ kuru karmāṇi saṅgaṁ tyaktvā dhanañjaya, siddhy-asiddhyoḥ samo bhūtvā samatvaṁ yoga ucyate"
     , "हे धनंजय! योग में स्थित होकर, आसक्ति त्यागकर कर्म कर; सिद्धि और असिद्धि में सम रह — यही समत्व योग कहलाता है।"
     , "Perform your duties established in yoga, abandoning attachment, O Dhananjaya, being equal in success and failure — such evenness is called yoga."
+    , "Cumple tus deberes establecido en yoga, abandonando el apego, oh Dhananjaya, permaneciendo igual en el éxito y el fracaso — esa ecuanimidad se llama yoga."
     , ["yoga", "equanimity", "samatva", "योग", "समत्व", "समता", "सिद्धि", "balance"]),
 
   bg("सांख्य योग", "50", "2",
@@ -116,6 +129,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "buddhi-yukto jahātīha ubhe sukṛta-duṣkṛte, tasmād yogāya yujyasva yogaḥ karmasu kauśalam"
     , "बुद्धियुक्त (युक्त-बुद्धि) पुरुष इसी जन्म में पुण्य और पाप दोनों को त्याग देता है, इसलिए योग के लिए प्रयत्न कर — कर्मों में कुशलता ही योग है।"
     , "One disciplined by intelligence sheds both good and evil karma in this very life; therefore strive for yoga — yoga is skill in action."
+    , "Quien está disciplinado por la inteligencia se libra en esta misma vida del karma bueno y del malo; por ello, esfuérzate por el yoga — yoga es la destreza en la acción."
     , ["yoga", "skill", "karma", "योग", "कौशल", "कर्म", "बुद्धि"]),
 
   bg("सांख्य योग", "56", "2",
@@ -123,6 +137,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "duḥkheṣv anudvigna-manāḥ sukheṣu vigata-spṛhaḥ, vīta-rāga-bhaya-krodhaḥ sthita-dhīr munir ucyate"
     , "दुःखों में जिसका मन विचलित नहीं होता, सुखों की इच्छा नहीं रहती, राग-भय-क्रोध से रहित — ऐसा स्थिर बुद्धि मुनि स्थितप्रज्ञ कहलाता है।"
     , "One whose mind remains undisturbed in sorrow, who is free from longing for pleasure, and who is beyond attachment, fear and anger — such a sage of steady wisdom is called sthitaprajna."
+    , "Aquel cuya mente permanece imperturbable en el dolor, que está libre del anhelo de placer y que ha trascendido el apego, el miedo y la ira — tal sabio de sabiduría estable es llamado sthitaprajna."
     , ["sthitaprajna", "equanimity", "sage", "स्थितप्रज्ञ", "मुनि", "राग", "क्रोध", "भय", "steady wisdom"]),
 
   bg("सांख्य योग", "62-63", "2",
@@ -130,6 +145,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "dhyāyato viṣayān puṁsaḥ saṅgas teṣūpajāyate, saṅgāt sañjāyate kāmaḥ kāmāt krodho 'bhijāyate — krodhād bhavati sammohaḥ sammohāt smṛti-vibhramaḥ, smṛti-bhraṁśād buddhi-nāśo buddhi-nāśāt praṇaśyati"
     , "विषयों का चिंतन करने वाले पुरुष की उनमें आसक्ति बनती है, आसक्ति से कामना उत्पन्न होती है, कामना से क्रोध होता है; क्रोध से सम्मोह, सम्मोह से स्मृति-भ्रम, स्मृति नष्ट होने से बुद्धि का नाश और बुद्धि नष्ट होने पर पुरुष नष्ट हो जाता है।"
     , "Brooding on sense objects breeds attachment; attachment begets craving, and craving begets anger. Anger breeds delusion; delusion confuses memory; ruined memory destroys intelligence, and lost intelligence destroys the person."
+    , "Rumiar los objetos de los sentidos engendra apego; del apego nace el deseo, y del deseo, la ira. De la ira nace el engaño; del engaño, la confusión de la memoria; la memoria perdida destruye la inteligencia, y perdida la inteligencia, la persona queda destruida."
     , ["anger", "kama", "attachment", "mind", "क्रोध", "काम", "आसक्ति", "मोह", "चित्त", "fall of man", "chain"]),
 
   bg("सांख्य योग", "71", "2",
@@ -137,6 +153,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "vihāya kāmān yaḥ sarvān pumāṁś carati niḥspṛhaḥ, nirmamo nirahaṅkāraḥ sa śāntim āpnoti"
     , "समस्त कामनाओं का परित्याग करके जो पुरुष निःस्पृह, निर्मम और निरहंकार होकर विचरण करता है, वही शान्ति को प्राप्त होता है।"
     , "One who abandons all desires, moves about free of longing, without possessiveness and ego — that one attains peace."
+    , "Quien abandona todos los deseos y se mueve libre de ansias, sin posesividad ni ego — ese alcanza la paz."
     , ["peace", "shanti", "desireless", "शान्ति", "कामना", "निःस्पृह", "अहंकार", "ममता"]),
 
   bg("सांख्य योग", "72", "2",
@@ -144,6 +161,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "eṣā brāhmī sthitiḥ pārtha naināṁ prāpya vimuhyati, sthitvāsyām anta-kāle 'pi brahma-nirvāṇam ṛcchati"
     , "हे पार्थ! यह ब्राह्मी स्थिति है — इसे पाकर पुरुष मोहित नहीं होता; अंतकाल में भी इस स्थिति में स्थित रहकर ब्रह्म-निर्वाण (परम शान्ति) को प्राप्त होता है।"
     , "This is the divine, brahmic state, O Partha; attaining it one is never deluded. Abiding in it even at the hour of death, one reaches the nirvana of Brahman."
+    , "Este es el estado divino y brahmánico, oh Partha; quien lo alcanza jamás se extravía. Permaneciendo en él incluso a la hora de la muerte, se llega al nirvana de Brahman."
     , ["brahman", "liberation", "final", "ब्रह्म", "मोक्ष", "निर्वाण", "शान्ति"]),
 
   // ─── Chapter 3 ───
@@ -152,6 +170,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "tasmād asaktaḥ satataṁ kāryaṁ karma samācara, asakto hy ācaran karma param āpnoti pūruṣaḥ"
     , "इसलिए आसक्ति रहित होकर सदा तेरा कर्तव्य-कर्म कर — आसक्ति रहित होकर कर्म करने वाला पुरुष परम को प्राप्त होता है।"
     , "Therefore, always perform your duty without attachment, for by doing work without attachment one attains the Supreme."
+    , "Por lo tanto, cumple siempre tu deber sin apego, pues quien obra sin apego alcanza al Supremo."
     , ["karma", "detachment", "supreme", "कर्म", "निष्काम", "आसक्ति", "परम"]),
 
   bg("कर्म योग", "35", "3",
@@ -159,6 +178,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "śreyān sva-dharmo viguṇaḥ para-dharmāt sv-anuṣṭitāt, sva-dharme nidhanaṁ śreyaḥ para-dharmo bhayāvahaḥ"
     , "श्रेष्ठ है अपना स्वधर्म (यद्यपि उसमें त्रुटि हो) पर-धर्म की अच्छी तरह की हुई आचरण से भी; अपने धर्म में मरण भी श्रेष्ठ है — पर-धर्म भयंकर है।"
     , "Better is one's own dharma though imperfect, than the dharma of another well performed; better is death in one's own dharma — the dharma of another is fraught with fear."
+    , "Mejor es el propio dharma aunque imperfecto, que el dharma de otro bien cumplido; mejor es morir en el propio dharma — el dharma de otro está cargado de temor."
     , ["svadharma", "duty", "dharma", "स्वधर्म", "धर्म", "कर्तव्य", "own path"]),
 
   bg("कर्म योग", "37", "3",
@@ -166,6 +186,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "kāma eṣa krodha eṣa rajo-guṇa-samudbhavaḥ, mahāśano mahāpāpma viddhy enam iha vairiṇam"
     , "यही काम है, यही क्रोध है — यह रजोगुण से उत्पन्न, महाशन (सब ग्रसन करने वाला) और महापापी है; इसी को इस जगत् में तेरा शत्रु जान।"
     , "It is desire, it is anger, born of rajas — the all-devouring, most sinful. Know this to be the enemy here."
+    , "Es el deseo, es la ira, nacido del rajas — el devorador de todo, el más pecaminoso. Sabe que este es el enemigo aquí."
     , ["desire", "anger", "enemy", "काम", "क्रोध", "रजोगुण", "शत्रु", "वैरी"]),
 
   bg("कर्म योग", "42", "3",
@@ -173,6 +194,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "indriyāṇi parāṇy āhur indriyebhyaḥ paraṁ manaḥ, manasas tu parā buddhir yo buddheḥ paratas tu saḥ"
     , "इंद्रियाँ शरीर से बड़ी कहलाती हैं, उनसे बड़ा मन है, मन से बड़ी बुद्धि है और जो बुद्धि से भी परे है वह (आत्मा) बड़ा है।"
     , "The senses are superior to the body; superior to the senses is the mind; beyond the mind is the intellect; and beyond the intellect is the Self."
+    , "Los sentidos son superiores al cuerpo; superior a los sentidos es la mente; más allá de la mente está el intelecto; y más allá del intelecto está el Sí mismo."
     , ["senses", "mind", "intellect", "self", "इंद्रियाँ", "मन", "बुद्धि", "आत्मा", "hierarchy"]),
 
   // ─── Chapter 4 ───
@@ -181,6 +203,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yadā yadā hi dharmasya glānir bhavati bhārata, abhyutthānam adharmasya tadātmānaṁ sṛjāmy aham — paritrāṇāya sādhūnāṁ vināśāya ca duṣkṛtām, dharma-saṁsthāpanārthāya sambhavāmi yuge yuge"
     , "हे भारत! जब-जब धर्म की हानि और अधर्म की वृद्धि होती है, तब-तब मैं स्वयं को प्रकट करता हूँ। साधु पुरुषों की रक्षा के लिए, दुष्कर्म करने वालों के विनाश के लिए और धर्म की स्थापना के लिए मैं युग-युग में अवतरित होता हूँ।"
     , "Whenever there is decline of dharma and rise of adharma, O Bharata, I manifest Myself. To protect the righteous, to destroy the wicked, and to establish dharma, I take birth age after age."
+    , "Siempre que hay declive del dharma y auge del adharma, oh Bharata, Yo Me manifiesto. Para proteger a los justos, destruir a los malvados y restablecer el dharma, Yo nazco era tras era."
     , ["avatar", "incarnation", "dharma", "यदा यदा हि धर्मस्य", "अवतार", "धर्म", "कल्कि", "राम", "कृष्ण", "protection", "famous", "विष्णु"]),
 
   bg("ज्ञान-कर्म-संन्यास योग", "13", "4",
@@ -188,6 +211,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "cātur-varṇyaṁ mayā sṛṣṭaṁ guṇa-karma-vibhāgaśaḥ, tasya kartāram api māṁ viddhy akartāram avyayam"
     , "चातुर्वर्ण्य (ब्राह्मण, क्षत्रिय, वैश्य, शूद्र) समाज गुण और कर्म के विभाग से मेरे द्वारा रचा गया है; जान कि मैं उसका कर्ता होते हुए भी अकर्ता और अव्यय हूँ।"
     , "The four-fold order of society was created by Me according to the division of qualities and actions; yet know Me as its non-doer, being changeless."
+    , "El orden cuádruple de la sociedad fue creado por Mí según la división de las cualidades y las acciones; sin embargo, conóceme como su no-hacedor, pues soy inmutable."
     , ["varna", "society", "गुण", "वर्ण", "समाज", "ब्राह्मण", "क्षत्रिय", "वैश्य", "शूद्र"]),
 
   bg("ज्ञान-कर्म-संन्यास योग", "34", "4",
@@ -195,6 +219,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "tad vijñānārthaṁ sa gurum evābhigacchet samit-pāṇiḥ śrotriyaṁ brahma-niṣṭham"
     , "उस परम तत्त्व-ज्ञान को जानने के लिए समिधा (ईंधन) हाथ में लेकर गुरु के पास जाना चाहिए — जो शास्त्र-ज्ञ और ब्रह्म-निष्ठा संपन्न हो।"
     , "To know that supreme truth, approach the master with offerings in hand — one learned in scripture and established in Brahman."
+    , "Para conocer esa verdad suprema, acércate al maestro con ofrendas en la mano — uno versado en las escrituras y establecido en Brahman."
     , ["guru", "teacher", "knowledge", "गुरु", "शिष्य", "ज्ञान", "शास्त्र", "master"]),
 
   bg("ज्ञान-कर्म-संन्यास योग", "39", "4",
@@ -202,6 +227,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "śraddhāvāṁl labhate jñānaṁ tat-paraḥ saṁyata-indriyaḥ, jñānaṁ labdhvā parāṁ śāntim acireṇādhigacchati"
     , "श्रद्धावान्, तत्पर और जितेंद्रिय पुरुष ज्ञान को प्राप्त करता है; ज्ञान पाकर शीघ्र ही परम शान्ति को प्राप्त होता है।"
     , "The faithful, devoted one with subdued senses gains knowledge; having gained knowledge, one soon attains supreme peace."
+    , "El hombre de fe, devoto y dueño de sus sentidos, alcanza el conocimiento; y habiendo obtenido el conocimiento, pronto llega a la paz suprema."
     , ["shraddha", "faith", "knowledge", "peace", "श्रद्धा", "ज्ञान", "शान्ति", "इंद्रिय संयम"]),
 
   // ─── Chapter 5 ───
@@ -210,6 +236,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "brahmaṇy ādhāya karmāṇi saṅgaṁ tyaktvā karoti yaḥ, lipyate na sa pāpena padma-patram ivāmbhasā"
     , "समस्त कर्म ब्रह्म में अर्पण करके, आसक्ति त्यागकर जो कर्म करता है, वह पाप से लिप्त नहीं होता — जैसे जल से कमल का पत्र।"
     , "One who acts offering all actions to Brahman, without attachment, is untouched by sin — as a lotus leaf by water."
+    , "Quien actúa ofreciendo todas sus acciones a Brahman, sin apego, no queda tocado por el pecado — como la hoja de loto por el agua."
     , ["lotus", "brahman", "detachment", "कमल", "ब्रह्म", "आसक्ति", "पाप", "nishkama"]),
 
   bg("कर्म-संन्यास योग", "18", "5",
@@ -217,6 +244,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "vidyā-vinaya-sampanne brāhmaṇe gavi hastini, śuni caiva śva-pāke ca paṇḍitāḥ sama-darśinaḥ"
     , "विद्या और विनय से संपन्न ब्राह्मण में, गाय, हाथी, कुत्ते तथा चांडाल में समान दृष्टि रखने वाले पंडित होते हैं।"
     , "The wise see the same Self in a learned and humble brahmin, a cow, an elephant, a dog and an outcaste — such seers have equal vision."
+    , "Los sabios ven el mismo Sí mismo en un brahmán docto y humilde, en una vaca, en un elefante, en un perro y en un paria — tales videntes poseen igual visión."
     , ["equality", "sama darshana", "wisdom", "समदर्शी", "समता", "पंडित", "ब्राह्मण", "equality vision"]),
 
   // ─── Chapter 6 ───
@@ -225,6 +253,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "uddhared ātmanātmānaṁ nāvatsed ātmanātmanam, ātmaiva hy ātmano bandhur ātmaiva ripur ātmanaḥ"
     , "मनुष्य अपने आत्मा से ही उन्नति करे, अपने आत्मा का अपमान न करे; क्योंकि आत्मा ही आत्मा का मित्र है और आत्मा ही आत्मा का शत्रु है।"
     , "Let one uplift oneself by the Self, not degrade oneself; the Self alone is one's friend and the Self alone one's enemy."
+    , "Que uno se eleve por el Sí mismo y no se degrade; el Sí mismo es el único amigo de uno y el Sí mismo, su único enemigo."
     , ["self", "friend", "enemy", "उद्धार", "आत्मा", "मित्र", "शत्रु", "self effort"]),
 
   bg("ध्यान योग", "19", "6",
@@ -232,6 +261,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yathā dīpo nivāta-stho neṅgate sopamā smṛtā, yogino yata-cittasya yuñjate yogam ātmanaḥ"
     , "जैसे निर्वात स्थान में स्थिर रखा दीपक नहीं हिलता, वैसे ही संयत चित्त योगी की आत्म-योग साधना की उपमा दी गई है।"
     , "As a lamp in a windless place does not flicker — such is the likeness of the yogi of controlled mind practicing concentration on the Self."
+    , "Como una lámpara en un lugar sin viento no parpadea — tal es la semejanza del yogi de mente controlada que practica la concentración en el Sí mismo."
     , ["lamp", "meditation", "focus", "दीपक", "ध्यान", "योगी", "एकाग्रता", "meditation"]),
 
   bg("ध्यान योग", "35", "6",
@@ -239,6 +269,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "asaṁśayaṁ mahā-bāho mano dur-nigrahaṁ calam, abhyāsena tu kaunteya vairāgyeṇa ca gṛhyate"
     , "हे महाबाहो! निश्चित ही मन दुर्निग्रह और चंचल है; पर भी हे कुन्तीपुत्र! अभ्यास और वैराग्य से इसे वश में किया जा सकता है।"
     , "Undoubtedly, O mighty-armed one, the mind is restless and hard to restrain; yet it is controlled by practice and detachment, O son of Kunti."
+    , "Sin duda, oh de brazos poderosos, la mente es inquieta y difícil de refrenar; con todo, se la domina mediante la práctica y el desapego, oh hijo de Kunti."
     , ["mind", "practice", "vairagya", "मन", "चंचल", "अभ्यास", "वैराग्य", "control"]),
 
   bg("ध्यान योग", "47", "6",
@@ -246,6 +277,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yoginām api sarveṣāṁ mad-gatenāntar-ātmanā, śraddhāvān bhajate yo māṁ sa yukta-tamo mataḥ"
     , "समस्त योगियों में वह श्रेष्ठ योगी माना जाता है जो अंतरात्मा में मुझमें स्थित होकर श्रद्धापूर्वक मेरा भजन करता है।"
     , "Of all yogis, the one who worships Me with faith, with the Self absorbed in Me, is considered the most united with Me."
+    , "De todos los yogis, el que Me adora con fe, con el Sí mismo absorto en Mí, es tenido por el más unido a Mí."
     , ["yogi", "bhakti", "supreme", "योगी", "भक्ति", "श्रद्धा", "best yogi"]),
 
   // ─── Chapter 7 ───
@@ -254,6 +286,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "mattaḥ para-taraṁ nānyat kiñcid asti dhanañjaya, mayi sarvam idaṁ protaṁ sūtre maṇi-gaṇā iva"
     , "हे धनंजय! मुझसे परम कोई तत्त्व नहीं है; समस्त जगत् मुझमें ओत-प्रोत है — जैसे सूत में मणियाँ गुँथी रहती हैं।"
     , "O Dhananjaya, there is nothing higher than Me; all this universe is strung upon Me like pearls on a thread."
+    , "Oh Dhananjaya, no hay nada superior a Mí; todo este universo está enhebrado en Mí, como las perlas en un hilo."
     , ["supreme", "thread", "pearls", "परम तत्त्व", "सूत्र", "मणि", "गुँथना"]),
 
   bg("ज्ञान-विज्ञान योग", "14", "7",
@@ -261,6 +294,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "daivī hy eṣā guṇa-mayī mama māyā duratyayā, mām eva ye prapadyante māyām etāṁ taranti te"
     , "यह दैवी, गुणों से बनी मेरी माया है जिसे पार करना अत्यंत कठिन है; जो मुझ एक में शरण पाते हैं केवल वही उस माया को पार कर लेते हैं।"
     , "This divine maya of Mine, made of the gunas, is hard to cross; those who surrender to Me alone cross beyond it."
+    , "Esta Mi maya divina, hecha de los gunas, es difícil de cruzar; quienes se entregan solo a Mí la cruzan y van más allá."
     , ["maya", "surrender", "दैवी माया", "शरण", "गुण", "illusion"]),
 
   bg("ज्ञान-विज्ञान योग", "19", "7",
@@ -268,6 +302,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "bahūnāṁ janmanām ante jñānavān māṁ prapadyate, vāsudevaḥ sarvam iti sa mahātmā su-durlabhaḥ"
     , "अनेक जन्मों के अंत में ज्ञानवान् पुरुष मेरी शरण पाता है — 'वासुदेव ही सब है' जानकर; ऐसा महात्मा अत्यंत दुर्लभ है।"
     , "After many births and deaths, the wise surrender to Me, realizing Vasudeva is all — such a great soul is very rare."
+    , "Al cabo de muchos nacimientos y muertes, el sabio se entrega a Mí, sabiendo que Vasudeva es todo — semejante gran alma es sumamente rara."
     , ["mahatma", "rare", "जन्म", "ज्ञानी", "वासुदेव", "महात्मा", "सर्वम्"]),
 
   // ─── Chapter 8 ───
@@ -276,6 +311,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "avyakto 'kṣara ity uktas tam āhuḥ paramāṁ gatim, yaṁ prāpya na nivartante tad dhāma paramaṁ mama"
     , "अव्यक्त और अक्षर कहा जाने वाला वह ब्रह्म सर्वोत्तम गति कहलाता है; जिसे पाकर पुनः लौटना नहीं होता — वह मेरा परम धाम है।"
     , "That unmanifest, imperishable is called the supreme goal; having attained it, none return — that is My supreme abode."
+    , "Aquello inmanifestado e imperecedero es llamado la meta suprema; habiéndolo alcanzado, nadie regresa — esa es Mi morada suprema."
     , ["brahman", "abode", "imperishable", "अक्षर ब्रह्म", "परम धाम", "गति", "avyakta"]),
 
   // ─── Chapter 9 ───
@@ -284,6 +320,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "ananyāś cintayanto māṁ ye janāḥ paryupāsate, teṣāṁ nityābhiyuktānāṁ yoga-kṣemaṁ vahāmy aham"
     , "जो अनन्य चित्त से मेरा चिंतन करते हुए मेरी उपासना करते हैं, मैं उन सदा युक्त भक्तों का योगक्षेम (जो नहीं है उसे देना और जो है उसकी रक्षा) वहन करता हूँ।"
     , "Those who worship Me with exclusive devotion, meditating on My form — I carry what they lack and preserve what they have."
+    , "A quienes Me adoran con devoción exclusiva, meditando en Mi forma — Yo les llevo lo que les falta y les preservo lo que tienen."
     , ["bhakti", "yogakshema", "provision", "अनन्य भक्ति", "योगक्षेम", "रक्षा", "वहन", "care"]),
 
   bg("राज-विद्या राज-गुह्य योग", "26", "9",
@@ -291,6 +328,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "patraṁ puṣpaṁ phalaṁ toyaṁ yo me bhaktyā prayacchati, tad ahaṁ bhakty-upahṛtam aśnāmi prayatātmanaḥ"
     , "जो शुद्ध हृदय से भक्ति भाव से मुझे पत्र, पुष्प, फल या जल अर्पण करता है, मैं उस भक्तिपूर्वक अर्पित प्रसाद को ग्रहण करता हूँ।"
     , "Whoever offers Me with devotion a leaf, a flower, a fruit or water — that offering of love from a pure soul I accept."
+    , "Quien Me ofrece con devoción una hoja, una flor, un fruto o agua — esa ofrenda de amor de un alma pura, Yo la acepto."
     , ["offering", "bhakti", "water", "पत्र", "पुष्प", "फल", "तोय", "अर्पण", "भक्ति", "prasad"]),
 
   bg("राज-विद्या राज-गुह्य योग", "13", "9",
@@ -298,6 +336,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "mahātmānas tu māṁ pārtha daivīṁ prakṛtim āśritāḥ, bhajanty ananya-manaso jñātvā bhūtādim avyayam"
     , "पर महात्मा हे पार्थ! दैवी प्रकृति को धारण कर जानते हुए कि मैं समस्त भूतों का अविनाशी आदि-स्रोत हूँ, अनन्य मन से मेरा भजन करते हैं।"
     , "But the great souls, O Partha, partaking of My divine nature, knowing Me as the imperishable source of all beings, worship Me with single-minded devotion."
+    , "Pero las grandes almas, oh Partha, participando de Mi naturaleza divina, conociéndome como la fuente imperecedera de todos los seres, Me adoran con devoción de mente indivisa."
     , ["mahatma", "bhakti", "prakriti", "महात्मा", "दैवी प्रकृति", "भजन"]),
 
   // ─── Chapter 10 ───
@@ -306,6 +345,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "ahaṁ sarvasya prabhavo mattaḥ sarvaṁ pravartate, iti matvā bhajante māṁ budhā bhāva-samanvitāḥ"
     , "मैं समस्त जगत् का उद्गम-स्रोत हूँ, मुझसे ही सब प्रवर्तित होता है — यह जानकर बुद्धिमान् भाव-समन्वित होकर मेरा भजन करते हैं।"
     , "I am the origin of all; from Me everything proceeds. Knowing this, the wise worship Me with absorbed devotion."
+    , "Yo soy el origen de todo; de Mí todo procede. Sabiéndolo así, los sabios Me adoran con devoción absorta."
     , ["origin", "source", "worship", "उद्गम", "स्रोत", "भजन", "बुद्धिमान"]),
 
   bg("विभूति योग", "11", "10",
@@ -313,6 +353,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "teṣām evānukampārtham aham ajñāna-jaṁ tamaḥ, nāśayāmy ātma-bhāva-stho jñāna-dīpena bhāsvatā"
     , "उन्हीं पर अनुग्रह के लिए मैं अंतरात्मा में स्थित होकर ज्ञान के दीपक से उनके अज्ञान से उत्पन्न अंधकार को नष्ट कर देता हूँ।"
     , "Out of compassion for them, dwelling in their hearts, I destroy the darkness born of ignorance with the radiant lamp of knowledge."
+    , "Por compasión hacia ellos, morando en sus corazones, destruyo la oscuridad nacida de la ignorancia con la radiante lámpara del conocimiento."
     , ["compassion", "lamp", "knowledge", "अनुग्रह", "ज्ञान-दीप", "अंधकार", "कृपा", "lamp of knowledge"]),
 
   // ─── Chapter 11 ───
@@ -321,6 +362,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "kālo 'smi loka-kṣaya-kṛt pravṛddho lokān samāhartum iha pravṛttaḥ, ṛte 'pi tvāṁ na bhaviṣyanti sarve ye 'vasthitāḥ pratyanīkeṣu yodhāḥ"
     , "मैं काल हूँ — संसार का संहार करने वाला, अब बढ़ा हुआ समस्त लोकों को समाप्त करने के लिये उद्यत हूँ; तेरे विना भी प्रतिपक्ष में खड़े समस्त योद्धा मारे जाएँगे।"
     , "I am Time, the great destroyer of worlds, grown mighty, engaged here in annihilating these peoples. Even without you, none of the warriors arrayed in hostile ranks shall remain."
+    , "Yo soy el Tiempo, el gran destructor de los mundos, acrecentado en poder, empeñado aquí en aniquilar a estos pueblos. Incluso sin ti, ninguno de los guerreros alineados en las filas enemigas permanecerá."
     , ["time", "kala", "destruction", "काल", "महाकाल", "संहार", "विश्वरूप", "cosmic form"]),
 
   bg("विश्वरूप दर्शन योग", "54", "11",
@@ -328,6 +370,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "bhaktyā tv ananyayā śakyo 'ham evaṁ-vidho 'rjuna, jñātuṁ draṣṭuṁ ca tattvena praveṣṭuṁ ca parantapa"
     , "हे अर्जुन! केवल अनन्य भक्ति से ही मुझे ऐसे रूप में जानना, देखना और वास्तविक रूप से प्रवेश करना शक्य है।"
     , "By single-minded devotion alone can I be known as I am, seen in truth, and entered into, O scorcher of foes."
+    , "Solo mediante la devoción de mente indivisa se Me puede conocer tal como soy, ver en verdad y penetrar en Mí, oh abrasador de enemigos."
     , ["bhakti", "vision", "अनन्य भक्ति", "दर्शन", "प्रवेश", "vishvarupa"]),
 
   // ─── Chapter 12 ───
@@ -336,6 +379,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "adveṣṭā sarva-bhūtānāṁ maitraḥ karuṇa eva ca, nirmamo nirahaṅkāraḥ sama-duḥkha-sukhaḥ kṣamī — santuṣṭaḥ satataṁ yogī yatātmā dṛḍha-niścayaḥ, mayy arpita-mano-buddhir yo mad-bhaktaḥ sa me priyaḥ"
     , "जो सब प्राणियों से अद्वेष रखता है, मित्रता और करुणा करता है, निर्मम-निरहंकार है, सुख-दुःख में सम है, क्षमाशील है, सदा संतुष्ट योगी है, आत्म-संयमी है और दृढ़ निश्चय रखता है — जिसका मन-बुद्धि मुझ अर्पित है, वह मेरा भक्त मुझे अत्यंत प्रिय है।"
     , "He who bears no ill will to any being, friendly and compassionate, free from possessiveness and ego, equal in pleasure and pain, forgiving, ever content, self-controlled, firm in resolve, with mind and intellect surrendered to Me — such a devotee of Mine is dear to Me."
+    , "Aquel que no alberga mala voluntad hacia ningún ser, amistoso y compasivo, libre de posesividad y de ego, ecuánime en el placer y el dolor, indulgente, siempre contento, dueño de sí, firme en sus propósitos, con la mente y el intelecto entregados a Mí — ese devoto Mío Me es querido."
     , ["dear devotee", "qualities", "compassion", "प्रिय भक्त", "अद्वेष्टा", "करुणा", "क्षमा", "संतोष"]),
 
   bg("भक्ति योग", "15", "12",
@@ -343,6 +387,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yasmān nodvijate loko lokān nodvijate ca yaḥ, harṣāmarṣa-bhaya-udvegair mukto yaḥ sa ca me priyaḥ"
     , "जिससे कोई व्यक्ति विचलित नहीं होता और जो किसी से विचलित नहीं होता, जो हर्ष, अमर्ष, भय और उद्वेग से मुक्त है — वह मुझे प्रिय है।"
     , "He by whom no one is disturbed and who is disturbed by none, free from elation, envy, fear and anxiety — such a one is dear to Me."
+    , "Aquel por quien nadie se ve turbado y que no se turba por nadie, libre de exultación, envidia, miedo y ansiedad — ese Me es querido."
     , ["steadiness", "dear", "उद्वेग", "भय", "हर्ष", "अमर्ष", "निर्भीक"]),
 
   // ─── Chapter 13 ───
@@ -351,6 +396,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "amānitvam adambhitvam ahiṁsā kṣāntir ārjavam, ācāryopāsanaṁ śaucaṁ sthairyam ātma-vinigrahaḥ — indriyārtheṣu vairāgyam anahaṅkāra eva ca, janma-mṛtyu-jarā-vyādhi-duḥkha-doṣānudarśanam"
     , "अमानित्व, अदम्भित्व, अहिंसा, क्षमा, सरलता, आचार्य की उपासना, शौच, स्थैर्य, आत्म-संयम; इंद्रिय-विषयों में वैराग्य, अहंकार का अभाव और जन्म-मृत्यु-जरा-व्याधि-दुःख-दोषों का अनुदर्शन — यही ज्ञान है।"
     , "Humility, unpretentiousness, non-violence, forgiveness, uprightness, service of the teacher, purity, steadfastness, self-control; dispassion toward sense objects, absence of ego, and constant awareness of the miseries of birth, death, old age and disease — this is knowledge."
+    , "Humildad, falta de ostentación, no violencia, paciencia, rectitud, servicio al maestro, pureza, firmeza, autodominio; desapego de los objetos de los sentidos, ausencia de ego y constante percepción de los males del nacimiento, la muerte, la vejez y la enfermedad — esto es el conocimiento."
     , ["humility", "non-violence", "knowledge", "अमानित्व", "अहिंसा", "क्षमा", "वैराग्य", "ज्ञान"]),
 
   bg("क्षेत्र-क्षेत्रज्ञ योग", "12-13", "13",
@@ -358,6 +404,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "jñeyaṁ yat tat pravakṣyāmi yaj jñātvāmṛtam aśnute, anādi-mat paraṁ brahma na sat tan nāsad ucyate — bahir antaś ca bhūtānām acaraṁ caram eva ca, sūkṣmatvāt tad avijñeyaṁ dūra-sthaṁ cāntike ca tat"
     , "वह जानने योग्य परम तत्त्व बतलाता हूँ जिसे जानकर अमृत प्राप्त होता है — वह अनादि, माया-रहित परम ब्रह्म है, न कहा जाता सत् है, न असत्। वह सब भूतों के बाहर भी है, भीतर भी; वह चर और अचर दोनों है; सूक्ष्मता के कारण अविज्ञेय है, दूर भी है और पास भी।"
     , "I shall declare that which is to be known, knowing which one attains immortality — the beginningless supreme Brahman, called neither being nor non-being. It is outside and within beings, unmoving and moving; too subtle to be known, far away and yet very near."
+    , "Declararé aquello que debe ser conocido, conociendo lo cual uno alcanza la inmortalidad — el Brahman supremo, sin principio, que no se denomina ni ser ni no-ser. Está fuera y dentro de los seres, inmóvil y en movimiento; por su sutileza resulta incognoscible, distante y sin embargo muy próximo."
     , ["brahman", "knower", "immortality", "ब्रह्म", "अमृत", "सूक्ष्म", "सर्वव्यापी", "supreme truth"]),
 
   // ─── Chapter 14 ───
@@ -366,6 +413,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "sarva-yoniṣu kaunteya mūrtayaḥ sambhavanti yāḥ, tāsāṁ brahma mahad-yonir ahaṁ bīja-pradaḥ pitā"
     , "हे कुन्तीपुत्र! समस्त गर्भ-स्रोतों में जितनी मूर्तियाँ प्रकट होती हैं, उन सबकी महान् योनि ब्रह्म (प्रकृति) है और बीज देने वाले पिता मैं हूँ।"
     , "Whatever forms are born in all wombs, O Kaunteya, the great womb is prakriti (Brahman) and I am the seed-giving father."
+    , "Sean cuales fueren las formas que nacen en todos los vientres, oh Kaunteya, el gran vientre es prakriti (Brahman) y Yo soy el padre que da la semilla."
     , ["creation", "father", "prakriti", "प्रकृति", "बीज", "पिता", "सृष्टि"]),
 
   bg("गुणत्रय विभाग योग", "26", "14",
@@ -373,6 +421,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "māṁ ca yo 'vyabhicāreṇa bhakti-yogena sevate, sa guṇān samatītyaitān brahma-bhūyāya kalpate"
     , "जो मुझे अव्यभिचारिणी (अनन्य) भक्ति-योग से सेवन करता है, वह इन तीनों गुणों को लाँघकर ब्रह्म-स्वरूप होने को पात्र हो जाता है।"
     , "One who serves Me with unwavering bhakti-yoga crosses beyond the three gunas and becomes worthy of becoming Brahman."
+    , "Quien Me sirve con bhakti-yoga inquebrantable trasciende los tres gunas y se hace digno de llegar a ser Brahman."
     , ["gunas", "transcend", "bhakti", "गुण", "निर्गुण", "ब्रह्मभूत", "भक्ति"]),
 
   // ─── Chapter 15 ───
@@ -381,6 +430,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "na tad bhāsyate sūryo na śaśāṅko na pāvakaḥ, yad gatvā na nivartante tad dhāma paramaṁ mama"
     , "वह मेरा परम धाम न ही सूर्य प्रकाशित करता है, न चंद्रमा, न अग्नि; जहाँ पहुँचकर लौटते नहीं।"
     , "Neither the sun, nor the moon, nor fire illumines that supreme abode of Mine, reaching which one never returns."
+    , "Ni el sol, ni la luna, ni el fuego iluminan esa Mi morada suprema; llegado a la cual, uno jamás regresa."
     , ["abode", "supreme", "light", "परम धाम", "सूर्य", "चंद्र", "अग्नि", "light"]),
 
   // ─── Chapter 16 ───
@@ -389,6 +439,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "abhayaṁ sattva-saṁśuddhir jñāna-yoga-vyavasthitiḥ, dānaṁ damaś ca yajñaś ca svādhyāyas tapa ārjavam — ahiṁsā satyam akrodhaḥ tyāgaḥ śāntir apaiśunam, dayā bhūteṣv aloluptvaṁ mārdravaṁ hrīr acāpalam — tejaḥ kṣamā dhṛtiḥ śaucam adroho nātimānitā, bhavanti sampadaṁ daivīm abhijātasya bhārata"
     , "निर्भयता, शुद्ध अंतःकरण, ज्ञान-योग में स्थिति, दान, इंद्रिय-दमन, यज्ञ, स्वाध्याय, तप और सरलता; अहिंसा, सत्य, अक्रोध, त्याग, शान्ति, दूषण से रहित होना, भूतों पर दया, अलोलुप्ता, मार्दव, लज्जा और चपलता का अभाव; तेज, क्षमा, धृति, शौच, अद्रोह और अतिमान का अभाव — हे भारत! ये दैवी संपदा के लक्षण हैं।"
     , "Fearlessness, purity of heart, steadfastness in knowledge-yoga, charity, sense-control, sacrifice, study of self, austerity, uprightness; non-violence, truth, absence of anger, renunciation, tranquility, aversion to faultfinding, compassion for beings, freedom from greed, gentleness, modesty, steadiness; vigor, forgiveness, fortitude, cleanliness, freedom from envy and pride — these, O Bharata, mark the divine endowment."
+    , "Intrepidez, pureza del corazón, firmeza en el yoga del conocimiento, dadiva, dominio de los sentidos, sacrificio, estudio de sí mismo, austeridad, rectitud; no violencia, verdad, ausencia de ira, renuncia, serenidad, aversión a buscar defectos, compasión hacia los seres, desprendimiento, mansedumbre, modestia, firmeza; vigor, perdón, fortaleza, limpieza, ausencia de envidia y de soberbia — estos, oh Bharata, distinguen la riqueza divina."
     , ["divine qualities", "daivi sampada", "virtues", "दैवी संपदा", "अभय", "अहिंसा", "दया", "क्षमा", "virtue"]),
 
   bg("दैवासुर संपद्विभाग योग", "21", "16",
@@ -396,6 +447,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "tri-vidhaṁ narakasyedaṁ dvāraṁ nāśanam ātmanaḥ, kāmaḥ krodhas tathā lobhas tasmād etat tryaṁ tyajet"
     , "आत्मा के नाश के लिए नरक के तीन द्वार हैं — काम, क्रोध और लोभ; इसलिए इन तीनों का त्याग कर दे।"
     , "There is a threefold gate of hell destructive of the self — lust, anger and greed; therefore one must abandon these three."
+    , "Hay una triple puerta del infierno que destruye al sí mismo — la lujuria, la ira y la codicia; por eso debe uno abandonar estas tres."
     , ["hell", "three gates", "काम", "क्रोध", "लोभ", "नरक", "तीन द्वार", "vices"]),
 
   // ─── Chapter 17 ───
@@ -404,6 +456,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "anudvega-karaṁ vākyaṁ satyaṁ priya-hitaṁ ca yat, svādhyāyābhyasanaṁ caiva vāṅmayaṁ tapa ucyate — manaḥ-prasādaḥ saumyatvaṁ maunam ātma-vinigrahaḥ, bhāva-saṁśuddhir ity etat tapo mānasam ucyate"
     , "वाणी का तप: ऐसा वचन जो व्यथित न करे, सत्य हो, प्रिय और हितकारी हो, तथा स्वाध्याय का अभ्यास। मन का तप: मनःप्रसाद, सौम्यता, मौन, आत्म-संयम और भाव-शुद्धि।"
     , "Speech austerity: words that cause no distress, truthful, pleasing and beneficial, and the practice of self-study. Mental austerity: serenity of mind, gentleness, silence, self-control and purity of intention."
+    , "Austeridad del habla: palabras que no causan aflicción, veraces, amables y beneficiosas, y la práctica del estudio de uno mismo. Austeridad mental: serenidad de la mente, amabilidad, silencio, dominio de sí y pureza de la intención."
     , ["speech", "truth", "austerity", "वाक्-तप", "सत्य", "मनःप्रसाद", "मौन", "तप"]),
 
   // ─── Chapter 18 ───
@@ -412,6 +465,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "īśvaraḥ sarva-bhūtānāṁ hṛd-deśe 'rjuna tiṣṭhati, bhrāmayan sarva-bhūtāni yantrārūḍhāni māyayā"
     , "हे अर्जुन! ईश्वर समस्त भूतों के हृदय में स्थित है और माया द्वारा सब भूतों को यंत्र पर चढ़ाये रथ की भाँति घुमाता रहता है।"
     , "The Lord dwells in the hearts of all beings, O Arjuna, causing all beings to revolve as if mounted on a machine by His maya."
+    , "El Señor mora en el corazón de todos los seres, oh Arjuna, haciendo girar a todos los seres como si estuvieran montados en una máquina por Su maya."
     , ["ishvara", "heart", "माया", "हृदय", "ईश्वर", "अंतर्यामी", "यंत्र"]),
 
   bg("मोक्ष-संन्यास योग", "65", "18",
@@ -419,6 +473,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "man-manā bhava mad-bhakto mad-yājī māṁ namaskuru, mām evaiṣyasi satyaṁ te pratijāne priyo 'si me"
     , "मेरा चिंतन कर, मेरा भक्त बन, मेरी पूजा कर, मुझे नमस्कार कर — तू मुझे ही प्राप्त होगा; यह मैं तुझसे सत्य वचन देता हूँ क्योंकि तू मुझे प्रिय है।"
     , "Fix your mind on Me, become My devotee, sacrifice to Me, bow to Me — you shall come to Me alone; this truth I promise you, for you are dear to Me."
+    , "Fija tu mente en Mí, hazte Mi devoto, ofréceme sacrificios, póstrate ante Mí — solo a Mí vendrás; esta verdad te la prometo, porque Me eres querido."
     , ["surrender", "devotion", "promise", "मन्मना", "भक्त", "प्रिय", "वचन", "mad bhakta"]),
 
   bg("मोक्ष-संन्यास योग", "66", "18",
@@ -426,6 +481,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "sarva-dharmān parityajya mām ekaṁ śaraṇaṁ vraja, ahaṁ tvāṁ sarva-pāpebhyo mokṣayiṣyāmi mā śucaḥ"
     , "सब धर्मों का त्याग कर केवल मेरी शरण में आ; मैं तुझे समस्त पापों से मुक्त कर दूँगा — शोक मत कर।"
     , "Abandon all varieties of dharma and just surrender unto Me; I shall deliver you from all sinful reactions — do not grieve."
+    , "Abandona todas las variedades de dharma y entrégate solo a Mí; Yo te libraré de todas las reacciones pecaminosas — no te aflijas."
     , ["surrender", "moksha", "final teaching", "शरणागति", "मोक्ष", "पाप", "चरम उपदेश", "famous", "gita essence"]),
 
   bg("मोक्ष-संन्यास योग", "73", "18",
@@ -433,6 +489,7 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "naṣṭo mohaḥ smṛtir labdhvā kāryaṁ udyate mayā, sthito 'smi gata-sandehaḥ kariṣye vacanaṁ tava"
     , "अर्जुन ने कहा — मेरा मोह नष्ट हो गया, स्मृति प्राप्त हुई; मेरा कर्तव्य स्पष्ट हो गया। मैं संदेह से रहित हो गया हूँ, तेरा आदेश पालन करूँगा।"
     , "Arjuna said: My delusion is destroyed, memory regained; my duty stands clear. I stand free of doubt and shall act according to Your word."
+    , "Arjuna dijo: Mi engaño ha quedado destruido y he recobrado la memoria; mi deber está claro. Estoy libre de duda y obraré conforme a Tu palabra."
     , ["arjuna", "delusion destroyed", "resolution", "मोह नाश", "स्मृति", "संदेह", "conclusion"]),
 
   bg("मोक्ष-संन्यास योग", "78", "18",
@@ -440,5 +497,6 @@ export const GITA_VERSES: CorpusEntry[] = [
     , "yatra yogeśvaraḥ kṛṣṇo yatra pārtho dhanur-dharaḥ, tatra śrīr vijayo bhūtir dhruvā nītir matir mama"
     , "जहाँ योगेश्वर श्रीकृष्ण हैं और जहाँ धनुर्धर अर्जुन है, वहाँ निश्चित ही श्री, विजय, विभूति और अटल नीति है — यही मेरा मत है।"
     , "Wherever there is Krishna, the Lord of yoga, and wherever there is Arjuna, the wielder of the bow, there fortune, victory, prosperity and unshakable morality surely dwell."
+    , "Dondequiera que esté Krishna, el Señor del yoga, y dondequiera que esté Arjuna, el portador del arco, allí moran con certeza la fortuna, la victoria, la prosperidad y la inconmovible moralidad."
     , ["victory", "krishna", "arjuna", "conclusion", "योगेश्वर", "धनुर्धर", "विजय", "श्री", "final verse"]),
 ];

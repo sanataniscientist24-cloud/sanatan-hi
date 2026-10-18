@@ -78,7 +78,7 @@ This repo includes `.github/workflows/deploy.yml`. Just push to `main` and the w
 
 One-time setup on a fresh account: **Settings → Pages → Build and deployment → Source → “GitHub Actions”**.
 
-Live URL: `https://<your-username>.github.io/<repo-name>/`
+Live URL: `https://www.sanatanhi.com/` (custom domain via `public/CNAME` + GoDaddy DNS)
 
 ### Vercel / Netlify / any Node host
 

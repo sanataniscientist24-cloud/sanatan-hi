@@ -27,6 +27,7 @@ const display = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
+  metadataBase: process.env.NEXT_SITE_URL ? new URL(process.env.NEXT_SITE_URL) : undefined,
   title: "SANATAN HI [ HUMAN INTELLIGENCE ] — Offline Sanatan Dharma AI · Gita, Ramayan, Mahabharat, Vedas",
   description:
     "SANATAN HI — a fully offline AI corpus of Sanatan Dharma: Bhagavad Gita, Valmiki Ramayana, Mahabharata, Bhagavata & Shiva Purana, the four Vedas, Upanishads, Hanuman Chalisa — with verses in Sanskrit, Hindi and English. No internet required.",

@@ -46,8 +46,15 @@ jobs:
           # On static hosts the engine runs client-side (src/lib/client/ask.ts),
           # so they are removed for this build only.
           rm -rf src/app/api
-          # Project pages live under /<repo>/ — user pages (owner.github.io) live at /
-          if [[ "$REPO_NAME" == *.github.io ]]; then
+          # Base path logic:
+          #   - custom domain (public/CNAME)  → site serves at the domain root
+          #   - user pages (owner.github.io)  → root
+          #   - project pages (<repo>)        → /<repo>
+          if [ -f public/CNAME ]; then
+            DOMAIN=$(tr -d '[:space:]' < public/CNAME)
+            echo "NEXT_BASE_PATH=" >> "$GITHUB_ENV"
+            echo "NEXT_SITE_URL=https://$DOMAIN" >> "$GITHUB_ENV"
+          elif [[ "$REPO_NAME" == *.github.io ]]; then
             echo "NEXT_BASE_PATH=" >> "$GITHUB_ENV"
           else
             echo "NEXT_BASE_PATH=/$REPO_NAME" >> "$GITHUB_ENV"

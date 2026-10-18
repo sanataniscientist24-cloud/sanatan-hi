@@ -6,7 +6,7 @@
 
 **Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Hanuman Chalisa · and more**
 
-[![Deploy to GitHub Pages](https://github.com/OWNER/sanatan-hi/actions/workflows/deploy.yml/badge.svg)](https://github.com/OWNER/sanatan-hi/actions/workflows/deploy.yml)
+[![Deploy to GitHub Pages](https://github.com/sanataniscientist24-cloud/sanatan-hi/actions/workflows/deploy.yml/badge.svg)](https://github.com/sanataniscientist24-cloud/sanatan-hi/actions/workflows/deploy.yml)
 ![100% Offline](https://img.shields.io/badge/100%25-offline-maroon)
 ![Languages](https://img.shields.io/badge/languages-Sanskrit%20·%20हिंदी%20·%20English-gold)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blueviolet)
@@ -62,7 +62,7 @@ The engine is pure TypeScript. On Node it runs in API routes; on GitHub Pages it
 ## 🚀 Quick start (local)
 
 ```bash
-git clone https://github.com/OWNER/sanatan-hi.git
+git clone https://github.com/sanataniscientist24-cloud/sanatan-hi.git
 cd sanatan-hi
 bun install
 bun run dev        # → http://localhost:3000

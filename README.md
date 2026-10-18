@@ -59,6 +59,16 @@ No cloud LLM — a local retrieval engine:
 
 The engine is pure TypeScript. On Node it runs in API routes; on GitHub Pages it runs **directly in your browser** — the whole corpus ships with the page, so the deployed site is still 100% offline.
 
+### 🎙️ Voice input (microphone)
+
+The chat input has a **mic button** — speak your question instead of typing:
+
+1. The browser records your microphone via the Web Audio API and encodes a compact **16 kHz mono WAV** entirely client-side (~32 KB per second of speech)
+2. The audio is POSTed to `/api/transcribe`, where a server-side ASR model (z-ai SDK) transcribes it
+3. The transcribed text lands in the input box for review, then send as usual
+
+The mic shows a live equalizer + timer while recording (tap again to transcribe, `Esc` to cancel, auto-stops at 60 s). Voice input needs the Node backend (`bun run dev` or any full-stack host) — on the static GitHub Pages build the button politely reports it's unavailable.
+
 ## 🚀 Quick start (local)
 
 ```bash

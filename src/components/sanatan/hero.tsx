@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { BookOpenText, Flame, Languages, Sparkles, WifiOff } from "lucide-react";
+import { ArrowRight, BookOpenText, Flame, Languages, MessagesSquare, Sparkles, WifiOff } from "lucide-react";
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
 import { dailyVerseSanatan } from "@/lib/client/ask";
@@ -11,6 +11,9 @@ import type { CorpusEntry } from "@/lib/corpus/types";
 
 interface HeroProps {
   onSuggestion: (s: string) => void;
+  /** shown when a previous conversation exists and the user returned to the menu */
+  onResume?: () => void;
+  resumeCount?: number;
 }
 
 const STARTER_CHIPS = [
@@ -24,7 +27,7 @@ const STARTER_CHIPS = [
   "What are the Vedas?",
 ];
 
-export function Hero({ onSuggestion }: HeroProps) {
+export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
   const [verse, setVerse] = useState<CorpusEntry | null>(null);
 
   useEffect(() => {
@@ -41,6 +44,31 @@ export function Hero({ onSuggestion }: HeroProps) {
 
   return (
     <div className="sanatan-fade mx-auto w-full max-w-3xl px-1 pb-2">
+      {/* resume the conversation the user left via ✕ / back button —
+          placed first so it is immediately visible when returning from a chat */}
+      {onResume && resumeCount > 0 && (
+        <motion.button
+          type="button"
+          initial={{ opacity: 0, y: -8 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          onClick={onResume}
+          className="group mb-1 flex w-full items-center gap-3 rounded-xl border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 py-2.5 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-sanatan-saffron hover:bg-sanatan-gold/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron active:translate-y-0 active:scale-[0.99]"
+          aria-label={`Continue last conversation, ${resumeCount} messages`}
+        >
+          <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/15 text-sanatan-maroon">
+            <MessagesSquare className="h-4.5 w-4.5" aria-hidden />
+          </span>
+          <span className="min-w-0 flex-1">
+            <span className="block truncate text-sm font-semibold text-sanatan-maroon">Continue last conversation</span>
+            <span className="block text-[0.7rem] text-foreground/60">
+              {resumeCount} message{resumeCount === 1 ? "" : "s"} · वापस चैट में जाएँ
+            </span>
+          </span>
+          <ArrowRight className="h-4 w-4 shrink-0 text-sanatan-saffron transition-transform group-hover:translate-x-0.5" aria-hidden />
+        </motion.button>
+      )}
+
       {/* masthead */}
       <div className="relative flex flex-col items-center pt-4 pb-6 text-center">
         <div className="pointer-events-none absolute -top-2 select-none font-deva text-[7rem] leading-none text-sanatan-saffron/10 sm:text-[9rem]" aria-hidden>

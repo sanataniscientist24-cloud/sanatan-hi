@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Moon, Sun, Menu, MessageSquarePlus, WifiOff } from "lucide-react";
+import { Moon, Sun, Menu, MessageSquarePlus, WifiOff, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -16,6 +16,10 @@ import { OmSigil } from "@/components/sanatan/book-icons";
 import { askSanatan } from "@/lib/client/ask";
 
 type LangMode = "auto" | "hi" | "en" | "sa" | "es";
+type ChatView = "menu" | "chat";
+
+/** history-state marker placed on the entry that holds an open conversation */
+const CHAT_HISTORY_FLAG = "sanatanChat";
 
 const STORAGE_KEY = "sanatan-hi-chat-v2";
 
@@ -33,6 +37,7 @@ function uid() {
 
 export default function SanatanHIPage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
+  const [view, setView] = useState<ChatView>("menu");
   const [langMode, setLangMode] = useState<LangMode>("en");
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
@@ -40,6 +45,11 @@ export default function SanatanHIPage() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+
+  /* mirrors for history/back-button handlers (they fire outside the render cycle) */
+  const viewRef = useRef<ChatView>("menu");
+  const messagesRef = useRef<ChatMessageData[]>([]);
+  const pushedHistoryRef = useRef(false);
 
   useEffect(() => setMounted(true), []);
 
@@ -51,11 +61,26 @@ export default function SanatanHIPage() {
         const data = JSON.parse(raw) as { messages?: ChatMessageData[]; lang?: LangMode };
         if (Array.isArray(data.messages)) setMessages(data.messages);
         if (data.lang) setLangMode(data.lang);
+        if (Array.isArray(data.messages) && data.messages.length > 0) {
+          viewRef.current = "chat";
+          setView("chat");
+        }
       }
     } catch {
       /* ignore */
     }
     setLoaded(true);
+    /* if we start inside an open conversation, put a clean "menu" entry beneath it
+       so the browser / hardware back button returns to the menu instead of leaving */
+    if (viewRef.current === "chat") {
+      try {
+        window.history.replaceState(null, "", window.location.href);
+        window.history.pushState({ [CHAT_HISTORY_FLAG]: true }, "", window.location.href);
+        pushedHistoryRef.current = true;
+      } catch {
+        /* ignore */
+      }
+    }
   }, []);
 
   /* persist */
@@ -68,6 +93,72 @@ export default function SanatanHIPage() {
     }
   }, [messages, langMode, loaded]);
 
+  useEffect(() => {
+    messagesRef.current = messages;
+  }, [messages]);
+
+  /* browser back (desktop), Android hardware back and iOS swipe-back:
+     while the chat is open, return to the menu instead of navigating away */
+  useEffect(() => {
+    const onPopState = (e: PopStateEvent) => {
+      const isChatEntry = Boolean((e.state as Record<string, unknown> | null)?.[CHAT_HISTORY_FLAG]);
+      if (isChatEntry) {
+        /* forward/back into a chat entry — reopen the conversation */
+        if (messagesRef.current.length > 0) {
+          viewRef.current = "chat";
+          setView("chat");
+          pushedHistoryRef.current = true;
+        }
+      } else {
+        /* navigated to a menu entry — if the chat is open, treat this as "back" */
+        pushedHistoryRef.current = false;
+        if (viewRef.current === "chat") {
+          viewRef.current = "menu";
+          setView("menu");
+        }
+      }
+    };
+    window.addEventListener("popstate", onPopState);
+    return () => window.removeEventListener("popstate", onPopState);
+  }, []);
+
+  /* menu → chat (keeps the menu in the history stack) */
+  const enterChat = useCallback(() => {
+    if (viewRef.current === "chat") return;
+    viewRef.current = "chat";
+    setView("chat");
+    try {
+      window.history.pushState({ [CHAT_HISTORY_FLAG]: true }, "", window.location.href);
+      pushedHistoryRef.current = true;
+    } catch {
+      /* ignore */
+    }
+  }, []);
+
+  /* chat → menu via the top-right ✕ (or after "New conversation") */
+  const exitChat = useCallback(() => {
+    if (viewRef.current !== "chat") return;
+    if (pushedHistoryRef.current) {
+      /* pop our chat entry; the popstate handler switches back to the menu */
+      pushedHistoryRef.current = false;
+      try {
+        window.history.back();
+      } catch {
+        /* ignore */
+      }
+      /* safety net: if popstate never arrives, close the chat directly */
+      window.setTimeout(() => {
+        if (viewRef.current === "chat") {
+          viewRef.current = "menu";
+          setView("menu");
+        }
+      }, 350);
+    } else {
+      viewRef.current = "menu";
+      setView("menu");
+    }
+  }, []);
+
   const scrollToBottom = useCallback((smooth = true) => {
     const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
     if (el) {
@@ -77,14 +168,26 @@ export default function SanatanHIPage() {
     }
   }, []);
 
+  const scrollToTop = useCallback(() => {
+    const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
+    if (el) {
+      requestAnimationFrame(() => {
+        el.scrollTo({ top: 0, behavior: "auto" });
+      });
+    }
+  }, []);
+
+  /* the chat scrolls to its latest message; the menu starts at its top */
   useEffect(() => {
-    scrollToBottom();
-  }, [messages, sending, scrollToBottom]);
+    if (view === "menu") scrollToTop();
+    else scrollToBottom();
+  }, [messages, sending, view, scrollToBottom, scrollToTop]);
 
   const send = useCallback(
     async (text: string) => {
       const message = text.trim();
       if (!message || sending) return;
+      enterChat();
       const userMsg: ChatMessageData = { id: uid(), role: "user", text: message };
       setMessages((prev) => [...prev, userMsg]);
       setSending(true);
@@ -114,7 +217,7 @@ export default function SanatanHIPage() {
         setSending(false);
       }
     },
-    [sending, langMode]
+    [sending, langMode, enterChat]
   );
 
   const newChat = () => {
@@ -124,6 +227,7 @@ export default function SanatanHIPage() {
     } catch {
       /* ignore */
     }
+    exitChat();
   };
 
   const isDark = (theme ?? resolvedTheme) === "dark";
@@ -254,6 +358,24 @@ export default function SanatanHIPage() {
                 </TooltipTrigger>
                 <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">New conversation</TooltipContent>
               </Tooltip>
+
+              {/* ✕ close chat → return to the previous menu (top-right) */}
+              {view === "chat" && (
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={exitChat}
+                      className="h-11 w-11 text-sanatan-gold-2 hover:bg-white/15 hover:text-sanatan-cream-2 sm:h-9 sm:w-9"
+                      aria-label="Close chat and return to menu"
+                    >
+                      <X className="h-5 w-5 sm:h-4.5 sm:w-4.5" />
+                    </Button>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">Close chat · back to menu</TooltipContent>
+                </Tooltip>
+              )}
             </div>
           </div>
           {/* bhagwa strip */}
@@ -273,14 +395,18 @@ export default function SanatanHIPage() {
 
             <ScrollArea className="sanatan-scroll relative z-10 min-h-0 flex-1">
               <div ref={scrollRef} className="mx-auto w-full max-w-3xl px-3 py-4 sm:px-5">
-                {messages.length === 0 ? (
-                  <Hero onSuggestion={(s) => void send(s)} />
-                ) : (
+                {view === "chat" && messages.length > 0 ? (
                   <div className="space-y-5">
                     {messages.map((m) => (
                       <ChatMessage key={m.id} message={m} onSuggestion={(s) => void send(s)} />
                     ))}
                   </div>
+                ) : (
+                  <Hero
+                    onSuggestion={(s) => void send(s)}
+                    onResume={messages.length > 0 ? enterChat : undefined}
+                    resumeCount={messages.length}
+                  />
                 )}
                 {sending && <TypingIndicator />}
               </div>

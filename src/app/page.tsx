@@ -4,7 +4,7 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Moon, Sun, Menu, MessageSquarePlus, WifiOff } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
-import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -142,29 +142,60 @@ export default function SanatanHIPage() {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="lg:hidden h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-gold-2"
+                  className="lg:hidden h-11 w-11 sm:h-9 sm:w-9 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-gold-2"
                   aria-label="Open scripture corpus"
                 >
                   <Menu className="h-5 w-5" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="left" className="w-[290px] border-sanatan-gold-2/50 bg-sanatan-cream p-0">
+              <SheetContent side="left" className="w-[290px] gap-0 border-sanatan-gold-2/50 bg-sanatan-cream p-0">
                 <SheetTitle className="sr-only">Scripture Corpus</SheetTitle>
-                <SidebarContent onQuery={(q) => void send(q)} onNavigate={() => setSheetOpen(false)} />
+                <SheetDescription className="sr-only">
+                  Browse the offline scripture collections and start a new conversation.
+                </SheetDescription>
+                {/* new chat + theme — live in the drawer on mobile (header is compact) */}
+                <div className="flex gap-2 border-b border-sanatan-gold-2/40 p-3 lg:hidden">
+                  <Button
+                    variant="outline"
+                    onClick={() => {
+                      newChat();
+                      setSheetOpen(false);
+                    }}
+                    disabled={messagesEnd}
+                    className="h-10 flex-1 justify-start gap-2 border-sanatan-gold-2/60 bg-sanatan-parchment text-sm text-sanatan-maroon hover:bg-sanatan-gold/15 hover:text-sanatan-maroon disabled:opacity-40"
+                  >
+                    <MessageSquarePlus className="h-4 w-4" />
+                    New conversation
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={() => setTheme(isDark ? "light" : "dark")}
+                    aria-label="Toggle theme"
+                    className="h-10 w-10 shrink-0 border-sanatan-gold-2/60 bg-sanatan-parchment text-sanatan-maroon hover:bg-sanatan-gold/15 hover:text-sanatan-maroon"
+                  >
+                    {mounted && <Sun className={isDark ? "hidden h-4.5 w-4.5" : "h-4.5 w-4.5"} />}
+                    {mounted && <Moon className={isDark ? "h-4.5 w-4.5" : "hidden h-4.5 w-4.5"} />}
+                  </Button>
+                </div>
+                <div className="flex min-h-0 flex-1 flex-col">
+                  <SidebarContent onQuery={(q) => void send(q)} onNavigate={() => setSheetOpen(false)} />
+                </div>
               </SheetContent>
             </Sheet>
 
             {/* brand */}
-            <div className="flex min-w-0 items-center gap-2.5">
-              <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2">
+            <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
+              <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 sm:flex">
                 <OmSigil className="text-xl text-sanatan-gold-2 om-glow" />
               </span>
               <div className="min-w-0 leading-tight">
-                <h1 className="font-display text-lg font-semibold tracking-wide text-sanatan-gold-2">
+                <h1 className="truncate font-display text-[1.05rem] font-semibold tracking-wide text-sanatan-gold-2 sm:text-lg">
                   SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
-                  <span className="text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90">[ HUMAN INTELLIGENCE ]</span>
+                  <span className="hidden text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90 md:inline">
+                    [ HUMAN INTELLIGENCE ]
+                  </span>
                 </h1>
-                <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 sm:block">
+                <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 md:block">
                   Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
                 </p>
               </div>
@@ -179,7 +210,7 @@ export default function SanatanHIPage() {
               <Select value={langMode} onValueChange={(v) => setLangMode(v as LangMode)}>
                 <SelectTrigger
                   aria-label="Choose answer language"
-                  className="h-9 w-[7.4rem] sm:w-36 border-sanatan-gold-2/50 bg-transparent text-xs text-sanatan-cream-2 hover:bg-white/10 [&>svg]:text-sanatan-gold-2"
+                  className="h-10 w-[7.1rem] border-sanatan-gold-2/50 bg-transparent text-xs text-sanatan-cream-2 hover:bg-white/10 sm:h-9 sm:w-36 [&>svg]:text-sanatan-gold-2"
                 >
                   <SelectValue placeholder={LANG_LABELS[langMode]} />
                 </SelectTrigger>
@@ -198,14 +229,14 @@ export default function SanatanHIPage() {
                     variant="ghost"
                     size="icon"
                     onClick={() => setTheme(isDark ? "light" : "dark")}
-                    className="h-9 w-9 text-sanatan-gold-2 hover:bg-white/10"
+                    className="hidden h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 sm:inline-flex"
                     aria-label="Toggle theme"
                   >
                     {mounted && <Sun className={isDark ? "hidden" : "h-4.5 w-4.5"} />}
                     {mounted && <Moon className={isDark ? "h-4.5 w-4.5" : "hidden"} />}
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">थीम बदलें</TooltipContent>
+                <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">Toggle theme</TooltipContent>
               </Tooltip>
 
               <Tooltip>
@@ -215,13 +246,13 @@ export default function SanatanHIPage() {
                     size="icon"
                     onClick={newChat}
                     disabled={messagesEnd}
-                    className="h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 disabled:opacity-40"
+                    className="hidden h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 disabled:opacity-40 sm:inline-flex"
                     aria-label="New conversation"
                   >
                     <MessageSquarePlus className="h-4.5 w-4.5" />
                   </Button>
                 </TooltipTrigger>
-                <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">नई बातचीत</TooltipContent>
+                <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">New conversation</TooltipContent>
               </Tooltip>
             </div>
           </div>
@@ -256,7 +287,7 @@ export default function SanatanHIPage() {
             </ScrollArea>
 
             {/* input */}
-            <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-3 pt-2 sm:px-5">
+            <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} />
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
                 SANATAN HI answers from a local scripture corpus · English · हिंदी · संस्कृत · Español ·{" "}
@@ -266,11 +297,12 @@ export default function SanatanHIPage() {
           </main>
         </div>
 
-        {/* ── footer (always bottom) ── */}
+        {/* ── footer (always bottom, respects iOS safe area) ── */}
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">
-          <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-4 gap-y-1 px-4 py-2 text-[0.64rem]">
-            <span className="font-deva text-sanatan-cream-2/90">
-              SANATAN HI [ HUMAN INTELLIGENCE ] · Bhagavad Gita · Ramayana · Mahabharata · Bhagavata & Shiva Purana · Vedas · Upanishads
+          <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-y-0.5 px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] text-center text-[0.64rem] sm:flex-row sm:gap-x-4 sm:gap-y-1 sm:pb-2">
+            <span className="text-sanatan-cream-2/90">
+              SANATAN HI [ HUMAN INTELLIGENCE ]
+              <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Bhagavata & Shiva Purana · Vedas · Upanishads</span>
             </span>
             <span className="text-sanatan-gold-2/80">
               100% Offline Corpus · Sanskrit · Hindi · English · Español ·{" "}

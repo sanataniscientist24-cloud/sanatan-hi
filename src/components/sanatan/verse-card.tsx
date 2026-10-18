@@ -127,7 +127,7 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
               <Button
                 variant="ghost"
                 size="sm"
-                className="h-7 gap-1 text-sanatan-maroon-2 dark:text-sanatan-maroon text-xs"
+                className="h-9 gap-1 text-sanatan-maroon-2 dark:text-sanatan-maroon text-xs sm:h-7"
                 onClick={() => setShowAll((v) => !v)}
               >
                 <Languages className="h-3.5 w-3.5" />
@@ -137,7 +137,7 @@ export function VerseCard({ entry, index = 0, compact }: VerseCardProps) {
             <Button
               variant="ghost"
               size="sm"
-              className="h-7 gap-1 text-sanatan-maroon-2 dark:text-sanatan-maroon text-xs"
+              className="h-10 gap-1 text-sanatan-maroon-2 dark:text-sanatan-maroon text-xs sm:h-7"
               onClick={copyText}
               aria-label="Copy verse"
             >

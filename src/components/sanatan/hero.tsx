@@ -66,7 +66,7 @@ export function Hero({ onSuggestion }: HeroProps) {
         </p>
 
         {/* stats */}
-        <div className="mt-5 grid grid-cols-3 gap-2 sm:gap-3">
+        <div className="mt-5 grid w-full grid-cols-3 gap-2 sm:gap-3">
           {[
             { icon: BookOpenText, label: "Scripture collections", value: "11" },
             { icon: Sparkles, label: "Verses & stories", value: "150+" },
@@ -74,11 +74,11 @@ export function Hero({ onSuggestion }: HeroProps) {
           ].map(({ icon: Icon, label, value }) => (
             <div
               key={label}
-              className="flex min-w-[6.2rem] flex-col items-center rounded-xl border border-sanatan-gold-2/60 bg-sanatan-parchment px-3 py-2.5"
+              className="flex min-w-0 flex-col items-center rounded-xl border border-sanatan-gold-2/60 bg-sanatan-parchment px-2 py-2.5 sm:px-3"
             >
               <Icon className="h-4 w-4 text-sanatan-saffron" aria-hidden />
               <span className="mt-1 text-base font-semibold text-sanatan-maroon">{value}</span>
-              <span className="text-[0.62rem] text-foreground/60">{label}</span>
+              <span className="text-center text-[0.6rem] leading-tight sm:text-[0.62rem] text-foreground/60">{label}</span>
             </div>
           ))}
         </div>
@@ -107,7 +107,7 @@ export function Hero({ onSuggestion }: HeroProps) {
           <button
             key={c}
             onClick={() => onSuggestion(c)}
-            className="rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 py-1.5 text-[0.78rem] text-sanatan-maroon-2 dark:text-sanatan-maroon shadow-sm transition-all hover:-translate-y-0.5 hover:border-sanatan-saffron hover:bg-sanatan-gold/15"
+            className="rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 py-2 text-[0.78rem] text-sanatan-maroon-2 shadow-sm transition-all hover:-translate-y-0.5 hover:border-sanatan-saffron hover:bg-sanatan-gold/15 active:translate-y-0 active:scale-95 dark:text-sanatan-maroon"
           >
             {c}
           </button>

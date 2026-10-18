@@ -32,7 +32,7 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
       >
         <div className="max-w-[85%] sm:max-w-[72%]">
           <div className="rounded-2xl rounded-tr-sm bg-gradient-to-br from-sanatan-saffron to-sanatan-saffron-2 px-4 py-2.5 text-white shadow-sm">
-            <p className="text-[0.92rem] leading-relaxed [text-wrap:pretty]">{message.text}</p>
+            <p className="break-words text-[0.92rem] leading-relaxed [text-wrap:pretty]">{message.text}</p>
           </div>
         </div>
       </motion.div>
@@ -53,14 +53,15 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
       <div className="w-full max-w-[92%] sm:max-w-[82%] space-y-3">
         <div className="relative rounded-2xl rounded-tl-sm border border-sanatan-gold-2/50 bg-sanatan-parchment px-4 py-3 shadow-[0_1px_2px_rgba(105,32,15,0.05)]">
           <div className="absolute left-0 top-4 h-0 w-0.5" aria-hidden />
-          <div className="prose-sm text-[0.9rem] text-foreground/90 [text-wrap:pretty]">
+          <div className="break-words prose-sm text-[0.9rem] text-foreground/90 [text-wrap:pretty]">
             {renderMarkdown(message.text)}
           </div>
           {(message.intent || message.timeMs !== undefined) && (
-            <div className="mt-2 flex items-center gap-2 text-[0.62rem] text-sanatan-gold/80">
-              <Sparkles className="h-3 w-3" aria-hidden />
-              <span className="font-deva">
-                SANATAN HI [ HUMAN INTELLIGENCE ] · {message.intent ?? "answer"}
+            <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[0.62rem] text-sanatan-gold/80">
+              <Sparkles className="h-3 w-3 shrink-0" aria-hidden />
+              <span className="font-medium">
+                <span className="hidden sm:inline">SANATAN HI [ HUMAN INTELLIGENCE ] · </span>
+                {message.intent ?? "answer"}
                 {message.timeMs !== undefined && message.timeMs >= 0
                   ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · offline corpus"}`
                   : " · offline corpus"}
@@ -85,7 +86,7 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
               <button
                 key={s}
                 onClick={() => onSuggestion(s)}
-                className="rounded-full border border-sanatan-gold-2/60 bg-sanatan-parchment px-3 py-1 text-[0.72rem] text-sanatan-maroon-2 dark:text-sanatan-maroon transition-colors hover:border-sanatan-saffron hover:bg-sanatan-gold/15"
+                className="rounded-full border border-sanatan-gold-2/60 bg-sanatan-parchment px-3.5 py-2 text-[0.74rem] text-sanatan-maroon-2 transition-all active:scale-95 dark:text-sanatan-maroon hover:border-sanatan-saffron hover:bg-sanatan-gold/15 sm:px-3 sm:py-1.5"
               >
                 {s}
               </button>

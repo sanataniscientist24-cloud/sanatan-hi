@@ -42,7 +42,7 @@ export function SidebarContent({ onQuery, onNavigate }: SidebarContentProps) {
               <button
                 key={b.id}
                 onClick={() => ask(`Tell me about ${b.name}`)}
-                className="group flex w-full items-center gap-3 rounded-lg border border-transparent px-3 py-2 text-left transition-colors hover:border-sanatan-gold-2/60 hover:bg-sanatan-gold/10"
+                className="group flex w-full items-center gap-3 rounded-lg border border-transparent px-3 py-2.5 text-left transition-colors hover:border-sanatan-gold-2/60 hover:bg-sanatan-gold/10 active:bg-sanatan-gold/20"
                 aria-label={`Ask about ${b.name}`}
               >
                 <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg border border-sanatan-gold-2/60 bg-sanatan-parchment">
@@ -74,7 +74,7 @@ export function SidebarContent({ onQuery, onNavigate }: SidebarContentProps) {
               <button
                 key={t}
                 onClick={() => ask(t)}
-                className="rounded-full border border-sanatan-gold-2/50 bg-sanatan-parchment px-2.5 py-1 text-[0.72rem] text-sanatan-maroon-2 dark:text-sanatan-maroon transition-colors hover:border-sanatan-saffron hover:bg-sanatan-gold/15"
+                className="rounded-full border border-sanatan-gold-2/50 bg-sanatan-parchment px-2.5 py-1.5 text-[0.72rem] text-sanatan-maroon-2 transition-all active:scale-95 hover:border-sanatan-saffron hover:bg-sanatan-gold/15 dark:text-sanatan-maroon"
               >
                 {t}
               </button>

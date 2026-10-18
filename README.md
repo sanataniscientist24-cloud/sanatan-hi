@@ -2,13 +2,13 @@
 
 # ॐ SANATAN HI <sub>[ HUMAN INTELLIGENCE ]</sub>
 
-### A fully offline AI corpus of Sanatan Dharma — Sanskrit · हिंदी · English
+### A fully offline AI corpus of Sanatan Dharma — Sanskrit · हिंदी · English · Español
 
 **Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Hanuman Chalisa · and more**
 
 [![Deploy to GitHub Pages](https://github.com/sanataniscientist24-cloud/sanatan-hi/actions/workflows/deploy.yml/badge.svg)](https://github.com/sanataniscientist24-cloud/sanatan-hi/actions/workflows/deploy.yml)
 ![100% Offline](https://img.shields.io/badge/100%25-offline-maroon)
-![Languages](https://img.shields.io/badge/languages-Sanskrit%20·%20हिंदी%20·%20English-gold)
+![Languages](https://img.shields.io/badge/languages-Sanskrit%20·%20हिंदी%20·%20English%20·%20Español-gold)
 ![License: MIT](https://img.shields.io/badge/license-MIT-blueviolet)
 
 ॥ धर्मो रक्षति रक्षितः ॥

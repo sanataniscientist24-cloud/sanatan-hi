@@ -6,6 +6,7 @@ import { BookOpenText, Flame, Languages, Sparkles, WifiOff } from "lucide-react"
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
 import { dailyVerseSanatan } from "@/lib/client/ask";
+import { CORPUS, CORPUS_STATS } from "@/lib/corpus";
 import type { CorpusEntry } from "@/lib/corpus/types";
 
 interface HeroProps {
@@ -61,16 +62,16 @@ export function Hero({ onSuggestion }: HeroProps) {
         </p>
         <p className="mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/75">
-          Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Hanuman Chalisa —{" "}
+          Bhagavad Gita · Ramayana & Ram Charit Manas · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Yoga Sutras · Hanuman Chalisa —{" "}
           <span className="font-semibold text-sanatan-maroon">in Sanskrit, Hindi, English & Spanish</span>.
         </p>
 
         {/* stats */}
         <div className="mt-5 grid w-full grid-cols-3 gap-2 sm:gap-3">
           {[
-            { icon: BookOpenText, label: "Scripture collections", value: "11" },
-            { icon: Sparkles, label: "Verses & stories", value: "150+" },
-            { icon: Languages, label: "Languages", value: "4" },
+            { icon: BookOpenText, label: "Scripture collections", value: String(CORPUS_STATS.books) },
+            { icon: Sparkles, label: "Verses & stories", value: `${CORPUS.length}+` },
+            { icon: Languages, label: "Languages", value: String(CORPUS_STATS.languages) },
           ].map(({ icon: Icon, label, value }) => (
             <div
               key={label}

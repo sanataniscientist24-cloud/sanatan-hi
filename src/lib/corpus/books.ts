@@ -301,6 +301,55 @@ export const BOOKS: BookInfo[] = [
       { id: "life", name: "जीवन-विधि", nameEn: "Way of Life", descHi: "कर्तव्य, संस्कार, पूजा-विधि, गुरु-शिष्य परम्परा, रामराज्य।", descEn: "Duty, samskaras, worship, guru tradition, Rama Rajya." },
     ],
   },
+  {
+    id: "ram-charit-manas",
+    name: "Ram Charit Manas",
+    nameHi: "श्रीरामचरितमानस",
+    nameSa: "श्रीरामचरितमानसः",
+    author: "Goswami Tulsidas",
+    authorHi: "गोस्वामी तुलसीदास",
+    era: "16th century CE · Awadhi, Kashi",
+    descHi:
+      "गोस्वामी तुलसीदास जी की रचना — राम-कथा का अवधी महाकाव्य। सात कांडों में बाल-लीला से रामराज्य तक की आनंददायी कथा, जिसमें भक्ति, ज्ञान और मर्यादा का अद्भुत संगम है। 'राम नाम' की महिमा और हनुमान जी की शक्ति का प्रतिमान — घर-घर में पढ़ी जाने वाली राम-कथा।",
+    descEn:
+      "Goswami Tulsidas's retelling of the Rama story in Awadhi — seven kands of divine narrative from Rama's childhood to Rama Rajya. It weds devotion to philosophy and dharma: the glory of the Name of Rama, the might of Hanuman, the ideal of maryada. The most recited Ramayana of North India, sung in every household.",
+    accent: "bg-rose-100 text-rose-900 border-rose-300",
+    accentText: "text-rose-700",
+    icon: "book",
+    order: 12,
+    sections: [
+      { id: "bal", name: "बाल कांड", nameEn: "Bal Kand", label: "कांड 1", descHi: "मंगलाचरण, राम-जन्म, विश्वामित्र-यात्रा, सीता-विवाह।", descEn: "Invocations, birth of Rama, Vishwamitra's journey, marriage of Sita." },
+      { id: "ayodhya", name: "अयोध्या कांड", nameEn: "Ayodhya Kand", label: "कांड 2", descHi: "दशरथ-वन, कैकेयी-वर, राम-वन-गमन, भरत-मिलन।", descEn: "Exile of Rama, Bharata's devotion, Chitrakoot." },
+      { id: "aranya", name: "अरण्य कांड", nameEn: "Aranya Kand", label: "कांड 3", descHi: "पंचवटी, शूर्पणखा, खर-वध, सीता-हरण।", descEn: "Panchvati, Shurpanakha, Khara, the golden deer, Sita's abduction." },
+      { id: "kishkindha", name: "किष्किन्धा कांड", nameEn: "Kishkindha Kand", label: "कांड 4", descHi: "हनुमान-मिलन, सुग्रीव-मैत्री, वालि-वध।", descEn: "Meeting Hanuman, Sugriva's alliance, Vali." },
+      { id: "sundar", name: "सुन्दर कांड", nameEn: "Sundar Kand", label: "कांड 5", descHi: "हनुमान की लंका-यात्रा, अशोक-वाटिका, सीता-दर्शन, लंका-दहन।", descEn: "Hanuman's leap to Lanka, Ashoka grove, the burning of Lanka." },
+      { id: "lanka", name: "लंका कांड", nameEn: "Lanka Kand", label: "कांड 6", descHi: "युद्ध, कुम्भकर्ण, रावण-वध।", descEn: "The war, Kumbhakarna, Ravana's fall." },
+      { id: "uttar", name: "उत्तर कांड", nameEn: "Uttar Kand", label: "कांड 7", descHi: "रामराज्य, लव-कुश, समापन।", descEn: "Rama Rajya, Luv and Kush, the closing." },
+    ],
+  },
+  {
+    id: "yoga-sutras",
+    name: "Yoga Sutras of Patanjali",
+    nameHi: "पातंजल योगसूत्र",
+    nameSa: "पातञ्जलयोगसूत्राणि",
+    author: "Maharishi Patanjali",
+    authorHi: "महर्षि पतंजलि",
+    era: "~2nd century BCE-4th CE · 196 sutras, 4 padas",
+    descHi:
+      "महर्षि पतंजलि के 196 सूत्र — राजयोग का प्रमाण-ग्रंथ। चित्त की परिभाषा, उसके पाँच वृत्तियाँ, क्लेश, अष्टांग-मार्ग, समाधि की सीढ़ियाँ — योग का पूरा विज्ञान सूत्र-रूप में। 'योगश्चित्त-वृत्ति-निरोधः' — चित्त की तरंगों का शांत होना ही योग है।",
+    descEn:
+      "Patanjali's 196 aphorisms — the foundational text of Raja Yoga. It defines the mind and its five whirlpools, the kleshas, the eight limbs of practice and the ladder of samadhi: the complete science of yoga in sutra form. 'Yoga is the stilling of the whirlpools of the mind' — its most famous definition.",
+    accent: "bg-teal-100 text-teal-900 border-teal-300",
+    accentText: "text-teal-700",
+    icon: "lotus",
+    order: 13,
+    sections: [
+      { id: "samadhi", name: "समाधि पाद", nameEn: "Samadhi Pada", label: "पाद 1", descHi: "योग की परिभाषा, चित्त-वृत्ति, अभ्यास-वैराग्य।", descEn: "Definition of yoga, mental fluctuations, practice and detachment." },
+      { id: "sadhana", name: "साधन पाद", nameEn: "Sadhana Pada", label: "पाद 2", descHi: "क्लेश, अष्टांग योग, यम-नियम-आसन-प्राणायाम।", descEn: "Kleshas, the eight limbs, yama, niyama, asana, pranayama." },
+      { id: "vibhuti", name: "विभूति पाद", nameEn: "Vibhuti Pada", label: "पाद 3", descHi: "धारणा-ध्यान-समाधि, सिद्धियाँ।", descEn: "Concentration, meditation, absorption, the siddhis." },
+      { id: "kaivalya", name: "कैवल्य पाद", nameEn: "Kaivalya Pada", label: "पाद 4", descHi: "कैवल्य — पुरुष की स्वतंत्र स्थिति।", descEn: "Kaivalya — the absolute freedom of the Self." },
+    ],
+  },
 ];
 
 export const BOOK_MAP: Record<string, BookInfo> = Object.fromEntries(

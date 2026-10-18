@@ -6,6 +6,8 @@ import { VEDA_ENTRIES, UPANISHAD_ENTRIES } from "./vedas";
 import { SHIV_PURAN_ENTRIES, BHAGAVATA_ENTRIES, VISHNU_PURANA_ENTRIES } from "./puranas";
 import { STOTRA_ENTRIES } from "./stotras";
 import { CONCEPT_ENTRIES } from "./concepts";
+import { RCM_ENTRIES } from "./ram-charit-manas";
+import { YOGA_SUTRA_ENTRIES } from "./yoga-sutras";
 import type { CorpusEntry } from "./types";
 
 /** The complete offline corpus of SANATAN HI. */
@@ -20,6 +22,8 @@ export const CORPUS: CorpusEntry[] = [
   ...UPANISHAD_ENTRIES,
   ...STOTRA_ENTRIES,
   ...CONCEPT_ENTRIES,
+  ...RCM_ENTRIES,
+  ...YOGA_SUTRA_ENTRIES,
 ];
 
 export const CORPUS_MAP: Record<string, CorpusEntry> = Object.fromEntries(
@@ -33,7 +37,7 @@ export function entriesByBook(bookId: string): CorpusEntry[] {
 export const CORPUS_STATS = {
   entries: CORPUS.length,
   books: BOOKS.length,
-  languages: 3 as const,
+  languages: 4 as const,
   versesWithSanskrit: CORPUS.filter((e) => e.sanskrit).length,
   concepts: CORPUS.filter((e) => e.kind === "concept").length,
   stories: CORPUS.filter((e) => e.kind === "story").length,

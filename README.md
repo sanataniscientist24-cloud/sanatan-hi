@@ -34,18 +34,22 @@ Ask things like:
 
 ## 📚 The Corpus
 
+**340 curated entries across 13 collections** (all in Sanskrit + transliteration + Hindi + English + Spanish):
+
 | Collection | Contents |
 |---|---|
-| **श्रीमद्भगवद्गीता** | Key shlokas across all 18 adhyayas with translations |
-| **वाल्मीकि रामायण** | 7 kandas — shlokas, katha summaries, Rama Rajya |
-| **महाभारत** | 18 parvas — invocation, Yaksha Prashna, Vidura Niti, stories |
-| **भागवत पुराण** | 12 skandhas — avatars, Prahlada, Gajendra Moksha, Dhruva |
-| **शिव पुराण** | 7 samhitas — jyotirlinga stotra, Samudra Manthan, Rudra |
-| **विष्णु पुराण** | 6 amshas — Vishnu Sahasranama opening, concepts |
-| **चारों वेद** | Rig (Gayatri, Purusha, Nasadiya), Yajur, Sama, Atharva |
-| **उपनिषद्** | 10 principal Upanishads + mahavakyas |
-| **स्तोत्र एवं मंत्र** | Hanuman Chalisa, Maha Mrityunjaya, aartis, mahamantra |
-| **धर्म-संकल्पनाएँ** | 32 concepts — karma, atman, moksha, death, fear, students |
+| **श्रीमद्भगवद्गीता** | 86 shlokas across all 18 adhyayas with translations |
+| **वाल्मीकि रामायण** | 20 entries — 7 kandas, shlokas, katha summaries, Rama Rajya, Aditya Hridayam |
+| **महाभारत** | 23 entries — invocation, Yaksha Prashna, Vidura Niti, Shanti Parva, stories |
+| **भागवत पुराण** | 16 entries — avatars, Prahlada, Gajendra Moksha, Krishna lilas, Jada Bharata |
+| **शिव पुराण** | 19 entries — jyotirlinga stotra, Samudra Manthan, Ganesha's birth, Devi stories |
+| **विष्णु पुराण** | 6 entries — Vishnu Sahasranama opening, amrita manthan, concepts |
+| **चारों वेद** | 17 hymns — Gayatri, Purusha, Nasadiya, Hiranyagarbha, Durga & Medha Suktas |
+| **उपनिषद्** | 32 verses — 10 principal Upanishads, mahavakyas, antaryami, kaivalya |
+| **श्रीरामचरितमानस** | 17 entries — all 7 kands of Tulsidas: mangalacharan, famous dohas & kathas |
+| **पातंजल योगसूत्र** | 20 sutras — 1.1-1.3, eight limbs, yamas, niyamas, asana, pranayama, kaivalya |
+| **स्तोत्र एवं मंत्र** | 27 hymns — Hanuman Chalisa, Aditya Hridayam, Mahishasura Mardini, Kanakadhara |
+| **धर्म-संकल्पनाएँ** | 57 concepts — karma, atman, moksha, tapasya, seva, six darshanas, death, fear |
 
 ## 🧠 How the "offline AI" works
 

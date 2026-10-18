@@ -25,6 +25,25 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
     tags: ["agni", "fire", "first verse", "rigveda opening", "अग्नि", "प्रथम ऋचा", "यज्ञ", "ऋग्वेद", "fire god"],
   },
   {
+    id: "rv-ganapati-2-23-1",
+    kind: "mantra",
+    bookId: "vedas",
+    section: `${V} · Mandala 2.23.1 — Ganapati Mantra`,
+    sectionHi: `${VH} · मंडल 2.23.1 — गणपति मंत्र`,
+    verse: "2.23.1",
+    sanskrit:
+      "गणानां त्वा गणपतिं हवामहे कविं कवीनामुपमश्रवस्तिनम्। ज्येष्ठराजं ब्रह्मणां ब्रह्मणस्पते आ नः श्र्ण्वन्नूतिभिः सीद सादनम् ॥",
+    translit:
+      "gaṇānāṁ tvā gaṇapatiṁ havāmahe kaviṁ kavīnām upamaśravastinam, jyeṣṭharājaṁ brahmaṇāṁ brahmaṇas pate, ā naḥ śṛṇvan nūtibhiḥ sīda sādanam",
+    hindi:
+      "हम समस्त गणों के स्वामी गणपति (ब्रह्मणस्पति) का आह्वान करते हैं — कवियों में श्रेष्ठ कवि, उत्तम कीर्ति-संपन्न और ब्राह्मण-भावों के ज्येष्ठ राजा को। हे मंत्र-स्वामी! हमारी स्तुति सुनकर सहायकों सहित यज्ञ-सदन में आसीन हों। गणेश-उपासना का वैदिक मूल यही ऋचा है — आज भी शुभ कार्य का आरम्भ इसी मंत्र से होता है।",
+    english:
+      "We invoke you, O Ganapati, Lord of the hosts, the seer of seers, of most exalted fame; the eldest king of sacred prayers, O Brahmanaspati — hearing our hymns with their offerings, come and be seated in this sacrificial hall. The Vedic root of Ganesha worship, this Rigvedic verse still opens every auspicious rite today.",
+    spanish:
+      "Te invocamos, oh Ganapati, señor de las huestes, vidente entre videntes, de excelsa fama; el rey supremo de las sagradas plegarias, oh Brahmanaspati — escuchando nuestros himnos con sus ofrendas, ven y siéntate en este recinto del sacrificio. La raíz védica del culto a Ganesha: este verso del Rig Veda todavía abre todo rito auspicioso.",
+    tags: ["ganapati", "ganesh", "brahmanaspati", "invocation", "गणानां त्वा गणपतिं", "गणेश", "ब्रह्मणस्पति", "विघ्ननाश", "mantra", "famous"],
+  },
+  {
     id: "rv-gayatri-3-62-10",
     kind: "mantra",
     bookId: "vedas",
@@ -82,6 +101,63 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
     tags: ["nasadiya", "creation", "philosophy", "before creation", "नासदीय सूक्त", "सृष्टि", "पूर्व", "असत्", "philosophy", "famous"],
   },
   {
+    id: "rv-hiranyagarbha-10-121",
+    kind: "verse",
+    bookId: "vedas",
+    section: `${V} · Mandala 10.121 — Hiranyagarbha Sukta`,
+    sectionHi: `${VH} · मंडल 10.121 — हिरण्यगर्भ सूक्त`,
+    verse: "10.121.1",
+    sanskrit:
+      "हिरण्यगर्भः समवर्तताग्रे भूतस्य जातः पतिरेक आसीत्। स दधार पृथिवीं द्यामुतेमां कस्मै देवाय हविषा विधेम ॥",
+    translit:
+      "hiraṇyagarbhaḥ samavartatāgre bhūtasya jātaḥ patir eka āsīt, sa dadhāra pṛthivīṁ dyām utemāṁ — kasmai devāya haviṣā vidhema",
+    hindi:
+      "आदि में हिरण्यगर्भ (सुनहरा बीज-ब्रह्मांड) प्रकट हुआ; वही समस्त भूत-जगत् को जन्म देकर एक-अद्वितीय स्वामी हुआ। उसी ने इस पृथ्वी और द्युलोक को धारण किया है। हम उस किस देवता को हवि से अर्पण करें? दशम मंडल का विराट सृष्टि-सूक्त — ब्रह्मांड के सुनहरे गर्भ से उदित होने का प्राचीनतम ऋषि-चित्र।",
+    english:
+      "In the beginning arose the Golden Seed — Hiranyagarbha; born of the world, he became the one lord of all beings. He upholds this earth and this heaven. To which god shall we offer our oblation? The majestic creation hymn of Mandala Ten — the earliest vision of the universe hatching from a cosmic golden womb.",
+    spanish:
+      "En el comienzo surgió la Semilla Dorada — Hiranyagarbha; nacido del mundo, se convirtió en el único señor de todos los seres. Él sostiene esta tierra y este cielo. ¿A qué dios ofreceremos nuestra oblación? El majestuoso himno de la creación del Mandala Diez — la visión más antigua del universo brotando de un útero cósmico dorado.",
+    tags: ["hiranyagarbha", "golden embryo", "creation", "cosmic egg", "हिरण्यगर्भ", "सृष्टि सूक्त", "ब्रह्मांड", "प्रजापति", "famous"],
+  },
+  {
+    id: "rv-rita-satya-10-190",
+    kind: "verse",
+    bookId: "vedas",
+    section: `${V} · Mandala 10.190.1`,
+    sectionHi: `${VH} · मंडल 10.190.1`,
+    verse: "10.190.1",
+    sanskrit:
+      "ऋतं च सत्यं चाभीद्धात् तपसोऽध्यजायत। ततो रात्र्यजायत ततः समुद्रो अर्णवः ॥",
+    translit:
+      "ṛtaṁ ca satyaṁ cābhīddhāt tapaso 'dhy ajāyata, tato rātry ajāyata tataḥ samudro arṇavaḥ",
+    hindi:
+      "आदि की महान् तपस्या से ऋत (ब्रह्मांडीय व्यवस्था) और सत्य का जन्म हुआ; उसी से रात्रि उत्पन्न हुई और उसी से सागर की लहरें। ऋत और सत्य — वैदिक जगत्-दृष्टि के दो आधार-स्तंभ, जिनसे समस्त धर्म-परम्परा की नदी प्रवाहित हुई है।",
+    english:
+      "From the mighty tapas of the beginning were born Rita (cosmic order) and Satya (truth); from them the night was born, and from that the ocean's rolling waves. Rita and Satya — the twin pillars of the Vedic worldview, from which the whole river of dharma has flowed.",
+    spanish:
+      "Del poderoso tapas del origen nacieron Rita (el orden cósmico) y Satya (la verdad); de ellos nació la noche, y de ella las olas rodantes del océano. Rita y Satya — los dos pilares de la cosmovisión védica, de los cuales ha fluido todo el río del dharma.",
+    tags: ["rita", "satya", "truth", "cosmic order", "tapas", "ऋत", "सत्य", "तपस्या", "धर्म", "creation"],
+  },
+  {
+    id: "rv-sangathan-10-191",
+    kind: "verse",
+    bookId: "vedas",
+    section: `${V} · Mandala 10.191.2-4 — Sangathan Sukta`,
+    sectionHi: `${VH} · मंडल 10.191.2-4 — संघठन सूक्त (एकता-सूक्त)`,
+    verse: "10.191.2-4",
+    sanskrit:
+      "सं गच्छध्वं सं वदध्वं सं वो मनांसि जानताम् ॥ ... समानी व आकूतिः समाना हृदयानि वः। समानमस्तु वो मनो यथा वः सुसहासति ॥",
+    translit:
+      "saṁ gacchadhvaṁ saṁ vadadhvaṁ saṁ vo manāṁsi jānatām — samānī va ākūtiḥ samānā hṛdayāni vaḥ, samānam astu vo mano yathā vaḥ susahāsati",
+    hindi:
+      "मिलकर चलो, मिलकर बोलो, तुम्हारे मन एक-भाव से जानें — जैसे प्राचीन देवता एक होकर साझा भाग अर्पित करते हैं। तुम्हारा संकल्प एक हो, हृदय एक हों और मन एक हो, ताकि तुम सब साथ-साथ रह सको। सामूहिक जीवन और राष्ट्रीय एकता का शाश्वत वैदिक महामंत्र।",
+    english:
+      "Walk together, speak together, let your minds be of one accord — as the gods of old, being of one mind, accepted their shared portion. Common be your purpose, common your hearts, common your minds, that you may all dwell together in unity — the eternal Vedic charter of fellowship and national oneness.",
+    spanish:
+      "Caminad juntos, hablad juntos, que vuestras mentes sean unánimes — como los dioses de antaño, siendo de una sola mente, aceptaron su porción compartida. Común sea vuestro propósito, comunes vuestros corazones, común vuestra mente, para que todos habitéis juntos en unidad — la eterna carta védica de la fraternidad y la unidad nacional.",
+    tags: ["unity", "sangathan", "harmony", "sam gacchadhvam", "सं गच्छध्वं", "एकता", "सामूहिकता", "समानमस्तु वो मनः", "together", "famous"],
+  },
+  {
     id: "rv-bhadra-1-89",
     kind: "verse",
     bookId: "vedas",
@@ -101,6 +177,25 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
     tags: ["bhadra", "noble thoughts", "openness", "आ नो भद्रा", "उत्तम विचार", "ज्ञान", "उदारता", "famous"],
   },
   {
+    id: "rv-ekam-sat-1-164-46",
+    kind: "verse",
+    bookId: "vedas",
+    section: `${V} · Mandala 1.164.46`,
+    sectionHi: `${VH} · मंडल 1.164.46`,
+    verse: "1.164.46",
+    sanskrit:
+      "इन्द्रं मित्रं वरुणमग्निमाहुरथो दिव्यः स सुपर्णो गरुत्मान्। एकं सद्विप्रा बहुधा वदन्त्यग्निं यमं मातरिश्वानमाहुः ॥",
+    translit:
+      "indraṁ mitraṁ varuṇam agnim āhur atho divyaḥ sa suparṇo garutmān, ekaṁ sad viprā bahudhā vadanti — agniṁ yamaṁ mātariśvānam āhuḥ",
+    hindi:
+      "विद्वान् विप्र उस एक सत् को अनेक नामों से पुकारते हैं — इन्द्र, मित्र, वरुण, अग्नि, दिव्य सुपर्ण गरुत्मान्, यम, मातरिश्वान् — वे सब उसी अद्वितीय सत्य के ही नाम हैं। सहिष्णुता और अनेक-मार्ग स्वीकृति का शाश्वत वैदिक उद्घोष — भारत की आत्मा का दर्शन।",
+    english:
+      "The wise call the One Being by many names — they call it Indra, Mitra, Varuna, Agni, the heavenly Garutman of shining wings, Yama and Matarishvan. The eternal Vedic proclamation of one Truth behind many names — the philosophical heart of India's religious tolerance.",
+    spanish:
+      "Los sabios llaman al único Ser con muchos nombres — lo llaman Indra, Mitra, Varuna, Agni, el celestial Garutman de brillantes alas, Yama y Matarishvan. La proclamación védica eterna de la única Verdad tras los muchos nombres — el corazón filosófico de la tolerancia religiosa de la India.",
+    tags: ["ekam sad", "one truth many names", "pluralism", "tolerance", "एकं सत्", "बहुधा वदन्ति", "एकता", "सहिष्णुता", "famous", "unity"],
+  },
+  {
     id: "rv-mrityunjaya-7-59-12",
     kind: "mantra",
     bookId: "vedas",
@@ -118,6 +213,25 @@ export const VEDA_ENTRIES: CorpusEntry[] = [
     spanish:
       "Adoramos al señor de tres ojos Tryambaka, el fragante nutridor de todo; que Él nos libere del vínculo de la muerte, como un pepino de su tallo, y nos conceda la inmortalidad. El gran mantra vencedor de la muerte de Shiva — la suprema plegaria por la sanación, la intrepidez y la liberación de la mortalidad.",
     tags: ["mrityunjaya", "tryambakam", "shiva", "immortality", "death", "महामृत्युंजय", "त्र्यम्बकं", "मृत्यु", "शिव", "healing", "famous", "मंत्र"],
+  },
+  {
+    id: "rv-soma-8-48-3",
+    kind: "mantra",
+    bookId: "vedas",
+    section: `${V} · Mandala 8.48.3 — Soma Pavamana`,
+    sectionHi: `${VH} · मंडल 8.48.3 — सोम पवमान`,
+    verse: "8.48.3",
+    sanskrit:
+      "अपाम सोमममृता अभूमागन्म ज्योतिरवदान् देवान् ॥",
+    translit:
+      "apāma somam amṛtā abhūma, āganma jyotir avadān devān",
+    hindi:
+      "हमने सोम-रस पिया है — अमृतता को प्राप्त हुए हैं; हम तेजस्वी ज्योति में जा पहुँचे हैं और देवताओं को पा लिया है। अमर पंक्ति का यह उद्घोष — ऋत्विक की सर्वोच्च दिव्य-अवस्था, अमृत-पान और ज्योति-दर्शन की वैदिक मस्ती का वर्णन है।",
+    english:
+      "We have drunk Soma; we have become immortal; we have gone to the light; we have found the gods. The opening of the immortal Soma verse — the priest's ecstatic vision of divine light and deathlessness, the highest experience of the Vedic mystic.",
+    spanish:
+      "Hemos bebido Soma; nos hemos vuelto inmortales; hemos ido a la luz; hemos encontrado a los dioses. El inicio del inmortal verso del Soma — la visión extática del sacerdote: la luz divina y la inmortalidad, la suprema experiencia del místico védico.",
+    tags: ["soma", "immortality", "light", "amrita", "अपाम सोमम्", "सोम", "अमृत", "ज्योति", "ecstasy", "famous"],
   },
   {
     id: "av-earth-mother-12-1-12",
@@ -305,6 +419,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     tags: ["chariot", "katha", "psychology", "रथ", "सारथि", "लगाम", "घोड़े", "बुद्धि", "मन", "analogy", "famous"],
   },
   {
+    id: "up-katha-uttishtha",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Katha Upanishad 1.3.14`,
+    sectionHi: `${UH} · कठोपनिषद् 1.3.14`,
+    verse: "Katha 1.3.14",
+    sanskrit:
+      "उत्तिष्ठत जाग्रत प्राप्य वरान्निबोधत। क्षुरस्य धारा निशिता दुरत्यया दुर्गं पथस्तत्कवयो वदन्ति ॥",
+    translit:
+      "uttiṣṭhata jāgrata prāpya varān nibodhata, kṣurasya dhārā niśitā duratyayā durgaṁ pathas tat kavayo vadanti",
+    hindi:
+      "उठो, जागो! जागरण द्वारा वरदानों को प्राप्त करके जानो। यह मार्ग तीक्ष्ण उस्तरे की धार के समान — अत्यंत दुर्गम है; ऐसा विद्वान् कहते हैं। यमराज द्वारा नचिकेता को दिया गया जागरण-प्रतिज्ञा — वही आह्वान जिसे स्वामी विवेकानंद ने भारत का जागरण-नाद बनाया।",
+    english:
+      "Arise! Awake! Approach the great ones and learn, for the path is sharp like a razor's edge — hard to cross, difficult to tread, say the wise. Yama's clarion call to young Nachiketa — the same awakening that Swami Vivekananda thundered to a sleeping nation: 'Arise, awake, and stop not till the goal is reached.'",
+    spanish:
+      "¡Levántate! ¡Despierta! Acércate a los grandes y aprende, pues el sendero es afilado como el filo de una navaja — difícil de cruzar, arduo de transitar, dicen los sabios. La llamada de clarín de Yama al joven Nachiketa — el mismo despertar que Swami Vivekananda tronó a una nación dormida: 'Levántate, despierta y no te detengas hasta alcanzar la meta.'",
+    tags: ["uttishthata jagrata", "awakening", "katha", "nachiketa", "उत्तिष्ठत जाग्रत", "जागरण", "विवेकानंद", "उस्तरे की धार", "famous", "vigilance"],
+  },
+  {
     id: "up-katha-15",
     kind: "verse",
     bookId: "upanishads",
@@ -322,6 +455,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     spanish:
       "Sin sonido, sin tacto, sin forma, imperecedero; igualmente sin sabor, constante, inodoro; sin comienzo ni fin, más allá del gran elemento — mediante tal discernimiento, el Sí mismo debe conocerse a través de la práctica.",
     tags: ["self qualities", "formless", "अशब्द", "अरूप", "अनादि", "आत्म-धर्म", "discrimination"],
+  },
+  {
+    id: "up-chand-sarvam",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Chandogya Upanishad 3.14.1`,
+    sectionHi: `${UH} · छान्दोग्योपनिषद् 3.14.1`,
+    verse: "Chandogya 3.14.1",
+    sanskrit:
+      "सर्वं खल्विदं ब्रह्म तज्जलानिति शान्त उपासीत ॥",
+    translit:
+      "sarvaṁ khalv idaṁ brahma tajjalān iti śānta upāsīta",
+    hindi:
+      "यह समस्त जगत् वस्तुतः ब्रह्म ही है। 'तज्जलान्' — जिससे जगत् उत्पन्न होता है (ज), जिसमें जीता है (ला), जिसमें लय को प्राप्त होता (अन्) — उस एक ब्रह्म को शांत भाव से उपासना करो। यह एक वाक्य अद्वैत-दर्शन का सूत्र-बीज बन गया — सृष्टि, स्थिति और लय सब उसी एक ब्रह्म में।",
+    english:
+      "All this universe is verily Brahman. Meditate on It calmly as tajjalān — that from which the world is born, in which it lives, and into which it dissolves. One sentence that became the seed-formula of Advaita philosophy: creation, existence and dissolution are all the one Brahman.",
+    spanish:
+      "Todo este universo es en verdad Brahman. Contémplalo serenamente como tajjalān — aquello de lo cual el mundo nace, en lo cual vive y en lo cual se disuelve. Una sola frase que se convirtió en la fórmula-semilla de la filosofía Advaita: creación, existencia y disolución son el único Brahman.",
+    tags: ["sarvam khalvidam brahma", "advaita", "brahman", "tajjalan", "सर्वं खल्विदं ब्रह्म", "ब्रह्म", "अद्वैत", "उपासना", "famous", "meditation"],
   },
   {
     id: "up-chand-tattvamasi",
@@ -362,6 +514,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     tags: ["sat", "one without second", "creation", "सदेव", "एकमेवाद्वितीयम्", "अद्वैत", "सृष्टि", "unity"],
   },
   {
+    id: "up-chand-bhuma",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Chandogya Upanishad 7.23-24 — Bhuma Vidya`,
+    sectionHi: `${UH} · छान्दोग्योपनिषद् 7.23-24 — भूमा विद्या`,
+    verse: "Chandogya 7.23-24",
+    sanskrit:
+      "यत्र नान्यत् पश्यति नान्यच्छृणोति नान्यद्विजानाति स भूमा। अथ यत्रान्यत् पश्यत्यन्यच्छृणोत्यन्यद्विजानाति तदल्पम् ॥",
+    translit:
+      "yatra nānyat paśyati nānyac chṛṇoti nānyad vijānāti sa bhūmā, atha yatrānyat paśyaty anyac chṛṇoty anyad vijānāti tad alpam",
+    hindi:
+      "जहाँ न कुछ और दिखता है, न सुनाई देता है, न और कुछ जाना जाता — वही भूमा (अनंत) है; और जहाँ दूसरा कुछ दिखता, सुनाई देता और जाना जाता है — वह अल्प (सीमित) है। सनत्कुमार-नारद संवाद का चरम — जो अनंत है वही अमृत है, जो सीमित है वही मर्त्य।",
+    english:
+      "Where one sees nothing else, hears nothing else, knows nothing else — that is the Infinite (bhūmā); where one sees, hears and knows something else — that is the finite (alpa). The climax of the Sanatkumara-Narada dialogue: the Infinite alone is immortal, the finite is mortal.",
+    spanish:
+      "Donde no se ve nada más, no se oye nada más, no se conoce nada más — eso es lo Infinito (bhūmā); donde se ve, se oye y se conoce algo más — eso es lo finito (alpa). El clímax del diálogo entre Sanatkumara y Narada: solo lo Infinito es inmortal, lo finito es mortal.",
+    tags: ["bhuma", "infinite", "finite", "sanatkumara", "narada", "भूमा", "अनंत", "अल्प", "अमृत", "meditation"],
+  },
+  {
     id: "up-brihad-aham",
     kind: "verse",
     bookId: "upanishads",
@@ -379,6 +550,44 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     spanish:
       "Yo soy Brahman. El gran dicho surgido del diálogo entre Yajnavalkya y Maitreyi — el Sí mismo de cada ser no es otro que el Absoluto; la culminación del conocimiento es esta realización.",
     tags: ["aham brahmasmi", "mahavakya", "self", "अहं ब्रह्मास्मि", "याज्ञवल्क्य", "महावाक्य", "ब्रह्म", "famous"],
+  },
+  {
+    id: "up-brihad-priya",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Brihadaranyaka Upanishad 2.4.5`,
+    sectionHi: `${UH} · बृहदारण्यकोपनिषद् 2.4.5`,
+    verse: "Brihad 2.4.5",
+    sanskrit:
+      "आत्मनस्तु कामाय सर्वं प्रियं भवति ॥",
+    translit:
+      "ātmanas tu kāmāya sarvaṁ priyaṁ bhavati",
+    hindi:
+      "पति, पत्नी, पुत्र, धन और लोक — न कोई अपने लिए प्रिय है; सब कुछ आत्मा के लिए ही प्रिय है। याज्ञवल्क्य ने मैत्रेयी को समझाया कि सारा संसार-प्रेम वस्तुतः स्व-प्रेम का ही प्रतिबिंब है — इसलिए आत्मा का दर्शन ही सर्वाधिक प्रिय है। उपनिषदों का प्रेम-मनोविज्ञान की गहनतम देन।",
+    english:
+      "It is for the sake of the Self that everything becomes dear. Yajnavalkya's teaching to Maitreyi: not for the husband's sake is the husband dear, nor the wife, son or wealth for their own sake — all love is ultimately the love of the Self. The profoundest psychology of love in the Upanishads.",
+    spanish:
+      "Es por el Sí mismo por lo que todo se vuelve querido. La enseñanza de Yajnavalkya a Maitreyi: no por el esposo mismo es querido el esposo, ni la esposa, el hijo o la riqueza por sí mismos — todo amor es en última instancia el amor al Sí mismo. La psicología del amor más profunda de los Upanishads.",
+    tags: ["atmanas tu kamaya", "love", "self", "maitreyi", "yajnavalkya", "आत्मनस्तु कामाय", "प्रेम", "आत्मा", "मैत्रेयी", "famous"],
+  },
+  {
+    id: "up-brihad-antaryami",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Brihadaranyaka Upanishad 3.7.3 — Antaryami`,
+    sectionHi: `${UH} · बृहदारण्यकोपनिषद् 3.7.3 — अन्तर्यामी`,
+    verse: "Brihad 3.7.3",
+    sanskrit:
+      "यः पृथिव्यां तिष्ठन् पृथिवीमन्तरो यं पृथिवी न वेद यस्य पृथिवी शरीरं यः पृथिवीमन्तरो यमयति। एष त आत्मान्तर्याम्यमृतः ॥",
+    translit:
+      "yaḥ pṛthivyāṁ tiṣṭhan pṛthivīm antaro yaṁ pṛthivī na veda yasya pṛthivī śarīraṁ, yaḥ pṛthivīm antaro yamayati — eṣa ta ātmāntaryāmy amṛtaḥ",
+    hindi:
+      "जो पृथ्वी में स्थित होकर भी पृथ्वी से भिन्न है, जिसे पृथ्वी नहीं जानती, जिसका शरीर पृथ्वी है और जो पृथ्वी को भीतर से शासन करता है — वही तेरा आत्मा, अंतर्यामी अमर है। यही सूत्र जल, अग्नि, आकाश और समस्त प्राणियों तक दोहराया गया — ईश्वर सबके भीतर अदृश्य शासक रूप में विराजमान है।",
+    english:
+      "He who dwells in the earth, yet is other than the earth, whom the earth does not know, whose body the earth is, who controls the earth from within — He is your Self, the Inner Controller, the Immortal. The same refrain is repeated for the waters, fire, sky and every being — the celebrated Antaryami doctrine of God ruling all from within as the unseen dweller.",
+    spanish:
+      "Aquel que mora en la tierra, y sin embargo es distinto de ella, a quien la tierra no conoce, de quien la tierra es cuerpo, quien gobierna la tierra desde dentro — Él es tu Sí mismo, el Controlador Interno, el Inmortal. El mismo estribillo se repite para las aguas, el fuego, el cielo y todo ser — la célebre doctrina del Antaryami: Dios gobernando todo desde dentro como el morador invisible.",
+    tags: ["antaryami", "inner controller", "immanent", "yajnavalkya", "अन्तर्यामी", "अंतरात्मा", "अमृत", "ईश्वर", "साक्षी", "famous"],
   },
   {
     id: "up-brihad-asato",
@@ -416,6 +625,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     spanish:
       "Que todos sean felices, que todos estén libres de enfermedad, que todos vean el bien, que nadie sufra — la suprema plegaria por el bienestar colectivo.",
     tags: ["sarve bhavantu", "well-being", "peace", "सर्वे भवन्तु सुखिनः", "कल्याण", "निरामय", "famous", "welfare"],
+  },
+  {
+    id: "up-mundaka-vidya",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Mundaka Upanishad 1.1.4-5`,
+    sectionHi: `${UH} · मुण्डकोपनिषद् 1.1.4-5`,
+    verse: "Mundaka 1.1.4-5",
+    sanskrit:
+      "द्वे विद्ये वेदितव्ये इति ह स्म यद्ब्रह्मविदो वदन्ति परा चैवापरा च ॥ तत्रापरा ऋग्वेदो यजुर्वेदः सामवेदोऽथर्ववेदः शिक्षा कल्पो व्याकरणं निरुक्तं छन्दो ज्योतिषमिति। अथ परा यया तदक्षरमधिगम्यते ॥",
+    translit:
+      "dve vidye veditavye iti ha sma yad brahmavido vadanti parā caivāparā ca — tatrāparā ṛgvedo yajurvedaḥ sāmavedo 'tharvavedaḥ śikṣā kalpo vyākaraṇaṁ niruktaṁ chando jyotiṣam iti, atha parā yayā tad akṣaram adhigamyate",
+    hindi:
+      "ब्रह्मवेत्ता कहते हैं — जानने योग्य दो विद्याएँ हैं: परा और अपरा। अपरा में चारों वेद तथा शिक्षा, कल्प, व्याकरण, निरुक्त, छन्द और ज्योतिष आते हैं; परा विद्या वह है जिससे अक्षर (अविनाशी ब्रह्म) को जाना जाता है। स्वयं वेद घोषणा करते हैं कि उनका अंतिम उद्देश्य उस परम ज्ञान तक पहुँचाना ही है।",
+    english:
+      "Two kinds of knowledge are to be known, say the knowers of Brahman — the higher (para) and the lower (apara). The lower comprises the four Vedas and their six limbs — phonetics, ritual, grammar, etymology, metrics and astronomy; but by the higher one attains the Imperishable. The Vedas themselves declare that their final goal is that supreme knowledge.",
+    spanish:
+      "Dos clases de conocimiento deben conocerse, dicen los conocedores de Brahman — el superior (para) y el inferior (apara). El inferior comprende los cuatro Vedas y sus seis miembros — fonética, ritual, gramática, etimología, métrica y astronomía; pero mediante el superior se alcanza lo Imperecedero. Los propios Vedas declaran que su meta final es ese conocimiento supremo.",
+    tags: ["para vidya", "apara vidya", "two knowledges", "vedanta", "परा विद्या", "अपरा विद्या", "अक्षर", "ब्रह्मविद्", "education", "famous"],
   },
   {
     id: "up-mundaka-dva",
@@ -456,6 +684,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     tags: ["realization", "doubts", "knot of heart", "हृदयग्रन्थि", "संशय", "कर्म नाश", "liberation"],
   },
   {
+    id: "up-mundaka-satyameva",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Mundaka Upanishad 3.1.6`,
+    sectionHi: `${UH} · मुण्डकोपनिषद् 3.1.6`,
+    verse: "Mundaka 3.1.6",
+    sanskrit:
+      "सत्यमेव जयते नानृतम् ॥",
+    translit:
+      "satyam eva jayate nānṛtaṁ",
+    hindi:
+      "सत्य की ही विजय होती है, असत्य की नहीं। भारत सरकार का राष्ट्रीय प्रतीक-वाक्य इसी उपनिषद्-पंक्ति से लिया गया है — जो राजपत्र के सिंह-शिखर के नीचे अंकित है। ऋत के मार्ग पर चलने की वेद-परम्परा की चिरंतन आज्ञा।",
+    english:
+      "Truth alone triumphs, not falsehood. India's national motto, inscribed beneath the Lion Capital of the state emblem, comes from this very line of the Mundaka — the timeless Vedic command to walk the path of truth alone.",
+    spanish:
+      "Solo la verdad triunfa, no la falsedad. El lema nacional de la India, inscrito bajo el Capitel del León del emblema del Estado, proviene de esta misma línea del Mundaka — el mandato védico eterno de caminar únicamente por la senda de la verdad.",
+    tags: ["satyameva jayate", "truth", "national motto", "सत्यमेव जयते", "सत्य", "राष्ट्रीय वाक्य", "भारत", "famous", "victory"],
+  },
+  {
     id: "up-mandukya-om",
     kind: "mantra",
     bookId: "upanishads",
@@ -473,6 +720,44 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     spanish:
       "Om — esta sílaba imperecedera es todo este universo; su explicación: el pasado, el futuro y cuanto existe más allá — todo es Om, el Absoluto no dual. El Mandukya de doce mantras es honrado como el Vedanta entero en miniatura.",
     tags: ["om", "mandukya", "nondual", "ॐ", "माण्डूक्य", "अद्वैत", "प्रणव", "famous"],
+  },
+  {
+    id: "up-mandukya-turiya",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Mandukya Upanishad 7 — Turiya`,
+    sectionHi: `${UH} · माण्डूक्योपनिषद् 7 — तुरीय`,
+    verse: "Mandukya 7",
+    sanskrit:
+      "नान्तःप्रज्ञं न बहिष्प्रज्ञं नोभयतःप्रज्ञं न प्रज्ञानघनं नाप्रज्ञम् ॥ ... प्रपञ्चोपशमं शान्तं शिवमद्वैतं चतुर्थं मन्यन्ते। स आत्मा। स विज्ञेयः ॥",
+    translit:
+      "nāntaḥprajñaṁ na bahiṣprajñaṁ nobhayataḥprajñaṁ na prajñānaghanaṁ nāprajñaṁ — prapañcopaśamaṁ śāntaṁ śivam advaitaṁ caturtham manyante, sa ātmā, sa vijñeyaḥ",
+    hindi:
+      "तुरीय — चौथी अवस्था — न अंतःप्रज्ञ (स्वप्न-सी) है, न बहिष्प्रज्ञ (जाग्रत-सी), न उभयतःप्रज्ञ, न चेतना-घन, न अचेतन; वह समस्त प्रपंच के शमन का धाम — शांत, शिव और अद्वैत बताया गया है। वही आत्मा है, उसी को जानना है। जाग्रत-स्वप्न-सुषुप्ति से परे चौथे पद का प्रसिद्ध निरूपण।",
+    english:
+      "The fourth (turiya) is not inward-cognitive like dream, not outward-cognitive like waking, not both, not a mass of cognition, not knowing nor unknowing — it is the stilling of all appearance, peaceful, auspicious and nondual. That is the Self, and it is to be realized. The celebrated description of the fourth state beyond waking, dream and deep sleep.",
+    spanish:
+      "El cuarto (turiya) no es cognición hacia adentro como el sueño, ni hacia afuera como la vigilia, ni ambas, ni masa de cognición, ni conocer ni no-conocer — es el aquietamiento de toda apariencia, pacífico, auspicioso y no dual. Ese es el Sí mismo, y debe ser realizado. La célebre descripción del cuarto estado, más allá de la vigilia, el sueño y el sueño profundo.",
+    tags: ["turiya", "fourth state", "consciousness", "mandukya", "तुरीय", "चौथी अवस्था", "शान्तं शिवमद्वैतम्", "अवस्था", "nondual", "famous"],
+  },
+  {
+    id: "up-taittiriya-convocation",
+    kind: "mantra",
+    bookId: "upanishads",
+    section: `${U} · Taittiriya Upanishad 1.11.1-2 — Convocation Address`,
+    sectionHi: `${UH} · तैत्तिरीयोपनिषद् 1.11.1-2 — विदा-उपदेश`,
+    verse: "Taittiriya 1.11.1-2",
+    sanskrit:
+      "सत्यं वद। धर्मं चर। स्वाध्यायान्मा प्रमदः ॥ ... मातृदेवो भव। पितृदेवो भव। आचार्यदेवो भव। अतिथिदेवो भव ॥",
+    translit:
+      "satyaṁ vada, dharmam cara, svādhyāyān mā pramadaḥ — mātṛdevo bhava, pitṛdevo bhava, ācāryadevo bhava, atithidevo bhava",
+    hindi:
+      "सत्य बोलो, धर्म का आचरण करो, स्वाध्याय से कभी प्रमाद मत करो; माता को देवता समझो, पिता को देवता, आचार्य को देवता और अतिथि को देवता। गुरुकुल से विदा लेते समय आचार्य द्वारा शिष्यों को दिया गया अंतिम उपदेश — भारत का शाश्वत विदा-भाषण।",
+    english:
+      "Speak the truth, practise dharma, never swerve from self-study; revere your mother as a god, your father as a god, your teacher as a god, your guest as a god. The final charge given by the guru to students leaving the gurukula — India's eternal convocation address.",
+    spanish:
+      "Habla la verdad, practica el dharma, nunca te apartes del estudio de uno mismo; venera a tu madre como a un dios, a tu padre como a un dios, a tu maestro como a un dios, a tu huésped como a un dios. La última exhortación del gurú a los discípulos que dejan el gurukula — la eterna alocución de graduación de la India.",
+    tags: ["satyam vada", "dharmam chara", "ethics", "matru devo bhava", "सत्यं वद", "धर्मं चर", "मातृदेवो भव", "गुरुकुल", "convocation", "famous"],
   },
   {
     id: "up-taittiriya-ananda",
@@ -513,6 +798,44 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     tags: ["rudra", "one", "shiva", "एको हि रुद्रो", "शिव", "एकत्व", "shaiva"],
   },
   {
+    id: "up-shvet-maya",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Shvetashvatara Upanishad 4.10`,
+    sectionHi: `${UH} · श्वेताश्वतरोपनिषद् 4.10`,
+    verse: "Shvet 4.10",
+    sanskrit:
+      "मायां तु प्रकृतिं विद्यान्मायिनं तु महेश्वरम्। तस्यावयवभूतेषु व्याप्तं सर्वमिदं जगत् ॥",
+    translit:
+      "māyāṁ tu prakṛtiṁ vidyān māyinaṁ tu maheśvaram, tasyāvayavabhūteṣu vyāptaṁ sarvam idaṁ jagat",
+    hindi:
+      "माया को प्रकृति (प्रकृति-शक्ति) जानो और मायावी — उस शक्ति के स्वामी — को महेश्वर शिव; उसके अवयव-भूत रूपों में यह समस्त जगत् व्याप्त है। ऊर्जा और उसे संचालित करने वाले चेतन पुरुष का स्पष्ट वैज्ञानिक विवेचन — आधुनिक दर्शन को भी प्रेरित करने वाला सूत्र।",
+    english:
+      "Know Maya to be prakriti (nature), and the wielder of Maya to be the great Lord Maheshvara; this whole world is pervaded by His forms, which are its parts. A precise analysis of energy and the conscious Purusha who wields it — a formula that has inspired modern philosophy as well.",
+    spanish:
+      "Conoce a Maya como prakriti (la naturaleza), y al que maneja Maya como el gran Señor Maheshvara; este mundo entero está penetrado por Sus formas, que son sus partes. Un análisis preciso de la energía y del consciente Purusha que la maneja — una fórmula que también ha inspirado a la filosofía moderna.",
+    tags: ["maya", "prakriti", "maheshvara", "shvetashvatara", "माया", "प्रकृति", "महेश्वर", "शिव", "jagat", "famous"],
+  },
+  {
+    id: "up-shvet-eko-deva",
+    kind: "verse",
+    bookId: "upanishads",
+    section: `${U} · Shvetashvatara Upanishad 6.11`,
+    sectionHi: `${UH} · श्वेताश्वतरोपनिषद् 6.11`,
+    verse: "Shvet 6.11",
+    sanskrit:
+      "एको देवः सर्वभूतेषु गूढो सर्वव्यापी सर्वभूतान्तरात्मा। कर्माध्यक्षः सर्वभूताधिवासः साक्षी चेता केवलो निर्गुणश्च ॥",
+    translit:
+      "eko devaḥ sarvabhūteṣu gūḍho sarvavyāpī sarvabhūtāntarātmā, karmādhyakṣaḥ sarvabhūtādhivāsaḥ sākṣī cetā kevalo nirguṇaś ca",
+    hindi:
+      "एक ही देव है — सब प्राणियों में गुप्त, सर्वव्यापी, सबका अंतरात्मा, सबकर्मों का अध्यक्ष, सब प्राणियों में निवास करने वाला, साक्षी, चेतन, केवल (एकमात्र) और निर्गुण। एकेश्वर-दर्शन का उपनिषदों में सर्वाधिक स्पष्ट और विस्तृत वर्णन — नव-वेदांत का प्रिय सूत्र।",
+    english:
+      "One God, hidden in all beings, all-pervading, the inner Self of all beings, presiding over each one's karma, dwelling in everything, the witness, the thinker, the only one, free of qualities. The clearest and fullest statement of monotheism in the Upanishads — a favorite verse of Neo-Vedanta.",
+    spanish:
+      "Un solo Dios, oculto en todos los seres, omnipenetrante, el Sí mismo interno de todos los seres, presidiendo el karma de cada uno, morando en todo, el testigo, el pensador, el único, libre de cualidades. La afirmación más clara y completa del monoteísmo en los Upanishads — un verso favorito del Neo-Vedanta.",
+    tags: ["one god", "sarvantaratma", "witness", "monotheism", "एको देवः", "अंतरात्मा", "साक्षी", "निर्गुण", "ईश्वर", "famous"],
+  },
+  {
     id: "up-prajnanam",
     kind: "verse",
     bookId: "upanishads",
@@ -549,6 +872,25 @@ export const UPANISHAD_ENTRIES: CorpusEntry[] = [
     spanish:
       "Es distinto de lo conocido y está más allá de lo desconocido — el conocedor gracias al cual todo se conoce no puede, en sí mismo, ser conocido como objeto.",
     tags: ["kena", "knower", "beyond knowledge", "केन", "विज्ञाता", "ज्ञान से परे"],
+  },
+  {
+    id: "up-nrsimha-ugra",
+    kind: "mantra",
+    bookId: "upanishads",
+    section: `${U} · Nrsimha Tapini Upanishad`,
+    sectionHi: `${UH} · नृसिंह तापिनी उपनिषद्`,
+    verse: "Nrsimha Tapini",
+    sanskrit:
+      "उग्रं वीरं महाविष्णुं ज्वलन्तं सर्वतो मुखम्। नृसिंहं भीषणं भद्रं मृत्युमृत्युं नमाम्यहम् ॥",
+    translit:
+      "ugraṁ vīraṁ mahāviṣṇuṁ jvalantaṁ sarvato mukham, nṛsiṁhaṁ bhīṣaṇaṁ bhadraṁ mṛtyu-mṛtyuṁ namāmy aham",
+    hindi:
+      "उग्र, वीर, महाविष्णु, सब ओर मुख वाले ज्वलंत नृसिंह — भीषण और भद्र — मृत्यु की भी मृत्यु (मृत्युमृत्यु) को मैं नमस्कार करता हूँ। राक्षसी अहंकार के संहार और भक्त-रक्षा का अमर उद्घोष — वैष्णव परम्परा के सर्वाधिक शक्तिशाली रक्षा-मंत्रों में से एक।",
+    english:
+      "To the fierce, valiant Mahavishnu, blazing on every side, Narasimha — terrible and benign — the death of death itself, I bow. The immortal proclamation of the destruction of demonic pride and the protection of the devotee — one of the most powerful protective mantras of the Vaishnava tradition.",
+    spanish:
+      "Al feroz, valiente Mahavishnu, resplandeciente por todos lados, Narasimha — terrible y benigno — la muerte de la muerte misma, me inclino. La proclamación inmortal de la destrucción del orgullo demoníaco y la protección del devoto — uno de los mantras protectores más poderosos de la tradición vaishnava.",
+    tags: ["nrsimha", "narasimha", "protection", "mritamrityu", "उग्रं वीरं", "नृसिंह", "मृत्युमृत्यु", "विष्णु", "mantra", "devotion"],
   },
   {
     id: "up-purnamadah",

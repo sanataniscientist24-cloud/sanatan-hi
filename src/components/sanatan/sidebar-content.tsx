@@ -34,7 +34,7 @@ export function SidebarContent({ onQuery, onNavigate }: SidebarContentProps) {
         </Badge>
       </div>
 
-      <ScrollArea className="sanatan-scroll flex-1 px-2">
+      <ScrollArea className="sanatan-scroll min-h-0 flex-1 px-2">
         <div className="space-y-1 pb-2">
           {BOOKS.map((b) => {
             const count = CORPUS.filter((e) => e.bookId === b.id).length;

@@ -245,6 +245,86 @@ export const SHIV_PURAN_ENTRIES: CorpusEntry[] = [
       "El Shiva Purana se divide en siete samhitas — Vidyeshvara, Rudra, Shatarudra, Kotirudra, Uma, Kailasa y Vayaviya. Contiene la gloria de Shiva, las magnificencias de los doce jyotirlingas, la boda de Shiva y Parvati, los nacimientos de Ganesha y Kartikeya, el batido del océano, el descenso de Ganga, las encarnaciones de Rudra, la instalación del linga y el método completo de la bhakti — la escritura fundamental del shivaísmo.",
     tags: ["structure", "samhita", "overview", "शिव पुराण संहिता", "संरचना", "शैव", "overview"],
   },
+  {
+    id: "shiv-ganesha-birth",
+    kind: "story",
+    bookId: "shiv-puran",
+    section: `${SP} · Rudra Samhita — Ganesha Janma`,
+    sectionHi: `${SPH} · रुद्र संहिता — गणेश-जन्म`,
+    title: "The Birth of Ganesha",
+    titleHi: "गणेश-जन्म",
+    hindi:
+      "पार्वती ने स्नान के समय अपने शरीर की उबटन-मिट्टी से एक बालक गढ़ा, उसे प्राण दिया और द्वार पर द्वारपाल बनाया — 'मेरी आज्ञा के बिना किसी को भीतर न आने देना।' तप से लौटे शिव को भी उस बालक ने रोक दिया; क्रोध-मूर्त शिव ने उसका मस्तक धड़ से अलग कर दिया। पार्वती के विलाप पर शिव ने गणों को आदेश दिया — उत्तर दिशा में दिखाई देने वाले प्रथम प्राणी का मस्तक लाओ; गणों को गज-मुख मिला, वही जोड़ा गया और बालक जी उठा। शिव ने उसे गणों का अधिपति 'गणपति' घोषित किया और वर दिया कि समस्त शुभ-कार्यों में उसकी पूजा सर्वप्रथम होगी — इसी से आज भी हर शुभारंभ 'श्री गणेशाय नमः' से होता है।",
+    english:
+      "Parvati moulded a boy from the unguent of her own body, gave him life, and posted him at her door — 'let no one enter without my word.' Returning from his wanderings, Shiva himself was barred; in the clash that followed the boy's head was struck away. On Parvati's grief the ganas were sent north for the head of the first being they met — an elephant's head was joined to the body, and the child lived again. Shiva proclaimed him lord of the hosts, Ganapati, and decreed that every auspicious undertaking must begin with his worship — hence to this day every beginning is 'Shri Ganeshaya Namah.'",
+    spanish:
+      "Parvati modeló a un niño con el ungüento de su propio cuerpo, le dio vida y lo puso como guardián de su puerta — 'que nadie entre sin mi palabra.' Al volver de sus andanzas, el propio Shiva fue detenido; en el choque que siguió, la cabeza del niño fue segada. Ante el duelo de Parvati, los ganas fueron enviados al norte por la cabeza del primer ser que encontraran — una cabeza de elefante se unió al cuerpo y el niño volvió a vivir. Shiva lo proclamó señor de las huestes, Ganapati, y decretó que toda empresa auspiciosa debía comenzar con su adoración — por eso hasta hoy todo comienzo es 'Shri Ganeshaya Namah.'",
+    tags: ["ganesha", "ganapati", "birth", "elephant head", "गणेश", "गणेश जन्म", "पार्वती", "गणपति", "first worship", "vighneshvara"],
+  },
+  {
+    id: "shiv-kartikeya",
+    kind: "story",
+    bookId: "shiv-puran",
+    section: `${SP} · Rudra Samhita — Kumara Janma`,
+    sectionHi: `${SPH} · रुद्र संहिता — कुमार-जन्म`,
+    title: "Kartikeya — the Six-Faced Commander",
+    titleHi: "कार्तिकेय — षडानन सेनापति",
+    hindi:
+      "तारकासुर का वध केवल शिव-पुत्र के हाथों संभव था। देवताओं की प्रार्थना पर शिव का अद्भुत तेज अग्नि ने ग्रहण किया, गंगा के जल में उतरा, और शरवन-वन की सरकंडों में प्रकट हुआ। छह कृत्तिकाओं ने उस छह-अंशी शिशु का पालन किया; माताओं के दुग्ध का अधिकार पाने को बालक ने षडानन — छह मुख — रूप धारण किया। 'कार्तिकेय' कहलाए इस कुमार ने बाल्यावस्था में ही देव-सेना का सेनापति पद पाया और तारकासुर का संहार किया। कार्तिकेय ब्रह्मचर्य, शौर्य और शुद्ध शक्ति के आराध्य हैं — दक्षिण भारत में मुरुगन नाम से उनकी उपासना विख्यात है।",
+    english:
+      "The demon Taraka could be slain only by a son of Shiva. At the gods' pleading, Shiva's blazing seed was received by Agni, cast into Ganga, and came to rest among the reeds of the Sharavana forest. The six Krittika sisters nursed the sixfold child, who to feed from all six mothers at once assumed six faces — Shanmukha. Named Kartikeya, the boy became commander of the divine armies while still a child and destroyed Taraka. He is worshipped as the lord of chastity, valour and pure strength — renowned in South India as Murugan.",
+    spanish:
+      "El demonio Taraka solo podía ser muerto por un hijo de Shiva. A ruego de los dioses, la ardiente semilla de Shiva fue recibida por Agni, arrojada al Ganges y reposó entre los juncos del bosque Sharavana. Las seis hermanas Krittika criaron al séxtuple niño, que para alimentarse de las seis madres a la vez asumió seis rostros — Shanmukha. Llamado Kartikeya, el niño se volvió general de los ejércitos divinos siendo aún niño y destruyó a Taraka. Es adorado como señor de la castidad, el valor y la fuerza pura — célebre en el sur de la India como Murugan.",
+    tags: ["kartikeya", "skanda", "murugan", "shanmukha", "कार्तिकेय", "स्कन्द", "षडानन", "कृत्तिका", "तारकासुर", "commander"],
+  },
+  {
+    id: "shiv-sati",
+    kind: "story",
+    bookId: "shiv-puran",
+    section: `${SP} · Rudra Samhita — Sati & Daksha Yajna`,
+    sectionHi: `${SPH} · रुद्र संहिता — सती और दक्ष-यज्ञ`,
+    title: "Sati's Offering — the 51 Shakti-Pithas",
+    titleHi: "सती-दाह और 51 शक्ति-पीठ",
+    hindi:
+      "दक्ष के बृहद्-यज्ञ में शिव को निमंत्रण तक नहीं दिया गया। सती बिना बुलाये पिता के यज्ञ में पहुँचीं और सभा में पति की निंदा सुनकर उस देह को त्याग दिया जो दक्ष से जन्मी थी — योगाग्नि प्रज्वलित हुई। शोक से व्याप्त शिव सती-शरीर कंधे पर रखकर समस्त ब्रह्मांड में तांडव करने लगे; विष्णु के सुदर्शन ने देह के अंश बिखेर दिए — जो अंश जहाँ गिरा, वहीं शक्ति-पीठ प्रकट हुआ। कामाख्या से कालीघाट तक इक्यावन पीठ आज भी देवी-शक्ति के सर्वोच्च तीर्थ हैं। उसी परंपरा में सती हिमवान्-कन्या पार्वती बनकर लौटीं और तप से पति को पाया — अनन्य-प्रेम की अमर गाथा।",
+    english:
+      "Daksha's great sacrifice excluded Shiva entirely. Sati went uninvited to her father's hall, and hearing her husband mocked before the assembly, renounced the body born of Daksha — the fire of yoga blazed up within her. Mad with grief, Shiva bore her body across the worlds in his tandava, till Vishnu's discus scattered it — and wherever a fragment fell, a Shakti-pitha, a seat of the Goddess, arose. Fifty-one pithas, from Kamakhya to Kalighat, remain her supreme shrines. In time Sati returned as Himavana's daughter Parvati, and by penance won her Lord again — the deathless saga of unbroken love.",
+    spanish:
+      "El gran sacrificio de Daksha excluyó por completo a Shiva. Sati acudió sin invitación al palacio de su padre y, oyendo burlarse a su esposo ante la asamblea, renunció al cuerpo nacido de Daksha — el fuego del yoga se encendió en ella. Enloquecido de dolor, Shiva cargó su cuerpo por los mundos en su tandava, hasta que el disco de Vishnu lo dispersó — y donde caía un fragmento surgía un Shakti-pitha, un asiento de la Diosa. Cincuenta y un pithas, de Kamakhya a Kalighat, siguen siendo sus santuarios supremos. A su tiempo, Sati regresó como Parvati, hija de Himavana, y con penitencia ganó de nuevo a su Señor — la saga inmortal del amor inquebrantable.",
+    tags: ["sati", "daksha", "shakti pitha", "goddess", "सती", "दक्ष यज्ञ", "शक्ति पीठ", "कामाख्या", "51 pithas", "devotion"],
+  },
+  {
+    id: "shiv-tripura",
+    kind: "story",
+    bookId: "shiv-puran",
+    section: `${SP} · Rudra Samhita — Tripura Samhara`,
+    sectionHi: `${SPH} · रुद्र संहिता — त्रिपुर-संहार`,
+    title: "Tripura — the Three Cities of Maya",
+    titleHi: "त्रिपुर — माया के तीन नगर",
+    hindi:
+      "दैत्य-शिल्पी मय ने तीन उड़ने वाले नगर गढ़े — स्वर्ण, रजत और लौह त्रिपुर। ब्रह्मा के वर से वे हज़ार वर्षों में केवल एक क्षण भर के लिये एक पंक्ति में आते थे, और विनाश भी तभी, एक ही बाण से, संभव था। त्रिपुरों ने त्रैलोक्य पर अत्याचार किया; देवताओं की प्रार्थना पर शिव ने मेरु को धनुष और वासुकि को ज्या बनवाकर धैर्य से उस क्षण की प्रतीक्षा की — जब तीनों नगर एक सीध में आए, एक ही बाण छूटा और तीनों नगर जलकर भस्म हो गए। माया चाहे कितनी भी विशाल और भव्य हो, एकाग्र सत्-लक्ष्य उसे एक क्षण में समाप्त कर देता है — शिव का बाण लक्ष्य नहीं भूलता।",
+    english:
+      "The demon architect Maya wrought three flying cities — of gold, silver and iron — the three Tripuras. By Brahma's boon they came into a single line for but one moment once in a thousand years, and only then, by a single arrow, could they fall. Harassing the three worlds, they defied heaven itself. At the gods' pleading Shiva took Mount Meru for his bow and the serpent for its string, and waited with patience for the instant of alignment — then one arrow flew, and all three cities burned to ash. However vast and splendid maya becomes, one-pointed truth ends it in a moment: Shiva's arrow never misses.",
+    spanish:
+      "El arquitecto demonio Maya forjó tres ciudades voladoras — de oro, plata y hierro —, las tres Tripuras. Por la gracia de Brahma se alineaban en un solo instante, una única vez cada mil años, y solo entonces, con una sola flecha, podían caer. Atormentando los tres mundos, desafiaron al cielo mismo. A ruego de los dioses, Shiva tomó el monte Meru por arco y la serpiente por cuerda, y esperó con paciencia el instante de la alineación — entonces voló una única flecha, y las tres ciudades ardieron hasta ser ceniza. Por vasta y espléndida que sea la maya, la verdad unánime la termina en un instante: la flecha de Shiva nunca falla.",
+    tags: ["tripura", "maya", "three cities", "arrow", "त्रिपुर", "त्रिपुरासुर", "माया", "मेरु", "एक बाण", "destruction"],
+  },
+  {
+    id: "shiv-nandi",
+    kind: "story",
+    bookId: "shiv-puran",
+    section: `${SP} · Nandi — the eternal companion`,
+    sectionHi: `${SPH} · नन्दी — शिव के सनातन सहचर`,
+    title: "Nandi — the Devotee at Shiva's Door",
+    titleHi: "नन्दी — शिव-द्वार के भक्त",
+    hindi:
+      "शिलाद मुनि की तपस्या से पुत्र रूप में प्राप्त नन्दी को शिव ने अमर देह देकर अपना सनातन सहचर, कैलास का द्वारपाल और गणों का अधिपति बनाया। श्वेत वृषभ-रूप में नन्दी भगवान् के वाहन हैं और उनके द्वार के सदा-उपस्थित प्रथम दर्शन — किसी भी शिवालय में पहला दर्शन नन्दी का ही होता है। भक्त नन्दी के कान में फुसफुसाकर अपनी प्रार्थना शिव तक पहुँचाते हैं — वे भक्त और प्रभु के बीच सेतु हैं। शास्त्र कहते हैं — जो नन्दी के समान एकनिष्ठ भक्ति रखता है, शिव स्वयं उसे द्वार से भीतर बुला लेते हैं।",
+    english:
+      "Won by the sage Shilada's penance as a son, Nandi was granted an immortal body and made Shiva's eternal companion — gatekeeper of Kailasa and lord of the ganas. As the white bull he bears the Lord and sits ever at his door: in every Shiva temple the first darshana is Nandi's. Devotees whisper their prayers into Nandi's ear, for he is the bridge between worshipper and Lord. The shastras say — one who keeps Nandi's single-pointed devotion, Shiva himself calls through the door.",
+    spanish:
+      "Obtenido por la penitencia del sabio Shilada como hijo, Nandi recibió un cuerpo inmortal y fue hecho compañero eterno de Shiva — guardián de Kailasa y señor de los ganas. Como el toro blanco, lleva al Señor y se sienta siempre a su puerta: en todo templo de Shiva, el primer darshana es el de Nandi. Los devotos susurran sus plegarias al oído de Nandi, porque él es el puente entre el adorador y el Señor. Los shastras dicen: a quien guarda la devoción unánime de Nandi, el propio Shiva lo llama a través de la puerta.",
+    tags: ["nandi", "bull", "gatekeeper", "devotion", "नन्दी", "वृषभ", "कैलास", "द्वारपाल", "शिलाद", "companion"],
+  },
 ];
 
 const BP = "Bhagavata Purana";
@@ -418,6 +498,102 @@ export const BHAGAVATA_ENTRIES: CorpusEntry[] = [
       "Al cierre del Dvapara, Krishna dijo a Uddhava — arranca de raíz el ego con su semilla; placer y dolor son uno solo en la ecuanimidad; véeme en todos los seres; devoción, conocimiento y acción desinteresada fluyen como un único río por una única puerta. 'Quien toma Mi nombre con sentimiento, Yo entro en su corazón.' La Uddhava Gita es el postrer misterio de despedida del Bhagavata.",
     tags: ["uddhava gita", "krishna teaching", "farewell", "उद्धव गीता", "कृष्ण उपदेश", "समता", "farewell"],
   },
+  {
+    id: "bp-kaliya",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 10 — Kaliya Daman`,
+    sectionHi: `${BPH} · स्कन्ध 10 — कालिया-दमन`,
+    title: "Kaliya the Serpent Subdued",
+    titleHi: "कालिय-दमन",
+    hindi:
+      "कालिय नाग के विष से यमुना का जल सारा विष-तालाब बन गया था — तट के पशु-पक्षी तक उड़ते हुए गिर पड़ते थे। कदम्ब-वृक्ष से श्रीकृष्ण ने विष-जल में छलाँग लगाई; क्रोधित कालिय ने अपने विषाल फनों में उन्हें लपेट लिया, और तब बाल-कृष्ण ने उन फनों पर नृत्य आरंभ किया — ताल के साथ ताल, ऐसे जैसे नाग का अहंकार नाचते-नाचते चूर-चूर होता गया। शक्ति-हीन कालिय की नाग-पत्नियों ने जल से उठकर बालक के चरणों में प्रार्थना की। श्रीकृष्ण ने नाग को जीवन-दान दिया और आदेश दिया — सपरिवार समुद्र में चले जाओ; मेरा चरण-चिह्न शिर पर धारण करोगे तो गरुड़ तुम्हें कभी स्पर्श नहीं करेगा। अहंकार-दमन की यह वृन्दावन-लीला सर्वोत्तम शिक्षा मानी जाती है।",
+    english:
+      "Kaliya's poison had turned the Yamuna's water into a pool of venom — even birds flying over it fell dead. From the kadamba tree Krishna leapt into the water; the enraged serpent coiled his vast hoods around him, and the boy began to dance upon those hoods — beat upon beat, until the serpent's pride was danced to dust. As Kaliya's strength failed, his serpent-wives rose from the water and prayed at the child's feet. Krishna granted the serpent his life and commanded him: depart with your family to the ocean; bearing the mark of my foot on your hood, Garuda shall never touch you again. This lila of Vraja remains the supreme teaching on the subduing of pride.",
+    spanish:
+      "El veneno de Kaliya había convertido el agua del Yamuna en un estanque de tósigo — hasta las aves que volaban sobre él caían muertas. Desde el árbol kadamba, Krishna se lanzó al agua; la serpiente enfurecida enroscó en él sus inmensas capuchas, y el niño comenzó a danzar sobre ellas — golpe tras golpe, hasta bailar el orgullo de la serpiente hasta volverlo polvo. Cuando las fuerzas de Kaliya fallaron, sus esposas-serpiente emergieron del agua y oraron a los pies del niño. Krishna le concedió la vida y le ordenó: parte con tu familia al océano; llevando la huella de mi pie en tu capucha, Garuda jamás te tocará. Esta lila de Vraja sigue siendo la enseñanza suprema sobre el sometimiento del orgullo.",
+    tags: ["kaliya", "daman", "yamuna", "serpent dance", "कालिया", "कालिय दमन", "यमुना", "नृत्य", "वृन्दावन", "pride"],
+  },
+  {
+    id: "bp-sudama",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 10 — Sudama Charitra`,
+    sectionHi: `${BPH} · स्कन्ध 10 — सुदामा-चरित`,
+    title: "Sudama — the Poor Friend of Krishna",
+    titleHi: "सुदामा — कृष्ण के निर्धन मित्र",
+    hindi:
+      "गुरु सांदीपनि के आश्रम के सहपाठी सुदामा अति-निर्धन दिन काट रहे थे। पत्नी ने प्रेम से कहा — तुम्हारे बाल-मित्र स्वयं द्वारकाधीश हैं, एक बार दर्शन कर आओ — और भेजने के लिये चिरवे (चूड़ी-चावल) की एक पोटली बाँध दी। द्वारका के स्वर्ण-द्वार पर संकोच से खड़े सुदामा को भीतर आते देख श्रीकृष्ण स्वयं दौड़कर गले लग गए, रुक्मिणी ने स्वयं पाद-प्रक्षालन किया। चिरवे के दो मुट्ठे उन्होंने लजीजता से खाए; तीसरा रुक्मिणी ने रोक लिया — 'दो मुट्ठों में मैंने इसे दो भुवन दे दिए!' लज्जा के कारण सुदामा कुछ भी न माँग सके; लौटकर देखा — झोंपड़ी स्वर्ण-भवन बन चुकी है, परिवार दिव्य वस्त्राभूषणों में है। सीख: भगवान् से माँगना नहीं पड़ता — स्मरण भर से वे रंग देते हैं।",
+    english:
+      "Sudama, Krishna's classmate from Sandipani's ashrama, lived in utter poverty. At his wife's loving urging he walked to Dwarka, carrying a pouch of flattened rice. Hesitant at the golden gates, he was swept up as Krishna himself ran out to embrace him, and Rukmini washed his feet with her own hands. The Lord ate two handfuls of the rice with relish; Rukmini stopped the third — 'in two handfuls I have already given him two worlds.' Too shy to ask for anything, Sudama returned home to find his hut a golden mansion and his family in celestial garments. The lesson: the Lord need not be asked — remembrance alone suffices.",
+    spanish:
+      "Sudama, condiscípulo de Krishna en el ashrama de Sandipani, vivía en la más absoluta pobreza. Al amoroso ruego de su esposa, caminó a Dwarka llevando un paquete de arroz aplastado. Titubeante ante las puertas doradas, fue alzado en brazos cuando el propio Krishna corrió a abrazarlo, y Rukmini le lavó los pies con sus propias manos. El Señor comió dos puñados del arroz con deleite; Rukmini detuvo el tercero — 'en dos puñados le he dado ya dos mundos.' Demasiado tímido para pedir nada, Sudama volvió a casa y halló su choza convertida en mansión dorada y a su familia vestida con ropas celestiales. La lección: al Señor no hay que pedirle — basta el recuerdo.",
+    tags: ["sudama", "krishna friendship", "dwarka", "parched rice", "सुदामा", "कृष्ण मित्रता", "द्वारका", "चिरवा", "रुक्मिणी", "friendship"],
+  },
+  {
+    id: "bp-jada-bharata",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 5 — Jada Bharata`,
+    sectionHi: `${BPH} · स्कन्ध 5 — जड़ भरत`,
+    title: "Jada Bharata — the Lesson of the Deer",
+    titleHi: "जड़ भरत — मृग-स्नेह की सीख",
+    hindi:
+      "इस भूमि को भारत नाम देने वाले सम्राट भरत ने वृद्धावस्था में राज-त्याग कर शालग्राम के तपोवन में भजन चुना। एक दिन वन में अकेले छूटे हिरण-शावक को उन्होंने शरण दी; दया वात्सल्य बनी और स्नेह इतना गहरा घुला कि मरण-काल में मन मृग-चिंतन में ही रहा — अगला जन्म हिरण का हुआ। फिर मानव-योनि में ब्राह्मण-गृह में जन्मा 'जड़भरत' पूर्व-जन्मों का स्मरण रखता था; वह बाहर से जड़-मूर्ख बना रहा, भीतर साक्षी-स्थित। डाकुओं ने उसे भद्रकाली-बलि के लिये पकड़ा — देवी के प्रकोप ने दुष्टों का संहार किया। बाद में राजा रहुग्ण का पालकी-वाहक बना तो असमान कदमों पर कहे व्यंग्य का उत्तर उसके उपदेश ने दिया — 'मैं न देह हूँ, न देह का वाहक; जो परिवर्तन नहीं जानता, वह वहन कहाँ करता?' राजा शिष्य हो गया। वैराग्य के भीतर अति-स्नेह भी बंधन बनता है — केवल विवेक मुक्त करता है।",
+    english:
+      "Bharata — the emperor who gave this land its name — renounced his throne for a hermit's life at Shalagrama, only to grow deeply attached to a motherless deer fawn he had rescued. At death his mind stayed fixed on the deer, and he was born a deer. His next human birth, in a brahmin household as Jada Bharata, remembered everything; outwardly he played the mute fool, inwardly abiding as the witness. Seized by robbers for sacrifice to Bhadrakali, he was saved by the goddess's own fury. Later, as palanquin-bearer to King Rahugana, his 'uneven steps' drew scorn — until his teaching, 'I am neither the body nor its bearer; what knows no change carries nothing,' made the king his disciple. Even within renunciation, an excess of attachment binds; discernment alone liberates.",
+    spanish:
+      "Bharata — el emperador que dio su nombre a esta tierra — renunció al trono por la vida de ermitaño en Shalagrama, solo para apegarse profundamente a un cervatillo huérfano que había rescatado. A la muerte, su mente quedó fija en el ciervo, y nació como ciervo. Su siguiente nacimiento humano, en un hogar brahmín como Jada Bharata, lo recordaba todo; por fuera fingía ser el necio mudo, por dentro moraba como el testigo. Apresado por bandidos para sacrificarlo a Bhadrakali, fue salvado por la furia de la propia diosa. Más tarde, como portador de la litera del rey Rahugana, sus 'pasos desiguales' atrajeron el desdén — hasta que su enseñanza, 'no soy el cuerpo ni su portador; lo que no conoce cambio no carga nada', hizo del rey su discípulo. Incluso dentro de la renunciación, el exceso de apego ata; solo el discernimiento libera.",
+    tags: ["jada bharata", "bharata", "deer", "detachment", "जड़ भरत", "मृग", "वैराग्य", "विवेक", "रहुग्ण", "attachment"],
+  },
+  {
+    id: "bp-pingala",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 11 — Pingala's Vairagya`,
+    sectionHi: `${BPH} · स्कन्ध 11 — पिंगला का वैराग्य`,
+    title: "Pingala — the Night that Taught Renunciation",
+    titleHi: "पिंगला — वैराग्य सिखाने वाली रात्रि",
+    hindi:
+      "उद्धव-गीता में भगवान् श्रीकृष्ण ने पिंगला का प्रसंग सुनाया। रात-भर द्वार पर बुलाए-बुलाए प्रेमी-ग्राहक की प्रतीक्षा में वह प्यासी बैठी रही — न कोई आया, न धन आया। अंत में आशा से ही थककर उसके हृदय में बुद्धि जागी — 'यह आशा ही मेरा सबसे बड़ा दुःख-कारण है; आज से उसे छोड़ती हूँ' — और उसी क्षण आत्म-रमण में वह ऐसी सो गई जैसी पहले कभी नहीं सोई थी। भगवान् ने कहा — देखो, विषय में डूबी पिंगला भी जिस रात आशा त्याग बैठी, उसी रात उसे शांति मिली; आशा ही संसार का दुःख-मूल है और भगवत्-शरण एकमात्र अटल आश्रय।",
+    english:
+      "In the Uddhava Gita, Krishna retells the story of the courtesan Pingala. All night at her door she waited, thirsting for the patron who never came — no one arrived, no wealth arrived. At last, wearied of hoping itself, wisdom woke in her heart — 'this hope is my greatest tormentor; this very day I renounce it' — and in that instant she fell asleep in inward rest, deeper than any she had known. The Lord says: see — even Pingala, drowned in sense-life, found peace the very night she dropped her hope; hope is the root of the world's sorrow, and refuge in the Lord the only unshakable support.",
+    spanish:
+      "En la Uddhava Gita, Krishna relata la historia de la cortesana Pingala. Toda la noche esperó en su puerta, sedienta del cliente que nunca llegó — nadie vino, ninguna riqueza vino. Al fin, cansada de la esperanza misma, despertó la sabiduría en su corazón — 'esta esperanza es mi mayor atormentador; hoy mismo la renuncio' — y en ese instante se durmió en un reposo interior más hondo que cualquiera conocido. El Señor dice: mira — hasta Pingala, hundida en la vida de los sentidos, halló paz la misma noche en que soltó su esperanza; la esperanza es la raíz del dolor del mundo, y el refugio en el Señor el único apoyo inquebrantable.",
+    tags: ["pingala", "vairagya", "hope", "renunciation", "पिंगला", "वैराग्य", "आशा", "उद्धव गीता", "detachment", "dispassion"],
+  },
+  {
+    id: "bp-kapila",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 3 — Kapila and Devahuti`,
+    sectionHi: `${BPH} · स्कन्ध 3 — कपिल-देवहूति संवाद`,
+    title: "Kapila's Sankhya to his Mother",
+    titleHi: "माता देवहूति को कपिल का सांख्य",
+    hindi:
+      "कर्दम-देवहूति के पुत्र कपिल भगवान् विष्णु के अंशावतार और सांख्य-दर्शन के आचार्य थे। गृह-त्याग से पूर्व माता देवहूति ने पूछा — बंधन क्या है, मोक्ष का उपाय क्या? कपिल ने समझाया — पुरुष चित्-स्वरूप, चेतन और निष्क्रिय साक्षी है; प्रकृति जड़ है और उसके सत्त्व-रजस्-तमस् तीन गुण समस्त देह-प्रपंच रचते हैं। पुरुष का देह-ममत्व ही बंधन है, तत्व-दर्शन ही मुक्ति — और ज्ञान से भी श्रेष्ठ अनन्य भक्ति है: श्रवण-कीर्तन-स्मरण के भाव से भगवान् की प्राप्ति होती है। देवहूति ने बिंदुसरोवर-तट पर भक्ति-साधना कर सिद्धि पाई। ज्ञान और भक्ति का यह माता-पुत्र संवाद भागवत का दार्शनिक हृदय है।",
+    english:
+      "Before leaving home, Kapila — an amsha of the Lord and teacher of Sankhya — answered his mother Devahuti's question on bondage and liberation. He explained that the purusha is of the nature of consciousness, the changeless witness; prakriti is insentient, and her three gunas — sattva, rajas, tamas — weave the whole apparatus of body and world. The purusha's identification with the body is the bondage; seeing the truth is release — and beyond knowledge stands devotion: by hearing, chanting and remembering the Lord, He is attained. Devahuti practised this bhakti at Bindu-sarovara until she attained the highest. This mother-son dialogue is the philosophical heart of the Bhagavata.",
+    spanish:
+      "Antes de dejar el hogar, Kapila — una porción del Señor y maestro del Sankhya — respondió a la pregunta de su madre Devahuti sobre el cautiverio y la liberación. Explicó que el purusha es de la naturaleza de la conciencia, el testigo inmutable; prakriti es insensible, y sus tres gunas — sattva, rajas, tamas — tejen todo el aparato de cuerpo y mundo. La identificación del purusha con el cuerpo es el cautiverio; ver la verdad es la liberación — y más allá del conocimiento está la devoción: escuchando, cantando y recordando al Señor, Él es alcanzado. Devahuti practicó esa bhakti en Bindu-sarovara hasta alcanzar lo supremo. Este diálogo entre madre e hijo es el corazón filosófico del Bhagavata.",
+    tags: ["kapila", "devahuti", "sankhya", "philosophy", "कपिल", "देवहूति", "सांख्य", "पुरुष", "प्रकृति", "गुण"],
+  },
+  {
+    id: "bp-nriga",
+    kind: "story",
+    bookId: "bhagavata",
+    section: `${BP} · Skandha 10 — King Nriga`,
+    sectionHi: `${BPH} · स्कन्ध 10 — राजा नृग`,
+    title: "Nriga — the Price of a Cow",
+    titleHi: "राजा नृग — गौ-दान की कीमत",
+    hindi:
+      "द्वारका के एक कुएँ में एक विशाल गोधा (गिरगिट) फँसी थी। श्रीकृष्ण ने उसे बाहर उठाया — स्पर्श होते ही वह दिव्य-तेजस्वी राजा बन गई। राजा नृग ने बताया — मैं गौ-दान में प्रसिद्ध था; एक बार अनजाने में पहले दी हुई गौ दूसरे ब्राह्मण को दान चली गई, और दोनों के विवाद ने मुझे गोधा-योनि में धकेल दिया — बिना जाने किये अपराध का भी फल भुगतना पड़ता है। श्रीकृष्ण की कृपा से योनि से मुक्त होकर वह दिव्य लोक को चला गया। सीख दुगनी है — महान् दान भी एक अनजानी भूल से लुट सकता है, और जहाँ पुण्य पहुँचता नहीं, वहाँ प्रभु की दया पहुँच जाती है।",
+    english:
+      "In a well of Dwarka a monstrous lizard lay trapped. Krishna lifted it out, and at his touch it became a king radiant with light. Nriga told his tale: famed as a giver of cows, he had once unknowingly donated a cow already gifted to another brahmin, and the two devotees' quarrel cast him into the body of a lizard — even an unwitting offence must bear its fruit. Freed by Krishna's touch, he rose to the divine worlds. The lesson is double: even great charity can be undone by one unknowing slip, and where merit cannot reach, the Lord's mercy does.",
+    spanish:
+      "En un pozo de Dwarka yacía atrapada una monstruosa lagartija. Krishna la alzó, y a su toque se volvió un rey radiante de luz. Nriga contó su historia: célebre como donante de vacas, una vez donó sin saberlo una vaca ya regalada a otro brahmín, y la disputa de los dos devotos lo arrojó al cuerpo de una lagartija — incluso una ofensa involuntaria debe cargar su fruto. Liberado por el toque de Krishna, ascendió a los mundos divinos. La lección es doble: hasta la gran caridad puede deshacerse por un desliz involuntario, y donde el mérito no llega, llega la misericordia del Señor.",
+    tags: ["nriga", "lizard", "cow charity", "krishna grace", "नृग", "गौ दान", "गोधा", "द्वारका", "दया", "charity"],
+  },
 ];
 
 const VP = "Vishnu Purana";
@@ -476,5 +652,53 @@ export const VISHNU_PURANA_ENTRIES: CorpusEntry[] = [
     spanish:
       "Todos los Vedas, los shastras y las ciencias residen en Janardana; la recopilación de Sus mil nombres divinos los completa a todos — la recitación de los nombres es en sí misma la esencia de toda práctica escritural.",
     tags: ["names", "phala", "essence of vedas", "नाम-जप", "फल श्रुति", "वेद सार", "janardana"],
+  },
+  {
+    id: "vp-dashavatara",
+    kind: "chapter",
+    bookId: "vishnu-puran",
+    section: `${VP} · Dashavatara — the ten descents`,
+    sectionHi: `${VPH} · दशावतार — दस अवतार`,
+    title: "The Ten Avatars of Vishnu",
+    titleHi: "विष्णु के दशावतार",
+    hindi:
+      "विष्णु पुराण युग-युग में धर्म की रक्षा हेतु विष्णु के दस अवतारों का निरूपण करता है — मत्स्य (महाप्रलय में वेद और सृष्टि-बीज की रक्षा), कूर्म (मंथन-पर्वत का धारण), वराह (पाताल से भूमि का उद्धार), नृसिंह (प्रह्लाद-रक्षा के लिये देव-दैत्य सीमा का भंग), वामन (बलि से तीन चरणों में तीनों लोक), परशुराम (अत्याचारी राजाओं का दमन), राम (मर्यादा-पुरुषोत्तम, धर्म का आदर्श शासन), कृष्ण (गीता-उपदेश और दिव्य लीला), बुद्ध (करुणा का प्रचार; कुछ सूचियों में बलराम) और कल्कि (कलि के अंत में अधर्म का संहार)। जब-जब धर्म की हानि होती है, भगवान् युगानुसार अवतरित होते हैं — यही दशावतार-सूत्र का सार है।",
+    english:
+      "The Vishnu Purana sets out the ten descents of Vishnu for dharma's protection age after age — Matsya the fish (saving the Vedas and the seeds of life in the flood), Kurma the tortoise (bearing the churning mountain), Varaha the boar (raising the earth from the nether waters), Narasimha the man-lion (breaking the god-demon boundary to save Prahlada), Vamana the dwarf (taking the three worlds from Bali in three strides), Parashurama (breaking the pride of tyrant kings), Rama (the perfect rule of dharma), Krishna (the Gita's teaching and the divine lila), Buddha the compassionate (Balarama in some lists) and Kalki (ending adharma at the close of Kali). Whenever dharma declines, the Lord descends in the form the age demands — the essence of the dashavatara doctrine.",
+    spanish:
+      "El Vishnu Purana expone las diez descendencias de Vishnu para la protección del dharma era tras era — Matsya el pez (salvando los Vedas y las semillas de la vida en el diluvio), Kurma la tortuga (sosteniendo el monte del batido), Varaha el jabalí (alzando la tierra de las aguas inferiores), Narasimha el hombre-león (rompiendo la frontera dios-demonio para salvar a Prahlada), Vamana el enano (tomando los tres mundos a Bali en tres pasos), Parashurama (quebrando el orgullo de los reyes tiranos), Rama (el gobierno perfecto del dharma), Krishna (la enseñanza de la Gita y la divina lila), Buddha el compasivo (Balarama en algunas listas) y Kalki (terminando el adharma al cierre del Kali). Cuando el dharma declina, el Señor desciende en la forma que la era exige — la esencia de la doctrina del dashavatara.",
+    tags: ["dashavatara", "ten avatars", "matsya", "kalki", "दशावतार", "मत्स्य", "कूर्म", "वराह", "कल्कि", "avatars"],
+  },
+  {
+    id: "vp-matsya",
+    kind: "story",
+    bookId: "vishnu-puran",
+    section: `${VP} · Amsha 1 — Matsya Avatara`,
+    sectionHi: `${VPH} · अंश 1 — मत्स्य अवतार`,
+    title: "Matsya — the Fish who Saved Creation",
+    titleHi: "मत्स्य — सृष्टि को बचाने वाली मछली",
+    hindi:
+      "राजा सत्यव्रत (मनु) हाथ-प्रक्षालन करते समय जल में एक छोटी मछली पाकर दया से उसे घड़े में रख लाए। मछली दिन-प्रतिदिन इतनी बढ़ी कि नदी और सागर भी उसे छोटे लगने लगे — राजा समझ गए कि यह स्वयं भगवान् हैं। मत्स्य रूप में भगवान् ने बताया — महाप्रलय निकट है; एक नाव बनाकर सप्तर्षि, सृष्टि के बीज और वेद संग रखो और नाव मेरे शृंग से बाँध दो। भीषण जल-प्रलय में महा-मत्स्य ने नाव को खींचकर सुरक्षित रखा; जल उतरने पर नई सृष्टि आरंभ हुई और वेद पुनः ब्रह्मा को लौट आए। प्रलय से भी पहले विष्णु की कृपा सृष्टि की रक्षा-रेखा खींच देती है।",
+    english:
+      "Washing his hands in the river, King Satyavrata Manu found a tiny fish begging protection, and mercifully placed it in a jar. Day by day it grew, till river and ocean alike seemed small — and the king knew this was the Lord himself. In his fish-form the Lord foretold the great flood: build a ship, embark with the seven sages, the seeds of life and the Vedas, and bind the vessel to my horn. Through the drowning of the worlds the great fish drew the ark unharmed; when the waters parted, creation began again and the Vedas returned to Brahma. Before the dissolution itself, Vishnu's grace draws the line of protection around creation.",
+    spanish:
+      "Lavándose las manos en el río, el rey Satyavrata Manu halló un pez diminuto que pedía protección, y piadosamente lo puso en una vasija. Día tras día creció, hasta que río y océano le parecieron pequeños — y el rey supo que era el Señor mismo. En su forma de pez, el Señor anunció el gran diluvio: construye un navío, embarca con los siete sabios, las semillas de la vida y los Vedas, y amarra la nave a mi cuerno. A través del ahogo de los mundos, el gran pez condujo el arca ilesa; cuando las aguas se apartaron, la creación comenzó de nuevo y los Vedas volvieron a Brahma. Antes incluso de la disolución, la gracia de Vishnu traza el círculo de protección alrededor de la creación.",
+    tags: ["matsya", "fish avatar", "flood", "manu", "मत्स्य", "महाप्रलय", "मनु", "सप्तर्षि", "hayagriva", "deluge"],
+  },
+  {
+    id: "vp-amrita-manthan",
+    kind: "story",
+    bookId: "vishnu-puran",
+    section: `${VP} · Amsha 1 — Amrita Manthana`,
+    sectionHi: `${VPH} · अंश 1 — अमृत-मन्थन`,
+    title: "The Churning — Kurma, Mohini and the Nectar",
+    titleHi: "समुद्र-मन्थन — कूर्म, मोहिनी और अमृत",
+    hindi:
+      "असुरों से पराजित देवों ने विष्णु की सलाह से अमृत के लिये समुद्र मथा — मंदराचल मंथनी, वासुकि रस्सी। पर्वत डूबने लगा तो भगवान् ने कूर्म-रूप धरकर उसे अपनी पीठ पर धारण किया। समुद्र से उच्चैश्रवा, ऐरावत, चंद्र और लक्ष्मी जैसे रत्न निकले — लक्ष्मी ने स्वयं विष्णु को वर चुना; अंत में धन्वन्तरि अमृत-कलश लेकर प्रकट हुए। असुरों ने कलश छीन लिया, तब विष्णु मोहिनी — अद्भुत सुंदरी — बनकर आए, न्यायपूर्ण बँटवारे का वचन दिया और चतुरता से केवल देवताओं को अमृत पिलाया। राहु ने देव-पंक्ति में छुपकर घूँट भरी — सूर्य-चंद्र की सूचना पर सुदर्शन ने उसका मस्तक काट दिया; अमृत-स्पर्श से वह सिर अमर रह गया, इसी से ग्रहण लगते हैं। कूर्म-धारण और मोहिनी-माया बताते हैं — दिव्य बुद्धि ही माया का उत्तर है।",
+    english:
+      "Defeated by the asuras, the gods took Vishnu's counsel and churned the ocean for the nectar — Mandara for the churning-staff, Vasuki for the rope. When the mountain began to sink, the Lord became Kurma, the great tortoise, and bore it upon his back. Treasures rose from the sea — Ucchaishravas the horse, Airavata the elephant, the moon, and Lakshmi, who chose Vishnu for her lord — till Dhanvantari appeared bearing the amrita. The asuras seized it; Vishnu became Mohini, the enchantress, promising an even division and serving the gods alone. Rahu slipped into the gods' line and swallowed a sip — warned by sun and moon, the Sudarshana severed his head, which, touched by nectar, remained immortal: hence the eclipses. Kurma's bearing and Mohini's maya alike declare — only divine wit answers maya.",
+    spanish:
+      "Derrotados por los asuras, los dioses siguieron el consejo de Vishnu y batieron el océano por el néctar — Mandara por palo de batir, Vasuki por cuerda. Cuando la montaña comenzó a hundirse, el Señor se volvió Kurma, la gran tortuga, y la sostuvo sobre su espalda. Del mar subieron los tesoros — Ucchaishravas el caballo, Airavata el elefante, la luna y Lakshmi, que eligió a Vishnu por señor — hasta que apareció Dhanvantari con el amrita. Los asuras lo arrebataron; Vishnu se convirtió en Mohini, la hechicera, prometiendo un reparto equitativo y sirviendo solo a los dioses. Rahu se coló en la fila de los dioses y tragó un sorbo — advertidos el sol y la luna, el Sudarshana cercenó su cabeza, que, tocada por el néctar, quedó inmortal: de ahí los eclipses. El sostén de Kurma y la maya de Mohini declaran lo mismo — solo el ingenio divino responde a la maya.",
+    tags: ["amrita manthan", "kurma", "mohini", "rahu", "अमृत मन्थन", "कूर्म", "मोहिनी", "राहु", "धन्वन्तरि", "nectar"],
   },
 ];

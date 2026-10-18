@@ -181,4 +181,170 @@ export const RAMAYANA_ENTRIES: CorpusEntry[] = [
       "Oh, la de hermoso rostro — el nombre de Rama, repetido tres veces, equivale a la recitación de Sus mil nombres: el celebrado verso del Ram Raksha Stotra, compuesto por Budha Kaushika, sobre el poder protector del nombre de Rama.",
     tags: ["rama raksha", "protection", "stotra", "राम रक्षा", "राम नाम", "सहस्रनाम", "रक्षा", "protection mantra"],
   },
+  {
+    id: "ram-ahalya-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Bala Kanda — Ahalya's redemption`,
+    sectionHi: `${RH} · बाल काण्ड — अहल्या उद्धार`,
+    title: "Ahalya's Redemption — Grace Restores Honour",
+    titleHi: "अहल्या का उद्धार — कृपा से सम्मान की पुनर्स्थापना",
+    hindi:
+      "गौतम मुनि की पत्नी अहल्या को इन्द्र ने मुनि का वेश धरकर छला; मुनि की तप-दृष्टि ने सब देख लिया और अहल्या को वर्षों तक अदृश्य रहकर वायु भक्षण करते, राख में शयन करते रहने का दंड मिला। किंतु शाप में ही मुक्ति का द्वार लिखा था — जिस दिन राघव उस आश्रम में पग रखेंगे, उसी दिन शाप भंग हो जाएगा। विश्वामित्र के साथ आते हुए राम ने उस निर्जन आश्रम में प्रवेश किया और अहल्या वर्षों की तपस्या से दिव्य तेज के साथ प्रकट हुईं। राम ने उन्हें माता समान सम्मान दिया, और गौतम ने पवित्र हो चुकी पत्नी को पुनः स्वीकार किया — भगवान् के दर्शन से केवल पाप नहीं, अपितु अज्ञान भी नष्ट हो जाता है।",
+    english:
+      "The sage Gautama's wife Ahalya was deceived by Indra, who came wearing the sage's very form; the sage's eye of penance saw through it, and Ahalya was sentenced to ages unseen, living on air and lying in ashes. Yet the curse carried its own release — the day Raghava sets foot in that hermitage, she would stand cleansed. Entering the desolate ashrama with Vishvamitra, Rama's arrival broke the spell, and Ahalya emerged radiant from her long austerity. Rama honoured her as a mother, and Gautama received back his purified wife: the Lord's sight destroys not sin alone but the very ignorance that bred it.",
+    spanish:
+      "Ahalya, esposa del sabio Gautama, fue engañada por Indra, que llegó con la propia forma del sabio; el ojo de penitencia del sabio lo descubrió, y Ahalya fue condenada a siglos sin ser vista, viviendo de aire y durmiendo sobre cenizas. Pero la maldición traía su propia liberación — el día en que Raghava pusiera el pie en aquel ermitorio, ella quedaría purificada. Entrando en el ashrama desolado junto a Vishvamitra, la llegada de Rama rompió el encantamiento, y Ahalya surgió radiante de su larga austeridad. Rama la honró como a una madre y Gautama recibió de nuevo a su esposa purificada: la mirada del Señor destruye no solo el pecado, sino la misma ignorancia que lo engendró.",
+    tags: ["ahalya", "gautama", "indra", "redemption", "अहल्या", "गौतम", "शाप विमोक्ष", "राम कृपा", "बाल काण्ड", "grace"],
+  },
+  {
+    id: "ram-parashurama-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Bala Kanda — Parasurama at Mithila`,
+    sectionHi: `${RH} · बाल काण्ड — मिथिला में परशुराम`,
+    title: "Rama Meets Parasurama — Two Bows, One Lord",
+    titleHi: "राम-परशुराम संमुख — दो धनुष, एक स्वामी",
+    hindi:
+      "शिव-धनुष के टूटने का प्रचंड शब्द सुनते ही महेन्द्राचल से तपस्वी परशुराम मिथिला उपस्थित हुए और रौद्र रूप धरकर राम से ललकारे — 'इस विष्णु-धनुष पर प्रत्यंचा चढ़ाओ, तब देखें तुम्हारा शौर्य।' राम ने तपस्वी को 'भगवान्' कहकर सम्मान दिया, फिर विनम्रता से वह महान् धनुष उठाया और क्षण-भर में प्रत्यंचा चढ़ा दी। उसी क्षण परशुराम का तप से प्राप्त समस्त तेज अंतर्ध्यान हो गया — सामने वही विष्णु खड़े थे जिनसे उनकी सारी शक्ति उधार थी। हाथ जोड़कर उन्होंने निवेदन किया कि राम का बाण उनके तप के फल को ही भक्षण करे, और इस प्रकार अपना अहं चूर-चूर होने देकर वे शांत हृदय से महेन्द्र पर्वत लौट गए।",
+    english:
+      "The thunderous crack of Shiva's broken bow reached Parasurama's penance on Mount Mahendra, and the axe-bearing seer stormed into Mithila, challenging Rama to string Vishnu's own bow — 'then you shall see true valour.' Rama received the seer with reverence, addressing him as bhagavan for his austerities, then calmly raised the great bow and bent its string in a trice. In that instant the sage's entire blazing power of penance drained away — before him stood the very Vishnu from whom all his might was borrowed. With folded hands he begged that Rama's arrow consume the fruits of his tapas; his ego shattered, he returned serene to Mount Mahendra.",
+    spanish:
+      "El estruendo del arco de Shiva quebrado llegó a la penitencia de Parasurama en el monte Mahendra, y el sabio del hacha irrumpió en Mithila desafiando a Rama a tender el propio arco de Vishnu — 'entonces verás el verdadero valor.' Rama lo recibió con reverencia, llamándolo bhagavan por sus austeridades, y luego alzó serenamente el gran arco y tensó su cuerda en un instante. En ese mismo instante, todo el ardiente poder penitencial del sabio se desvaneció — ante él estaba el propio Vishnu de quien toda su fuerza era prestada. Con las manos juntas, rogó que la flecha de Rama consumiera los frutos de su tapas; con el ego deshecho, regresó sereno al monte Mahendra.",
+    tags: ["parashurama", "mithila", "vishnu bow", "shiva bow", "परशुराम", "मिथिला", "विष्णु धनुष", "शिव धनुष", "तप", "bala kanda"],
+  },
+  {
+    id: "ram-farewell-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Ayodhya Kanda — the dawn departure`,
+    sectionHi: `${RH} · अयोध्या काण्ड — भोर का प्रस्थान`,
+    title: "The Last Night in Ayodhya",
+    titleHi: "अयोध्या की अंतिम रात्रि",
+    hindi:
+      "वन-गमन का समाचार पाकर सारी अयोध्या नागरिक राम के रथ के पीछे-पीछे चल पड़े — कोई कुछ नहीं बोलता, सब नेत्रों से आँसू बहाते नगर छोड़ आए। नगर की सीमा पर राम ने एक रात्रि विश्राम किया, और थक-हारकर सारी प्रजा रथ के चारों ओर सो गई। निद्रित प्रजा को विछोह का यह दुःख न देना चाहते हुए राम ने भोर में सुमन्त्र से कहा — 'अश्वों को मृदु गति से चलाओ, कहीं शब्द न हो।' जब नागरिक जागे तो रथ बहुत दूर निकल चुका था — धरा खोखली लगी और वे शोक-सागर में डूबे हुए लौट आए। गंगा-तट पर निषादराज गुह ने प्रेम से सेवा कर पार उतारा; दूसरे तट पर राम-लक्ष्मण ने जटाएँ धारण कीं — राजकीय वैभव स्वेच्छा से त्यागकर वनवासी जीवन स्वीकार किया गया।",
+    english:
+      "When word spread that Rama was leaving for the forest, the citizens of Ayodhya walked behind his chariot — no one spoke; eyes streaming, they left the city behind. On its outskirts Rama halted for a night, and the exhausted people fell asleep all around the chariot. To spare the sleeping population the agony of a parting glance, Rama told Sumantra at dawn: 'Drive the horses gently, without a sound.' By the time the people awoke the chariot was far away — the earth felt hollow, and they returned drowning in grief. At the Ganga the Nishada king Guha lovingly served them and ferried them across; on the farther bank Rama and Lakshmana bound their hair in matted locks — royal splendour freely surrendered, the forester's life freely embraced.",
+    spanish:
+      "Cuando corrió la voz de que Rama partía al bosque, los ciudadanos de Ayodhya caminaron tras su carro — nadie hablaba; con los ojos desbordados, dejaron la ciudad atrás. En sus afueras Rama se detuvo una noche, y el pueblo agotado quedó dormido alrededor del carro. Para ahorrarle a la gente dormida la agonía de una última mirada, Rama dijo a Sumantra al alba: 'Guía los caballos suavemente, sin ruido.' Cuando despertaron, el carro estaba muy lejos — la tierra se sintió vacía, y volvieron sumergidos en duelo. En el Ganges, el rey nishada Guha los sirvió con amor y los cruzó; en la otra orilla, Rama y Lakshmana se ciñeron los cabellos en trenzas de asceta — el esplendor real renunciado por propia voluntad, la vida del bosque abrazada por propia voluntad.",
+    tags: ["exile", "ayodhya", "sumantra", "guha", "tamasa", "वनवास", "अयोध्या", "गुह", "सुमन्त्र", "विदाई"],
+  },
+  {
+    id: "ram-lakshmana-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Ayodhya Kanda — Lakshmana's devotion`,
+    sectionHi: `${RH} · अयोध्या काण्ड — लक्ष्मण की सेवा`,
+    title: "Lakshmana — Devotion Made Flesh",
+    titleHi: "लक्ष्मण — सेवा के धरातल पर उतरी भक्ति",
+    hindi:
+      "वन-यात्रा के आरम्भ में ही लक्ष्मण ने सुमन्त्र से कहा — 'राम और सीता जी जो भोजन कर जाएँ, उसका शेष ही मेरा भोजन है; जब तक वे जागती-जागते हैं, नींद मेरे लिए वर्जित है।' वे प्रतिदिन फल-मूल एकत्र करते, पहले राम-सीता का भोजन कराते और रात्रि-भर धनुष-बाण धारण कर जागते रहते। जिसने अपने लिए कोई स्वतंत्र आहार, विश्राम या सुख नहीं रखा, उसने राम के होने का पूर्ण अर्थ जीकर दिखाया। यह भ्रातृ-प्रेम से भी अधिक शुद्ध भक्ति थी — लक्ष्मण के लिए सेवा ही साधना और सेवा ही सिद्धि थी। परंपरा उन्हें आदर्श सेवक मानती है — शेषनाग, जो मानव-देह धरकर स्वयं को भुलाकर प्रभु की सेवा में लीन रहा।",
+    english:
+      "At the very start of the forest journey Lakshmana told Sumantra: 'Whatever remains after Rama and Sita have eaten, that alone is my food; while they wake, sleep is forbidden to me.' Day after day he gathered fruits and roots, served their meal first, and stood watch all night, bow strung. Claiming no independent hunger, rest or joy, he lived out the full meaning of belonging to Rama. This was devotion purer than brotherly love — for Lakshmana, service itself was the practice and its perfection. Tradition honours him as the ideal servant — Shesha the serpent-king, who wearing a human body forgot himself utterly in the Lord's service.",
+    spanish:
+      "Al comienzo mismo de la marcha al bosque, Lakshmana dijo a Sumantra: 'Lo que quede después de que Rama y Sita hayan comido, solo eso es mi alimento; mientras ellos velan, el sueño me está prohibido.' Día tras día recogía frutas y raíces, servía primero su comida y montaba guardia toda la noche, con el arco tensado. Sin reclamar hambre, descanso ni dicha propios, vivió plenamente el significado de pertenecer a Rama. Era una devoción más pura que el amor fraterno — para Lakshmana, el servicio mismo era la práctica y su perfección. La tradición lo honra como el servidor ideal — Shesha, el rey serpiente, que en cuerpo humano se olvidó de sí por completo en el servicio del Señor.",
+    tags: ["lakshmana", "seva", "devotion", "vigil", "लक्ष्मण", "सेवा", "भक्ति", "जागरण", "शेषनाग", "chitrakoot"],
+  },
+  {
+    id: "ram-sita-hanuman-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Sundara Kanda — Ashoka grove`,
+    sectionHi: `${RH} · सुन्दर काण्ड — अशोक वाटिका`,
+    title: "The Ring and the Chudamani",
+    titleHi: "मुद्रिका और चूडामणि",
+    hindi:
+      "समुद्र लाँघकर रात-भर लंका खोजते हुए हनुमान को भोर में अशोक-वाटिका के शिंशुपा वृक्ष तले एक तपस्विनी-सी कृश प्राण दिखाई दीं — ये सीता थीं, रावण की धमकियों से व्यथित, राम-वियोग में अनशन पर अटल। विश्वास जोड़ने हेतु हनुमान वृक्ष की डाल पर छोटे रूप में बैठकर मधुर स्वर में राम-कथा सुनाने लगे, जिसे सुन सीता ने चकित होकर ऊपर देखा। उन्होंने राम की भेजी मुद्रिका सामने रखी — उसके स्पर्श से सीता का दीर्घ विषाद टूट गया। जब हनुमान ने उन्हें कंधे पर बिठाकर वापस ले जाने का प्रस्ताव दिया, तो सीता ने विनम्रता से मना किया — उनका उद्धार राम के अपने पराक्रम से ही होना चाहिए, दूत के ज़रिए लौटना उनकी मर्यादा को जीवित नहीं रख सकता। विदा में उन्होंने अपनी चूड़ा-मणि देते हुए कहा — 'इसे राम-लक्ष्मण के समक्ष रखना, मेरा जीवन-प्रमाण यही है।'",
+    english:
+      "After crossing the ocean Hanuman searched Lanka through the night; at dawn, beneath a shimshupa tree in the Ashoka grove, he beheld a wasted woman vowed as to penance — Sita herself, wounded by Ravana's threats, unbroken on her fast of separation from Rama. To win her trust he perched small upon a branch and softly sang the story of Rama, until her startled eyes looked up. He set before her the signet ring Rama had sent — at its touch her long despair broke. When Hanuman offered to bear her back across the sea on his shoulders, Sita gently refused: her rescue must come by Rama's own might — returning by a messenger's way would not keep her honour alive. In farewell she gave him her crest-jewel, the chudamani: 'Place this before Rama and Lakshmana — this is the proof of my life.'",
+    spanish:
+      "Tras cruzar el océano, Hanuman buscó por Lanka toda la noche; al alba, bajo un árbol shimshupa en el bosque de Ashoka, contempló a una mujer demacrada como una asceta — la propia Sita, herida por las amenazas de Ravana, inquebrantable en su ayuno de separación de Rama. Para ganarse su confianza se posó pequeño en una rama y entonó suavemente la historia de Rama, hasta que sus ojos asombrados se alzaron. Puso ante ella el anillo-sello que Rama había enviado — al tocarlo, su larga desesperación se quebró. Cuando Hanuman se ofreció a llevarla de regreso sobre sus hombros, Sita se negó con gentileza: su rescate debía llegar por el poderío del propio Rama — volver por vía de un mensajero no mantendría vivo su honor. En la despedida le entregó su joya de cresta, el chudamani: 'Ponla ante Rama y Lakshmana — esta es la prueba de mi vida.'",
+    tags: ["sita", "hanuman", "chudamani", "mudrika", "ashoka grove", "सीता", "हनुमान", "मुद्रिका", "चूडामणि", "अशोक वाटिका"],
+  },
+  {
+    id: "ram-lanka-burning-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Sundara Kanda — Lanka in flames`,
+    sectionHi: `${RH} · सुन्दर काण्ड — लंका-दहन`,
+    title: "The Burning of Lanka",
+    titleHi: "लंका-दहन",
+    hindi:
+      "सीता से विदा लेकर हनुमान ने अशोक-वाटिका उजाड़ डाली और अक्श-कुमार सहित अनेक राक्षस-वीर संहार डाले; तब इन्द्रजित ने ब्रह्मास्त्र चलाया। ब्रह्म-महिमा का आदर करते हुए हनुमान ने उस अस्त्र के प्रभाव में बंधन स्वीकार किया — पर साधारण बंधन उन्हें बाँध ही नहीं सका। रावण की सभा में उपस्थित होकर उन्होंने स्पष्ट शब्दों में संदेश सुनाया — 'सीता को लौटाओ, अन्यथा राघव का क्रोध लंका के लिए प्रलय बनेगा।' विभीषण के समझाने पर दूत-वध से रावण बचा, किंतु उसने हनुमान की पूँछ में तेल-डूबी पट्टियाँ लपेटकर आग लगवा दी। उसी जलती पूँछ से हनुमान ने छोटा रूप धरकर बंधन तोड़ा और भवन-दर-भवन लंका को जलाते चले गए — स्वर्ण-नगरी अंगार हो गई। तभी मन में कंपन उठा — 'कहीं सीता जी भी न जल जाएँ!' — शिंशुपा तले उन्हें सुरक्षित देखकर ही वानर-हृदय को विश्राम मिला; समुद्र में पूँछ शीतल कर वे उड़ खड़े हुए।",
+    english:
+      "After taking leave of Sita, Hanuman wrecked the Ashoka grove and cut down Ravana's warriors along with the young prince Aksha; then Indrajit let fly the Brahmastra. Out of reverence for Brahma Hanuman honoured that weapon and accepted bondage — though no ordinary bond could hold him. Led into Ravana's court, he delivered his message in plain words: 'Return Sita, or the wrath of Raghu's son will become the deluge of Lanka.' At Vibhishana's plea Ravana spared the envoy's life, yet had Hanuman's tail wrapped in oil-soaked rags and set on fire. With that burning tail Hanuman shrank his form, snapped the bonds, and went from mansion to mansion firing the city — golden Lanka turned to embers. Then a trembling seized him — 'what if Sita too has burned!' — and only at the sight of her safe beneath the shimshupa did the servant's heart find rest; cooling his tail in the sea, he soared away.",
+    spanish:
+      "Tras despedirse de Sita, Hanuman arrasó el bosque de Ashoka y derribó a los guerreros de Ravana junto con el joven príncipe Aksha; entonces Indrajit disparó el Brahmastra. En reverencia a Brahma, Hanuman honró esa arma y aceptó la cautividad — aunque ningún lazo ordinario podía sujetarlo. Llevado a la corte de Ravana, dio su mensaje con palabras claras: 'Devuelve a Sita, o la ira del hijo de Raghu será el diluvio de Lanka.' Por la súplica de Vibhishana, Ravana perdonó la vida del emisario, pero mandó envolver la cola de Hanuman en trapos empapados de aceite y prenderle fuego. Con esa cola ardiente, Hanuman empequeñeció su forma, rompió las ataduras y fue de mansión en mansión incendiando la ciudad — la Lanka dorada se volvió brasas. Entonces lo invadió un temblor — '¡y si Sita también ha ardido!' — y solo al verla a salvo bajo el shimshupa halló descanso el corazón del siervo; enfriando su cola en el mar, alzó el vuelo.",
+    tags: ["lanka burning", "hanuman", "ravana court", "tail fire", "लंका दहन", "हनुमान", "पूँछ", "रावण", "अक्श कुमार", "सुन्दर काण्ड"],
+  },
+  {
+    id: "ram-sharanagati",
+    kind: "verse",
+    bookId: "ramayana",
+    section: `${R} · Yuddha Kanda 18 — Rama's vow of refuge`,
+    sectionHi: `${RH} · युद्ध काण्ड 18 — शरणागति का व्रत`,
+    chapter: "6",
+    verse: "6.18.3",
+    sanskrit:
+      "सकृदेव प्रपन्नाय तावस्मीति च याचते। अभयं सर्वभूतेभ्यो ददाम्येतद्व्रतं मम ॥",
+    translit:
+      "sakṛd eva prapannāya tāv asmīti ca yācate, abhayaṁ sarva-bhūtebhyo dadāmy etad vratam mama",
+    hindi:
+      "जो कोई एक बार शरण आकर 'मैं आपका हूँ' ऐसी विनती करता है, उसे मैं समस्त प्राणियों से अभय — निर्भयता — प्रदान करता हूँ; यह मेरा व्रत है। रावण का भाई विभीषण अपमान सहकर राम की शरण में आया, और सशंक वानर-सेना के संदेह के उत्तर में श्रीराम ने यही अभय-वचन देकर उसे गले लगा लिया। शरणागत की रक्षा राम-धर्म का केंद्र है — यही श्लोक प्रपत्ति, पूर्ण शरणागति, का प्रमाण-पत्र बन गया है।",
+    english:
+      "To one who has surrendered but once and prays \"I am Yours\", I grant fearlessness from all beings — this is My vow. Vibhishana, Ravana's own brother, fled insult and fell at Rama's feet; to the doubting vanara host Rama declared this eternal promise and embraced him. The protection of the surrendered is the very heart of Rama's dharma — this shloka has become the charter of prapatti, complete self-surrender.",
+    spanish:
+      "A quien se ha rendido una sola vez y suplica \"soy Tuyo\", le concedo la intrepidez frente a todos los seres — este es Mi voto. Vibhishana, hermano del propio Ravana, huyó del insulto y cayó a los pies de Rama; ante la recelosa hueste vanara, Rama proclamó esta promesa eterna y lo abrazó. La protección del rendido es el corazón mismo del dharma de Rama — este shloka se ha vuelto la carta de la prapatti, la entrega total de sí.",
+    tags: ["sharanagati", "prapatti", "vibhishana", "abhaya", "शरणागति", "प्रपत्ति", "विभीषण", "अभय", "राम व्रत", "surrender"],
+  },
+  {
+    id: "ram-aditya-hridaya",
+    kind: "stotra",
+    bookId: "ramayana",
+    section: `${R} · Yuddha Kanda — Aditya Hridayam`,
+    sectionHi: `${RH} · युद्ध काण्ड — आदित्य हृदय`,
+    sanskrit:
+      "आदित्यहृदयं पुण्यं सर्वशत्रुविनाशनम्। जयावहं जपेन्नित्यमक्षय्यं परमं शिवम् ॥",
+    translit:
+      "āditya-hṛdayaṁ puṇyaṁ sarva-śatru-vināśanam, jayāvahaṁ japen nityam akṣayyaṁ paramaṁ śivam",
+    hindi:
+      "राम-रावण युद्ध के उत्कर्ष में श्रम और विषाद से उपन्हत राम की प्रतीक्षा में अगस्त्य मुनि देवगणों सहित आए और उन्हें 'आदित्य हृदय' का उपदेश दिया — सूर्य-मंडल में विराजमान, समस्त लोकों के हृदयेश्वर भगवान् की स्तुति। स्तोत्र का प्रथम श्लोक घोषित करता है कि यह हृदय-रहस्य पवित्र है, समस्त शत्रुओं का नाश करने वाला और विजय प्रदान करने वाला है — इसका नित्य जप अक्षय और परम कल्याणकारी है। इसके पाठ से राम का तेज और धैर्य लौट आया और रावण का अंत निश्चित हुआ — आज भी साधक प्रातःकाल विजय और आरोग्य के लिए इस स्तोत्र का पाठ करते हैं।",
+    english:
+      "In the thick of the Rama-Ravana war, seeing weariness and gloom gather over Rama, the sage Agastya came with the hosts of heaven and taught him the Aditya Hridayam — the secret of the Sun's heart, praise of the Lord of all hearts who presides within that orb. Its opening verse proclaims: this heart is sacred, the destroyer of every foe, the bestower of victory; its daily repetition is unfailing and supremely auspicious. Reciting it, Rama's radiance and resolve returned and the doom of Ravana was sealed — to this day devotees recite the hymn each morning for vigour, victory over darkness and well-being.",
+    spanish:
+      "En lo más recio de la guerra entre Rama y Ravana, viendo el cansancio y el desaliento que se cernían sobre Rama, el sabio Agastya llegó con las huestes celestiales y le enseñó el Aditya Hridayam — el secreto del corazón del Sol, alabanza del Señor de todos los corazones que preside en ese orbe. Su verso inicial proclama: este corazón es sagrado, destructor de todo enemigo, otorgador de la victoria; su repetición diaria es infalible y sumamente auspiciosa. Recitándolo, volvieron a Rama el resplandor y la resolución, y la ruina de Ravana quedó sellada — aún hoy los devotos recitan el himno cada mañana por vigor, victoria sobre la oscuridad y bienestar.",
+    tags: ["aditya hridayam", "agastya", "surya", "stotra", "आदित्य हृदय", "अगस्त्य", "सूर्य", "स्तोत्र", "विजय", "yuddha kanda"],
+  },
+  {
+    id: "ram-ravana-duel-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Yuddha Kanda — the final duel`,
+    sectionHi: `${RH} · युद्ध काण्ड — अंतिम द्वंद्व`,
+    title: "The Fall of Ravana",
+    titleHi: "रावण-वध",
+    hindi:
+      "सेनापतियों, पुत्रों और भाई के गिर जाने पर रावण स्वयं दस सिर और बीस भुजाओं का समस्त अस्त्र-ज्ञान लेकर रण-भूमि में उतरा — वह अग्नि-वर्षा सम प्रतिशोध बन गया। राम के बाण उसके शिरों को काटते गए, किंतु नए शिर उग आते रहे — तब राम ने ब्रह्मा के प्रदत्त दिव्य ब्रह्मास्त्र का स्मरण किया। अग्नि-माला-सम दीप्त वह अस्त्र रावण के हृदय-भाग पर लगा और लंकापति पर्वत-सम गर्जना करता भूमि पर आ गिरा। देवताओं ने पुष्प-वर्षा किया, ऋषिगणों ने राम की स्तुति की; रोते हुए विभीषण से राम बोले — 'अपने भाई का अंत्य-संस्कार पूर्ण मर्यादा से करो, वह वीर था।' विजयी राम की वेदना-हीन शांति बताती है कि रावण का वध बाण ने नहीं — उसका अहंकार युगों-युगों पहले कर दिया था।",
+    english:
+      "With his commanders, sons and brother fallen, Ravana himself plunged into battle with ten heads, twenty arms and all his occult lore — he became a rain of fire and vengeance. Rama's arrows severed his heads, yet fresh ones sprouted again and again — until Rama invoked the Brahmastra, the supreme missile of Brahma. Blazing like a garland of flame, it struck the rakshasa lord's heart and the lord of Lanka crashed to earth like a felled mountain. The gods rained flowers, the sages blessed Rama; to the weeping Vibhishana Rama said: 'Perform your brother's funeral rites in full honour — he was a hero.' The victor's serene freedom from rancour shows that it was not the arrow that slew Ravana, but a pride that had killed him ages before.",
+    spanish:
+      "Caidos sus capitanes, hijos y hermano, Ravana se lanzó él mismo al combate con diez cabezas, veinte brazos y todo su saber arcano — se volvió una lluvia de fuego y venganza. Las flechas de Rama cercenaban sus cabezas, mas nuevas brotaban una y otra vez — hasta que Rama invocó el Brahmastra, el arma suprema de Brahma. Relampagueante como una guirnalda de llama, hirió el corazón del señor de los rakshasas, y el señor de Lanka se desplomó sobre la tierra como un monte derribado. Los dioses llovieron flores, los sabios bendijeron a Rama; al lloroso Vibhishana, Rama dijo: 'Celebra los ritos funerarios de tu hermano con pleno honor — fue un héroe.' La serena ausencia de rencor del vencedor muestra que no fue la flecha la que mató a Ravana, sino un orgullo que lo había matado eras antes.",
+    tags: ["ravana vadha", "final battle", "brahmastra", "युद्ध काण्ड", "रावण वध", "ब्रह्मास्त्र", "दशानन", "विभीषण", "अहंकार", "yuddha kanda"],
+  },
+  {
+    id: "ram-agni-pariksha-story",
+    kind: "story",
+    bookId: "ramayana",
+    section: `${R} · Yuddha Kanda — Sita's fire ordeal`,
+    sectionHi: `${RH} · युद्ध काण्ड — सीता का अग्नि परीक्षण`,
+    title: "Sita's Ordeal by Fire",
+    titleHi: "सीता का अग्नि-परीक्षण",
+    hindi:
+      "रावण-वध के पश्चात् सभा के मध्य राम ने सीता से कठोर शब कहे — यह युद्ध वे अपमान का प्रतिकार करने के लिए लड़े थे, स्वार्थ-स्नेह के लिए नहीं; रावण के घर कठिन काल व्यतीत करके आई पत्नी की शुद्धि का प्रमाण प्रजा चाहती है। इस वचन से व्यथित सीता ने लक्ष्मण से अग्नि-चिता रचवाई — 'पति ने त्याग दिया है, अब अग्नि ही मेरा उपाय है।' वे प्रज्वलित अग्नि में समर्पण-भाव से उतरीं और समस्त सभा अपलक देखती रही। तभी अग्निदेव स्वयं प्रकट हुए, सीता को साक्षात् अग्नि से उठाकर राम के समक्ष रखा और देवताओं के साक्ष्य में वचन बोले — 'ये स्त्री मन से भी अपराध नहीं करतीं।' राम ने तब प्रकट किया कि उन्हें सीता की निर्लेपता का ज्ञान सदा था — यह परीक्षा लोक-संदेह के निवारण के लिए थी; अग्नि, विश्व की साक्षी, ने जनक-नंदिनी के सतीत्व को सिद्ध कर दिया।",
+    english:
+      "After Ravana's fall, in the midst of the assembly, Rama spoke harsh words to Sita: this war had been fought to avenge a family's honour, not out of longing for her; a wife who had endured so long beneath a stranger's roof must prove her purity before the world. Shattered, Sita bade Lakshmana raise a pyre: 'My lord has cast me off — fire itself is my refuge now.' She entered the blazing flames in utter surrender before a speechless assembly; and then Agni, the Fire-god, appeared in his own form, lifted Sita out unscorched, set her before Rama and testified before the gods: 'This woman has not sinned even in thought.' Rama then disclosed what he had never doubted — her stainlessness; the ordeal had been staged only to remove the world's suspicion. Fire, the cosmic witness, had sealed the chastity of Janaka's daughter.",
+    spanish:
+      "Tras la caída de Ravana, en medio de la asamblea, Rama dirigió a Sita palabras severas: esta guerra se había librado para vengar el honor de un linaje, no por anhelo de ella; la esposa que había vivido tanto bajo el techo de un extraño debía probar su pureza ante el mundo. Deshecha, Sita pidió a Lakshmana que levantara una pira: 'Mi señor me ha rechazado — el fuego mismo es ahora mi refugio.' Entró en las llamas encendidas en total entrega ante una asamblea muda; y entonces Agni, el dios del Fuego, apareció en su propia forma, alzó a Sita ilesa, la puso ante Rama y testificó delante de los dioses: 'Esta mujer no ha pecado ni siquiera en pensamiento.' Rama reveló entonces lo que jamás había dudado — su impecabilidad; la ordalía se había escenificado solo para disipar la sospecha del mundo. El fuego, testigo cósmico, había sellado la castidad de la hija de Janaka.",
+    tags: ["agni pariksha", "sita", "fire ordeal", "agni deva", "अग्नि परीक्षा", "सीता", "अग्निदेव", "शुद्धि", "लोक मर्यादा", "purity"],
+  },
 ];

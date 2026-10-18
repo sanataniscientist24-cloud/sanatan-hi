@@ -44,6 +44,8 @@ const BOOK_ALIASES: Record<string, string[]> = {
   stotras: ["stotra", "stotras", "स्तोत्र", "chalisa", "चालीसा", "aarti", "आरती", "sahasranama", "tandava", "ताण्डव"],
   mantras: ["mantra", "mantras", "मंत्र", "jaap", "japa", "जप", "peace mantra"],
   concepts: ["concept", "concepts", "अवधारणा", "dharma concept", "philosophy", "दर्शन"],
+  "ram-charit-manas": ["ram charit manas", "ramcharitmanas", "ramacharitmanas", "तुलसी रामायण", "tulsidas ramayan", "tulsi ramayan", "रामचरितमानस", "राम चरित मानस", "मानस", "manas", "tulsidas"],
+  "yoga-sutras": ["yoga sutra", "yoga sutras", "patanjali", "पतंजलि", "योगसूत्र", "योग सूत्र", "राजयोग", "raja yoga", "ashtanga yoga"],
 };
 
 function detectBook(query: string): string | null {
@@ -202,10 +204,10 @@ const GREETING: Record<ResponseLang, string> = {
 };
 
 const SUGGESTIONS: Record<ResponseLang, string[]> = {
-  hi: ["गीता 2.47 का अर्थ", "कर्म योग क्या है?", "हनुमान चालीसा सुनाओ", "12 ज्योतिर्लिंग बताओ", "आज का श्लोक", "मृत्यु पर गीता क्या कहती है?"],
-  en: ["Gita 2.47 meaning", "What is Karma Yoga?", "Tell me about Shiva", "The 12 Jyotirlingas", "Verse of the day", "What happens after death?"],
-  sa: ["गीता २.४७", "कर्म योगः किम्?", "शिवः कः?", "अद्य श्लोकः", "आत्मा का?", "ज्योतिर्लिङ्गानि ब्रूहि"],
-  es: ["Significado de Gita 2.47", "¿Qué es el karma yoga?", "Cuéntame sobre Shiva", "Los 12 jyotirlingas", "Verso del día", "¿Qué ocurre después de la muerte?"],
+  hi: ["गीता 2.47 का अर्थ", "कर्म योग क्या है?", "हनुमान चालीसा सुनाओ", "योगसूत्र क्या कहता है?", "मानस से राम-कथा सुनाओ", "मृत्यु पर गीता क्या कहती है?"],
+  en: ["Gita 2.47 meaning", "What is Karma Yoga?", "Patanjali's definition of yoga", "Ram Charit Manas on Rama's name", "The 12 Jyotirlingas", "What happens after death?"],
+  sa: ["गीता २.४७", "योगः किम्?", "पातंजलसूत्रम्", "शिवः कः?", "मानसकथा", "ज्योतिर्लिङ्गानि ब्रूहि"],
+  es: ["Significado de Gita 2.47", "¿Qué es el karma yoga?", "El yoga según Patanjali", "Ram Charit Manas", "Los 12 jyotirlingas", "¿Qué ocurre después de la muerte?"],
 };
 
 const FOUND_INTRO: Record<ResponseLang, string> = {
@@ -398,10 +400,10 @@ export function chat(message: string, forced: ResponseLang | "auto" = "auto"): C
   // 2. stats
   if (STATS_RE.test(query)) {
     const t = {
-      hi: `📊 **मेरा ग्रंथ-कोश (offline corpus)**\n\n• **ग्रंथ-संग्रह:** ${CORPUS_STATS.books}\n• **कुल प्रविष्टियाँ:** ${CORPUS_STATS.entries}\n• **संस्कृत श्लोक/स्तोत्र:** ${CORPUS_STATS.versesWithSanskrit}\n• **दार्शनिक अवधारणाएँ:** ${CORPUS_STATS.concepts}\n• **कथाएँ:** ${CORPUS_STATS.stories}\n• **भाषाएँ:** संस्कृत · हिंदी · English\n\n*ग्रंथ: भगवद्गीता · वाल्मीकि रामायण · महाभारत · भागवत पुराण · शिव पुराण · विष्णु पुराण · चारों वेद · 10 प्रमुख उपनिषद् · स्तोत्र-संग्रह (हनुमान चालीसा आदि) · धार्मिक अवधारणाएँ*`,
-      en: `📊 **My scripture corpus (offline)**\n\n• **Scripture collections:** ${CORPUS_STATS.books}\n• **Total reference entries:** ${CORPUS_STATS.entries}\n• **Sanskrit verses/hymns:** ${CORPUS_STATS.versesWithSanskrit}\n• **Philosophical concepts:** ${CORPUS_STATS.concepts}\n• **Stories:** ${CORPUS_STATS.stories}\n• **Languages:** Sanskrit · Hindi · English · Spanish\n\n*Books: Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · Four Vedas · 10 major Upanishads · Stotras (Hanuman Chalisa…) · Dharma concepts*`,
+      hi: `📊 **मेरा ग्रंथ-कोश (offline corpus)**\n\n• **ग्रंथ-संग्रह:** ${CORPUS_STATS.books}\n• **कुल प्रविष्टियाँ:** ${CORPUS_STATS.entries}\n• **संस्कृत श्लोक/स्तोत्र:** ${CORPUS_STATS.versesWithSanskrit}\n• **दार्शनिक अवधारणाएँ:** ${CORPUS_STATS.concepts}\n• **कथाएँ:** ${CORPUS_STATS.stories}\n• **भाषाएँ:** संस्कृत · हिंदी · English · Español\n\n*ग्रंथ: भगवद्गीता · वाल्मीकि रामायण · महाभारत · भागवत पुराण · शिव पुराण · विष्णु पुराण · चारों वेद · 10 प्रमुख उपनिषद् · रामचरितमानस · योगसूत्र · स्तोत्र-संग्रह (हनुमान चालीसा आदि) · धार्मिक अवधारणाएँ*`,
+      en: `📊 **My scripture corpus (offline)**\n\n• **Scripture collections:** ${CORPUS_STATS.books}\n• **Total reference entries:** ${CORPUS_STATS.entries}\n• **Sanskrit verses/hymns:** ${CORPUS_STATS.versesWithSanskrit}\n• **Philosophical concepts:** ${CORPUS_STATS.concepts}\n• **Stories:** ${CORPUS_STATS.stories}\n• **Languages:** Sanskrit · Hindi · English · Spanish\n\n*Books: Bhagavad Gita · Valmiki Ramayana · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · Four Vedas · 10 major Upanishads · Ram Charit Manas · Yoga Sutras of Patanjali · Stotras (Hanuman Chalisa…) · Dharma concepts*`,
       sa: `📊 **कोशः — ${CORPUS_STATS.books} ग्रन्थाः, ${CORPUS_STATS.entries} प्रविष्टयः। संस्कृत-हिन्दी-आङ्ग्ल-स्पेनिशभाषाः।**`,
-      es: `📊 **Mi corpus de escrituras (offline)**\n\n• **Colecciones de escrituras:** ${CORPUS_STATS.books}\n• **Entradas de referencia en total:** ${CORPUS_STATS.entries}\n• **Versos e himnos en sánscrito:** ${CORPUS_STATS.versesWithSanskrit}\n• **Conceptos filosóficos:** ${CORPUS_STATS.concepts}\n• **Historias:** ${CORPUS_STATS.stories}\n• **Idiomas:** sánscrito · hindi · inglés · español\n\n*Libros: Bhagavad Gita · Ramayana de Valmiki · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · los cuatro Vedas · 10 Upanishads principales · Stotras (Hanuman Chalisa…) · conceptos del dharma*`,
+      es: `📊 **Mi corpus de escrituras (offline)**\n\n• **Colecciones de escrituras:** ${CORPUS_STATS.books}\n• **Entradas de referencia en total:** ${CORPUS_STATS.entries}\n• **Versos e himnos en sánscrito:** ${CORPUS_STATS.versesWithSanskrit}\n• **Conceptos filosóficos:** ${CORPUS_STATS.concepts}\n• **Historias:** ${CORPUS_STATS.stories}\n• **Idiomas:** sánscrito · hindi · inglés · español\n\n*Libros: Bhagavad Gita · Ramayana de Valmiki · Mahabharata · Bhagavata Purana · Shiva Purana · Vishnu Purana · los cuatro Vedas · 10 Upanishads principales · Ram Charit Manas · Yoga Sutras de Patanjali · Stotras (Hanuman Chalisa…) · conceptos del dharma*`,
     };
     return finish("stats", t[lang], [], pickSuggestions(lang), lang, 0, started);
   }

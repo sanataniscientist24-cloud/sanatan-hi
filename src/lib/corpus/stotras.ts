@@ -244,4 +244,236 @@ export const STOTRA_ENTRIES: CorpusEntry[] = [
       "Shri Ram Jai Ram Jai Jai Ram — el mantra taraka que lleva a través del océano de la existencia mundana. La sola palabra 'Rama' se considera que contiene la presencia de los propios dioses: la sadhana más sencilla para la paz y la remoción de la angustia.",
     tags: ["rama mantra", "taraka", "राम जय राम", "तारक", "जप", "peace"],
   },
+  {
+    id: "aditya-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Aditya Hridayam · opening",
+    sectionHi: "आदित्य हृदयम् · आरम्भ",
+    sanskrit:
+      "ततो युद्धपरिष्रान्तं समरे चिन्तया स्थितम् । रावणं दृष्ट्वा संक्रुद्धमरिमर्दनातुष्टितः ॥ राम राम महाबाहो श्रृणु गुह्यं सनातनम् ॥",
+    translit:
+      "tato yuddha-pariṣrāntaṁ samare cintayā sthitam, rāvaṇaṁ dṛṣṭvā saṅkruddhaṁ arimardanātuṣṭitaḥ — rāma rāma mahābāho śṛṇu guhyam sanātanam",
+    hindi:
+      "वाल्मीकि रामायण (युद्धकाण्ड) का अमर सूर्य-स्तोत्र — युद्ध से थके, चिन्ता में डूबे श्रीराम को क्रोधित रावण को देखकर अगस्त्य ऋषि ने सनातन गुह्य कहा: 'हे महाबाहो राम! सूर्य के हृदय — आदित्य हृदय — का उपदेश सुनो।' इसके जप से शत्रु नष्ट होते हैं, विजय, आरोग्य और निर्भयता की प्राप्ति होती है — फल-श्रुति में वर्णित है कि इसी स्तोत्र के जप से राम ने रावण का वध किया। सूर्य-उपासना का सर्वाधिक प्रसिद्ध स्तोत्र, प्रातः-पूजा में नित्य गाया जाता है।",
+    english:
+      "The immortal hymn to the Sun from Valmiki's Ramayana (Yuddha Kanda) — seeing battle-weary Rama sunk in thought before the enraged Ravana, the sage Agastya imparted the eternal secret: 'O Rama of mighty arms, hear the heart of the Sun — the Aditya Hridaya.' Its japa destroys enemies and grants victory, health and fearlessness; the phala-shruti recounts that by this hymn Rama slew Ravana. The most famous of all Surya stotras, sung daily at morning worship.",
+    spanish:
+      "El inmortal himno al Sol del Ramayana de Valmiki (Yuddha Kanda) — al ver a Rama, agotado por la batalla, sumido en el pensamiento ante el furioso Ravana, el sabio Agastya le confió el secreto eterno: 'Oh Rama de poderosos brazos, escucha el corazón del Sol — el Aditya Hridaya.' Su japa destruye a los enemigos y otorga victoria, salud e intrepidez; el phala-shruti relata que mediante este himno Rama mató a Ravana. El más famoso de los estotras al Sol, cantado a diario en el culto matutino.",
+    tags: ["aditya hridayam", "surya", "ramayana", "आदित्य हृदय", "सूर्य", "अगस्त्य", "युद्धकाण्ड", "victory", "sun god", "famous"],
+  },
+  {
+    id: "surya-namaskara-1",
+    kind: "mantra",
+    bookId: "stotras",
+    section: "Surya Namaskara Mantras · 12 names",
+    sectionHi: "सूर्य नमस्कार मंत्र · १२ नाम",
+    sanskrit:
+      "मित्राय नमः । रवये नमः । सूर्याय नमः । भानवे नमः । खगाय नमः । पूष्णे नमः । हिरण्यगर्भाय नमः । मारिचये नमः । आदित्याय नमः । सवित्रे नमः । अर्काय नमः । भास्कराय नमः ॥",
+    translit:
+      "mitrāya namaḥ, ravaye namaḥ, sūryāya namaḥ, bhānave namaḥ, khagāya namaḥ, puṣṇe namaḥ, hiraṇyagarbhāya namaḥ, māricaye namaḥ, ādityāya namaḥ, savitre namaḥ, arkāya namaḥ, bhāskarāya namaḥ",
+    hindi:
+      "सूर्य-नमस्कार के बारह वैदिक मंत्र — प्रत्येक आसन के साथ एक नाम: मित्र (मित्र-रूप), रवि, सूर्य, भानु, खग (आकाश में विचरणशील), पूषन (पोषणकर्ता), हिरण्यगर्भ (स्वर्ण-गर्भ), मारीचि, आदित्य, सविता, अर्क और भास्कर — सूर्य के बारह विलक्षण स्वरूप। शारीरिक योग और मंत्र-जप का सुंदरतम संगम; प्रातःकालीन साधना का प्राण।",
+    english:
+      "The twelve Vedic mantras of Surya Namaskara — one name with each posture: Mitra the friend, Ravi, Surya, Bhanu, Khaga who moves through the sky, Pushan the nourisher, Hiranyagarbha the golden womb, Marichi, Aditya, Savita, Arka and Bhaskara — twelve facets of the one Sun. The loveliest wedding of bodily yoga and mantra-japa; the very breath of morning sadhana.",
+    spanish:
+      "Los doce mantras védicos del Surya Namaskara — un nombre por cada postura: Mitra el amigo, Ravi, Surya, Bhanu, Khaga el que se mueve por el cielo, Pushan el nutridor, Hiranyagarbha el vientre dorado, Marichi, Aditya, Savita, Arka y Bhaskara — doce facetas del único Sol. El más bello matrimonio del yoga corporal con el japa de mantras; el aliento mismo de la práctica matutina.",
+    tags: ["surya namaskara", "12 names", "मित्राय नमः", "सूर्य नमस्कार", "भास्कराय", "सूर्य", "sun salutation", "yoga", "morning prayer"],
+  },
+  {
+    id: "shri-suktam-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Shri Suktam · opening",
+    sectionHi: "श्री सूक्तम् · आरम्भ",
+    sanskrit:
+      "हिरण्यवर्णां हरिणीं सुवर्णरजतस्रजाम् । चन्द्रां हिरण्यमयीं लक्ष्मीं जातवेदो ममाहर ॥",
+    translit:
+      "hiraṇya-varṇāṁ harinīṁ suvarṇa-rajata-srajām, candrāṁ hiraṇmayīṁ lakṣmīṁ jātavedo mama āhara",
+    hindi:
+      "श्री सूक्तम् का आरम्भिक मंत्र — ऋग्वेद की खिल-सूक्त परंपरा की लक्ष्मी-स्तुति: 'हे जातवेदो (वेदों के जनक अग्नि)! उस लक्ष्मी को मेरे पास ले आओ जो स्वर्ण-वर्ण है, हरिण-की-भाँति कोमल-चंचल है, स्वर्ण-रजत की माला धारण करती है और चंद्रमा-सी प्रसन्न, सोने-सी निर्मल है।' लक्ष्मी-पूजन, दीपावली और समृद्धि-साधना का प्रसिद्ध वैदिक मंत्र — बाहरी ऐश्वर्य के साथ आंतरिक श्री-संपन्नता भी माँगता है।",
+    english:
+      "The opening mantra of the Shri Suktam — the hymn to Lakshmi from the Rig Veda's khila tradition: 'O Jataveda (fire, knower of all births), bring to me that Lakshmi of golden hue, gentle and swift as the doe, garlanded with gold and silver, moon-radiant and pure as gold.' The celebrated Vedic mantra of Lakshmi worship, Diwali and prosperity-sadhana — asking not only outer wealth but the inner fullness of Shri.",
+    spanish:
+      "El mantra de apertura del Shri Suktam — el himno a Lakshmi de la tradición khila del Rig Veda: 'Oh Jataveda (fuego, conocedor de todos los nacimientos), tráeme a esa Lakshmi de tez dorada, suave y veloz como la cierva, enjoyada con guirnaldas de oro y plata, radiante como la luna y pura como el oro.' El célebre mantra védico del culto a Lakshmi, de Diwali y de la sadhana de la prosperidad — que pide no solo la riqueza externa sino la plenitud interior de Shri.",
+    tags: ["shri suktam", "lakshmi", "prosperity", "हिरण्यवर्णां", "श्री सूक्त", "लक्ष्मी", "समृद्धि", "diwali", "vedic", "abundance"],
+  },
+  {
+    id: "mahishasura-mardini-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Mahishasura Mardini Stotra · opening",
+    sectionHi: "महिषासुरमर्दिनी स्तोत्र · आरम्भ",
+    sanskrit: "अयि गिरिनन्दिनि नन्दितमेदिनि । महिषासुरमर्दिनि ॥",
+    translit: "ayi giri-nandinī nandita-medini — mahiṣāsura-mardinī",
+    hindi:
+      "शक्त-परंपरा का विश्व-प्रसिद्ध स्तोत्र — 'हे गिरि-नन्दिनि! हे मेदिनी को नन्दित करने वाली! हे महिषासुर का मर्दन करने वाली माँ!' दुर्गा की महिषासुर पर विजय (देवी-माहात्म्य की कथा) का गेय वर्णन, जिसका धृत-वाक्य 'महिषासुरमर्दिनि' ही नाम बन गया। महालय की भोर में लगभग सौ वर्षों से रेडियो से प्रसारित यह स्तुति नवरात्रि-पक्ष का आह्वान है — बंगाल की सुबह इसी से जागती है।",
+    english:
+      "The world-famous hymn of the Shakta tradition — 'O daughter of the mountain, O you who delight the earth, O crusher of the buffalo-demon Mahisha!' A lyrical celebration of Durga's victory over Mahishasura (the story of the Devi Mahatmya), whose refrain 'Mahishasura Mardini' became the hymn's very name. Broadcast on Mahalaya dawn for nearly a century, it is the summons of the Navaratri fortnight — Bengal's morning awakens to it.",
+    spanish:
+      "El himno mundialmente célebre de la tradición Shakta — '¡Oh hija de la montaña, oh tú que alegras la tierra, oh trituradora del demonio búfalo Mahisha!' Una celebración lírica de la victoria de Durga sobre Mahishasura (la historia del Devi Mahatmya), cuyo estribillo 'Mahishasura Mardini' se volvió el nombre mismo del himno. Transmitido en el alba de Mahalaya desde hace casi un siglo, es el llamado de la quincena de Navaratri — la mañana de Bengala despierta con él.",
+    tags: ["mahishasura mardini", "durga", "navaratri", "महिषासुरमर्दिनि", "दुर्गा", "अयि गिरिनन्दिनि", "mahalaya", "devi", "शक्ति"],
+  },
+  {
+    id: "narasimha-1",
+    kind: "mantra",
+    bookId: "stotras",
+    section: "Narasimha Mantra",
+    sectionHi: "नृसिंह मंत्र",
+    sanskrit:
+      "उग्रं वीरं महाविष्णुं ज्वलन्तं सर्वतोमुखम् । नृसिंहं भीषणं भद्रं मृत्युमृत्युं नमाम्यहम् ॥",
+    translit:
+      "ugraṁ vīraṁ mahā-viṣṇuṁ jvalantaṁ sarvato-mukham, nṛ-siṁhaṁ bhīṣaṇaṁ bhadraṁ mṛtyu-mṛtyuṁ namāmy aham",
+    hindi:
+      "'मैं नमस्कार करता हूँ उस नृसिंह को — जो उग्र और वीर, महाविष्णु-स्वरूप, समस्त दिशाओं में ज्वलंत, भयंकर और भद्र (कल्याणकारी) हैं — मृत्यु की मृत्यु हैं।' भक्त प्रह्लाद की रक्षा का स्मरण कराने वाला यह प्रसिद्ध मंत्र भय-नाश और अभय-प्राप्ति के लिए जपा जाता है।",
+    english:
+      "'I bow to Narasimha — the fierce and the heroic, the great Vishnu himself, blazing on every side, terrible and auspicious at once, the very death of death.' The celebrated mantra recalling the rescue of the devotee Prahlada, chanted for the removal of fear and the gift of fearlessness.",
+    spanish:
+      "'Me inclino ante Narasimha — el feroz y el heroico, el propio Vishnu supremo, ardiente en todas las direcciones, terrible y auspicioso a la vez, la muerte misma de la muerte.' El célebre mantra que recuerda el rescate del devoto Prahlada, recitado para disipar el miedo y otorgar intrepidez.",
+    tags: ["narasimha", "ugram viram", "नृसिंह", "उग्रं वीरं", "प्रह्लाद", "मृत्युमृत्युं", "vishnu", "protection", "fear removal"],
+  },
+  {
+    id: "rama-namavali-1",
+    kind: "mantra",
+    bookId: "stotras",
+    section: "Rama Namavali Mantra",
+    sectionHi: "राम नामावली मंत्र",
+    sanskrit:
+      "रामाय रामभद्राय रामचन्द्राय वेधसे । राघुनाथाय नाथाय सीतायाः पतये नमः ॥",
+    translit:
+      "rāmāya rāma-bhadrāya rāma-candrāya vedhase, rāghu-nāthāya nāthāya sītāyāḥ pataye namaḥ",
+    hindi:
+      "राम-नाम की प्रिय नामावली — 'रामाय, रामभद्राय, रामचन्द्राय वेधसे (सृष्टि के धाम को), राघुनाथाय, नाथाय, सीता-पति को नमस्कार।' षोडशाक्षरी राम-मंत्र के रूप में प्रसिद्ध यह नामावली रामनवमी और नित्य राम-जप का अंग है; अनुष्ठुप छंद की लय में गाई जाती है।",
+    english:
+      "The beloved namavali of Rama's names — 'Salutations to Rama, to Rama the all-auspicious, to Ramachandra the glory of the creator, to the Lord of the Raghus, to the Lord of lords, to the husband of Sita.' Famous as a sixteen-syllable Rama-mantra, it graces Ramanavami and the daily japa of Rama's name.",
+    spanish:
+      "La amada namavali de los nombres de Rama — 'Salutaciones a Rama, al auspicioso Rama, a Ramachandra gloria del creador, al Señor de los Raghus, al Señor de señores, al esposo de Sita.' Famosa como mantra de dieciséis sílabas de Rama, adorna el Ramanavami y el japa diario del nombre de Rama.",
+    tags: ["rama namavali", "रामाय रामभद्राय", "राम नाम", "रामनवमी", "राम", "namavali", "japa", "ramanavami"],
+  },
+  {
+    id: "hanuman-dhyana-1",
+    kind: "verse",
+    bookId: "stotras",
+    section: "Hanuman Dhyana Shloka",
+    sectionHi: "हनुमान ध्यान श्लोक",
+    sanskrit:
+      "मनोजवं मारुततुल्यवेगं जितेन्द्रियं बुद्धिमतां वरिष्ठम् । वातात्मजं वानरयूथमुख्यं श्रीरामदूतं शरणं प्रपद्ये ॥",
+    translit:
+      "manojavam māruta-tulya-vegaṁ jitendriyaṁ buddhimatāṁ variṣṭham, vātātmajam vānara-yūtha-mukhyaṁ śrī-rāma-dūtaṁ śaraṇaṁ prapadye",
+    hindi:
+      "'मैं शरण ग्रहण करता हूँ उस श्रीराम-दूत की — जो मन के समान वेग से दौड़ते हैं, वायु के समान गतिशील हैं, इंद्रियों को जीत चुके हैं, बुद्धिमानों में श्रेष्ठ हैं, वायु के पुत्र और वानर-सेना के मुख्य सेनापति हैं।' हनुमान-चालीसा, सुन्दरकाण्ड या हनुमान-उपासना से पहले ध्यान हेतु बोला जाने वाला प्रसिद्ध श्लोक।",
+    english:
+      "'I take refuge in the messenger of Shri Rama — swift as the mind, matching the wind in speed, conqueror of the senses, foremost among the wise, son of the wind and general of the vanara host.' The classic dhyana-shloka recited before the Hanuman Chalisa, Sundara Kanda parayana or any worship of Hanuman.",
+    spanish:
+      "'Me refugio en el mensajero de Shri Rama — veloz como la mente, tan rápido como el viento, conquistador de los sentidos, el primero entre los sabios, hijo del viento y general de las huestes vanara.' El clásico dhyana-shloka recitado antes del Hanuman Chalisa, de la lectura del Sundara Kanda o de cualquier culto a Hanuman.",
+    tags: ["hanuman dhyana", "manojavam", "मनोजवं", "हनुमान ध्यान", "हनुमान", "राम दूत", "सुन्दरकाण्ड", "jai hanuman"],
+  },
+  {
+    id: "madhurashtakam-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Madhurashtakam · verse 1",
+    sectionHi: "मधुराष्टकम् · प्रथम पद",
+    sanskrit:
+      "अधरं मधुरं वदनं मधुरं नयनं मधुरं हसितं मधुरम् । हृदयं मधुरं गमनं मधुरं मधुराधिपतेरखिलं मधुरम् ॥",
+    translit:
+      "adharaṁ madhuraṁ, vadanaṁ madhuraṁ, nayanaṁ madhuraṁ, hasitaṁ madhuram — hṛdayaṁ madhuraṁ, gamanaṁ madhuraṁ, madhurādhipater akhilaṁ madhuram",
+    hindi:
+      "वल्लभाचार्य-विरचित मधुराष्टकम् का प्रथम पद — 'मधुर हैं अधर, मुख, नयन, हास, हृदय और चाल; व्रजाधिपति श्रीकृष्ण का समस्त कुछ मधुर है।' आठ पदों में कृष्ण का नाम, रूप, गुण, वेश, वंदन, समीरन, वचन और क्रीड़ा — सब कुछ एक ही 'मधुर' विशेषण में घुल जाता है। शास्त्रीय गायन और भक्ति-संगीत का अति-प्रिय पद।",
+    english:
+      "The first verse of Vallabhacharya's Madhurashtakam — 'Sweet are His lips, His face, His eyes, His smile, His heart and His gait: everything of the Lord of sweetness is sweet.' In eight verses, Krishna's name, form, virtues, attire, offerings, the breeze around Him, His words and His play — all dissolve into the single adjective madhura. A darling of classical and devotional music.",
+    spanish:
+      "El primer verso del Madhurashtakam de Vallabhacharya — 'Dulces son Sus labios, Su rostro, Sus ojos, Su sonrisa, Su corazón y Su caminar: todo del Señor de la dulzura es dulce.' En ocho versos, el nombre, la forma, las virtudes, el atuendo, las ofrendas, la brisa a Su alrededor, las palabras y el juego de Krishna — todo se disuelve en el único adjetivo madhura. Predilecto de la música clásica y devocional.",
+    tags: ["madhurashtakam", "vallabhacharya", "krishna", "मधुराष्टकम", "वल्लभाचार्य", "मधुरम्", "कृष्ण", "vraja", "bhakti"],
+  },
+  {
+    id: "bhaja-govindam-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Bhaja Govindam · verse 1 & refrain",
+    sectionHi: "भज गोविन्दम् · आरम्भ एवं धृत-पंक्ति",
+    sanskrit:
+      "मूढ जहीहि धनागमतृष्णां कुरु सद्बुद्धिं मनसि वितृष्णाम् । यल्लभसे निजकर्मोपात्तं वित्तं तेन विनोदय चित्तम् ॥ भज गोविन्दं भज गोविन्दं गोविन्दं भज मूढमते । सम्प्राप्ते सन्निहिते काले नहि नहि रक्षति डुकृञ्करणे ॥",
+    translit:
+      "mūḍha jahīhi dhanāgama-tṛṣṇāṁ, kuru sad-buddhiṁ manasi vitṛṣṇām, yallabhase nija-karmopāttaṁ vittam tena vinodaya cittam — bhaja govindaṁ bhaja govindaṁ govindaṁ bhaja mūḍha-mate, samprāpte sannihite kāle nahi nahi rakṣati ḍukṛñ karaṇe",
+    hindi:
+      "आदि शंकराचार्य का विख्यात 'भज गोविन्दम्' (मोह-मुद्गर) — 'हे मूढ़! धन की तृष्णा त्याग दे; मन में शुद्ध बुद्धि धारण कर। अपने कर्म से जो कुछ मिले, उसी से चित्त को विनोदित (संतुष्ट) रख।' और धृत-पंक्ति — 'काल के समीप आ पहुँचने पर व्याकरण का डुकृञ्-कारक नहीं बचाएगा — गोविन्द को भजो!' कथा है कि काशी में शंकर ने पण्डित को यांत्रिक ढंग से व्याकरण रटते देख यही रचा था — ज्ञान-वैराग्य का अमर गीत।",
+    english:
+      "Adi Shankaracharya's famous Bhaja Govindam (the 'Moha Mudgara') — 'Fool, abandon the thirst for acquiring wealth; create in your mind pure discrimination. With whatever comes by your own karma, therewith delight your heart.' And the refrain: 'When the appointed hour stands near, the grammatical endings ḍukṛñ karaṇe will not save you — worship Govinda!' Tradition says Shankara composed it on seeing a pundit in Kashi mechanically reciting grammar — the immortal song of wisdom and dispassion.",
+    spanish:
+      "El célebre Bhaja Govindam (el 'Moha Mudgara') de Adi Shankaracharya — 'Necio, abandona la sed de acumular riquezas; crea en tu mente la recta comprensión. Con lo que llegue por tu propio karma, con eso alegra tu corazón.' Y el estribillo: 'Cuando la hora señalada se acerque, las desinencias gramaticales ḍukṛñ karaṇe no te salvarán — ¡adora a Govinda!' La tradición dice que Shankara lo compuso al ver en Kashi a un pandit recitando mecánicamente la gramática — la canción inmortal de la sabiduría y el desapego.",
+    tags: ["bhaja govindam", "adi shankaracharya", "moha mudgara", "भज गोविन्दम्", "आदि शंकराचार्य", "मूढमते", "वैराग्य", "kashi", "famous"],
+  },
+  {
+    id: "annapurna-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Annapurna Stotra · key verses",
+    sectionHi: "अन्नपूर्णा स्तोत्र · प्रमुख श्लोक",
+    sanskrit:
+      "अन्नपूर्णे सदापूर्णे शंकरप्राणवल्लभे । ज्ञानवैराग्यसिद्ध्यर्थं भिक्षां देहि च पार्वती ॥ माता च पार्वती देवी पिता देवो महेश्वरः । बन्धवः शिवभक्ताश्च स्वदेशो भुवनत्रयम् ॥",
+    translit:
+      "annapūrṇe sadā-pūrṇe śaṅkara-prāṇa-vallabhe, jñāna-vairāgya-siddhy-arthaṁ bhikṣāṁ dehi ca pārvatī — mātā ca pārvatī devī pitā devo maheśvaraḥ, bandhavaḥ śiva-bhaktāś ca sva-deśo bhuvana-trayam",
+    hindi:
+      "काशी-विराजमान अन्नपूर्णा देवी के स्तोत्र (परंपरा में आदि शंकराचार्य-रचित) के दो सुविख्यात श्लोक — 'हे अन्नपूर्णे! हे सदा पूर्णे! हे शंकर के प्राणों की प्रिये पार्वती! ज्ञान और वैराग्य की सिद्धि के लिए मुझे भिक्षा दें।' दूसरा श्लोक संन्यासियों का जीवन-दर्शन बन गया — 'मेरी माता पार्वती, पिता महादेव; बंधु शिव-भक्त और तीनों लोक ही मेरी जन्मभूमि।' अन्न-दान और तृप्ति की देवी का स्मरण।",
+    english:
+      "Two celebrated verses from the hymn to Annapurna of Kashi (attributed to Adi Shankaracharya) — 'O Annapurna, ever-full, beloved as the life-breath of Shiva: grant me the alms of wisdom and dispassion.' The second became the very creed of India's wandering monks — 'My mother is Parvati, my father is Lord Maheshvara; my kinsmen are Shiva's devotees, and the three worlds are my homeland.' An invocation of the goddess of food and fullness.",
+    spanish:
+      "Dos versos célebres del himno a Annapurna de Kashi (atribuido a Adi Shankaracharya) — 'Oh Annapurna, siempre plena, amada como el aliento mismo de Shiva: concédeme la limosna de la sabiduría y el desapego.' El segundo se volvió el credo de los monjes errantes de la India — 'Mi madre es Parvati, mi padre es el Señor Maheshvara; mis parientes son los devotos de Shiva, y los tres mundos son mi patria.' Invocación a la diosa del alimento y la plenitud.",
+    tags: ["annapurna", "kashi", "अन्नपूर्णे", "अन्नपूर्णा", "काशी", "माता च पार्वती", "parvati", "food", "bhiksha"],
+  },
+  {
+    id: "guru-1",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Guru Stotra · Gurur Brahma",
+    sectionHi: "गुरु स्तोत्र · गुरुर्ब्रह्मा",
+    sanskrit:
+      "गुरुर्ब्रह्मा गुरुर्विष्णुर्गुरुर्देवो महेश्वरः । गुरुः साक्षात् परं ब्रह्म तस्मै श्रीगुरवे नमः ॥",
+    translit:
+      "gurur brahmā gurur viṣṇur gurur devo maheśvaraḥ, guruḥ sākṣāt paraṁ brahma tasmai śrī-gurave namaḥ",
+    hindi:
+      "'गुरु ही ब्रह्मा हैं, गुरु ही विष्णु, गुरु ही महेश्वर; गुरु साक्षात् परब्रह्म हैं — उन श्रीगुरु को नमस्कार।' शिक्षा-परंपरा का शाश्वत श्लोक — गुरु-गीता और गुरु-स्तोत्र में आता है, गुरु-पूर्णिमा पर और हर विद्या-आरम्भ के पूजन में गाया जाता है: सृष्टि, पालन, संहार और अनुग्रह — चारों गुरु में ही देखे जाते हैं।",
+    english:
+      "'The Guru is Brahma, the Guru is Vishnu, the Guru is Maheshvara; the Guru is verily the supreme Brahman — salutations to that Sri Guru.' The timeless verse of the teaching tradition — found in the Guru Gita and Guru Stotra, sung on Guru Purnima and at the invocation of every branch of learning: creation, preservation, dissolution and grace are all seen in the teacher.",
+    spanish:
+      "'El Guru es Brahma, el Guru es Vishnu, el Guru es Maheshvara; el Guru es en verdad el Brahman supremo — salutaciones a ese Sri Guru.' El verso atemporal de la tradición de la enseñanza — presente en la Guru Gita y el Guru Stotra, cantado en Guru Purnima y en la invocación de toda rama del saber: creación, preservación, disolución y gracia se ven todas en el maestro.",
+    tags: ["guru stotra", "gurur brahma", "guru purnima", "गुरुर्ब्रह्मा", "गुरु स्तोत्र", "गुरु", "teacher", "विद्या", "famous"],
+  },
+  {
+    id: "guru-2",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Guru Stotra · Akhanda Mandala",
+    sectionHi: "गुरु स्तोत्र · अखण्ड मण्डल",
+    sanskrit:
+      "अखण्डमण्डलाकारं व्याप्तं येन चराचरम् । तत्पदं दर्शितं येन तस्मै श्रीगुरवे नमः ॥",
+    translit:
+      "akhanda-maṇḍalākāraṁ vyāptaṁ yena carācaram, tat-padaṁ darśitaṁ yena tasmai śrī-gurave namaḥ",
+    hindi:
+      "'जिस सत्य ने समस्त चर-अचर जगत् को अखण्ड मण्डल (एक अविभाजित गोले) की भाँति व्याप रखा है — उस परम-पद को जिसने मुझे दिखाया, उस श्रीगुरु को नमस्कार।' गुरु-स्तोत्र का सर्वाधिक गाया जाने वाला ध्यान-श्लोक: गुरु अनन्त को प्रकट करने वाले अनन्त रूप हैं।",
+    english:
+      "'That truth which has pervaded the whole world, moving and unmoving, as one unbroken sphere — that supreme abode he has shown me: salutations to that Sri Guru.' The most-sung dhyana verse of the Guru Stotra: the teacher as the infinite revealing the infinite.",
+    spanish:
+      "'Aquella verdad que ha impregnado el mundo entero, móvil e inmóvil, como una esfera inquebrantable — esa suprema morada me la ha mostrado él: salutaciones a ese Sri Guru.' El dhyana-shloka más cantado del Guru Stotra: el maestro como lo infinito que revela lo infinito.",
+    tags: ["akhanda mandala", "guru dhyana", "अखण्डमण्डलाकारं", "गुरु स्तोत्र", "गुरु ध्यान", "infinite", "guru", "चराचरम्"],
+  },
+  {
+    id: "guru-3",
+    kind: "stotra",
+    bookId: "stotras",
+    section: "Guru Vandana · Brahmānandam",
+    sectionHi: "गुरु वंदना · ब्रह्मानन्दम्",
+    sanskrit:
+      "ब्रह्मानन्दं परमसुखदं केवलं ज्ञानमूर्तिम् । द्वन्द्वातीतं गगनसदृशं तत्त्वमस्यादिलक्ष्यम् ॥ एकं नित्यं विमलमचलं सर्वधीसाक्षिभूतम् । भावातीतं त्रिगुणरहितं सद्गुरुं तं नमामि ॥",
+    translit:
+      "brahmānandaṁ paramasukhadaṁ kevalaṁ jñāna-mūrtim, dvandvātītaṁ gagana-sadṛśaṁ tattvamasyādi-lakṣyam — ekaṁ nityaṁ vimalam acalaṁ sarva-dhī-sākṣibhūtam, bhāvātītaṁ triguṇa-rahitaṁ sad-guruṁ tam namāmi",
+    hindi:
+      "'मैं उस सद्गुरु को नमस्कार करता हूँ जो ब्रह्मानन्द-स्वरूप, परम-सुख के दाता, शुद्ध ज्ञान की मूर्ति, द्वन्द्वों से अतीत, आकाश के समान, तत्त्वमसि आदि महावाक्यों का लक्ष्य, एक, नित्य, निर्मल, अचल, समस्त बुद्धियों के साक्षी, भावों से अतीत और तीनों गुणों से रहित हैं।' भारत की शास्त्रीय संगीत-नृत्य परंपराओं के आरम्भ में गाया जाने वाला प्रसिद्ध मंगलाचरण-श्लोक।",
+    english:
+      "'I bow to that Sadguru who is the bliss of Brahman, the giver of supreme joy, the very form of pure knowledge; beyond duality, sky-like, the goal of the great sayings like Tat tvam asi — one, eternal, immaculate, unshakable, the witness of every intellect, beyond all states and free of the three gunas.' The famous invocatory verse sung at the opening of India's classical music and dance.",
+    spanish:
+      "'Me inclino ante aquel Sadguru que es la dicha de Brahman, el dador de la alegría suprema, la forma misma del conocimiento puro; más allá de la dualidad, semejante al cielo, meta de los grandes dichos como Tat tvam asi — uno, eterno, inmaculado, inconmovible, testigo de todo intelecto, más allá de los estados y libre de los tres gunas.' El célebre verso de invocación con el que se abren la música y la danza clásicas de la India.",
+    tags: ["brahmanandam", "sadguru", "ब्रह्मानन्दं", "सद्गुरु", "मंगलाचरण", "tat tvam asi", "guru vandana", "classical arts"],
+  },
 ];

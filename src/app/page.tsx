@@ -13,6 +13,7 @@ import { ChatMessage, TypingIndicator, type ChatMessageData } from "@/components
 import { Hero } from "@/components/sanatan/hero";
 import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
+import { askSanatan } from "@/lib/client/ask";
 
 type LangMode = "auto" | "hi" | "en" | "sa";
 
@@ -24,16 +25,6 @@ const LANG_LABELS: Record<LangMode, string> = {
   en: "English",
   sa: "संस्कृतम्",
 };
-
-interface ApiChatResponse {
-  ok: boolean;
-  reply: string;
-  verses: ChatMessageData["verses"];
-  suggestions: string[];
-  intent: string;
-  lang: string;
-  meta: { matched: number; timeMs: number; corpusSize: number };
-}
 
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -98,13 +89,7 @@ export default function SanatanHIPage() {
       setSending(true);
 
       try {
-        const res = await fetch("/api/chat", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ message, language: langMode }),
-        });
-        const data: ApiChatResponse = await res.json();
-        if (!data.ok) throw new Error("api error");
+        const data = await askSanatan(message, langMode);
         const aiMsg: ChatMessageData = {
           id: uid(),
           role: "assistant",

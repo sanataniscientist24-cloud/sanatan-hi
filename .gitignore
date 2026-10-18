@@ -52,3 +52,15 @@ prompt
 server.log
 # Skills directory
 /skills/
+
+# ── sandbox-internal files (not part of the published app) ──
+.zscripts/
+Caddyfile
+db/
+download/
+examples/
+mini-services/
+prisma/
+tests/
+upload/
+worklog.md

@@ -1,0 +1,75 @@
+# SANATAN HI [ HUMAN INTELLIGENCE ] — GitHub Pages deployment
+#
+# Builds the app as a fully static site (the offline engine + corpus run
+# directly in the browser — no backend needed) and publishes it to
+# GitHub Pages at https://<owner>.github.io/<repo>/ .
+#
+# First-time setup: after the first successful run, make sure
+# Settings → Pages → Build and deployment → Source = "GitHub Actions".
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Prepare static export
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
+        run: |
+          # Server-only API routes are incompatible with `output: export`.
+          # On static hosts the engine runs client-side (src/lib/client/ask.ts),
+          # so they are removed for this build only.
+          rm -rf src/app/api
+          # Project pages live under /<repo>/ — user pages (owner.github.io) live at /
+          if [[ "$REPO_NAME" == *.github.io ]]; then
+            echo "NEXT_BASE_PATH=" >> "$GITHUB_ENV"
+          else
+            echo "NEXT_BASE_PATH=/$REPO_NAME" >> "$GITHUB_ENV"
+          fi
+
+      - name: Build static site
+        env:
+          NEXT_OUTPUT: export
+        run: bunx next build
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

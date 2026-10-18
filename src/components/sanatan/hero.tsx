@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { BookOpenText, Flame, Languages, Sparkles, WifiOff } from "lucide-react";
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
+import { dailyVerseSanatan } from "@/lib/client/ask";
 import type { CorpusEntry } from "@/lib/corpus/types";
 
 interface HeroProps {
@@ -27,10 +28,9 @@ export function Hero({ onSuggestion }: HeroProps) {
 
   useEffect(() => {
     let live = true;
-    fetch("/api/daily")
-      .then((r) => r.json())
-      .then((d) => {
-        if (live && d?.ok) setVerse(d.verse as CorpusEntry);
+    dailyVerseSanatan()
+      .then((v) => {
+        if (live && v) setVerse(v);
       })
       .catch(() => {});
     return () => {

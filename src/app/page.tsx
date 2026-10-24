@@ -13,6 +13,7 @@ import { ChatMessage, TypingIndicator, type ChatMessageData } from "@/components
 import { Hero } from "@/components/sanatan/hero";
 import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
+import { VoiceAssistant } from "@/components/sanatan/voice-assistant";
 import { askSanatan } from "@/lib/client/ask";
 
 type LangMode = "auto" | "hi" | "en" | "sa" | "es";
@@ -41,6 +42,7 @@ export default function SanatanHIPage() {
   const [langMode, setLangMode] = useState<LangMode>("en");
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -160,7 +162,7 @@ export default function SanatanHIPage() {
   }, []);
 
   const scrollToBottom = useCallback((smooth = true) => {
-    const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
+    const el = scrollRef.current?.closest("[data-radix-scroll-area-viewport]");
     if (el) {
       requestAnimationFrame(() => {
         el.scrollTo({ top: el.scrollHeight, behavior: smooth ? "smooth" : "auto" });
@@ -169,7 +171,7 @@ export default function SanatanHIPage() {
   }, []);
 
   const scrollToTop = useCallback(() => {
-    const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
+    const el = scrollRef.current?.closest("[data-radix-scroll-area-viewport]");
     if (el) {
       requestAnimationFrame(() => {
         el.scrollTo({ top: 0, behavior: "auto" });
@@ -287,22 +289,30 @@ export default function SanatanHIPage() {
               </SheetContent>
             </Sheet>
 
-            {/* brand */}
+            {/* brand — opens the voice assistant on tap */}
             <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-              <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => setVoiceOpen(true)}
+                aria-label="Open the SANATAN HI voice assistant"
+                title="Tap to talk — voice assistant"
+                className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 outline-none transition-colors hover:border-sanatan-saffron focus-visible:ring-2 focus-visible:ring-sanatan-saffron sm:flex"
+              >
                 <OmSigil className="text-xl text-sanatan-gold-2 om-glow" />
-              </span>
-              <div className="min-w-0 leading-tight">
-                <h1 className="truncate font-display text-[1.05rem] font-semibold tracking-wide text-sanatan-gold-2 sm:text-lg">
-                  SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
-                  <span className="hidden text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90 md:inline">
-                    [ HUMAN INTELLIGENCE ]
-                  </span>
-                </h1>
-                <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 md:block">
-                  Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
-                </p>
-              </div>
+              </button>
+              <button type="button" onClick={() => setVoiceOpen(true)} className="min-w-0 outline-none" aria-label="Open the SANATAN HI voice assistant" title="Tap to talk — voice assistant">
+                <div className="min-w-0 text-left leading-tight">
+                  <h1 className="truncate font-display text-[1.05rem] font-semibold tracking-wide text-sanatan-gold-2 transition-colors hover:text-sanatan-saffron sm:text-lg">
+                    SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
+                    <span className="hidden text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90 md:inline">
+                      [ HUMAN INTELLIGENCE ]
+                    </span>
+                  </h1>
+                  <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 md:block">
+                    Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
+                  </p>
+                </div>
+              </button>
               <span className="ml-1 hidden items-center gap-1 rounded-full border border-sanatan-gold-2/50 px-2 py-0.5 text-[0.6rem] text-sanatan-gold-2 md:inline-flex">
                 <WifiOff className="h-3 w-3" aria-hidden />
                 Offline AI
@@ -406,6 +416,7 @@ export default function SanatanHIPage() {
                     onSuggestion={(s) => void send(s)}
                     onResume={messages.length > 0 ? enterChat : undefined}
                     resumeCount={messages.length}
+                    onOpenVoice={() => setVoiceOpen(true)}
                   />
                 )}
                 {sending && <TypingIndicator />}
@@ -422,6 +433,9 @@ export default function SanatanHIPage() {
             </div>
           </main>
         </div>
+
+        {/* ── voice assistant (opens from ॐ / SANATAN HI) ── */}
+        <VoiceAssistant open={voiceOpen} onOpenChange={setVoiceOpen} langMode={langMode} />
 
         {/* ── footer (always bottom, respects iOS safe area) ── */}
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">

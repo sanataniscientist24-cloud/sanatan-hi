@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpenText, Flame, Languages, MessagesSquare, Sparkles, WifiOff } from "lucide-react";
+import { ArrowRight, BookOpenText, Flame, Languages, MessagesSquare, Mic, Sparkles, WifiOff } from "lucide-react";
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
 import { dailyVerseSanatan } from "@/lib/client/ask";
@@ -14,6 +14,8 @@ interface HeroProps {
   /** shown when a previous conversation exists and the user returned to the menu */
   onResume?: () => void;
   resumeCount?: number;
+  /** opens the voice assistant (triggered by the ॐ sigil / SANATAN HI title) */
+  onOpenVoice?: () => void;
 }
 
 const STARTER_CHIPS = [
@@ -27,7 +29,7 @@ const STARTER_CHIPS = [
   "What are the Vedas?",
 ];
 
-export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
+export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice }: HeroProps) {
   const [verse, setVerse] = useState<CorpusEntry | null>(null);
   /* users who prefer reduced motion get a still frame instead of an autoplaying video */
   const [reducedMotion, setReducedMotion] = useState(false);
@@ -108,20 +110,38 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
         <div className="pointer-events-none absolute -top-2 select-none font-deva text-[7rem] leading-none text-sanatan-saffron/10 sm:text-[9rem]" aria-hidden>
           ॐ
         </div>
-        <motion.div
+        <motion.button
+          type="button"
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative flex h-20 w-20 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-parchment to-sanatan-cream-2 shadow-[0_8px_30px_rgba(105,32,15,0.12)]"
+          onClick={onOpenVoice}
+          aria-label="Open the SANATAN HI voice assistant"
+          title="Tap to talk — voice assistant"
+          className="group relative flex h-20 w-20 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-parchment to-sanatan-cream-2 shadow-[0_8px_30px_rgba(105,32,15,0.12)] outline-none transition-all hover:border-sanatan-saffron hover:shadow-[0_10px_40px_rgba(227,130,30,0.25)] focus-visible:ring-2 focus-visible:ring-sanatan-saffron active:scale-95"
         >
-          <OmSigil className="text-5xl text-sanatan-maroon om-glow" />
-        </motion.div>
-        <h1 className="mt-4 font-display text-4xl font-semibold tracking-wide text-sanatan-maroon sm:text-[2.75rem]">
-          SANATAN <span className="text-sanatan-saffron">HI</span>
-        </h1>
+          <OmSigil className="text-5xl text-sanatan-maroon om-glow transition-transform group-hover:scale-105" />
+          <span className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full border border-sanatan-gold-2 bg-sanatan-maroon shadow-sm">
+            <Mic className="h-3.5 w-3.5 text-sanatan-gold-2" aria-hidden />
+          </span>
+        </motion.button>
+        <button type="button" onClick={onOpenVoice} className="mt-4 outline-none" aria-label="Open the SANATAN HI voice assistant" title="Tap to talk — voice assistant">
+          <h1 className="font-display text-4xl font-semibold tracking-wide text-sanatan-maroon transition-colors hover:text-sanatan-saffron sm:text-[2.75rem]">
+            SANATAN <span className="text-sanatan-saffron">HI</span>
+          </h1>
+        </button>
         <p className="mt-0.5 text-[0.68rem] font-semibold uppercase tracking-[0.28em] text-sanatan-gold sm:text-xs">
           [ HUMAN INTELLIGENCE ]
         </p>
+        <button
+          type="button"
+          onClick={onOpenVoice}
+          className="mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/10 px-3 py-1 text-[0.7rem] font-medium text-sanatan-gold transition-all hover:border-sanatan-saffron hover:bg-sanatan-gold/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron active:scale-95"
+          aria-label="Open the voice assistant and ask by voice"
+        >
+          <Mic className="h-3.5 w-3.5" aria-hidden />
+          <span>Tap to talk · बोलकर पूछें · Hindi · English · Español</span>
+        </button>
         <p className="mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/75">
           Bhagavad Gita · Ramayana & Ram Charit Manas · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Yoga Sutras · Hanuman Chalisa —{" "}

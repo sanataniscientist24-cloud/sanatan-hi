@@ -29,6 +29,16 @@ const STARTER_CHIPS = [
 
 export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
   const [verse, setVerse] = useState<CorpusEntry | null>(null);
+  /* users who prefer reduced motion get a still frame instead of an autoplaying video */
+  const [reducedMotion, setReducedMotion] = useState(false);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
 
   useEffect(() => {
     let live = true;
@@ -44,6 +54,30 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
 
   return (
     <div className="sanatan-fade mx-auto w-full max-w-3xl px-1 pb-2">
+      {/* the user's "sanatan ai" film — shown exactly as uploaded, framed like a
+          cinematic panel; all the menu text lives below it */}
+      <motion.figure
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
+        className="mb-5"
+      >
+        <div className="overflow-hidden rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-maroon-2 shadow-[0_14px_44px_rgba(74,21,9,0.28)]">
+          <video
+            className="block aspect-[1132/696] w-full"
+            autoPlay={!reducedMotion}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="videos/sanatan-hero-poster.jpg"
+            aria-label="SANATAN HI — 4D Neural Cortex agentic AI animation"
+          >
+            <source src="videos/sanatan-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+      </motion.figure>
+
       {/* resume the conversation the user left via ✕ / back button —
           placed first so it is immediately visible when returning from a chat */}
       {onResume && resumeCount > 0 && (

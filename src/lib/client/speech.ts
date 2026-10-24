@@ -3,10 +3,12 @@
 /**
  * SANATAN HI — voice assistant speech layer (browser-native, works on static hosts).
  *
- * Text-to-Speech: window.speechSynthesis with Indian-accent voice priority
- *   (en-IN for English, hi-IN for Hindi & Sanskrit) and graceful fallbacks.
+ * Text-to-Speech: window.speechSynthesis — "pravachan" voice profile: a calm,
+ * soothing MALE voice like Babaji giving discourse (Madhur / Hemant / Prabhat
+ * preferred) at a measured pace with gentle sentence pauses. Indian-accent
+ * priority (en-IN for English, hi-IN for Hindi & Sanskrit) with fallbacks.
  * Speech-to-Text: SpeechRecognition / webkitSpeechRecognition with Indian
- *   locales (en-IN, hi-IN) so Indian-accent English is recognised well.
+ * locales (en-IN, hi-IN) so Indian-accent English is recognised well.
  *
  * Everything degrades gracefully: if an API is missing we report capability
  * flags and the UI falls back to typing / silent display.
@@ -30,12 +32,30 @@ export function sttSupported(): boolean {
 
 export type SpeechLang = "en" | "hi" | "es";
 
+/** calm pravachan pace — measured, unhurried delivery (Babaji style) */
+export const DEFAULT_PACE = 0.86;
+/** slightly deep, warm pitch — reads serene, not announcer-like */
+const PRAVACHAN_PITCH = 0.9;
+
 /** preference order — Indian accents first by design */
 const VOICE_ORDER: Record<SpeechLang, string[]> = {
   en: ["en-in", "en-gb", "en-us", "en-au", "en"],
   hi: ["hi-in", "hi"],
   es: ["es-es", "es-mx", "es-us", "es-419", "es"],
 };
+
+/** known MALE voices — a calm male "Babaji" pravachan voice wins ties */
+const MALE_VOICE_RE =
+  /madhur|hemant|prabhat|ravi\b|alvaro|álvaro|jorge|diego|pablo|juan|carlos|george|daniel|liam|arthur|oliver|ryan|guy\b|male|पुरुष/i;
+/** known FEMALE voices — demoted so a male alternative is chosen when present */
+const FEMALE_VOICE_RE =
+  /swara|heera|kalpana|lekha|monica|mónica|paloma|elvira|sabina|paulina|isabela|cecilia|salome|salomé|marisol|sofia|sofía|lucia|lucía|maria|maría|zira|hazel|susan|eva\b|ayla|anisha|kajal|female|महिला/i;
+
+function genderBias(name: string): number {
+  if (MALE_VOICE_RE.test(name)) return 12;
+  if (FEMALE_VOICE_RE.test(name)) return -8;
+  return 0;
+}
 
 export const SPEECH_LANG_LABEL: Record<SpeechLang, string> = {
   en: "English (India)",
@@ -47,16 +67,21 @@ function normLang(lang: string): string {
   return lang.toLowerCase().replace(/_/g, "-");
 }
 
-/** best voice for a target language — Indian-accent voices win ties */
+/** best voice for a language — calm MALE pravachan voice preferred, Indian accents win ties */
 export function pickVoice(voices: SpeechSynthesisVoice[], target: SpeechLang): SpeechSynthesisVoice | null {
   for (const wanted of VOICE_ORDER[target]) {
-    const exact = voices.find((v) => normLang(v.lang) === wanted);
-    if (exact) return exact;
+    const tier = voices.filter((v) => normLang(v.lang) === wanted);
+    if (tier.length) return bestOfTier(tier, target);
   }
   /* base-language fallback (any en-* / hi-* / es-*) */
   const base = target === "es" ? "es" : target;
-  const partial = voices.find((v) => normLang(v.lang).split("-")[0] === base);
-  return partial ?? null;
+  const tier = voices.filter((v) => normLang(v.lang).split("-")[0] === base);
+  return tier.length ? bestOfTier(tier, target) : null;
+}
+
+/** highest-ranked voice of a tier (male > natural > plain > female) */
+function bestOfTier(tier: SpeechSynthesisVoice[], target: SpeechLang): SpeechSynthesisVoice {
+  return tier.reduce((best, v) => (rankVoice(v, target) > rankVoice(best, target) ? v : best));
 }
 
 /** voices usable for a language, best (Indian) first — for the picker UI */
@@ -75,6 +100,8 @@ function rankVoice(v: SpeechSynthesisVoice, target: SpeechLang): number {
   const name = v.name.toLowerCase();
   if (/natural|neural|google/.test(name)) score += 5;
   if (v.localService) score += 1; /* offline-reliable */
+  /* calm male "Babaji" voice beats a female one at equal quality */
+  score += genderBias(v.name);
   return score;
 }
 
@@ -129,15 +156,21 @@ export function romanizeForVoice(text: string, target: SpeechLang): string {
   return text.replace(/([\u0900-\u097F\s॥।]+)/g, (run) => ` ${devanagariToRoman(run.trim())} `).replace(/\s{2,}/g, " ");
 }
 
-/** split into speakable chunks (sentence-boundary queue keeps Chrome reliable) */
-export function splitUtterances(text: string, maxLen = 220): string[] {
-  const sentences = text.match(/[^.!?।]+[.!?।]?/g) ?? [text];
+/** split into speakable chunks — sentence-boundary queue keeps Chrome reliable;
+ *  danda (।) and double-danda (॥) break shlokas so verses get their own breath */
+export function splitUtterances(text: string, maxLen = 150): string[] {
+  const sentences = text.match(/[^.!?।॥]+[.!?।॥]?/g) ?? [text];
   const out: string[] = [];
   for (const s of sentences) {
     const t = s.trim();
     if (!t) continue;
     const last = out[out.length - 1];
-    if (last && (last + " " + t).length <= maxLen) out[out.length - 1] = `${last} ${t}`;
+    /* a completed shloka (॥) always takes its own breath — never merged onward */
+    const lastClosedVerse = last ? /॥$/.test(last) : false;
+    /* short fragments merge with a neighbour so delivery stays smooth, not staccato */
+    const mergeable =
+      last && !lastClosedVerse && (last + " " + t).length <= maxLen && (t.length < 30 || last.length < 30);
+    if (mergeable) out[out.length - 1] = `${last} ${t}`;
     else out.push(t);
   }
   return out.length ? out.slice(0, 24) : [text];
@@ -153,7 +186,9 @@ export interface SpeakOptions {
   onEnd?: () => void;
 }
 
-/** Speak text; returns a cancel() you must call on unmount / interruption. */
+/** Speak text in a calm pravachan cadence — gentle pauses between sentences
+ *  (a touch longer after a shloka's ॥ danda); returns a cancel() you must
+ *  call on unmount / interruption. */
 export function speak(text: string, opts: SpeakOptions): () => void {
   if (!ttsSupported()) {
     opts.onEnd?.();
@@ -166,6 +201,8 @@ export function speak(text: string, opts: SpeakOptions): () => void {
   const chunks = splitUtterances(clean);
   let started = false;
   let ended = false;
+  let cancelled = false;
+  let pauseTimer: number | undefined;
 
   const fireEnd = () => {
     if (!ended) {
@@ -174,7 +211,14 @@ export function speak(text: string, opts: SpeakOptions): () => void {
     }
   };
 
-  chunks.forEach((chunk, i) => {
+  const speakChunk = (i: number) => {
+    if (cancelled || ended) return;
+    if (i >= chunks.length) {
+      fireEnd();
+      return;
+    }
+    const chunk = chunks[i];
+    const last = i === chunks.length - 1;
     const u = new SpeechSynthesisUtterance(chunk);
     u.lang = opts.lang === "en" ? "en-IN" : opts.lang === "hi" ? "hi-IN" : "es-ES";
     if (opts.voice) {
@@ -184,22 +228,26 @@ export function speak(text: string, opts: SpeakOptions): () => void {
         /* incompatible voice object — let u.lang pick the engine voice */
       }
     }
-    u.rate = opts.rate ?? 1;
-    u.pitch = 1;
+    u.rate = opts.rate ?? DEFAULT_PACE; /* calm, measured pace */
+    u.pitch = PRAVACHAN_PITCH; /* slightly deep, warm, soothing */
     u.onstart = () => {
       if (!started) {
         started = true;
         opts.onStart?.();
       }
     };
-    if (i === chunks.length - 1) {
-      u.onend = fireEnd;
-      u.onerror = fireEnd;
-    } else {
-      u.onerror = fireEnd;
-    }
+    /* after each chunk, breathe — a longer pause closes a shloka (॥ / ।) */
+    const breathe = () => {
+      if (cancelled || ended) return;
+      const gap = /[॥।]$/.test(chunk) ? 360 : 200;
+      pauseTimer = window.setTimeout(() => speakChunk(i + 1), gap);
+    };
+    u.onend = last ? fireEnd : breathe;
+    u.onerror = last ? fireEnd : breathe;
     synth.speak(u);
-  });
+  };
+
+  speakChunk(0);
 
   /* safety: some engines never fire events (headless / zero voices) */
   const guard = window.setTimeout(() => {
@@ -207,6 +255,8 @@ export function speak(text: string, opts: SpeakOptions): () => void {
   }, 2500);
 
   return () => {
+    cancelled = true;
+    if (pauseTimer !== undefined) window.clearTimeout(pauseTimer);
     window.clearTimeout(guard);
     try {
       synth.cancel();

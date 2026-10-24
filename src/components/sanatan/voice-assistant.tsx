@@ -11,7 +11,7 @@
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { Keyboard, Languages, Mic, MicOff, Settings2, Sparkles, Square, Volume2, VolumeX, X } from "lucide-react";
+import { Gauge, Keyboard, Languages, Mic, MicOff, Settings2, Sparkles, Square, Volume2, VolumeX, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
@@ -21,6 +21,7 @@ import { OmSigil } from "@/components/sanatan/book-icons";
 import { renderMarkdown } from "@/components/sanatan/markdown";
 import { askSanatan, type AskLang } from "@/lib/client/ask";
 import {
+  DEFAULT_PACE,
   detectSpeechLang,
   listen,
   pickVoice,
@@ -55,13 +56,14 @@ const STRINGS = {
   close: { en: "Close voice assistant", hi: "वॉइस असिस्टेंट बंद करें", sa: "वाच् असिस्टेंट् पिधत्स्व", es: "Cerrar asistente" },
   autoSpeak: { en: "Speak answers", hi: "उत्तर बोलें", sa: "उत्तरं वदतु", es: "Leer respuestas" },
   voice: { en: "Voice", hi: "आवाज़", sa: "स्वरः", es: "Voz" },
+  pace: { en: "Pace", hi: "गति", sa: "गतिः", es: "Ritmo" },
   suggestions: { en: "Try asking", hi: "पूछकर देखें", sa: "पृच्छत्व", es: "Prueba con" },
   ask: { en: "Ask", hi: "पूछें", sa: "पृच्छ", es: "Preguntar" },
   greeting: {
-    en: "Namaste! I am SANATAN HI. Tap the mic and ask me anything — the Gita, the Ramayana, the Vedas.",
-    hi: "नमस्ते! मैं सनातन हाय हूँ। माइक दबाकर पूछें — गीता, रामायण, वेद, कुछ भी।",
-    sa: "नमस्ते। अहं सनातन हाय। माइकं दबाय विचारयतु — गीता, रामायण, वेदाः।",
-    es: "¡Namaste! Soy SANATAN HI. Toca el micrófono y pregúntame: la Gita, el Ramayana, los Vedas.",
+    en: "Namaste. I am SANATAN HI. Ask me anything — the Gita, the Ramayana, or the Vedas.",
+    hi: "नमस्ते। मैं सनातन हाय हूँ। गीता, रामायण, वेद — कुछ भी पूछिए।",
+    sa: "नमस्ते। अहं सनातन हाय। गीता, रामायण, वेदाः — किमपि पृच्छतु।",
+    es: "Namaste. Soy SANATAN HI. Pregúntame lo que quieras: la Gita, el Ramayana o los Vedas.",
   },
 } as const;
 
@@ -91,7 +93,8 @@ interface VoiceAssistantProps {
   langMode: string;
 }
 
-const PREFS_KEY = "sanatan-hi-voice-prefs-v1";
+const PREFS_KEY = "sanatan-hi-voice-prefs-v2";
+const LEGACY_PREFS_KEY = "sanatan-hi-voice-prefs-v1";
 
 interface VoicePrefs {
   autoSpeak: boolean;
@@ -100,21 +103,26 @@ interface VoicePrefs {
 }
 
 function loadPrefs(): VoicePrefs {
-  if (typeof window === "undefined") return { autoSpeak: true, rate: 1, voiceURI: "" };
+  const fallback: VoicePrefs = { autoSpeak: true, rate: DEFAULT_PACE, voiceURI: "" };
+  if (typeof window === "undefined") return fallback;
   try {
-    const raw = localStorage.getItem(PREFS_KEY);
+    const rawV2 = localStorage.getItem(PREFS_KEY);
+    const rawV1 = localStorage.getItem(LEGACY_PREFS_KEY);
+    const raw = rawV2 ?? rawV1;
     if (raw) {
       const p = JSON.parse(raw) as Partial<VoicePrefs>;
+      /* migrating from v1: keep the chosen voice, adopt the new calm pace */
+      const legacy = !rawV2 && !!rawV1;
       return {
         autoSpeak: typeof p.autoSpeak === "boolean" ? p.autoSpeak : true,
-        rate: typeof p.rate === "number" ? p.rate : 1,
+        rate: !legacy && typeof p.rate === "number" ? Math.min(1.1, Math.max(0.7, p.rate)) : DEFAULT_PACE,
         voiceURI: typeof p.voiceURI === "string" ? p.voiceURI : "",
       };
     }
   } catch {
     /* ignore */
   }
-  return { autoSpeak: true, rate: 1, voiceURI: "" };
+  return fallback;
 }
 
 export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantProps) {
@@ -500,10 +508,10 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
                   {STRINGS.voice[lang]}:
                   <Select value={chosenVoice?.voiceURI ?? "auto"} onValueChange={(v) => setVoiceURI(v === "auto" ? "" : v)}>
                     <SelectTrigger className="w-full border-sanatan-gold-2/60 bg-sanatan-parchment text-xs text-sanatan-maroon data-[size=default]:h-10 sm:w-56 sm:data-[size=default]:h-9 [&>svg]:text-sanatan-saffron">
-                      <SelectValue placeholder="Auto (Indian accent)" />
+                      <SelectValue placeholder="Auto (calm male · pravachan)" />
                     </SelectTrigger>
                     <SelectContent className="max-h-64 border-sanatan-gold-2/60 bg-sanatan-parchment">
-                      <SelectItem value="auto" className="text-xs text-sanatan-maroon">Auto · Indian accent</SelectItem>
+                      <SelectItem value="auto" className="text-xs text-sanatan-maroon">Auto · शांत · calm male</SelectItem>
                       {langVoices.map((v) => (
                         <SelectItem key={v.voiceURI} value={v.voiceURI} className="text-xs text-sanatan-maroon">
                           {v.name} ({v.lang}){v.localService ? "" : " · online"}
@@ -511,6 +519,21 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
                       ))}
                     </SelectContent>
                   </Select>
+                </label>
+                <label className="flex flex-wrap items-center gap-2 text-xs font-medium text-sanatan-maroon">
+                  <Gauge className="h-4 w-4 shrink-0 text-sanatan-saffron" aria-hidden />
+                  {STRINGS.pace[lang]}:
+                  <input
+                    type="range"
+                    min={0.7}
+                    max={1.1}
+                    step={0.02}
+                    value={rate}
+                    onChange={(e) => setRate(Number(e.target.value))}
+                    aria-label={`${STRINGS.pace[lang]} — pravachan speed`}
+                    className="h-1.5 w-36 cursor-pointer accent-sanatan-saffron"
+                  />
+                  <span className="w-10 tabular-nums text-[0.7rem] text-sanatan-gold">{rate.toFixed(2)}×</span>
                 </label>
                 <label className="flex items-center gap-2 text-xs font-medium text-sanatan-maroon">
                   <Sparkles className="h-4 w-4 text-sanatan-saffron" aria-hidden />
@@ -655,7 +678,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
             </div>
           )}
           <p className="pt-0.5 text-center text-[0.6rem] text-foreground/50">
-            SANATAN HI voice · {SPEECH_LANG_LABEL[answerLang]} · Indian accent · ॐ
+            SANATAN HI वाणी · {SPEECH_LANG_LABEL[answerLang]} · शांत प्रवचन · calm male · ॐ
           </p>
         </div>
       </DialogContent>

@@ -92,6 +92,7 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
 
   /* ── rotation state (refs only — the rAF loop owns it) ── */
   const angle = useRef(0);
+  const lastApplied = useRef(-1); /* skip frames that change nothing (init −1 so the first frame always applies) */
   const vel = useRef(0);
   const dragging = useRef(false);
   const hovering = useRef(false);
@@ -115,8 +116,11 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
   }, [n, step, radius]);
 
   useEffect(() => {
+    const el = sceneRef.current;
+    if (!el) return;
     let raf = 0;
     let prev = performance.now();
+
     const tick = (now: number) => {
       const dt = Math.min(0.05, (now - prev) / 1000);
       prev = now;
@@ -128,11 +132,41 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
         angle.current += vel.current * dt;
         vel.current *= 0.94;
       }
-      applyFrame();
+      /* reduced-motion / paused ring: rewriting identical transforms every frame is wasted work */
+      if (Math.abs(angle.current - lastApplied.current) > 0.001) {
+        applyFrame();
+        lastApplied.current = angle.current;
+      }
       raf = requestAnimationFrame(tick);
     };
-    raf = requestAnimationFrame(tick);
-    return () => cancelAnimationFrame(raf);
+
+    /* perf: the loop only runs while the ring is on screen — an IntersectionObserver
+       starts/stops it, so a scrolled-away ring costs zero CPU instead of writing
+       12 card transforms per frame forever. */
+    const start = () => {
+      if (!raf) {
+        prev = performance.now();
+        raf = requestAnimationFrame(tick);
+      }
+    };
+    const stop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
+
+    applyFrame(); /* paint the ring once even before it scrolls into view */
+    lastApplied.current = angle.current;
+    const io = new IntersectionObserver(
+      ([entry]) => (entry.isIntersecting ? start() : stop()),
+      { rootMargin: "90px" }
+    );
+    io.observe(el);
+    return () => {
+      io.disconnect();
+      stop();
+    };
   }, [applyFrame, reduced]);
 
   /* ── drag / swipe to spin ── */
@@ -142,7 +176,14 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
     lastPointer.current = { x: e.clientX, moved: 0 };
     lastInteraction.current = performance.now();
     sceneRef.current?.setAttribute("data-dragging", "true");
-    (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    /* pointer capture is an optimisation (keeps the drag alive when the pointer
+       leaves the scene) — guard it: synthetic / keyboard-activated events and some
+       touch edge cases have no active pointer and would otherwise throw. */
+    try {
+      (e.target as HTMLElement).setPointerCapture?.(e.pointerId);
+    } catch {
+      /* drag still works without capture while the pointer stays inside */
+    }
   };
   const onPointerMove = (e: React.PointerEvent<HTMLDivElement>) => {
     if (!dragging.current) return;
@@ -159,12 +200,18 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
     dragging.current = false;
     sceneRef.current?.setAttribute("data-dragging", "false");
     lastInteraction.current = performance.now();
-    (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    try {
+      (e.target as HTMLElement).releasePointerCapture?.(e.pointerId);
+    } catch {
+      /* nothing captured — fine */
+    }
   };
 
-  /* tap vs drag — only treat as a card tap when the pointer barely moved */
-  const onCardClick = (idx: number) => {
-    if (lastPointer.current.moved > 8) return;
+  /* tap vs drag — only treat as a card tap when the pointer barely moved.
+     e.detail > 0 = real pointer tap; keyboard activation (Enter) and synthetic
+     clicks carry detail 0 and must not be punished by a previous drag's mileage. */
+  const onCardClick = (idx: number, e: React.MouseEvent) => {
+    if (e.detail > 0 && lastPointer.current.moved > 8) return;
     onQuery(`Tell me about ${books[idx].name}`);
   };
 
@@ -219,7 +266,7 @@ export function ScriptureOrbit({ onQuery }: ScriptureOrbitProps) {
                   cardRefs.current[i] = el;
                 }}
                 type="button"
-                onClick={() => onCardClick(i)}
+                onClick={(e) => onCardClick(i, e)}
                 tabIndex={0}
                 aria-label={`${b.name} — ${b.nameHi}, ${b.count} entries. Ask about ${b.name}`}
                 className="orbit-card absolute flex flex-col items-center rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment px-2 py-3 text-center shadow-[0_10px_30px_rgba(74,21,9,0.18)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron"

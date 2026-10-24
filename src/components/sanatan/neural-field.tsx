@@ -43,16 +43,39 @@ export function NeuralMantraField({ className }: { className?: string }) {
     let dpr = 1;
     let particles: Particle[] = [];
     let t = 0;
+    /* the breathing core glow is pre-rendered once — recreating a canvas gradient
+       every frame was pure allocation churn */
+    let glowSprite: HTMLCanvasElement | null = null;
+    let glowDark = false;
+
+    const makeGlow = () => {
+      const maxR = Math.max(2, Math.min(width, height) * 0.37);
+      const size = Math.max(2, Math.ceil(maxR * 2 * dpr));
+      const g = document.createElement("canvas");
+      g.width = size;
+      g.height = size;
+      const gc = g.getContext("2d");
+      if (!gc) return;
+      const grad = gc.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
+      grad.addColorStop(0, glowDark ? "rgba(227,130,30,0.16)" : "rgba(227,130,30,0.10)");
+      grad.addColorStop(1, "rgba(227,130,30,0)");
+      gc.fillStyle = grad;
+      gc.fillRect(0, 0, size, size);
+      glowSprite = g;
+    };
 
     const resize = () => {
       const rect = canvas.getBoundingClientRect();
-      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      /* dpr capped at 1.5 — the field is a soft background, and at 2× a phone clears
+         ~600k+ pixels per frame for no visible gain */
+      dpr = Math.min(window.devicePixelRatio || 1, 1.5);
       width = rect.width;
       height = rect.height;
       canvas.width = Math.max(1, Math.round(width * dpr));
       canvas.height = Math.max(1, Math.round(height * dpr));
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
       seed();
+      makeGlow();
       if (reduced) draw(0); /* static frame for reduced-motion users */
     };
 
@@ -73,18 +96,20 @@ export function NeuralMantraField({ className }: { className?: string }) {
     const draw = (dt: number) => {
       t += dt;
       const dark = document.documentElement.classList.contains("dark");
+      if (dark !== glowDark) {
+        glowDark = dark;
+        makeGlow(); /* theme flipped — re-bake the glow sprite */
+      }
       ctx.clearRect(0, 0, width, height);
 
-      /* central radial glow — breathing Om core */
+      /* central radial glow — breathing Om core (cached sprite, scaled per frame) */
       const cx = width / 2;
       const cy = height * 0.46;
       const breathe = 0.5 + 0.5 * Math.sin(t / 1400);
       const glowR = Math.min(width, height) * (0.32 + 0.05 * breathe);
-      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, glowR);
-      grad.addColorStop(0, dark ? "rgba(227,130,30,0.16)" : "rgba(227,130,30,0.10)");
-      grad.addColorStop(1, "rgba(227,130,30,0)");
-      ctx.fillStyle = grad;
-      ctx.fillRect(0, 0, width, height);
+      if (glowSprite) {
+        ctx.drawImage(glowSprite, cx - glowR, cy - glowR, glowR * 2, glowR * 2);
+      }
 
       /* filaments between nearby particles */
       for (let i = 0; i < particles.length; i++) {
@@ -150,14 +175,42 @@ export function NeuralMantraField({ className }: { className?: string }) {
       raf = requestAnimationFrame(loop);
     };
 
-    resize();
-    if (!reduced) raf = requestAnimationFrame(loop);
+    /* perf: the field only paints while on screen — an IntersectionObserver starts/
+       stops the loop, so the canvas costs nothing once scrolled past the masthead. */
+    const start = () => {
+      if (!raf) {
+        last = performance.now();
+        raf = requestAnimationFrame(loop);
+      }
+    };
+    const stop = () => {
+      if (raf) {
+        cancelAnimationFrame(raf);
+        raf = 0;
+      }
+    };
 
+    resize();
+
+    /* keep the canvas fitted on window resize / orientation change (all users) */
     const ro = new ResizeObserver(resize);
     ro.observe(canvas);
+
+    if (!reduced) {
+      const io = new IntersectionObserver(
+        ([entry]) => (entry.isIntersecting ? start() : stop()),
+        { rootMargin: "60px" }
+      );
+      io.observe(canvas);
+      return () => {
+        io.disconnect();
+        ro.disconnect();
+        stop();
+      };
+    }
     return () => {
-      cancelAnimationFrame(raf);
       ro.disconnect();
+      stop();
     };
   }, []);
 

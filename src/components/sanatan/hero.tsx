@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowRight, Check, Cpu, Flame, MessagesSquare, Mic, Sparkles } from "lucide-react";
 import { VerseCard } from "./verse-card";
@@ -53,6 +53,7 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
   const [verse, setVerse] = useState<CorpusEntry | null>(null);
   /* users who prefer reduced motion get a still frame instead of an autoplaying video */
   const [reducedMotion, setReducedMotion] = useState(false);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -74,6 +75,26 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
     };
   }, []);
 
+  /* perf: stop decoding the hero film once it scrolls out of view — an
+     autoplaying 3 MB loop otherwise keeps the video pipeline warm at every
+     scroll position for nothing. */
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    const io = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          if (!reducedMotion && v.paused) void v.play().catch(() => {});
+        } else if (!v.paused) {
+          v.pause();
+        }
+      },
+      { threshold: 0.2 }
+    );
+    io.observe(v);
+    return () => io.disconnect();
+  }, [reducedMotion]);
+
   const chips = starterChips(langs);
 
   return (
@@ -87,6 +108,7 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
       >
         <div className="hud-panel overflow-hidden rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-maroon-2 shadow-[0_14px_44px_rgba(74,21,9,0.28)]">
           <video
+            ref={videoRef}
             className="block aspect-[1132/696] w-full"
             autoPlay={!reducedMotion}
             muted

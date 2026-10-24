@@ -1,7 +1,6 @@
 "use client";
 
-import { Library, WifiOff, Search } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Library, Search } from "lucide-react";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { BookIcon } from "./book-icons";
@@ -29,9 +28,6 @@ export function SidebarContent({ onQuery, onNavigate }: SidebarContentProps) {
       <div className="flex items-center gap-2 px-4 pt-4 pb-2">
         <Library className="h-4 w-4 text-sanatan-saffron" aria-hidden />
         <h2 className="font-display text-lg font-semibold text-sanatan-maroon">Scripture Corpus</h2>
-        <Badge variant="outline" className="ml-auto border-sanatan-gold/40 text-[0.62rem] text-sanatan-gold">
-          {CORPUS.length}+
-        </Badge>
       </div>
 
       <ScrollArea className="sanatan-scroll min-h-0 flex-1 px-2">
@@ -82,11 +78,6 @@ export function SidebarContent({ onQuery, onNavigate }: SidebarContentProps) {
           </div>
         </div>
       </ScrollArea>
-
-      <div className="flex items-center justify-center gap-1.5 border-t border-sanatan-gold-2/40 px-3 py-2.5 text-[0.64rem] text-sanatan-gold">
-        <WifiOff className="h-3.5 w-3.5" aria-hidden />
-        <span>Offline scripture corpus · 4 languages</span>
-      </div>
     </div>
   );
 }

@@ -2,14 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpenText, Check, Cpu, Flame, Languages, MessagesSquare, Mic, Sparkles, WifiOff } from "lucide-react";
+import { ArrowRight, Check, Cpu, Flame, MessagesSquare, Mic, Sparkles } from "lucide-react";
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
 import { LangPicker } from "./lang-picker";
 import { NeuralMantraField } from "./neural-field";
 import { dailyVerseSanatan } from "@/lib/client/ask";
 import { starterChips, type AppLang } from "@/lib/client/langs";
-import { CORPUS, CORPUS_STATS } from "@/lib/corpus";
 import type { CorpusEntry } from "@/lib/corpus/types";
 
 interface HeroProps {
@@ -223,28 +222,6 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
           ))}
         </div>
 
-        {/* stats — HUD instrument cards */}
-        <div className="relative mt-5 grid w-full grid-cols-3 gap-2 sm:gap-3">
-          {[
-            { icon: BookOpenText, label: "Scripture collections · ग्रंथ", value: String(CORPUS_STATS.books) },
-            { icon: Sparkles, label: "Verses & stories · श्लोक", value: `${CORPUS.length}+` },
-            { icon: Languages, label: "Languages · भाषाएँ", value: String(CORPUS_STATS.languages) },
-          ].map(({ icon: Icon, label, value }) => (
-            <div
-              key={label}
-              className="hud-panel flex min-w-0 flex-col items-center rounded-xl border border-sanatan-gold-2/60 bg-sanatan-parchment/90 px-2 py-2.5 backdrop-blur-sm sm:px-3"
-            >
-              <Icon className="h-4 w-4 text-sanatan-saffron" aria-hidden />
-              <span className="mt-1 text-base font-semibold text-sanatan-maroon">{value}</span>
-              <span className="text-center text-[0.6rem] leading-tight sm:text-[0.62rem] text-foreground/60">{label}</span>
-            </div>
-          ))}
-        </div>
-
-        <div className="relative mt-3 flex items-center gap-1.5 rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/10 px-3 py-1 text-[0.68rem] text-sanatan-gold backdrop-blur-sm">
-          <WifiOff className="h-3.5 w-3.5" aria-hidden />
-          <span>Fully offline · No internet · Local scripture corpus · स्थानीय ग्रंथ-कोश</span>
-        </div>
       </div>
 
       {/* ── verse of the day ── */}

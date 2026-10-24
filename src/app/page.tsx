@@ -252,7 +252,7 @@ export default function SanatanHIPage() {
               <SheetContent side="left" className="w-[290px] gap-0 border-sanatan-gold-2/50 bg-sanatan-cream p-0">
                 <SheetTitle className="sr-only">Scripture Corpus</SheetTitle>
                 <SheetDescription className="sr-only">
-                  Browse the offline scripture collections and start a new conversation.
+                  Browse the scripture collections and start a new conversation.
                 </SheetDescription>
                 {/* new chat + theme — live in the drawer on mobile (header is compact) */}
                 <div className="flex gap-2 border-b border-sanatan-gold-2/40 p-3 lg:hidden">
@@ -438,7 +438,7 @@ export default function SanatanHIPage() {
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} />
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                SANATAN HI · स्थानीय ग्रंथ-कोश · local scripture corpus · उत्तर-भाषा: हिंदी · संस्कृत ·{" "}
+                SANATAN HI · उत्तर-भाषा: हिंदी · संस्कृत ·{" "}
                 {langs.includes("en") && <>English · </>}
                 {langs.includes("es") && <>Español · </>}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
@@ -458,7 +458,7 @@ export default function SanatanHIPage() {
               <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Vedas · Upanishads</span>
             </span>
             <span className="text-sanatan-gold-2/80">
-              100% Offline Corpus · हिंदी · संस्कृत · English · Español ·{" "}
+              हिंदी · संस्कृत · English · Español ·{" "}
               <span aria-hidden>🙏</span>
             </span>
           </div>

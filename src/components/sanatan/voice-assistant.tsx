@@ -18,6 +18,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { OmSigil } from "@/components/sanatan/book-icons";
+import { renderMarkdown } from "@/components/sanatan/markdown";
 import { askSanatan, type AskLang } from "@/lib/client/ask";
 import {
   detectSpeechLang,
@@ -516,9 +517,9 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
                     </div>
                     <div className="flex justify-start">
                       <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-sanatan-gold-2/60 bg-sanatan-parchment px-3.5 py-2.5 shadow-sm">
-                        <p className="whitespace-pre-wrap text-[0.82rem] leading-relaxed text-foreground/85">
-                          {t.answer}
-                        </p>
+                        <div className="text-[0.82rem] leading-relaxed text-foreground/85">
+                          {renderMarkdown(t.answer)}
+                        </div>
                         <button
                           type="button"
                           onClick={() => speakReply(t.answer, langMode)}

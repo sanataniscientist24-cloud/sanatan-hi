@@ -5,7 +5,7 @@ import { Moon, Sun, Menu, MessageSquarePlus, WifiOff, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChatInput } from "@/components/sanatan/chat-input";
@@ -14,23 +14,15 @@ import { Hero } from "@/components/sanatan/hero";
 import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
 import { VoiceAssistant } from "@/components/sanatan/voice-assistant";
-import { askSanatan } from "@/lib/client/ask";
+import { LangPicker, LangPillSummary } from "@/components/sanatan/lang-picker";
+import { askSanatanMulti, DEFAULT_LANGS, normalizeLangs, primaryLang, type AppLang } from "@/lib/client/langs";
 
-type LangMode = "auto" | "hi" | "en" | "sa" | "es";
 type ChatView = "menu" | "chat";
 
 /** history-state marker placed on the entry that holds an open conversation */
 const CHAT_HISTORY_FLAG = "sanatanChat";
 
 const STORAGE_KEY = "sanatan-hi-chat-v2";
-
-const LANG_LABELS: Record<LangMode, string> = {
-  auto: "Auto detect",
-  hi: "हिंदी Hindi",
-  en: "English",
-  sa: "संस्कृत Sanskrit",
-  es: "Español",
-};
 
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -39,7 +31,9 @@ function uid() {
 export default function SanatanHIPage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [view, setView] = useState<ChatView>("menu");
-  const [langMode, setLangMode] = useState<LangMode>("en");
+  /* default = हिंदी + संस्कृत; English / Español opt-in from the homepage console */
+  const [langs, setLangs] = useState<AppLang[]>(DEFAULT_LANGS);
+  const [langPickerOpen, setLangPickerOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [voiceOpen, setVoiceOpen] = useState(false);
@@ -60,9 +54,9 @@ export default function SanatanHIPage() {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const data = JSON.parse(raw) as { messages?: ChatMessageData[]; lang?: LangMode };
+        const data = JSON.parse(raw) as { messages?: ChatMessageData[]; langs?: string[] };
         if (Array.isArray(data.messages)) setMessages(data.messages);
-        if (data.lang) setLangMode(data.lang);
+        if (data.langs) setLangs(normalizeLangs(data.langs));
         if (Array.isArray(data.messages) && data.messages.length > 0) {
           viewRef.current = "chat";
           setView("chat");
@@ -89,11 +83,11 @@ export default function SanatanHIPage() {
   useEffect(() => {
     if (!loaded) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, lang: langMode }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, langs }));
     } catch {
       /* ignore */
     }
-  }, [messages, langMode, loaded]);
+  }, [messages, langs, loaded]);
 
   useEffect(() => {
     messagesRef.current = messages;
@@ -195,7 +189,7 @@ export default function SanatanHIPage() {
       setSending(true);
 
       try {
-        const data = await askSanatan(message, langMode);
+        const data = await askSanatanMulti(message, langs);
         const aiMsg: ChatMessageData = {
           id: uid(),
           role: "assistant",
@@ -219,7 +213,7 @@ export default function SanatanHIPage() {
         setSending(false);
       }
     },
-    [sending, langMode, enterChat]
+    [sending, langs, enterChat]
   );
 
   const newChat = () => {
@@ -234,6 +228,7 @@ export default function SanatanHIPage() {
 
   const isDark = (theme ?? resolvedTheme) === "dark";
   const messagesEnd = useMemo(() => messages.length === 0, [messages]);
+  const answerLang = primaryLang(langs);
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden bg-sanatan-cream text-foreground">
@@ -321,21 +316,35 @@ export default function SanatanHIPage() {
 
             {/* actions */}
             <div className="ml-auto flex items-center gap-1.5">
-              <Select value={langMode} onValueChange={(v) => setLangMode(v as LangMode)}>
-                <SelectTrigger
-                  aria-label="Choose answer language"
-                  className="h-10 w-[7.1rem] border-sanatan-gold-2/50 bg-transparent text-xs text-sanatan-cream-2 hover:bg-white/10 sm:h-9 sm:w-36 [&>svg]:text-sanatan-gold-2"
+              <Popover open={langPickerOpen} onOpenChange={setLangPickerOpen}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        aria-label="Answer languages — one or more"
+                        className="h-10 gap-0 rounded-full border border-sanatan-gold-2/50 px-3 text-sanatan-cream-2 hover:bg-white/10 hover:text-sanatan-gold-2 sm:h-9"
+                      >
+                        <LangPillSummary langs={langs} />
+                      </Button>
+                    </PopoverTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">Answer languages · भाषा कंसोल</TooltipContent>
+                </Tooltip>
+                <PopoverContent
+                  align="end"
+                  className="w-72 rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment p-3 shadow-[0_14px_44px_rgba(74,21,9,0.28)]"
                 >
-                  <SelectValue placeholder={LANG_LABELS[langMode]} />
-                </SelectTrigger>
-                <SelectContent className="border-sanatan-gold-2/60 bg-sanatan-parchment">
-                  {Object.entries(LANG_LABELS).map(([v, l]) => (
-                    <SelectItem key={v} value={v} className="text-sm text-sanatan-maroon focus:bg-sanatan-gold/20">
-                      {l}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                  <p className="mb-2 flex items-center gap-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-sanatan-gold">
+                    <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-sanatan-saffron" aria-hidden />
+                    Language Matrix · भाषा कंसोल
+                  </p>
+                  <LangPicker compact langs={langs} onChange={setLangs} />
+                  <p className="mt-2 text-[0.62rem] leading-relaxed text-foreground/55">
+                    एक या अधिक भाषा चुनें — उत्तर हर चुनी हुई भाषा में मिलेंगे · answers arrive in every selected language
+                  </p>
+                </PopoverContent>
+              </Popover>
 
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -417,6 +426,8 @@ export default function SanatanHIPage() {
                     onResume={messages.length > 0 ? enterChat : undefined}
                     resumeCount={messages.length}
                     onOpenVoice={() => setVoiceOpen(true)}
+                    langs={langs}
+                    onLangsChange={setLangs}
                   />
                 )}
                 {sending && <TypingIndicator />}
@@ -427,7 +438,9 @@ export default function SanatanHIPage() {
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} />
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                SANATAN HI answers from a local scripture corpus · English · हिंदी · संस्कृत · Español ·{" "}
+                SANATAN HI · स्थानीय ग्रंथ-कोश · local scripture corpus · उत्तर-भाषा: हिंदी · संस्कृत ·{" "}
+                {langs.includes("en") && <>English · </>}
+                {langs.includes("es") && <>Español · </>}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
               </p>
             </div>
@@ -435,17 +448,17 @@ export default function SanatanHIPage() {
         </div>
 
         {/* ── voice assistant (opens from ॐ / SANATAN HI) ── */}
-        <VoiceAssistant open={voiceOpen} onOpenChange={setVoiceOpen} langMode={langMode} />
+        <VoiceAssistant open={voiceOpen} onOpenChange={setVoiceOpen} langMode={answerLang} />
 
         {/* ── footer (always bottom, respects iOS safe area) ── */}
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-y-0.5 px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] text-center text-[0.64rem] sm:flex-row sm:gap-x-4 sm:gap-y-1 sm:pb-2">
             <span className="text-sanatan-cream-2/90">
-              SANATAN HI [ HUMAN INTELLIGENCE ]
-              <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Bhagavata & Shiva Purana · Vedas · Upanishads</span>
+              SANATAN HI [ HUMAN INTELLIGENCE ] · Founder — DR. KARTIK YADAV
+              <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Vedas · Upanishads</span>
             </span>
             <span className="text-sanatan-gold-2/80">
-              100% Offline Corpus · Sanskrit · Hindi · English · Español ·{" "}
+              100% Offline Corpus · हिंदी · संस्कृत · English · Español ·{" "}
               <span aria-hidden>🙏</span>
             </span>
           </div>

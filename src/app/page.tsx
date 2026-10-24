@@ -437,10 +437,14 @@ export default function SanatanHIPage() {
             {/* input */}
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} />
+              {/* compact line on phones (langs live in the header pill) · full line on sm+ */}
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                SANATAN HI · उत्तर-भाषा: हिंदी · संस्कृत ·{" "}
-                {langs.includes("en") && <>English · </>}
-                {langs.includes("es") && <>Español · </>}
+                SANATAN HI
+                <span className="hidden sm:inline">
+                  {" · उत्तर-भाषा: हिंदी · संस्कृत · "}
+                  {langs.includes("en") && <>English · </>}
+                  {langs.includes("es") && <>Español · </>}
+                </span>{" "}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
               </p>
             </div>

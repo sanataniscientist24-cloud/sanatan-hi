@@ -206,7 +206,7 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
             <Mic className="h-3.5 w-3.5 text-sanatan-gold-2" aria-hidden />
           </span>
         </motion.button>
-        <button type="button" onClick={onOpenVoice} className="relative mt-4 outline-none" aria-label="Open the SANATAN HI voice assistant" title="Tap to talk — voice assistant">
+        <button type="button" onClick={onOpenVoice} className="relative mt-4 py-1 outline-none" aria-label="Open the SANATAN HI voice assistant" title="Tap to talk — voice assistant">
           <h1 className="font-display text-4xl font-semibold tracking-wide text-sanatan-maroon transition-colors hover:text-sanatan-saffron sm:text-[2.75rem]">
             SANATAN <span className="text-sanatan-saffron">HI</span>
           </h1>
@@ -217,11 +217,13 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
         <button
           type="button"
           onClick={onOpenVoice}
-          className="relative mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/10 px-3 py-1 text-[0.7rem] font-medium text-sanatan-gold backdrop-blur-sm transition-all hover:border-sanatan-saffron hover:bg-sanatan-gold/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron active:scale-95"
+          className="relative mt-1.5 inline-flex items-center gap-1.5 rounded-full border border-sanatan-gold-2/60 bg-sanatan-gold/10 px-3.5 py-2 text-[0.7rem] font-medium text-sanatan-gold backdrop-blur-sm transition-all hover:border-sanatan-saffron hover:bg-sanatan-gold/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron active:scale-95 sm:px-3 sm:py-1.5"
           aria-label="Open the voice assistant and ask by voice"
         >
-          <Mic className="h-3.5 w-3.5" aria-hidden />
-          <span>Tap to talk · बोलकर पूछें · वाचा · Hindi · English · Español</span>
+          <Mic className="h-3.5 w-3.5 shrink-0" aria-hidden />
+          {/* phone label kept short so the pill never wraps · full list on sm+ */}
+          <span className="sm:hidden">Tap to talk · बोलकर पूछें</span>
+          <span className="hidden sm:inline">Tap to talk · बोलकर पूछें · वाचा · Hindi · English · Español</span>
         </button>
         <p className="relative mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
 

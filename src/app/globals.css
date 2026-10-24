@@ -135,6 +135,17 @@ body {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 }
+/* Radix wraps scroll content in a `display: table; min-width: 100%` layer that
+   shrink-to-fits to the widest intrinsic child (hero video, ticker, canvas…).
+   On phones that inflated the layout to 768px inside a ~390px viewport and the
+   overflow-x: hidden viewport silently clipped the right half of every section.
+   Forcing block layout makes the width follow the viewport instead — vertical
+   scrolling is unaffected and no sanatan-scroll area needs horizontal panning. */
+.sanatan-scroll [data-radix-scroll-area-viewport] > div {
+  display: block !important;
+  width: 100%;
+  max-width: 100%;
+}
 
 @theme {
   --color-sanatan-cream: var(--sanatan-cream);

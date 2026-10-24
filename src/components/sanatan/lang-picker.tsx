@@ -30,7 +30,12 @@ export function LangPicker({ langs, onChange, compact }: LangPickerProps) {
     <div
       role="group"
       aria-label="Answer languages — choose one or more"
-      className={`flex flex-wrap items-center ${compact ? "gap-1.5" : "justify-center gap-2 sm:gap-2.5"}`}
+      className={
+        compact
+          ? "flex flex-wrap items-center gap-1.5"
+          : /* phones: a tidy 2×2 grid (avoids the awkward 2+1 wrap) · sm+: centered row */
+            "grid grid-cols-2 items-stretch gap-2 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-2.5"
+      }
     >
       {LANG_ORDER.map((l) => {
         const meta = LANG_META[l];
@@ -44,7 +49,7 @@ export function LangPicker({ langs, onChange, compact }: LangPickerProps) {
             aria-pressed={active}
             aria-label={`${meta.label} — ${active ? "on" : "off"}`}
             className={`group relative flex items-center gap-2 rounded-full border transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron ${
-              compact ? "h-9 px-3 text-[0.72rem]" : "h-11 px-4 text-[0.82rem] sm:h-12 sm:px-5 sm:text-sm"
+              compact ? "h-9 px-3 text-[0.72rem]" : "h-11 w-full justify-center px-4 text-[0.82rem] sm:h-12 sm:w-auto sm:justify-start sm:px-5 sm:text-sm"
             } ${
               active
                 ? "border-sanatan-gold bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2 shadow-[0_4px_18px_rgba(105,32,15,0.35)]"

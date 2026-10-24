@@ -10,3 +10,6 @@ next-env.d.ts
 # user uploads (raw media)
 /upload/
 worklog.md
+.env
+.env.*
+tool-results/

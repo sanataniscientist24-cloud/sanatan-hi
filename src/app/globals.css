@@ -373,12 +373,64 @@ body {
   animation: glyph-float 6s ease-in-out infinite;
 }
 
+/* ── mantra marquee — seamless infinite ticker ── */
+@keyframes mantra-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: mantra-marquee var(--marquee-dur, 40s) linear infinite;
+  will-change: transform;
+}
+.marquee-band:hover .marquee-track,
+.marquee-band:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── scripture orbit — 3D carousel ring ── */
+.orbit-scene {
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+  touch-action: pan-y; /* horizontal drag spins the ring, vertical scroll still works */
+  cursor: grab;
+}
+.orbit-scene[data-dragging="true"] {
+  cursor: grabbing;
+}
+.orbit-ring {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.orbit-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.orbit-card.orbit-front {
+  border-color: var(--sanatan-saffron);
+  box-shadow:
+    0 0 0 1px var(--sanatan-saffron),
+    0 18px 44px rgba(105, 32, 15, 0.3);
+}
+.orbit-glow {
+  background:
+    radial-gradient(ellipse 62% 46% at 50% 58%, rgba(239, 177, 65, 0.16) 0%, transparent 70%);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scan-sweep::after,
   .text-shimmer,
   .glyph-drift,
-  .pulse-dot {
+  .pulse-dot,
+  .marquee-track {
     animation: none;
+  }
+  .marquee-track .marquee-dup {
+    display: none;
   }
   .text-shimmer {
     color: var(--sanatan-gold);

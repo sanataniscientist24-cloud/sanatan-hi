@@ -7,6 +7,9 @@ import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
 import { LangPicker } from "./lang-picker";
 import { NeuralMantraField } from "./neural-field";
+import { MantraMarquee } from "./mantra-marquee";
+import { ScriptureOrbit } from "./scripture-orbit";
+import { ScriptureIndex } from "./scripture-index";
 import { dailyVerseSanatan } from "@/lib/client/ask";
 import { starterChips, type AppLang } from "@/lib/client/langs";
 import type { CorpusEntry } from "@/lib/corpus/types";
@@ -110,6 +113,16 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
           </span>
         </figcaption>
       </motion.figure>
+
+      {/* ── mantra marquee — infinite sacred ticker ── */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.05 }}
+        className="mt-3"
+      >
+        <MantraMarquee />
+      </motion.div>
 
       {/* ── LANGUAGE MATRIX console — हिंदी + संस्कृत default, en/es opt-in ── */}
       <motion.section
@@ -288,6 +301,28 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
             </span>
           </div>
         </div>
+      </motion.section>
+
+      {/* ── scripture orbit — 3D rotating ring of the collections ── */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5 }}
+        aria-label="Scripture orbit ring"
+      >
+        <ScriptureOrbit onQuery={onSuggestion} />
+      </motion.section>
+
+      {/* ── scripture index — numbered reveal list ── */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-40px" }}
+        transition={{ duration: 0.5 }}
+        aria-label="Scripture index list"
+      >
+        <ScriptureIndex onQuery={onSuggestion} />
       </motion.section>
 
       {/* ── starter chips (localized to the active languages) ── */}

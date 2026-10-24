@@ -45,6 +45,8 @@ export default function SanatanHIPage() {
   const { theme, setTheme, resolvedTheme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
+  /* users who prefer reduced motion get a still frame instead of an autoplaying video */
+  const [reducedMotion, setReducedMotion] = useState(false);
 
   /* mirrors for history/back-button handlers (they fire outside the render cycle) */
   const viewRef = useRef<ChatView>("menu");
@@ -52,6 +54,15 @@ export default function SanatanHIPage() {
   const pushedHistoryRef = useRef(false);
 
   useEffect(() => setMounted(true), []);
+
+  /* watch the OS "reduce motion" preference (hero background video depends on it) */
+  useEffect(() => {
+    const mq = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const update = () => setReducedMotion(mq.matches);
+    update();
+    mq.addEventListener?.("change", update);
+    return () => mq.removeEventListener?.("change", update);
+  }, []);
 
   /* restore conversation from localStorage */
   useEffect(() => {
@@ -391,7 +402,26 @@ export default function SanatanHIPage() {
 
           {/* chat area */}
           <main className="relative flex min-w-0 flex-1 flex-col">
-            <div className="sanatan-watermark pointer-events-none absolute inset-0" aria-hidden />
+            {view === "menu" ? (
+              /* cinematic background — the user's "sanatan ai" film, softly blurred and
+                 veiled with the theme cream so every text on the menu stays readable */
+              <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden>
+                <video
+                  className="absolute inset-0 h-full w-full scale-110 object-cover opacity-75 blur-[3px]"
+                  autoPlay={!reducedMotion}
+                  muted
+                  loop
+                  playsInline
+                  preload="metadata"
+                  poster="videos/sanatan-hero-poster.jpg"
+                >
+                  <source src="videos/sanatan-hero.mp4" type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-b from-sanatan-cream/92 via-sanatan-cream/74 to-sanatan-cream/90 dark:via-sanatan-cream/45" />
+              </div>
+            ) : (
+              <div className="sanatan-watermark pointer-events-none absolute inset-0" aria-hidden />
+            )}
 
             <ScrollArea className="sanatan-scroll relative z-10 min-h-0 flex-1">
               <div ref={scrollRef} className="mx-auto w-full max-w-3xl px-3 py-4 sm:px-5">

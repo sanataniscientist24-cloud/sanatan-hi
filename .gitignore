@@ -1,2 +1,12 @@
 skills/
 node_modules/
+.next/
+out/
+dev.log
+tool-results/
+next-env.d.ts
+*.tsbuildinfo
+
+# user uploads (raw media)
+/upload/
+worklog.md

@@ -135,6 +135,8 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
   const recognizerRef = useRef<RecognizerHandle | null>(null);
   const cancelSpeakRef = useRef<(() => void) | null>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
+  const typedInputRef = useRef<HTMLInputElement>(null);
+  const [kbLift, setKbLift] = useState(0);
 
   const sttOk = sttSupported();
   const ttsOk = ttsSupported();
@@ -192,15 +194,46 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
     [onOpenChange, stopAll]
   );
 
-  /* keep the newest answer in view (same pattern as the main chat) */
+  /* keep the newest answer in view (same pattern as the main chat;
+     also re-scrolls when the sheet is reopened with history) */
   useEffect(() => {
+    if (!open) return;
     const el = scrollRef.current?.closest("[data-radix-scroll-area-viewport]");
     if (el) {
       requestAnimationFrame(() => {
         el.scrollTo({ top: el.scrollHeight, behavior: "auto" });
       });
     }
-  }, [turns, phase]);
+  }, [turns, phase, open]);
+
+  /* mobile keyboard: lift the whole sheet so the typing input stays visible
+     (iOS Safari overlays the keyboard instead of resizing the page) */
+  useEffect(() => {
+    const vv = window.visualViewport;
+    if (!vv) return;
+    const recheck = () => {
+      const input = typedInputRef.current;
+      /* a real keyboard shrinks the visual viewport far below the layout
+         viewport; browser toolbars only cause a small difference */
+      const keyboardOpen = vv.height < window.innerHeight - 96;
+      if (!input || document.activeElement !== input || !keyboardOpen) {
+        setKbLift(0);
+        return;
+      }
+      const overlap = input.getBoundingClientRect().bottom - vv.height;
+      setKbLift(overlap > 4 ? Math.min(overlap + 16, Math.round(vv.height * 0.45)) : 0);
+    };
+    vv.addEventListener("resize", recheck);
+    vv.addEventListener("scroll", recheck);
+    window.addEventListener("focusin", recheck);
+    window.addEventListener("focusout", recheck);
+    return () => {
+      vv.removeEventListener("resize", recheck);
+      vv.removeEventListener("scroll", recheck);
+      window.removeEventListener("focusin", recheck);
+      window.removeEventListener("focusout", recheck);
+    };
+  }, []);
 
   /* speak a reply with the Indian-accent voice for its language */
   const speakReply = useCallback(
@@ -327,17 +360,18 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
   return (
     <Dialog open={open} onOpenChange={handleOpenChange}>
       <DialogContent
-        className="max-h-[92dvh] w-[calc(100%-1.5rem)] max-w-2xl gap-0 overflow-hidden rounded-2xl border-2 border-sanatan-gold-2/70 bg-gradient-to-b from-sanatan-parchment to-sanatan-cream p-0 sm:w-[calc(100%-4rem)] [&>button]:hidden">
+        style={{ transform: kbLift ? `translateY(-${kbLift}px)` : undefined }}
+        className="top-0 left-0 flex h-dvh max-h-dvh w-full max-w-none translate-x-0 translate-y-0 flex-col gap-0 overflow-hidden rounded-none border-0 bg-gradient-to-b from-sanatan-parchment to-sanatan-cream p-0 sm:top-1/2 sm:left-1/2 sm:h-[min(90dvh,720px)] sm:max-h-[min(90dvh,720px)] sm:w-[calc(100%-4rem)] sm:max-w-2xl sm:translate-x-[-50%] sm:translate-y-[-50%] sm:rounded-2xl sm:border-2 sm:border-sanatan-gold-2/70 [&>button]:hidden">
         {/* header */}
-        <div className="relative flex items-center gap-2 border-b border-sanatan-gold-2/40 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 px-4 py-3">
+        <div className="relative flex shrink-0 items-center gap-1.5 border-b border-sanatan-gold-2/40 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 px-3 py-2.5 sm:gap-2 sm:px-4 sm:py-3">
           <span className="flex h-9 w-9 items-center justify-center rounded-full border border-sanatan-gold-2/70 bg-white/5">
             <OmSigil className="text-lg text-sanatan-gold-2 om-glow" />
           </span>
           <div className="min-w-0 flex-1 leading-tight">
             <DialogTitle className="truncate font-display text-base font-semibold tracking-wide text-sanatan-gold-2">
-              {STRINGS.title[lang]} <span className="text-sanatan-cream-2/80">· SANATAN HI</span>
+              {STRINGS.title[lang]} <span className="hidden text-sanatan-cream-2/80 sm:inline">· SANATAN HI</span>
             </DialogTitle>
-            <DialogDescription className="truncate text-[0.68rem] text-sanatan-cream-2/75">
+            <DialogDescription className="truncate text-[0.68rem] text-sanatan-cream-2/75 [@media(max-height:480px)]:hidden">
               {STRINGS.subtitle[lang]} · {SPEECH_LANG_LABEL[answerLang]}
             </DialogDescription>
           </div>
@@ -346,7 +380,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
             size="icon"
             onClick={() => setAutoSpeak((v) => !v)}
             aria-label={STRINGS.autoSpeak[lang]}
-            className="h-10 w-10 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-cream-2">
+            className="h-11 w-11 shrink-0 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-cream-2">
             {autoSpeak ? <Volume2 className="h-4.5 w-4.5" /> : <VolumeX className="h-4.5 w-4.5" />}
           </Button>
           <Button
@@ -354,7 +388,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
             size="icon"
             onClick={() => setSettingsOpen((v) => !v)}
             aria-label="Voice settings"
-            className="h-10 w-10 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-cream-2">
+            className="h-11 w-11 shrink-0 text-sanatan-gold-2 hover:bg-white/10 hover:text-sanatan-cream-2">
             <Settings2 className="h-4.5 w-4.5" />
           </Button>
           <Button
@@ -362,18 +396,18 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
             size="icon"
             onClick={() => onOpenChange(false)}
             aria-label={STRINGS.close[lang]}
-            className="h-10 w-10 text-sanatan-gold-2 hover:bg-white/15 hover:text-sanatan-cream-2">
+            className="h-11 w-11 shrink-0 text-sanatan-gold-2 hover:bg-white/15 hover:text-sanatan-cream-2">
             <X className="h-5 w-5" />
           </Button>
         </div>
 
         {/* orb + phase label */}
-        <div className="relative flex flex-col items-center px-4 pb-2 pt-5">
+        <div className="relative flex shrink-0 flex-col items-center px-4 pb-1.5 pt-3 [@media(max-height:480px)]:pb-1 [@media(max-height:480px)]:pt-2 sm:pb-2 sm:pt-5">
           <button
             type="button"
             onClick={phase === "speaking" ? stopAll : toggleMic}
             aria-label={phase === "speaking" ? STRINGS.stop[lang] : STRINGS.listenHint[lang]}
-            className="group relative flex h-28 w-28 items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron">
+            className="group relative flex h-24 w-24 items-center justify-center rounded-full outline-none focus-visible:ring-2 focus-visible:ring-sanatan-saffron [@media(max-height:480px)]:h-20 [@media(max-height:480px)]:w-20 sm:h-28 sm:w-28">
             {/* pulse rings */}
             <AnimatePresence>
               {(phase === "listening" || phase === "speaking") && (
@@ -416,16 +450,16 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
               } shadow-[0_10px_36px_rgba(105,32,15,0.16)]`}
             />
             {phase === "listening" ? (
-              <Mic className="relative h-11 w-11 text-sanatan-maroon" aria-hidden />
+              <Mic className="relative h-10 w-10 text-sanatan-maroon" aria-hidden />
             ) : phase === "speaking" ? (
-              <Square className="relative h-9 w-9 text-sanatan-maroon" aria-hidden />
+              <Square className="relative h-8 w-8 text-sanatan-maroon" aria-hidden />
             ) : (
-              <OmSigil className="relative text-5xl text-sanatan-maroon om-glow" />
+              <OmSigil className="relative text-4xl text-sanatan-maroon om-glow sm:text-5xl" />
             )}
           </button>
 
           {/* equalizer */}
-          <div className="mt-3 flex h-6 items-end gap-1" aria-hidden>
+          <div className="mt-2 flex h-5 items-end gap-1 [@media(max-height:480px)]:hidden sm:mt-3 sm:h-6" aria-hidden>
             {Array.from({ length: 9 }).map((_, i) => (
               <motion.span
                 key={i}
@@ -445,7 +479,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
             ))}
           </div>
 
-          <p className="mt-1.5 min-h-[1.25rem] text-center text-sm font-medium text-sanatan-maroon" aria-live="polite">
+          <p className="mt-1 min-h-[1.25rem] text-center text-sm font-medium text-sanatan-maroon sm:mt-1.5" aria-live="polite">
             {interim ? <span className="italic text-sanatan-maroon/80">“{interim}”</span> : label}
           </p>
           {notice && <p className="mt-0.5 text-center text-[0.72rem] text-sanatan-maroon/70">{notice}</p>}
@@ -460,12 +494,12 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.25 }}
               className="overflow-hidden border-y border-sanatan-gold-2/40 bg-sanatan-cream-2/60">
-              <div className="flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center">
-                <label className="flex items-center gap-2 text-xs font-medium text-sanatan-maroon">
-                  <Languages className="h-4 w-4 text-sanatan-saffron" aria-hidden />
+              <div className="flex flex-col gap-3 px-4 py-3 sm:flex-row sm:items-center sm:gap-6">
+                <label className="flex flex-wrap items-center gap-2 text-xs font-medium text-sanatan-maroon">
+                  <Languages className="h-4 w-4 shrink-0 text-sanatan-saffron" aria-hidden />
                   {STRINGS.voice[lang]}:
                   <Select value={chosenVoice?.voiceURI ?? "auto"} onValueChange={(v) => setVoiceURI(v === "auto" ? "" : v)}>
-                    <SelectTrigger className="h-9 w-44 border-sanatan-gold-2/60 bg-sanatan-parchment text-xs text-sanatan-maroon sm:w-56 [&>svg]:text-sanatan-saffron">
+                    <SelectTrigger className="w-full border-sanatan-gold-2/60 bg-sanatan-parchment text-xs text-sanatan-maroon data-[size=default]:h-10 sm:w-56 sm:data-[size=default]:h-9 [&>svg]:text-sanatan-saffron">
                       <SelectValue placeholder="Auto (Indian accent)" />
                     </SelectTrigger>
                     <SelectContent className="max-h-64 border-sanatan-gold-2/60 bg-sanatan-parchment">
@@ -489,18 +523,18 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
         </AnimatePresence>
 
         {/* conversation */}
-        <ScrollArea className="min-h-0" style={{ height: "min(34dvh, 300px)" }}>
-          <div ref={scrollRef} className="px-4 py-3">
+        <ScrollArea className="min-h-0 flex-1">
+          <div ref={scrollRef} className="px-4 py-3 sm:px-5 sm:py-4">
             {turns.length === 0 ? (
-              <div className="flex flex-col items-center gap-2 py-2 text-center">
+              <div className="flex min-h-[220px] flex-col items-center justify-center gap-2.5 py-5 text-center sm:min-h-0 sm:py-2">
                 <p className="text-[0.72rem] font-semibold uppercase tracking-[0.18em] text-sanatan-gold">{STRINGS.suggestions[lang]}</p>
-                <div className="flex flex-wrap justify-center gap-1.5">
+                <div className="flex flex-wrap justify-center gap-2">
                   {chips.map((c) => (
                     <button
                       key={c}
                       type="button"
                       onClick={() => void ask(c)}
-                      className="rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment px-3 py-1.5 text-[0.75rem] text-sanatan-maroon shadow-sm transition-all hover:-translate-y-0.5 hover:border-sanatan-saffron hover:bg-sanatan-gold/15 active:translate-y-0">
+                      className="rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 py-2 text-[0.78rem] text-sanatan-maroon shadow-sm transition-all hover:-translate-y-0.5 hover:border-sanatan-saffron hover:bg-sanatan-gold/15 active:translate-y-0">
                       {c}
                     </button>
                   ))}
@@ -511,19 +545,19 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
                 {turns.map((t) => (
                   <div key={t.id} className="space-y-2">
                     <div className="flex justify-end">
-                      <p className="max-w-[85%] rounded-2xl rounded-br-sm bg-sanatan-maroon px-3.5 py-2 text-[0.82rem] leading-relaxed text-sanatan-cream-2 shadow-sm">
+                      <p className="max-w-[86%] rounded-2xl rounded-br-sm bg-sanatan-maroon px-3.5 py-2 text-[0.82rem] leading-relaxed text-sanatan-cream-2 shadow-sm break-words">
                         {t.question}
                       </p>
                     </div>
                     <div className="flex justify-start">
-                      <div className="max-w-[92%] rounded-2xl rounded-bl-sm border border-sanatan-gold-2/60 bg-sanatan-parchment px-3.5 py-2.5 shadow-sm">
+                      <div className="max-w-[94%] rounded-2xl rounded-bl-sm border border-sanatan-gold-2/60 bg-sanatan-parchment px-3.5 py-2.5 shadow-sm break-words">
                         <div className="text-[0.82rem] leading-relaxed text-foreground/85">
                           {renderMarkdown(t.answer)}
                         </div>
                         <button
                           type="button"
                           onClick={() => speakReply(t.answer, langMode)}
-                          className="mt-1.5 inline-flex items-center gap-1 text-[0.66rem] font-medium text-sanatan-gold hover:text-sanatan-saffron">
+                          className="mt-1.5 inline-flex items-center gap-1 py-1 text-[0.68rem] font-medium text-sanatan-gold hover:text-sanatan-saffron">
                           <Volume2 className="h-3 w-3" aria-hidden />
                           {phase === "speaking" ? STRINGS.speaking[lang] : STRINGS.autoSpeak[lang]}
                         </button>
@@ -551,7 +585,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
         </ScrollArea>
 
         {/* mic + typing */}
-        <div className="flex flex-col items-center gap-2.5 border-t border-sanatan-gold-2/40 bg-sanatan-cream-2/50 px-4 pb-[calc(0.85rem+env(safe-area-inset-bottom))] pt-3">
+        <div className="flex shrink-0 flex-col items-center gap-2.5 border-t border-sanatan-gold-2/40 bg-sanatan-cream-2/50 px-4 pb-[calc(0.85rem+env(safe-area-inset-bottom))] pt-3">
           {typingMode || !sttOk ? (
             <form
               className="flex w-full max-w-lg items-center gap-2"
@@ -562,11 +596,16 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
                 void ask(q);
               }}>
               <input
+                ref={typedInputRef}
                 value={typed}
                 onChange={(e) => setTyped(e.target.value)}
+                onFocus={(e) => e.target.scrollIntoView({ block: "nearest" })}
                 placeholder={STRINGS.typePlaceholder[lang]}
                 aria-label={STRINGS.typePlaceholder[lang]}
-                className="h-11 min-w-0 flex-1 rounded-xl border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 text-[0.88rem] text-sanatan-maroon placeholder:text-sanatan-gold/70 focus:border-sanatan-saffron focus:outline-none focus:ring-2 focus:ring-sanatan-saffron/30"
+                enterKeyHint="send"
+                autoCapitalize="none"
+                autoCorrect="off"
+                className="h-11 min-w-0 flex-1 rounded-xl border border-sanatan-gold-2/70 bg-sanatan-parchment px-3.5 text-base text-sanatan-maroon placeholder:text-sanatan-gold/70 focus:border-sanatan-saffron focus:outline-none focus:ring-2 focus:ring-sanatan-saffron/30"
               />
               <Button type="submit" disabled={!typed.trim() || phase === "thinking"} className="h-11 gap-1.5 bg-sanatan-maroon px-4 text-sanatan-cream-2 hover:bg-sanatan-maroon-2">
                 <Sparkles className="h-4 w-4" aria-hidden />
@@ -584,7 +623,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
               )}
             </form>
           ) : (
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-4 sm:gap-5">
               <Button
                 variant="outline"
                 size="icon"
@@ -615,7 +654,7 @@ export function VoiceAssistant({ open, onOpenChange, langMode }: VoiceAssistantP
               </Button>
             </div>
           )}
-          <p className="text-center text-[0.6rem] text-foreground/50">
+          <p className="pt-0.5 text-center text-[0.6rem] text-foreground/50">
             SANATAN HI voice · {SPEECH_LANG_LABEL[answerLang]} · Indian accent · ॐ
           </p>
         </div>

@@ -16,6 +16,8 @@ import { cn } from "@/lib/utils";
 /* central asset path (production serves at the domain root) */
 export const BABAJI_FACE = "/babaji/babaji-face.png";
 export const BABAJI_FULL = "/babaji/babaji-full.webp";
+/** transparent full-body cutout — the 3D motion-character asset */
+export const BABAJI_HERO = "/babaji/babaji-hero.webp";
 
 export type BabajiMood = "idle" | "thinking" | "speaking" | "listening";
 

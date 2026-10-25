@@ -517,3 +517,124 @@ body {
     animation: none;
   }
 }
+
+/* ─────────── SANATANI BABAJI · 3D motion character stage ─────────── */
+
+/* rotating mandala rings orbiting behind the character */
+@keyframes babaji-mandala-fwd {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.babaji-mandala-fwd {
+  animation: babaji-mandala-fwd 56s linear infinite;
+}
+@keyframes babaji-mandala-rev {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+.babaji-mandala-rev {
+  animation: babaji-mandala-rev 40s linear infinite;
+}
+
+/* slow autonomous scene drift — keeps the 3D diorama alive on
+   pointer-less devices (touch); composes with the pointer parallax */
+@keyframes babaji-drift {
+  0%,
+  100% {
+    transform: rotateY(-3.4deg) rotateX(1.2deg);
+  }
+  50% {
+    transform: rotateY(3.4deg) rotateX(-1.2deg);
+  }
+}
+.babaji-drift {
+  animation: babaji-drift 9.5s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
+/* sacred motes rising around the 3D character (per-mote vars:
+   --mote-x drift · --mote-dur · --mote-delay · --mote-opacity) */
+@keyframes babaji-mote {
+  0% {
+    transform: translate3d(0, 12px, 0) scale(0.85);
+    opacity: 0;
+  }
+  22% {
+    opacity: var(--mote-opacity, 0.85);
+  }
+  78% {
+    opacity: var(--mote-opacity, 0.85);
+  }
+  100% {
+    transform: translate3d(var(--mote-x, 8px), -84px, 0) scale(1.08);
+    opacity: 0;
+  }
+}
+.babaji-mote {
+  animation: babaji-mote var(--mote-dur, 8s) ease-in-out infinite;
+  animation-delay: var(--mote-delay, 0s);
+  will-change: transform, opacity;
+}
+
+/* ground shadow breathing beneath the floating figure
+   (centered via the independent `translate` property — keyframes touch transform only) */
+@keyframes babaji-shadow-pulse {
+  0%,
+  100% {
+    transform: scaleX(1);
+    opacity: 0.44;
+  }
+  50% {
+    transform: scaleX(0.84);
+    opacity: 0.28;
+  }
+}
+.babaji-shadow {
+  animation: babaji-shadow-pulse 4.6s ease-in-out infinite;
+}
+
+/* saffron aura pulsing behind the character while Babaji speaks */
+@keyframes babaji-aura-pulse {
+  0%,
+  100% {
+    opacity: 0.5;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.07);
+  }
+}
+.babaji-aura {
+  animation: babaji-aura-pulse 1.7s ease-in-out infinite;
+}
+
+/* twinkling star sparkles scattered on the cosmic scene */
+@keyframes babaji-twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.15);
+  }
+}
+.babaji-twinkle {
+  animation: babaji-twinkle 3.2s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .babaji-mandala-fwd,
+  .babaji-mandala-rev,
+  .babaji-drift,
+  .babaji-mote,
+  .babaji-shadow,
+  .babaji-aura,
+  .babaji-twinkle {
+    animation: none;
+  }
+}

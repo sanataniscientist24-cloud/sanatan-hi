@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import { ArrowRight, Check, Cpu, Flame, MessagesSquare, Mic, Sparkles, Volume2, VolumeX } from "lucide-react";
 import { VerseCard } from "./verse-card";
 import { OmSigil } from "./book-icons";
-import { BABAJI_FULL, BabajiAvatar } from "./babaji-avatar";
+import { BabajiAvatar } from "./babaji-avatar";
+import { BabajiStage } from "./babaji-stage";
 import { LangPicker } from "./lang-picker";
 import { NeuralMantraField } from "./neural-field";
 import { MantraMarquee } from "./mantra-marquee";
@@ -108,49 +109,12 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
 
   return (
     <div className="sanatan-fade mx-auto w-full max-w-3xl px-1 pb-2">
-      {/* ── the user's "sanatan ai" film — the 4D neural cortex ── */}
-      <motion.figure
-        initial={{ opacity: 0, y: -10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-        className="mb-0"
-      >
-        <div className="hud-panel overflow-hidden rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-maroon-2 shadow-[0_14px_44px_rgba(74,21,9,0.28)]">
-          <video
-            ref={videoRef}
-            className="block aspect-[1132/696] w-full"
-            autoPlay={!reducedMotion}
-            muted
-            loop
-            playsInline
-            preload="metadata"
-            poster="videos/sanatan-hero-poster.jpg"
-            aria-label="SANATAN HI — 4D Neural Cortex agentic AI animation"
-          >
-            <source src="videos/sanatan-hero.mp4" type="video/mp4" />
-          </video>
-        </div>
-
-        {/* neural-net caption strip — FOUNDER credit below the neural cortex */}
-        <figcaption className="scan-sweep flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 rounded-b-xl border-2 border-t-0 border-sanatan-gold-2/70 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 px-3.5 py-2">
-          <span className="flex min-w-0 items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-sanatan-gold-2/90">
-            <Cpu className="h-3.5 w-3.5 shrink-0 text-sanatan-gold" aria-hidden />
-            <span className="truncate">4D Neural Cortex · Agentic AI</span>
-            <span className="pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-sanatan-gold" aria-hidden />
-          </span>
-          <span className="flex items-center gap-1.5 text-[0.66rem] text-sanatan-cream-2/85">
-            <span className="uppercase tracking-[0.14em] text-sanatan-gold-2/70">Founder</span>
-            <span className="font-display text-[0.78rem] font-semibold tracking-wide text-sanatan-gold-2">DR. KARTIK YADAV</span>
-          </span>
-        </figcaption>
-      </motion.figure>
-
       {/* ── mantra marquee — infinite sacred ticker ── */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.5, delay: 0.05 }}
-        className="mt-3"
+        className="mt-1"
       >
         <MantraMarquee />
       </motion.div>
@@ -263,63 +227,63 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
         </button>
         <p className="relative mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
 
-        {/* ── SANATANI BABAJI — the voice-assistant persona card ── */}
+        {/* ── SANATANI BABAJI — 3D motion character + voice controls ── */}
         <motion.div
-          initial={{ opacity: 0, y: 10 }}
+          initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.15 }}
-          className="babaji-rise relative mt-4 flex w-full items-center gap-3 rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment p-2.5 text-left shadow-[0_6px_24px_rgba(105,32,15,0.10)]"
+          transition={{ duration: 0.5, delay: 0.15 }}
+          className="babaji-rise relative mt-4 w-full"
         >
-          <div className="relative h-[4.5rem] w-16 shrink-0 overflow-hidden rounded-lg border border-sanatan-gold-2/60 bg-sanatan-cream-2 shadow-[inset_0_0_12px_rgba(105,32,15,0.08)]">
-            <img
-              src={BABAJI_FULL}
-              alt="SANATANI BABAJI — सनातनी बाबाजी, your voice assistant"
-              className="h-full w-full object-cover object-[50%_18%]"
-              draggable={false}
-              loading="lazy"
-            />
-          </div>
-          <div className="min-w-0 flex-1">
-            <p className="font-display text-[0.86rem] font-semibold tracking-wide text-sanatan-maroon">
-              SANATANI BABAJI <span className="font-deva text-sanatan-gold">सनातनी बाबाजी</span>
-            </p>
-            <p className="mt-0.5 text-[0.68rem] leading-snug text-foreground/65">
-              Every answer is spoken aloud in his deep, calm Indian male voice — <span className="font-deva">गहरी, शांत भारतीय पुरुष वाणी · हिंदी में।</span>
-            </p>
-          </div>
-          <div className="flex shrink-0 flex-col gap-1.5">
-            {onHearBabaji && (
-              <button
-                type="button"
-                onClick={onHearBabaji}
-                className="inline-flex h-9 items-center gap-1.5 rounded-full bg-gradient-to-br from-sanatan-saffron to-sanatan-saffron-2 px-3.5 text-[0.7rem] font-semibold text-white shadow-sm transition-transform hover:scale-105 active:scale-95"
-                aria-label="Hear Sanatani Babaji speak his introduction"
-              >
-                {voiceLoading ? (
-                  <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden />
-                ) : (
-                  <Volume2 className="h-3.5 w-3.5" aria-hidden />
-                )}
-                {voiceLoading ? "…" : "Hear Babaji"}
-              </button>
-            )}
-            {onToggleVoice && (
-              <button
-                type="button"
-                onClick={onToggleVoice}
-                aria-pressed={voiceOn}
-                aria-label={voiceOn ? "Babaji's spoken answers are on. Turn off." : "Babaji's spoken answers are off. Turn on."}
-                className={
-                  "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[0.66rem] font-medium transition-all active:scale-95 " +
-                  (voiceOn
-                    ? "border-sanatan-saffron/70 bg-sanatan-gold/15 text-sanatan-maroon"
-                    : "border-sanatan-gold-2/60 bg-transparent text-foreground/55 hover:bg-sanatan-gold/10")
-                }
-              >
-                {voiceOn ? <Volume2 className="h-3.5 w-3.5" aria-hidden /> : <VolumeX className="h-3.5 w-3.5" aria-hidden />}
-                {voiceOn ? "Voice on" : "Muted"}
-              </button>
-            )}
+          {/* the 3D diorama — tap it to talk */}
+          <BabajiStage
+            mood={speaking ? "speaking" : voiceLoading ? "thinking" : "idle"}
+            onOpen={onOpenVoice}
+          />
+
+          {/* name + tagline + voice controls */}
+          <div className="mt-2.5 flex w-full flex-wrap items-center justify-between gap-x-3 gap-y-2 rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment px-3 py-2.5 text-left shadow-[0_6px_24px_rgba(105,32,15,0.10)]">
+            <div className="min-w-0 flex-1">
+              <p className="font-display text-[0.86rem] font-semibold tracking-wide text-sanatan-maroon">
+                SANATANI BABAJI <span className="font-deva text-sanatan-gold">सनातनी बाबाजी</span>
+              </p>
+              <p className="mt-0.5 text-[0.68rem] leading-snug text-foreground/65">
+                Every answer is spoken aloud in his deep, calm Indian male voice — <span className="font-deva">गहरी, शांत भारतीय पुरुष वाणी · हिंदी में।</span>
+              </p>
+            </div>
+            <div className="flex shrink-0 flex-wrap items-center gap-1.5">
+              {onHearBabaji && (
+                <button
+                  type="button"
+                  onClick={onHearBabaji}
+                  className="inline-flex h-9 items-center gap-1.5 rounded-full bg-gradient-to-br from-sanatan-saffron to-sanatan-saffron-2 px-3.5 text-[0.7rem] font-semibold text-white shadow-sm transition-transform hover:scale-105 active:scale-95"
+                  aria-label="Hear Sanatani Babaji speak his introduction"
+                >
+                  {voiceLoading ? (
+                    <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden />
+                  ) : (
+                    <Volume2 className="h-3.5 w-3.5" aria-hidden />
+                  )}
+                  {voiceLoading ? "…" : "Hear Babaji"}
+                </button>
+              )}
+              {onToggleVoice && (
+                <button
+                  type="button"
+                  onClick={onToggleVoice}
+                  aria-pressed={voiceOn}
+                  aria-label={voiceOn ? "Babaji's spoken answers are on. Turn off." : "Babaji's spoken answers are off. Turn on."}
+                  className={
+                    "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[0.66rem] font-medium transition-all active:scale-95 " +
+                    (voiceOn
+                      ? "border-sanatan-saffron/70 bg-sanatan-gold/15 text-sanatan-maroon"
+                      : "border-sanatan-gold-2/60 bg-transparent text-foreground/55 hover:bg-sanatan-gold/10")
+                  }
+                >
+                  {voiceOn ? <Volume2 className="h-3.5 w-3.5" aria-hidden /> : <VolumeX className="h-3.5 w-3.5" aria-hidden />}
+                  {voiceOn ? "Voice on" : "Muted"}
+                </button>
+              )}
+            </div>
           </div>
         </motion.div>
 
@@ -435,6 +399,44 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
           </button>
         ))}
       </div>
+
+      {/* ── the user's "sanatan ai" film — the 4D NEURAL CORTEX · at the tail of the homepage ── */}
+      <motion.figure
+        initial={{ opacity: 0, y: 18 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-30px" }}
+        transition={{ duration: 0.5 }}
+        className="mt-7"
+      >
+        <div className="hud-panel overflow-hidden rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-maroon-2 shadow-[0_14px_44px_rgba(74,21,9,0.28)]">
+          <video
+            ref={videoRef}
+            className="block aspect-[1132/696] w-full"
+            autoPlay={!reducedMotion}
+            muted
+            loop
+            playsInline
+            preload="metadata"
+            poster="videos/sanatan-hero-poster.jpg"
+            aria-label="SANATAN HI — 4D Neural Cortex agentic AI animation"
+          >
+            <source src="videos/sanatan-hero.mp4" type="video/mp4" />
+          </video>
+        </div>
+
+        {/* neural-net caption strip — FOUNDER credit below the neural cortex */}
+        <figcaption className="scan-sweep flex flex-wrap items-center justify-between gap-x-3 gap-y-0.5 rounded-b-xl border-2 border-t-0 border-sanatan-gold-2/70 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 px-3.5 py-2">
+          <span className="flex min-w-0 items-center gap-2 text-[0.62rem] font-semibold uppercase tracking-[0.18em] text-sanatan-gold-2/90">
+            <Cpu className="h-3.5 w-3.5 shrink-0 text-sanatan-gold" aria-hidden />
+            <span className="truncate">4D Neural Cortex · Agentic AI</span>
+            <span className="pulse-dot h-1.5 w-1.5 shrink-0 rounded-full bg-sanatan-gold" aria-hidden />
+          </span>
+          <span className="flex items-center gap-1.5 text-[0.66rem] text-sanatan-cream-2/85">
+            <span className="uppercase tracking-[0.14em] text-sanatan-gold-2/70">Founder</span>
+            <span className="font-display text-[0.78rem] font-semibold tracking-wide text-sanatan-gold-2">DR. KARTIK YADAV</span>
+          </span>
+        </figcaption>
+      </motion.figure>
     </div>
   );
 }

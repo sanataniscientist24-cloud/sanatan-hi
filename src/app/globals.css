@@ -237,3 +237,70 @@ body {
 .flame-breathe {
   animation: flame-breathe 1.6s ease-in-out infinite;
 }
+
+/* ───────────── SANATANI BABAJI voice-assist ───────────── */
+
+/* expanding halo ring while Babaji speaks */
+@keyframes babaji-ring-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.65;
+  }
+  100% {
+    transform: scale(1.55);
+    opacity: 0;
+  }
+}
+.babaji-speak-ring {
+  animation: babaji-ring-pulse 1.5s ease-out infinite;
+}
+
+/* equalizer bars (sound in flight) */
+@keyframes babaji-eq-bounce {
+  0%,
+  100% {
+    transform: scaleY(0.25);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+.babaji-eq {
+  animation: babaji-eq-bounce 0.7s ease-in-out infinite;
+}
+
+/* gentle breathing while consulting the scriptures */
+.babaji-breathe {
+  animation: flame-breathe 2.4s ease-in-out infinite;
+}
+
+/* warm saffron aura around the speaking avatar */
+.babaji-glow {
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--sanatan-saffron) 22%, transparent),
+    0 0 18px color-mix(in srgb, var(--sanatan-gold) 55%, transparent);
+}
+
+/* graceful entrance for the Babaji voice strip */
+@keyframes babaji-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.babaji-rise {
+  animation: babaji-rise 0.5s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .babaji-speak-ring,
+  .babaji-eq,
+  .babaji-breathe,
+  .babaji-rise {
+    animation: none;
+  }
+}

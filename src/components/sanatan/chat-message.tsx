@@ -1,10 +1,10 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { User, Sparkles } from "lucide-react";
+import { Loader2, Square, User, Volume2, Sparkles } from "lucide-react";
 import { renderMarkdown } from "./markdown";
 import { VerseCard } from "./verse-card";
-import { OmSigil } from "./book-icons";
+import { BabajiAvatar } from "./babaji-avatar";
 import type { CorpusEntry } from "@/lib/corpus/types";
 
 export interface ChatMessageData {
@@ -20,9 +20,15 @@ export interface ChatMessageData {
 interface ChatMessageProps {
   message: ChatMessageData;
   onSuggestion?: (s: string) => void;
+  /** Babaji is currently narrating this message aloud */
+  speaking?: boolean;
+  /** narration is being synthesized for this message */
+  voiceLoading?: boolean;
+  /** ask Babaji to narrate / stop narrating this message */
+  onListen?: (message: ChatMessageData) => void;
 }
 
-export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
+export function ChatMessage({ message, onSuggestion, speaking, voiceLoading, onListen }: ChatMessageProps) {
   if (message.role === "user") {
     return (
       <motion.div
@@ -45,10 +51,12 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
       animate={{ opacity: 1, y: 0 }}
       className="flex justify-start gap-2.5"
     >
-      {/* avatar */}
-      <div className="relative mt-1 hidden sm:flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment shadow-sm">
-        <OmSigil className="text-lg text-sanatan-maroon om-glow" />
-      </div>
+      {/* avatar — SANATANI BABAJI, the voice of the corpus */}
+      <BabajiAvatar
+        size={36}
+        mood={speaking ? "speaking" : "idle"}
+        className="mt-1 hidden sm:block"
+      />
 
       <div className="w-full max-w-[92%] sm:max-w-[82%] space-y-3">
         <div className="relative rounded-2xl rounded-tl-sm border border-sanatan-gold-2/50 bg-sanatan-parchment px-4 py-3 shadow-[0_1px_2px_rgba(105,32,15,0.05)]">
@@ -60,13 +68,38 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
             <div className="mt-2 flex flex-wrap items-center gap-x-2 gap-y-0.5 text-[0.62rem] text-sanatan-gold/80">
               <Sparkles className="h-3 w-3 shrink-0" aria-hidden />
               <span className="font-medium">
-                <span className="hidden sm:inline">SANATAN HI [ HUMAN INTELLIGENCE ] · </span>
+                <span className="hidden sm:inline">SANATANI BABAJI · </span>
                 {message.intent ?? "answer"}
                 {message.timeMs !== undefined && message.timeMs >= 0
                   ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · offline corpus"}`
                   : " · offline corpus"}
               </span>
             </div>
+          )}
+
+          {/* listen to Babaji narrate this answer */}
+          {onListen && (
+            <button
+              type="button"
+              onClick={() => onListen(message)}
+              aria-label={speaking ? "Stop Babaji's narration" : "Listen to Babaji's answer"}
+              aria-pressed={speaking}
+              className={
+                "mt-1.5 inline-flex items-center gap-1.5 rounded-full border px-2.5 py-1 text-[0.66rem] font-medium transition-all active:scale-95 " +
+                (speaking
+                  ? "border-sanatan-saffron bg-sanatan-gold/20 text-sanatan-maroon"
+                  : "border-sanatan-gold-2/60 bg-transparent text-sanatan-gold hover:border-sanatan-saffron hover:bg-sanatan-gold/15 hover:text-sanatan-maroon")
+              }
+            >
+              {voiceLoading ? (
+                <Loader2 className="h-3 w-3 animate-spin" aria-hidden />
+              ) : speaking ? (
+                <Square className="h-3 w-3 fill-current" aria-hidden />
+              ) : (
+                <Volume2 className="h-3 w-3" aria-hidden />
+              )}
+              {speaking ? "Stop" : voiceLoading ? "Preparing…" : "Listen"}
+            </button>
           )}
         </div>
 
@@ -98,13 +131,11 @@ export function ChatMessage({ message, onSuggestion }: ChatMessageProps) {
   );
 }
 
-/** Animated typing indicator with breathing Om. */
+/** Animated typing indicator — Babaji consulting the scriptures. */
 export function TypingIndicator() {
   return (
     <div className="flex justify-start gap-2.5">
-      <div className="relative mt-1 hidden sm:flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment shadow-sm">
-        <OmSigil className="text-lg text-sanatan-maroon om-glow" />
-      </div>
+      <BabajiAvatar size={36} mood="thinking" className="mt-1 hidden sm:block" />
       <div className="flex items-center gap-2.5 rounded-2xl rounded-tl-sm border border-sanatan-gold-2/50 bg-sanatan-parchment px-4 py-3">
         <span className="font-deva text-sanatan-saffron text-xl flame-breathe">ॐ</span>
         <div className="flex items-center gap-1" aria-label="Thinking">

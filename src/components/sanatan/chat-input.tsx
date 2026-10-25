@@ -23,9 +23,11 @@ interface ChatInputProps {
   onSend: (message: string) => void;
   disabled?: boolean;
   placeholder?: string;
+  /** called just before the mic opens (e.g. to silence Babaji's narration) */
+  onBeforeRecord?: () => void;
 }
 
-export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
+export function ChatInput({ onSend, disabled, placeholder, onBeforeRecord }: ChatInputProps) {
   const [value, setValue] = useState("");
   const [voiceState, setVoiceState] = useState<VoiceState>("idle");
   const [elapsed, setElapsed] = useState(0);
@@ -155,6 +157,8 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
   const toggleMic = useCallback(async () => {
     if (disabled || voiceState !== "idle") return;
 
+    onBeforeRecord?.(); /* silence Babaji before opening the mic */
+
     const recorder = new VoiceRecorder();
     try {
       await recorder.start(); /* AudioContext is created inside the click gesture for iOS */
@@ -174,7 +178,7 @@ export function ChatInput({ onSend, disabled, placeholder }: ChatInputProps) {
         notify("Could not start the microphone. Please try again.");
       }
     }
-  }, [disabled, voiceState, startMeter, notify]);
+  }, [disabled, voiceState, startMeter, notify, onBeforeRecord]);
 
   /* timer + 60 s auto-stop */
   useEffect(() => {

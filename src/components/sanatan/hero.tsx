@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { ArrowRight, BookOpenText, Flame, Languages, MessagesSquare, Sparkles, WifiOff } from "lucide-react";
+import { ArrowRight, BookOpenText, Flame, Languages, MessagesSquare, Sparkles, Volume2, VolumeX, WifiOff } from "lucide-react";
 import { VerseCard } from "./verse-card";
-import { OmSigil } from "./book-icons";
+import { BABAJI_FULL, BabajiAvatar } from "./babaji-avatar";
 import { dailyVerseSanatan } from "@/lib/client/ask";
 import { CORPUS, CORPUS_STATS } from "@/lib/corpus";
 import type { CorpusEntry } from "@/lib/corpus/types";
@@ -14,6 +14,14 @@ interface HeroProps {
   /** shown when a previous conversation exists and the user returned to the menu */
   onResume?: () => void;
   resumeCount?: number;
+  /** Babaji's spoken answers — global toggle */
+  voiceOn?: boolean;
+  onToggleVoice?: () => void;
+  /** let Babaji speak his introduction (demo of the deep, calm voice) */
+  onHearBabaji?: () => void;
+  /** Babaji is currently speaking (anywhere) */
+  speaking?: boolean;
+  voiceLoading?: boolean;
 }
 
 const STARTER_CHIPS = [
@@ -27,7 +35,7 @@ const STARTER_CHIPS = [
   "What are the Vedas?",
 ];
 
-export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
+export function Hero({ onSuggestion, onResume, resumeCount = 0, voiceOn = true, onToggleVoice, onHearBabaji, speaking, voiceLoading }: HeroProps) {
   const [verse, setVerse] = useState<CorpusEntry | null>(null);
 
   useEffect(() => {
@@ -78,9 +86,10 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
           initial={{ scale: 0.85, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative flex h-20 w-20 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-parchment to-sanatan-cream-2 shadow-[0_8px_30px_rgba(105,32,15,0.12)]"
+          className="relative"
         >
-          <OmSigil className="text-5xl text-sanatan-maroon om-glow" />
+          <div className="pointer-events-none absolute -inset-4 rounded-full bg-[radial-gradient(circle,color-mix(in_srgb,var(--sanatan-gold)_28%,transparent),transparent_70%)] blur-md" aria-hidden />
+          <BabajiAvatar size={84} mood={speaking ? "speaking" : "idle"} />
         </motion.div>
         <h1 className="mt-4 font-display text-4xl font-semibold tracking-wide text-sanatan-maroon sm:text-[2.75rem]">
           SANATAN <span className="text-sanatan-saffron">HI</span>
@@ -89,6 +98,67 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0 }: HeroProps) {
           [ HUMAN INTELLIGENCE ]
         </p>
         <p className="mt-1 font-deva text-lg text-sanatan-gold">॥ धर्मो रक्षति रक्षितः ॥</p>
+
+        {/* SANATANI BABAJI — the voice assistant */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.45, delay: 0.15 }}
+          className="babaji-rise mt-4 flex w-full items-center gap-3 rounded-2xl border border-sanatan-gold-2/70 bg-sanatan-parchment p-2.5 text-left shadow-sm"
+        >
+          <div className="relative h-[4.5rem] w-16 shrink-0 overflow-hidden rounded-xl border border-sanatan-gold-2/60 bg-sanatan-cream-2 shadow-[inset_0_0_12px_rgba(105,32,15,0.08)]">
+            <img
+              src={BABAJI_FULL}
+              alt="SANATANI BABAJI — सनातनी बाबाजी, your voice assistant"
+              className="h-full w-full object-cover object-[50%_18%]"
+              draggable={false}
+            />
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="font-display text-[0.86rem] font-semibold text-sanatan-maroon">
+              SANATANI BABAJI <span className="font-deva text-sanatan-gold">सनातनी बाबाजी</span>
+            </p>
+            <p className="mt-0.5 text-[0.68rem] leading-snug text-foreground/65">
+              Your voice guide — every answer is spoken aloud in a deep, calm voice.{" "}
+              <span className="font-deva">गहरी, शांत वाणी।</span>
+            </p>
+          </div>
+          <div className="flex shrink-0 flex-col gap-1.5">
+            {onHearBabaji && (
+              <button
+                type="button"
+                onClick={onHearBabaji}
+                className="inline-flex h-9 items-center gap-1.5 rounded-full bg-gradient-to-br from-sanatan-saffron to-sanatan-saffron-2 px-3.5 text-[0.7rem] font-semibold text-white shadow-sm transition-transform hover:scale-105 active:scale-95"
+                aria-label="Hear Sanatani Babaji speak his introduction"
+              >
+                {voiceLoading ? (
+                  <span className="h-3.5 w-3.5 animate-spin rounded-full border-2 border-white/40 border-t-white" aria-hidden />
+                ) : (
+                  <Volume2 className="h-3.5 w-3.5" aria-hidden />
+                )}
+                {voiceLoading ? "…" : "Hear Babaji"}
+              </button>
+            )}
+            {onToggleVoice && (
+              <button
+                type="button"
+                onClick={onToggleVoice}
+                aria-pressed={voiceOn}
+                aria-label={voiceOn ? "Babaji's spoken answers are on. Turn off." : "Babaji's spoken answers are off. Turn on."}
+                className={
+                  "inline-flex h-9 items-center gap-1.5 rounded-full border px-3 text-[0.66rem] font-medium transition-all active:scale-95 " +
+                  (voiceOn
+                    ? "border-sanatan-saffron/70 bg-sanatan-gold/15 text-sanatan-maroon"
+                    : "border-sanatan-gold-2/60 bg-transparent text-foreground/55 hover:bg-sanatan-gold/10")
+                }
+              >
+                {voiceOn ? <Volume2 className="h-3.5 w-3.5" aria-hidden /> : <VolumeX className="h-3.5 w-3.5" aria-hidden />}
+                {voiceOn ? "Voice on" : "Muted"}
+              </button>
+            )}
+          </div>
+        </motion.div>
+
         <p className="mt-3 max-w-xl text-sm leading-relaxed text-foreground/75">
           Bhagavad Gita · Ramayana & Ram Charit Manas · Mahabharata · Bhagavata & Shiva Purana · The Four Vedas · Upanishads · Yoga Sutras · Hanuman Chalisa —{" "}
           <span className="font-semibold text-sanatan-maroon">in Sanskrit, Hindi, English & Spanish</span>.

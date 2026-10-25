@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { Moon, Sun, Menu, MessageSquarePlus, WifiOff, X } from "lucide-react";
+import { Moon, Sun, Menu, MessageSquarePlus, Square, Volume2, VolumeX, WifiOff, X } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
@@ -13,7 +13,9 @@ import { ChatMessage, TypingIndicator, type ChatMessageData } from "@/components
 import { Hero } from "@/components/sanatan/hero";
 import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
+import { BabajiAvatar } from "@/components/sanatan/babaji-avatar";
 import { askSanatan } from "@/lib/client/ask";
+import { onBabajiState, speakBabaji, stopBabaji, type BabajiState } from "@/lib/client/speak";
 
 type LangMode = "auto" | "hi" | "en" | "sa" | "es";
 type ChatView = "menu" | "chat";
@@ -22,6 +24,13 @@ type ChatView = "menu" | "chat";
 const CHAT_HISTORY_FLAG = "sanatanChat";
 
 const STORAGE_KEY = "sanatan-hi-chat-v2";
+const VOICE_KEY = "sanatan-hi-babaji-voice";
+
+/** SANATANI BABAJI's spoken introduction (deep, calm — his signature) */
+const BABAJI_INTRO =
+  "॥ ॐ ॥ Namaste beta. I am Sanatani Babaji — your voice guide to the eternal Sanatan Dharma. " +
+  "Ask me anything about the Bhagavad Gita, the Ramayana, or the Vedas, and I shall answer in this calm voice. " +
+  "Dharmo rakshati rakshitah.";
 
 const LANG_LABELS: Record<LangMode, string> = {
   auto: "Auto detect",
@@ -42,6 +51,9 @@ export default function SanatanHIPage() {
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [voiceOn, setVoiceOn] = useState(true);
+  const [babaji, setBabaji] = useState<BabajiState>("idle");
+  const [speakingId, setSpeakingId] = useState<string | null>(null);
   const { theme, setTheme, resolvedTheme } = useTheme();
   const scrollRef = useRef<HTMLDivElement>(null);
   const [mounted, setMounted] = useState(false);
@@ -53,7 +65,16 @@ export default function SanatanHIPage() {
 
   useEffect(() => setMounted(true), []);
 
-  /* restore conversation from localStorage */
+  /* track Babaji's voice state (loading / speaking / idle) */
+  useEffect(() => onBabajiState((state) => {
+    setBabaji(state);
+    if (state === "idle") setSpeakingId(null);
+  }), []);
+
+  /* silence Babaji when the app unmounts */
+  useEffect(() => () => stopBabaji(), []);
+
+  /* restore conversation + voice preference from localStorage */
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
@@ -66,6 +87,8 @@ export default function SanatanHIPage() {
           setView("chat");
         }
       }
+      const voice = localStorage.getItem(VOICE_KEY);
+      if (voice === "0") setVoiceOn(false);
     } catch {
       /* ignore */
     }
@@ -92,6 +115,16 @@ export default function SanatanHIPage() {
       /* ignore */
     }
   }, [messages, langMode, loaded]);
+
+  /* persist voice preference */
+  useEffect(() => {
+    if (!loaded) return;
+    try {
+      localStorage.setItem(VOICE_KEY, voiceOn ? "1" : "0");
+    } catch {
+      /* ignore */
+    }
+  }, [voiceOn, loaded]);
 
   useEffect(() => {
     messagesRef.current = messages;
@@ -137,6 +170,7 @@ export default function SanatanHIPage() {
 
   /* chat → menu via the top-right ✕ (or after "New conversation") */
   const exitChat = useCallback(() => {
+    stopBabaji(); /* Babaji rests when you leave the chat */
     if (viewRef.current !== "chat") return;
     if (pushedHistoryRef.current) {
       /* pop our chat entry; the popstate handler switches back to the menu */
@@ -188,6 +222,7 @@ export default function SanatanHIPage() {
       const message = text.trim();
       if (!message || sending) return;
       enterChat();
+      stopBabaji(); /* new question — previous pravachan ends */
       const userMsg: ChatMessageData = { id: uid(), role: "user", text: message };
       setMessages((prev) => [...prev, userMsg]);
       setSending(true);
@@ -204,6 +239,12 @@ export default function SanatanHIPage() {
           timeMs: data.meta?.timeMs ?? 0,
         };
         setMessages((prev) => [...prev, aiMsg]);
+
+        /* SANATANI BABAJI answers aloud — deep, calm voice */
+        if (voiceOn) {
+          void speakBabaji(data.reply, { langHint: langMode });
+          setSpeakingId(aiMsg.id); /* after speakBabaji's internal stop, so the id survives */
+        }
       } catch {
         setMessages((prev) => [
           ...prev,
@@ -217,10 +258,11 @@ export default function SanatanHIPage() {
         setSending(false);
       }
     },
-    [sending, langMode, enterChat]
+    [sending, langMode, enterChat, voiceOn]
   );
 
   const newChat = () => {
+    stopBabaji();
     setMessages([]);
     try {
       localStorage.removeItem(STORAGE_KEY);
@@ -229,6 +271,37 @@ export default function SanatanHIPage() {
     }
     exitChat();
   };
+
+  /* per-message narration: Listen ↔ Stop */
+  const listenTo = useCallback(
+    (m: ChatMessageData) => {
+      if (m.role !== "assistant") return;
+      if (speakingId === m.id && babaji !== "idle") {
+        stopBabaji();
+      } else {
+        void speakBabaji(m.text, { langHint: langMode });
+        setSpeakingId(m.id);
+      }
+    },
+    [speakingId, babaji, langMode]
+  );
+
+  /* hero demo — Babaji introduces himself */
+  const hearBabaji = useCallback(() => {
+    if (babaji !== "idle") {
+      stopBabaji();
+      return;
+    }
+    void speakBabaji(BABAJI_INTRO, { langHint: "en" });
+  }, [babaji]);
+
+  const toggleVoice = useCallback(() => {
+    setVoiceOn((prev) => {
+      const next = !prev;
+      if (!next) stopBabaji(); /* muting also silences him */
+      return next;
+    });
+  }, []);
 
   const isDark = (theme ?? resolvedTheme) === "dark";
   const messagesEnd = useMemo(() => messages.length === 0, [messages]);
@@ -270,6 +343,19 @@ export default function SanatanHIPage() {
                   >
                     <MessageSquarePlus className="h-4 w-4" />
                     New conversation
+                  </Button>
+                  <Button
+                    variant="outline"
+                    onClick={toggleVoice}
+                    aria-pressed={voiceOn}
+                    aria-label={voiceOn ? "Babaji's voice on" : "Babaji's voice muted"}
+                    title="Babaji's voice"
+                    className={
+                      "h-10 w-10 shrink-0 border-sanatan-gold-2/60 text-sanatan-maroon hover:bg-sanatan-gold/15 hover:text-sanatan-maroon " +
+                      (voiceOn ? "bg-sanatan-gold/20" : "bg-sanatan-parchment opacity-60")
+                    }
+                  >
+                    {voiceOn ? <Volume2 className="h-4.5 w-4.5" /> : <VolumeX className="h-4.5 w-4.5" />}
                   </Button>
                   <Button
                     variant="outline"
@@ -326,6 +412,31 @@ export default function SanatanHIPage() {
                   ))}
                 </SelectContent>
               </Select>
+
+              {/* Babaji's voice — answers spoken aloud (on / off) */}
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={toggleVoice}
+                    aria-pressed={voiceOn}
+                    aria-label={voiceOn ? "Babaji's voice on — answers are spoken" : "Babaji's voice muted"}
+                    className={
+                      "relative hidden h-9 w-9 text-sanatan-gold-2 hover:bg-white/10 sm:inline-flex " +
+                      (voiceOn ? "" : "opacity-55")
+                    }
+                  >
+                    {voiceOn ? <Volume2 className="h-4.5 w-4.5" /> : <VolumeX className="h-4.5 w-4.5" />}
+                    {voiceOn && babaji === "speaking" && (
+                      <span className="absolute right-1.5 top-1.5 h-1.5 w-1.5 rounded-full bg-sanatan-saffron animate-pulse" aria-hidden />
+                    )}
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">
+                  {voiceOn ? "Babaji's voice — on" : "Babaji's voice — muted"}
+                </TooltipContent>
+              </Tooltip>
 
               <Tooltip>
                 <TooltipTrigger asChild>
@@ -398,7 +509,14 @@ export default function SanatanHIPage() {
                 {view === "chat" && messages.length > 0 ? (
                   <div className="space-y-5">
                     {messages.map((m) => (
-                      <ChatMessage key={m.id} message={m} onSuggestion={(s) => void send(s)} />
+                      <ChatMessage
+                        key={m.id}
+                        message={m}
+                        onSuggestion={(s) => void send(s)}
+                        speaking={m.id === speakingId && babaji === "speaking"}
+                        voiceLoading={m.id === speakingId && babaji === "loading"}
+                        onListen={m.role === "assistant" ? (msg) => listenTo(msg) : undefined}
+                      />
                     ))}
                   </div>
                 ) : (
@@ -406,6 +524,11 @@ export default function SanatanHIPage() {
                     onSuggestion={(s) => void send(s)}
                     onResume={messages.length > 0 ? enterChat : undefined}
                     resumeCount={messages.length}
+                    voiceOn={voiceOn}
+                    onToggleVoice={toggleVoice}
+                    onHearBabaji={hearBabaji}
+                    speaking={babaji === "speaking"}
+                    voiceLoading={babaji === "loading"}
                   />
                 )}
                 {sending && <TypingIndicator />}
@@ -414,12 +537,43 @@ export default function SanatanHIPage() {
 
             {/* input */}
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
-              <ChatInput onSend={(v) => void send(v)} disabled={sending} />
+              <ChatInput onSend={(v) => void send(v)} disabled={sending} onBeforeRecord={stopBabaji} />
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
                 SANATAN HI answers from a local scripture corpus · English · हिंदी · संस्कृत · Español ·{" "}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
               </p>
             </div>
+
+            {/* SANATANI BABAJI is speaking — floating stop pill */}
+            {babaji !== "idle" && (
+              <aside
+                className="babaji-rise absolute bottom-3 right-3 z-20 flex items-center gap-2 rounded-full border border-sanatan-gold-2/70 bg-sanatan-parchment/95 py-1.5 pl-1.5 pr-3 shadow-[0_6px_24px_rgba(105,32,15,0.18)] backdrop-blur-sm sm:bottom-4 sm:right-4"
+                aria-live="polite"
+              >
+                <BabajiAvatar size={30} mood="speaking" ring={false} />
+                <span className="whitespace-nowrap text-[0.68rem] font-medium text-sanatan-maroon">
+                  {babaji === "loading" ? (
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="h-3 w-3 animate-spin rounded-full border-2 border-sanatan-gold/40 border-t-sanatan-gold" aria-hidden />
+                      Babaji is preparing…
+                    </span>
+                  ) : (
+                    <span className="inline-flex items-center gap-1.5">
+                      <span className="h-1.5 w-1.5 rounded-full bg-sanatan-saffron animate-pulse" aria-hidden />
+                      Babaji is speaking…
+                    </span>
+                  )}
+                </span>
+                <button
+                  type="button"
+                  onClick={stopBabaji}
+                  aria-label="Stop Babaji's narration"
+                  className="ml-0.5 inline-flex h-6 w-6 items-center justify-center rounded-full border border-sanatan-gold-2/60 text-sanatan-maroon transition-colors hover:bg-sanatan-gold/20 active:scale-95"
+                >
+                  <Square className="h-2.5 w-2.5 fill-current" aria-hidden />
+                </button>
+              </aside>
+            )}
           </main>
         </div>
 

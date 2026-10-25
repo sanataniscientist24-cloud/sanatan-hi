@@ -171,7 +171,7 @@ function playBlob(blob: Blob, token: number): Promise<"played" | "stopped" | "bl
  * Returns true when handled (spoken or stopped); false when the server
  * path failed and the caller should fall back to Web Speech.
  */
-async function speakViaServer(text: string, token: number): Promise<boolean> {
+async function speakViaServer(text: string, token: number, onDone?: () => void): Promise<boolean> {
   const chunks = chunkSpeech(text, 900);
   if (!chunks.length) return true;
   setState("loading");
@@ -196,6 +196,7 @@ async function speakViaServer(text: string, token: number): Promise<boolean> {
       if (result === "blocked" && first) return false; /* autoplay denied → fallback */
       first = false;
     }
+    if (token === currentToken) onDone?.();
     return true;
   } catch {
     return token !== currentToken; /* stopped counts as handled */
@@ -275,7 +276,7 @@ async function voicesReady(synth: SpeechSynthesis): Promise<boolean> {
  * Utterances are kept ≤ ~220 chars: many engines hiccup on long ones,
  * and short utterances give Babaji natural breathing pauses.
  */
-function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, langHint?: string): void {
+function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, langHint?: string, onDone?: () => void): void {
   const synth = typeof window !== "undefined" ? window.speechSynthesis : undefined;
   if (!synth) {
     setState("idle");
@@ -287,6 +288,7 @@ function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, lang
     if (token !== currentToken) return;
     if (!ready) {
       setState("idle");
+      onDone?.(); /* no voices on this device — recover gracefully */
       return;
     }
 
@@ -301,6 +303,7 @@ function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, lang
       if (token !== currentToken) return; /* stopped */
       if (i >= chunks.length) {
         setState("idle");
+        if (token === currentToken) onDone?.();
         return;
       }
       const u = new SpeechSynthesisUtterance(chunks[i]);
@@ -327,6 +330,7 @@ function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, lang
       u.onerror = () => {
         if (token !== currentToken) return;
         setState("idle");
+        onDone?.(); /* engine refused this utterance — recover */
       };
 
       synth.speak(u);
@@ -341,6 +345,7 @@ function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, lang
             /* ignore */
           }
           setState("idle");
+          onDone?.();
         }
       }, 2500);
       void started;
@@ -357,6 +362,8 @@ function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, lang
 export interface SpeakOptions {
   /** Answer language hint ("hi" | "en" | "sa" | "es" | "auto") — routes fallbacks. */
   langHint?: string;
+  /** invoked when the narration finishes naturally (not when stopped). */
+  onDone?: () => void;
 }
 
 /**
@@ -374,13 +381,13 @@ export async function speakBabaji(raw: string, opts: SpeakOptions = {}): Promise
   const hiMode = hint === "hi" || hint === "sa" || devanagariRatio(clean) >= 0.3;
 
   if (hiMode) {
-    speakViaBrowser(clean, "hi", token);
+    speakViaBrowser(clean, "hi", token, undefined, opts.onDone);
     return;
   }
 
   const speakable = romanizeDevaRuns(clean);
-  const handled = await speakViaServer(speakable, token);
+  const handled = await speakViaServer(speakable, token, opts.onDone);
   if (!handled && token === currentToken) {
-    speakViaBrowser(speakable, "latin", token, hint);
+    speakViaBrowser(speakable, "latin", token, hint, opts.onDone);
   }
 }

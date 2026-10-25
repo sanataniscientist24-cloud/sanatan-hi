@@ -5,7 +5,7 @@ import { Moon, Sun, Menu, MessageSquarePlus, Square, Volume2, VolumeX, WifiOff, 
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetDescription, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { ChatInput } from "@/components/sanatan/chat-input";
@@ -14,10 +14,11 @@ import { Hero } from "@/components/sanatan/hero";
 import { SidebarContent } from "@/components/sanatan/sidebar-content";
 import { OmSigil } from "@/components/sanatan/book-icons";
 import { BabajiAvatar } from "@/components/sanatan/babaji-avatar";
-import { askSanatan } from "@/lib/client/ask";
+import { VoiceAssistant } from "@/components/sanatan/voice-assistant";
+import { LangPicker, LangPillSummary } from "@/components/sanatan/lang-picker";
+import { askSanatanMulti, DEFAULT_LANGS, normalizeLangs, primaryLang, type AppLang } from "@/lib/client/langs";
 import { onBabajiState, speakBabaji, stopBabaji, type BabajiState } from "@/lib/client/speak";
 
-type LangMode = "auto" | "hi" | "en" | "sa" | "es";
 type ChatView = "menu" | "chat";
 
 /** history-state marker placed on the entry that holds an open conversation */
@@ -32,14 +33,6 @@ const BABAJI_INTRO =
   "Ask me anything about the Bhagavad Gita, the Ramayana, or the Vedas, and I shall answer in this calm voice. " +
   "Dharmo rakshati rakshitah.";
 
-const LANG_LABELS: Record<LangMode, string> = {
-  auto: "Auto detect",
-  hi: "हिंदी Hindi",
-  en: "English",
-  sa: "संस्कृत Sanskrit",
-  es: "Español",
-};
-
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
 }
@@ -47,9 +40,12 @@ function uid() {
 export default function SanatanHIPage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [view, setView] = useState<ChatView>("menu");
-  const [langMode, setLangMode] = useState<LangMode>("en");
+  /* default = हिंदी + संस्कृत; English / Español opt-in from the homepage console */
+  const [langs, setLangs] = useState<AppLang[]>(DEFAULT_LANGS);
+  const [langPickerOpen, setLangPickerOpen] = useState(false);
   const [sending, setSending] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
+  const [voiceOpen, setVoiceOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
   const [voiceOn, setVoiceOn] = useState(true);
   const [babaji, setBabaji] = useState<BabajiState>("idle");
@@ -65,7 +61,7 @@ export default function SanatanHIPage() {
 
   useEffect(() => setMounted(true), []);
 
-  /* track Babaji's voice state (loading / speaking / idle) */
+  /* track SANATANI BABAJI's voice state (loading / speaking / idle) */
   useEffect(() => onBabajiState((state) => {
     setBabaji(state);
     if (state === "idle") setSpeakingId(null);
@@ -74,14 +70,14 @@ export default function SanatanHIPage() {
   /* silence Babaji when the app unmounts */
   useEffect(() => () => stopBabaji(), []);
 
-  /* restore conversation + voice preference from localStorage */
+  /* restore conversation from localStorage */
   useEffect(() => {
     try {
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) {
-        const data = JSON.parse(raw) as { messages?: ChatMessageData[]; lang?: LangMode };
+        const data = JSON.parse(raw) as { messages?: ChatMessageData[]; langs?: string[] };
         if (Array.isArray(data.messages)) setMessages(data.messages);
-        if (data.lang) setLangMode(data.lang);
+        if (data.langs) setLangs(normalizeLangs(data.langs));
         if (Array.isArray(data.messages) && data.messages.length > 0) {
           viewRef.current = "chat";
           setView("chat");
@@ -110,13 +106,13 @@ export default function SanatanHIPage() {
   useEffect(() => {
     if (!loaded) return;
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, lang: langMode }));
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ messages, langs }));
     } catch {
       /* ignore */
     }
-  }, [messages, langMode, loaded]);
+  }, [messages, langs, loaded]);
 
-  /* persist voice preference */
+  /* persist Babaji's voice preference */
   useEffect(() => {
     if (!loaded) return;
     try {
@@ -194,7 +190,7 @@ export default function SanatanHIPage() {
   }, []);
 
   const scrollToBottom = useCallback((smooth = true) => {
-    const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
+    const el = scrollRef.current?.closest("[data-radix-scroll-area-viewport]");
     if (el) {
       requestAnimationFrame(() => {
         el.scrollTo({ top: el.scrollHeight, behavior: smooth ? "smooth" : "auto" });
@@ -203,7 +199,7 @@ export default function SanatanHIPage() {
   }, []);
 
   const scrollToTop = useCallback(() => {
-    const el = scrollRef.current?.querySelector("[data-radix-scroll-area-viewport]");
+    const el = scrollRef.current?.closest("[data-radix-scroll-area-viewport]");
     if (el) {
       requestAnimationFrame(() => {
         el.scrollTo({ top: 0, behavior: "auto" });
@@ -222,13 +218,13 @@ export default function SanatanHIPage() {
       const message = text.trim();
       if (!message || sending) return;
       enterChat();
-      stopBabaji(); /* new question — previous pravachan ends */
+      stopBabaji(); /* new question — the previous pravachan ends */
       const userMsg: ChatMessageData = { id: uid(), role: "user", text: message };
       setMessages((prev) => [...prev, userMsg]);
       setSending(true);
 
       try {
-        const data = await askSanatan(message, langMode);
+        const data = await askSanatanMulti(message, langs);
         const aiMsg: ChatMessageData = {
           id: uid(),
           role: "assistant",
@@ -240,9 +236,9 @@ export default function SanatanHIPage() {
         };
         setMessages((prev) => [...prev, aiMsg]);
 
-        /* SANATANI BABAJI answers aloud — deep, calm voice */
+        /* SANATANI BABAJI answers aloud — the deep, calm voice */
         if (voiceOn) {
-          void speakBabaji(data.reply, { langHint: langMode });
+          void speakBabaji(data.reply, { langHint: primaryLang(langs) });
           setSpeakingId(aiMsg.id); /* after speakBabaji's internal stop, so the id survives */
         }
       } catch {
@@ -258,7 +254,7 @@ export default function SanatanHIPage() {
         setSending(false);
       }
     },
-    [sending, langMode, enterChat, voiceOn]
+    [sending, langs, enterChat, voiceOn]
   );
 
   const newChat = () => {
@@ -279,14 +275,14 @@ export default function SanatanHIPage() {
       if (speakingId === m.id && babaji !== "idle") {
         stopBabaji();
       } else {
-        void speakBabaji(m.text, { langHint: langMode });
+        void speakBabaji(m.text, { langHint: primaryLang(langs) });
         setSpeakingId(m.id);
       }
     },
-    [speakingId, babaji, langMode]
+    [speakingId, babaji, langs]
   );
 
-  /* hero demo — Babaji introduces himself */
+  /* hero demo — Babaji introduces himself in his deep, calm voice */
   const hearBabaji = useCallback(() => {
     if (babaji !== "idle") {
       stopBabaji();
@@ -305,6 +301,7 @@ export default function SanatanHIPage() {
 
   const isDark = (theme ?? resolvedTheme) === "dark";
   const messagesEnd = useMemo(() => messages.length === 0, [messages]);
+  const answerLang = primaryLang(langs);
 
   return (
     <div className="flex h-dvh flex-col overflow-hidden bg-sanatan-cream text-foreground">
@@ -328,7 +325,7 @@ export default function SanatanHIPage() {
               <SheetContent side="left" className="w-[290px] gap-0 border-sanatan-gold-2/50 bg-sanatan-cream p-0">
                 <SheetTitle className="sr-only">Scripture Corpus</SheetTitle>
                 <SheetDescription className="sr-only">
-                  Browse the offline scripture collections and start a new conversation.
+                  Browse the scripture collections and start a new conversation.
                 </SheetDescription>
                 {/* new chat + theme — live in the drawer on mobile (header is compact) */}
                 <div className="flex gap-2 border-b border-sanatan-gold-2/40 p-3 lg:hidden">
@@ -373,22 +370,30 @@ export default function SanatanHIPage() {
               </SheetContent>
             </Sheet>
 
-            {/* brand */}
+            {/* brand — opens the voice assistant on tap */}
             <div className="flex min-w-0 items-center gap-2 sm:gap-2.5">
-              <span className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 sm:flex">
+              <button
+                type="button"
+                onClick={() => setVoiceOpen(true)}
+                aria-label="Open the SANATAN HI voice assistant"
+                title="Tap to talk — voice assistant"
+                className="hidden h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 border-sanatan-gold-2 bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 outline-none transition-colors hover:border-sanatan-saffron focus-visible:ring-2 focus-visible:ring-sanatan-saffron sm:flex"
+              >
                 <OmSigil className="text-xl text-sanatan-gold-2 om-glow" />
-              </span>
-              <div className="min-w-0 leading-tight">
-                <h1 className="truncate font-display text-[1.05rem] font-semibold tracking-wide text-sanatan-gold-2 sm:text-lg">
-                  SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
-                  <span className="hidden text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90 md:inline">
-                    [ HUMAN INTELLIGENCE ]
-                  </span>
-                </h1>
-                <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 md:block">
-                  Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
-                </p>
-              </div>
+              </button>
+              <button type="button" onClick={() => setVoiceOpen(true)} className="min-w-0 outline-none" aria-label="Open the SANATAN HI voice assistant" title="Tap to talk — voice assistant">
+                <div className="min-w-0 text-left leading-tight">
+                  <h1 className="truncate font-display text-[1.05rem] font-semibold tracking-wide text-sanatan-gold-2 transition-colors hover:text-sanatan-saffron sm:text-lg">
+                    SANATAN <span className="text-sanatan-cream-2">HI</span>{" "}
+                    <span className="hidden text-[0.56rem] font-medium tracking-[0.12em] text-sanatan-gold-2/90 md:inline">
+                      [ HUMAN INTELLIGENCE ]
+                    </span>
+                  </h1>
+                  <p className="hidden truncate text-[0.62rem] text-sanatan-cream-2/70 md:block">
+                    Offline Sanatan Dharma AI · Gita · Ramayan · Mahabharat · Vedas · Puranas
+                  </p>
+                </div>
+              </button>
               <span className="ml-1 hidden items-center gap-1 rounded-full border border-sanatan-gold-2/50 px-2 py-0.5 text-[0.6rem] text-sanatan-gold-2 md:inline-flex">
                 <WifiOff className="h-3 w-3" aria-hidden />
                 Offline AI
@@ -397,23 +402,37 @@ export default function SanatanHIPage() {
 
             {/* actions */}
             <div className="ml-auto flex items-center gap-1.5">
-              <Select value={langMode} onValueChange={(v) => setLangMode(v as LangMode)}>
-                <SelectTrigger
-                  aria-label="Choose answer language"
-                  className="h-10 w-[7.1rem] border-sanatan-gold-2/50 bg-transparent text-xs text-sanatan-cream-2 hover:bg-white/10 sm:h-9 sm:w-36 [&>svg]:text-sanatan-gold-2"
+              <Popover open={langPickerOpen} onOpenChange={setLangPickerOpen}>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <PopoverTrigger asChild>
+                      <Button
+                        variant="ghost"
+                        aria-label="Answer languages — one or more"
+                        className="h-10 gap-0 rounded-full border border-sanatan-gold-2/50 px-3 text-sanatan-cream-2 hover:bg-white/10 hover:text-sanatan-gold-2 sm:h-9"
+                      >
+                        <LangPillSummary langs={langs} />
+                      </Button>
+                    </PopoverTrigger>
+                  </TooltipTrigger>
+                  <TooltipContent className="bg-sanatan-maroon text-sanatan-cream-2 text-xs">Answer languages · भाषा कंसोल</TooltipContent>
+                </Tooltip>
+                <PopoverContent
+                  align="end"
+                  className="w-72 rounded-xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment p-3 shadow-[0_14px_44px_rgba(74,21,9,0.28)]"
                 >
-                  <SelectValue placeholder={LANG_LABELS[langMode]} />
-                </SelectTrigger>
-                <SelectContent className="border-sanatan-gold-2/60 bg-sanatan-parchment">
-                  {Object.entries(LANG_LABELS).map(([v, l]) => (
-                    <SelectItem key={v} value={v} className="text-sm text-sanatan-maroon focus:bg-sanatan-gold/20">
-                      {l}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+                  <p className="mb-2 flex items-center gap-1.5 text-[0.64rem] font-semibold uppercase tracking-[0.2em] text-sanatan-gold">
+                    <span className="pulse-dot h-1.5 w-1.5 rounded-full bg-sanatan-saffron" aria-hidden />
+                    Language Matrix · भाषा कंसोल
+                  </p>
+                  <LangPicker compact langs={langs} onChange={setLangs} />
+                  <p className="mt-2 text-[0.62rem] leading-relaxed text-foreground/55">
+                    एक या अधिक भाषा चुनें — उत्तर हर चुनी हुई भाषा में मिलेंगे · answers arrive in every selected language
+                  </p>
+                </PopoverContent>
+              </Popover>
 
-              {/* Babaji's voice — answers spoken aloud (on / off) */}
+              {/* SANATANI BABAJI — answers spoken aloud (on / off) */}
               <Tooltip>
                 <TooltipTrigger asChild>
                   <Button
@@ -524,6 +543,9 @@ export default function SanatanHIPage() {
                     onSuggestion={(s) => void send(s)}
                     onResume={messages.length > 0 ? enterChat : undefined}
                     resumeCount={messages.length}
+                    onOpenVoice={() => setVoiceOpen(true)}
+                    langs={langs}
+                    onLangsChange={setLangs}
                     voiceOn={voiceOn}
                     onToggleVoice={toggleVoice}
                     onHearBabaji={hearBabaji}
@@ -538,8 +560,14 @@ export default function SanatanHIPage() {
             {/* input */}
             <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
               <ChatInput onSend={(v) => void send(v)} disabled={sending} onBeforeRecord={stopBabaji} />
+              {/* compact line on phones (langs live in the header pill) · full line on sm+ */}
               <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                SANATAN HI answers from a local scripture corpus · English · हिंदी · संस्कृत · Español ·{" "}
+                SANATAN HI
+                <span className="hidden sm:inline">
+                  {" · उत्तर-भाषा: हिंदी · संस्कृत · "}
+                  {langs.includes("en") && <>English · </>}
+                  {langs.includes("es") && <>Español · </>}
+                </span>{" "}
                 <span className="font-deva">॥ शुभम् भवतु ॥</span>
               </p>
             </div>
@@ -577,15 +605,18 @@ export default function SanatanHIPage() {
           </main>
         </div>
 
+        {/* ── voice assistant (opens from ॐ / SANATAN HI) ── */}
+        <VoiceAssistant open={voiceOpen} onOpenChange={setVoiceOpen} langMode={answerLang} />
+
         {/* ── footer (always bottom, respects iOS safe area) ── */}
         <footer className="mt-auto shrink-0 bg-gradient-to-r from-sanatan-maroon-2 via-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2">
           <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-y-0.5 px-4 pt-2 pb-[calc(0.5rem+env(safe-area-inset-bottom))] text-center text-[0.64rem] sm:flex-row sm:gap-x-4 sm:gap-y-1 sm:pb-2">
             <span className="text-sanatan-cream-2/90">
-              SANATAN HI [ HUMAN INTELLIGENCE ]
-              <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Bhagavata & Shiva Purana · Vedas · Upanishads</span>
+              SANATAN HI [ HUMAN INTELLIGENCE ] · Founder — DR. KARTIK YADAV
+              <span className="hidden md:inline"> · Bhagavad Gita · Ramayana · Mahabharata · Vedas · Upanishads</span>
             </span>
             <span className="text-sanatan-gold-2/80">
-              100% Offline Corpus · Sanskrit · Hindi · English · Español ·{" "}
+              हिंदी · संस्कृत · English · Español ·{" "}
               <span aria-hidden>🙏</span>
             </span>
           </div>

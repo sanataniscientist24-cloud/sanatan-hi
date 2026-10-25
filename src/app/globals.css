@@ -135,6 +135,17 @@ body {
   overscroll-behavior: contain;
   -webkit-overflow-scrolling: touch;
 }
+/* Radix wraps scroll content in a `display: table; min-width: 100%` layer that
+   shrink-to-fits to the widest intrinsic child (hero video, ticker, canvas…).
+   On phones that inflated the layout to 768px inside a ~390px viewport and the
+   overflow-x: hidden viewport silently clipped the right half of every section.
+   Forcing block layout makes the width follow the viewport instead — vertical
+   scrolling is unaffected and no sanatan-scroll area needs horizontal panning. */
+.sanatan-scroll [data-radix-scroll-area-viewport] > div {
+  display: block !important;
+  width: 100%;
+  max-width: 100%;
+}
 
 @theme {
   --color-sanatan-cream: var(--sanatan-cream);
@@ -238,6 +249,208 @@ body {
   animation: flame-breathe 1.6s ease-in-out infinite;
 }
 
+/* keep generated imagery strictly on-palette (no blue/purple drift) */
+.palette-warm {
+  filter: sepia(0.32) saturate(1.18) hue-rotate(-8deg);
+}
+
+/* ───────────── futuristic layer (Armonian-inspired) ───────────── */
+
+/* subtle sci-fi grid behind the hero console */
+.futuristic-grid {
+  background-image:
+    linear-gradient(color-mix(in srgb, var(--sanatan-gold) 7%, transparent) 1px, transparent 1px),
+    linear-gradient(90deg, color-mix(in srgb, var(--sanatan-gold) 7%, transparent) 1px, transparent 1px);
+  background-size: 34px 34px;
+  mask-image: radial-gradient(ellipse at 50% 40%, black 30%, transparent 78%);
+  -webkit-mask-image: radial-gradient(ellipse at 50% 40%, black 30%, transparent 78%);
+}
+
+/* light sweep across cinematic panels */
+@keyframes scan-sweep {
+  0% {
+    transform: translateX(-130%) skewX(-18deg);
+    opacity: 0;
+  }
+  18% {
+    opacity: 1;
+  }
+  55% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateX(240%) skewX(-18deg);
+    opacity: 0;
+  }
+}
+.scan-sweep {
+  position: relative;
+  overflow: hidden;
+}
+.scan-sweep::after {
+  content: "";
+  position: absolute;
+  inset-block: 0;
+  left: 0;
+  width: 34%;
+  background: linear-gradient(
+    100deg,
+    transparent,
+    color-mix(in srgb, var(--sanatan-gold-2) 26%, transparent),
+    transparent
+  );
+  animation: scan-sweep 4.6s ease-in-out infinite;
+  pointer-events: none;
+}
+
+/* HUD corner brackets */
+.hud-panel {
+  position: relative;
+}
+.hud-panel::before,
+.hud-panel::after {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-color: var(--sanatan-saffron);
+  border-style: solid;
+  opacity: 0.75;
+  pointer-events: none;
+}
+.hud-panel::before {
+  top: -1px;
+  left: -1px;
+  border-width: 2px 0 0 2px;
+}
+.hud-panel::after {
+  bottom: -1px;
+  right: -1px;
+  border-width: 0 2px 2px 0;
+}
+
+/* shimmering light across text */
+@keyframes text-shimmer {
+  0% {
+    background-position: -220% center;
+  }
+  100% {
+    background-position: 220% center;
+  }
+}
+.text-shimmer {
+  background: linear-gradient(
+    100deg,
+    var(--sanatan-gold) 20%,
+    var(--sanatan-saffron) 42%,
+    #f5e3b8 50%,
+    var(--sanatan-saffron) 58%,
+    var(--sanatan-gold) 80%
+  );
+  background-size: 220% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: text-shimmer 3.4s linear infinite;
+}
+
+/* breathing pulse dot for HUD labels */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scale(0.85);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.15);
+  }
+}
+.pulse-dot {
+  animation: pulse-dot 1.8s ease-in-out infinite;
+}
+
+/* floating mantra glyphs */
+@keyframes glyph-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(2deg);
+  }
+}
+.glyph-drift {
+  animation: glyph-float 6s ease-in-out infinite;
+}
+
+/* ── mantra marquee — seamless infinite ticker ── */
+@keyframes mantra-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+.marquee-track {
+  animation: mantra-marquee var(--marquee-dur, 40s) linear infinite;
+  will-change: transform;
+}
+.marquee-band:hover .marquee-track,
+.marquee-band:focus-within .marquee-track {
+  animation-play-state: paused;
+}
+
+/* ── scripture orbit — 3D carousel ring ── */
+.orbit-scene {
+  perspective: 1100px;
+  perspective-origin: 50% 42%;
+  touch-action: pan-y; /* horizontal drag spins the ring, vertical scroll still works */
+  cursor: grab;
+}
+.orbit-scene[data-dragging="true"] {
+  cursor: grabbing;
+}
+.orbit-ring {
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+.orbit-card {
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+  transition: border-color 0.35s ease, box-shadow 0.35s ease;
+}
+.orbit-card.orbit-front {
+  border-color: var(--sanatan-saffron);
+  box-shadow:
+    0 0 0 1px var(--sanatan-saffron),
+    0 18px 44px rgba(105, 32, 15, 0.3);
+}
+.orbit-glow {
+  background:
+    radial-gradient(ellipse 62% 46% at 50% 58%, rgba(239, 177, 65, 0.16) 0%, transparent 70%);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scan-sweep::after,
+  .text-shimmer,
+  .glyph-drift,
+  .pulse-dot,
+  .marquee-track {
+    animation: none;
+  }
+  .marquee-track .marquee-dup {
+    display: none;
+  }
+  .text-shimmer {
+    color: var(--sanatan-gold);
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+  }
+}
+
 /* ───────────── SANATANI BABAJI voice-assist ───────────── */
 
 /* expanding halo ring while Babaji speaks */
@@ -281,7 +494,7 @@ body {
     0 0 18px color-mix(in srgb, var(--sanatan-gold) 55%, transparent);
 }
 
-/* graceful entrance for the Babaji voice strip */
+/* graceful entrance for the Babaji voice strip / pill */
 @keyframes babaji-rise {
   from {
     opacity: 0;

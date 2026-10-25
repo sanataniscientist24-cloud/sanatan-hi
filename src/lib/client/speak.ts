@@ -3,19 +3,25 @@
 /**
  * SANATAN HI — SANATANI BABAJI voice engine.
  *
- * Babaji speaks with an INDIAN accent, Hindi by default:
+ * Babaji speaks with an INDIAN accent, Hindi by default — and ALWAYS as a
+ * MAN. MALE-FIRST voice selection, across language tiers:
  *
- *   PRIMARY — Web Speech API (the browser's own Indian voices):
- *     • हिंदी / संस्कृत (Devanagari)  → best Indian male hi-IN voice
- *       (Microsoft Hemant / Madhur, Prabhat, Ravi …), deepened + slowed
- *     • English / Español            → Indian-accent en-IN voice first
- *       (Ravi / Madhur / Prabhat), then hi-IN, then en-GB/en as last picks
- *     • no Hindi voice on the device → Devanagari is romanized so Babaji
- *       reads it in his Indian-English accent instead of garbling it
+ *   हिंदी / संस्कृत (Devanagari):
+ *     1. known MALE Hindi voice        → Hemant / Madhur / Prabhat / Ravi …
+ *     2. known MALE Indian-English      → Rishi (en-IN), text romanized
+ *     3. known MALE en-GB / en-US       → "Google UK English Male", David …
+ *     4. unknown-gender voices (hi first — might be male)
+ *     5. known FEMALE Hindi voice      → LAST browser resort, e.g. Chrome's
+ *        lone "Google हिन्दी" on Android: kept only for script correctness,
+ *        pitched down to 0.5 to masculinize as far as the engine allows
+ *   A guaranteed-male voice ALWAYS beats a female one, even across accents;
+ *   Devanagari is romanized for any Latin-script voice so nothing garbles.
+ *
+ *   English / Español: the same male-first ladder per answer language
+ *     (en-IN male → hi-IN male → en-GB/en male; es male when hinted).
  *
  *   LAST RESORT — POST /api/tts server narration (only when the device has
- *     no usable speech voices): deep, steady, and the route romanizes any
- *     Devanagari itself.
+ *     no speech voices at all): deep, steady, romanizes Devanagari itself.
  *
  * The Babaji signature: pitch 0.72 (deep), rate 0.88 (calm, unhurried).
  * Long replies are chunked at sentence boundaries and played sequentially,
@@ -132,56 +138,148 @@ function chunkSpeech(t: string, maxLen: number): string[] {
 }
 
 /* ────────────────────────────────────────────────────────────
- * Voice picking — Indian accent first, by design
+ * Voice picking — MALE first, Indian accent first, by design
  * ──────────────────────────────────────────────────────────── */
 
-/** Known male Indian narration voices (Windows/Edge/Chrome/Android). */
-const INDIAN_MALE = /hemant|madhur|prabhat|ravi\b|raja\b|ashwin|male\b/i;
+export type BabajiVoiceGender = "male" | "female" | "unknown";
 
-interface ScoredVoice {
+/**
+ * Known MALE voices Babaji prefers — Hindi (Hemant/Madhur/Prabhat/Ravi/
+ * Mohan/Kunal), Indian English (Rishi), the classic Windows/Edge men
+ * (David/Mark/George…), Chrome's "Google UK English Male", the WebKit men
+ * (Daniel/Liam/Arthur/Oliver/Ryan) and Spanish men (Jorge/Álvaro/Diego…).
+ */
+const MALE_VOICE_RE =
+  /hemant|madhur|prabhat|ravi\b|mohan|kunal|ashwin|raja\b|rishi|amit\b|gaurav|david|mark\b|george|guy\b|james|daniel|liam|arthur|oliver|ryan|fred\b|alvaro|álvaro|jorge|diego|pablo|juan|carlos|male\b|पुरुष/i;
+
+/**
+ * Known FEMALE voices — Babaji never picks one of these while ANY male or
+ * even unknown-gender voice exists. Chrome's only Hindi voice, "Google
+ * हिन्दी", is female — that is exactly the trap this table exists to break.
+ */
+const FEMALE_VOICE_RE =
+  /google\s*हिन्दी|google\s*hindi|swara|kalpana|lekha|heera|aditi|kajal|anisha|priya\b|shruti|veena|monica|mónica|paloma|elvira|sabina|paulina|isabela|cecilia|salome|salomé|marisol|sofia|sofía|lucia|lucía|maria|maría|zira|hazel|susan|samantha|victoria|karen|moira|tessa|fiona|serena|catherine|joana|luciana|ayla|eva\b|female|महिला|स्त्री/i;
+
+/** Best guess at a voice's gender from its engine-assigned name. */
+export function voiceGender(v: { name?: string }): BabajiVoiceGender {
+  const n = `${v?.name ?? ""}`;
+  if (FEMALE_VOICE_RE.test(n)) return "female"; /* female first — safety */
+  if (MALE_VOICE_RE.test(n)) return "male";
+  return "unknown";
+}
+
+/** Devanagari-capable BCP-47 prefixes (hi + the sister scripts). */
+const DEVA_LANG_RE = /^(hi|mr|ne|sa|sd)(?:[-_]|$)/i;
+
+/**
+ * MALE-FIRST scoring, hi mode (हिंदी / संस्कृत). A known male voice of ANY
+ * tier beats every unknown/female one; Devanagari is romanized for Latin
+ * voices so the shloka still sounds right:
+ *   male hi-IN 140 · male en-IN 125 · male en-GB 110 · male en-US 105 ·
+ *   unknown hi 70 · female hi 55 · unknown en-IN 50 · unknown en-GB 45 ·
+ *   unknown en 40 · male other-lang 30 · female en 12 · anything 10
+ */
+function hiModeScore(lang: string, gender: BabajiVoiceGender): number {
+  const isHi = lang.startsWith("hi");
+  const isEnIn = lang.startsWith("en-in");
+  const isEnGb = lang.startsWith("en-gb");
+  const isEn = lang.startsWith("en");
+  if (gender === "male") {
+    if (isHi) return 140; /* Hemant / Madhur — perfect Devanagari pravachan */
+    if (isEnIn) return 125; /* Rishi — Indian-English male, romanized */
+    if (isEnGb) return 110; /* Chrome's "Google UK English Male" */
+    if (isEn) return 105; /* David / Mark — deep US male */
+    return 30; /* a male voice in another language is not for Hindi */
+  }
+  if (gender === "female") {
+    if (isHi) return 55; /* device's ONLY Hindi voice is female — last resort */
+    return 12;
+  }
+  /* unknown gender — the engine won't tell us; Hindi first (might be male) */
+  if (isHi) return 70;
+  if (isEnIn) return 50;
+  if (isEnGb) return 45;
+  if (isEn) return 40;
+  return 20;
+}
+
+/**
+ * MALE-FIRST scoring, latin mode (English default). es-hinted answers keep
+ * Spanish voices at the top of the ladder (gender only breaks ties within
+ * the es tier) so Babaji never reads Español in an English accent.
+ */
+function latinModeScore(lang: string, gender: BabajiVoiceGender, langHint?: string): number {
+  const isEnIn = lang.startsWith("en-in");
+  const isHi = lang.startsWith("hi");
+  const isEnGb = lang.startsWith("en-gb");
+  const isEn = lang.startsWith("en");
+  if (langHint === "es") {
+    if (lang.startsWith("es")) {
+      if (gender === "male") return 140;
+      if (gender === "unknown") return 75;
+      return 60; /* female es still says the Spanish right */
+    }
+    if (gender === "male") return isEn ? 50 : 25;
+    return isEn ? 20 : 10;
+  }
+  if (gender === "male") {
+    if (isEnIn) return 140; /* Rishi — Babaji's English voice */
+    if (isHi) return 125; /* Hemant reads English with a Hindi accent */
+    if (isEnGb) return 110;
+    if (isEn) return 105;
+    return 30;
+  }
+  if (gender === "female") {
+    if (isEnIn) return 25;
+    if (isHi) return 15;
+    if (isEn) return 12;
+    return 8;
+  }
+  if (isEnIn) return 60;
+  if (isHi) return 45;
+  if (isEnGb) return 40;
+  if (isEn) return 35;
+  if (langHint && lang.startsWith(langHint)) return 30;
+  return 10;
+}
+
+export interface PickedBabajiVoice {
   voice: SpeechSynthesisVoice;
+  gender: BabajiVoiceGender;
   score: number;
 }
 
 /**
- * Pick the most Babaji-like voice available:
- *   hi mode → Indian male Hindi voices first (Hemant, Madhur, Prabhat)
- *   latin   → Indian-accent English (en-IN) first, then a Hindi voice
- *            reading romanized text, then (only if hinted) es-*, en-*
+ * The one true Babaji voice for this device and mode: male-first across
+ * language tiers, Indian accent preferred among equals.
  */
-function pickVoice(synth: SpeechSynthesis, mode: "hi" | "latin", langHint?: string): ScoredVoice | null {
-  const voices = synth.getVoices();
-  if (!voices.length) return null;
-  let best: ScoredVoice | null = null;
-
-  const consider = (voice: SpeechSynthesisVoice, score: number) => {
-    const maleBonus = INDIAN_MALE.test(voice.name) ? 6 : 0;
-    const total = score + maleBonus;
-    if (!best || total > best.score) best = { voice, score: total };
-  };
-
+export function pickBabajiVoice(
+  voices: SpeechSynthesisVoice[],
+  mode: "hi" | "latin",
+  langHint?: string
+): PickedBabajiVoice | null {
+  let best: PickedBabajiVoice | null = null;
   for (const v of voices) {
-    const lang = (v.lang || "").toLowerCase().replace("_", "-");
-    if (mode === "hi") {
-      /* DEFAULT VOICE = HINDI — the device's best Hindi voice wins */
-      if (lang.startsWith("hi")) consider(v, 40);
-      else if (lang.startsWith("en-in")) consider(v, 24);
-      else if (lang.startsWith("en")) consider(v, 8);
-    } else {
-      if (langHint === "es" && lang.startsWith("es")) {
-        consider(v, 30);
-        continue;
-      }
-      /* Indian-accent English is Babaji's English voice */
-      if (lang.startsWith("en-in")) consider(v, 34);
-      /* a Hindi voice reading romanized Sanskrit/Hindi keeps the accent */
-      else if (lang.startsWith("hi")) consider(v, 26);
-      else if (lang.startsWith("en-gb")) consider(v, 20);
-      else if (lang.startsWith("en")) consider(v, 14);
-      else if (langHint && lang.startsWith(langHint)) consider(v, 18);
-    }
+    const lang = (v.lang || "").toLowerCase().replace(/_/g, "-");
+    const gender = voiceGender(v);
+    const name = (v.name || "").toLowerCase();
+    let score = mode === "hi" ? hiModeScore(lang, gender) : latinModeScore(lang, gender, langHint);
+    if (/natural|neural|google/.test(name)) score += 4; /* best quality within a tier */
+    if (v.localService) score += 1; /* offline-reliable within a tier */
+    if (!best || score > best.score) best = { voice: v, gender, score };
   }
   return best;
+}
+
+/**
+ * The Babaji pitch by gender: men get the 0.72 pravachan depth, unknown
+ * voices hedge deeper, and a forced-female voice is pitched down to 0.5 —
+ * as deep as engines render cleanly — to sound as masculine as possible.
+ */
+export function babajiPitch(gender: BabajiVoiceGender): number {
+  if (gender === "male") return 0.72;
+  if (gender === "female") return 0.5;
+  return 0.62;
 }
 
 async function voicesReady(synth: SpeechSynthesis): Promise<boolean> {
@@ -248,19 +346,22 @@ function speakViaBrowser(
         return;
       }
 
-      let speakMode = mode;
-      let speakText = text;
-      let picked = pickVoice(synth, speakMode, langHint);
+      const picked = pickBabajiVoice(synth.getVoices(), mode, langHint);
+      /* support beacon: which voice Babaji chose on this device, and why */
+      console.debug(
+        `[babaji] voice: ${picked ? `${picked.voice.name} (${picked.voice.lang}) · ${picked.gender} · ${mode}${langHint ? "@" + langHint : ""}` : "none"}`
+      );
 
-      /* Hindi asked, but this device has no Hindi voice — Babaji reads the
-         shloka romanized in his Indian-English accent instead of garbling it */
-      if (speakMode === "hi" && (!picked || !picked.voice.lang.toLowerCase().startsWith("hi"))) {
-        speakText = romanizeDevaRuns(speakText);
-        speakMode = "latin";
-        picked = pickVoice(synth, "latin", "en");
-      }
+      /* Devanagari survives only under a Devanagari-capable voice (male Hindi
+         voices keep the script); every Latin voice reads it romanized so a
+         male en-GB/en-US voice never garbles the shloka */
+      const voiceLang = (picked?.voice.lang || "").toLowerCase();
+      const spoken =
+        picked && !DEVA_LANG_RE.test(voiceLang) && /[\u0900-\u097F]/.test(text)
+        ? romanizeDevaRuns(text)
+        : text;
 
-      const chunks = chunkSpeech(speakText, 220);
+      const chunks = chunkSpeech(spoken, 220);
       if (!chunks.length) {
         setState("idle");
         finish("spoken");
@@ -282,13 +383,18 @@ function speakViaBrowser(
 
         const u = new SpeechSynthesisUtterance(chunks[i]);
         if (picked) {
-          u.voice = picked.voice;
-          u.lang = picked.voice.lang || (speakMode === "hi" ? "hi-IN" : "en-IN");
+          try {
+            u.voice = picked.voice;
+          } catch {
+            /* some engines reject the voice object — fall back to lang-only */
+          }
+          u.lang = picked.voice.lang || (mode === "hi" ? "hi-IN" : "en-IN");
         } else {
-          u.lang = speakMode === "hi" ? "hi-IN" : "en-IN";
+          u.lang = mode === "hi" ? "hi-IN" : "en-IN";
         }
-        /* the Babaji signature: deep and unhurried */
-        u.pitch = 0.72;
+        /* the Babaji signature: deep and unhurried — men at 0.72, a forced
+           female voice pitched down hard to sound like Babaji */
+        u.pitch = babajiPitch(picked?.gender ?? "unknown");
         u.rate = 0.88;
         u.volume = 1;
 

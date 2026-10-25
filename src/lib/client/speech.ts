@@ -4,9 +4,10 @@
  * SANATAN HI — voice assistant speech layer (browser-native, works on static hosts).
  *
  * Text-to-Speech: window.speechSynthesis — "pravachan" voice profile: a calm,
- * soothing MALE voice like Babaji giving discourse (Madhur / Hemant / Prabhat
- * preferred) at a measured pace with gentle sentence pauses. Indian-accent
- * priority (en-IN for English, hi-IN for Hindi & Sanskrit) with fallbacks.
+ * soothing MALE voice like Babaji giving discourse, MALE-FIRST by design
+ * (see @/lib/client/speak — a known male voice of any tier always beats a
+ * female one; the lone Hindi voice on Chrome, "Google हिन्दी", is female and
+ * must never be the automatic pick while a male voice exists).
  * Speech-to-Text: SpeechRecognition / webkitSpeechRecognition with Indian
  * locales (en-IN, hi-IN) so Indian-accent English is recognised well.
  *
@@ -15,6 +16,7 @@
  */
 
 import { devanagariToRoman } from "@/lib/ai/translit";
+import { babajiPitch, pickBabajiVoice, voiceGender } from "@/lib/client/speak";
 
 /* ────────────────────────── capability detection ────────────────────────── */
 
@@ -32,10 +34,7 @@ export function sttSupported(): boolean {
 
 export type SpeechLang = "en" | "hi" | "es";
 
-/** calm pravachan pace — measured, unhurried delivery (Babaji style) */
 export const DEFAULT_PACE = 0.86;
-/** deep, warm pitch — SANATANI BABAJI's calm, resonant pravachan voice */
-const PRAVACHAN_PITCH = 0.72;
 
 /** preference order — Indian accents first by design */
 const VOICE_ORDER: Record<SpeechLang, string[]> = {
@@ -44,18 +43,8 @@ const VOICE_ORDER: Record<SpeechLang, string[]> = {
   es: ["es-es", "es-mx", "es-us", "es-419", "es"],
 };
 
-/** known MALE voices — a calm male "Babaji" pravachan voice wins ties */
-const MALE_VOICE_RE =
-  /madhur|hemant|prabhat|ravi\b|alvaro|álvaro|jorge|diego|pablo|juan|carlos|george|daniel|liam|arthur|oliver|ryan|guy\b|male|पुरुष/i;
-/** known FEMALE voices — demoted so a male alternative is chosen when present */
-const FEMALE_VOICE_RE =
-  /swara|heera|kalpana|lekha|monica|mónica|paloma|elvira|sabina|paulina|isabela|cecilia|salome|salomé|marisol|sofia|sofía|lucia|lucía|maria|maría|zira|hazel|susan|eva\b|ayla|anisha|kajal|female|महिला/i;
-
-function genderBias(name: string): number {
-  if (MALE_VOICE_RE.test(name)) return 12;
-  if (FEMALE_VOICE_RE.test(name)) return -8;
-  return 0;
-}
+/** known MALE voices — the shared gender tables live in speak.ts (single
+ *  source of truth) so Babaji's male-first rules stay in lockstep */
 
 export const SPEECH_LANG_LABEL: Record<SpeechLang, string> = {
   en: "English (India)",
@@ -67,14 +56,23 @@ function normLang(lang: string): string {
   return lang.toLowerCase().replace(/_/g, "-");
 }
 
-/** best voice for a language — calm MALE pravachan voice preferred, Indian accents win ties */
+/** best voice for a language — MALE first, Indian accents win ties */
 export function pickVoice(voices: SpeechSynthesisVoice[], target: SpeechLang): SpeechSynthesisVoice | null {
+  /* hi / en — delegate to the Babaji engine's male-first ladder: a known
+     male voice (Indian English, en-GB, en-US…) beats a female or unknown
+     Hindi voice, and Devanagari is romanized for Latin-script voices by
+     speak() so the shloka still sounds right */
+  if (target !== "es") {
+    const picked = pickBabajiVoice(voices, target === "hi" ? "hi" : "latin", target === "en" ? "en" : undefined);
+    return picked ? picked.voice : null;
+  }
+  /* es — the Spanish tier stays first (Babaji reads Español in Spanish),
+     gender only re-orders voices inside the tier */
   for (const wanted of VOICE_ORDER[target]) {
     const tier = voices.filter((v) => normLang(v.lang) === wanted);
     if (tier.length) return bestOfTier(tier, target);
   }
-  /* base-language fallback (any en-* / hi-* / es-*) */
-  const base = target === "es" ? "es" : target;
+  const base = target;
   const tier = voices.filter((v) => normLang(v.lang).split("-")[0] === base);
   return tier.length ? bestOfTier(tier, target) : null;
 }
@@ -100,8 +98,10 @@ function rankVoice(v: SpeechSynthesisVoice, target: SpeechLang): number {
   const name = v.name.toLowerCase();
   if (/natural|neural|google/.test(name)) score += 5;
   if (v.localService) score += 1; /* offline-reliable */
-  /* calm male "Babaji" voice beats a female one at equal quality */
-  score += genderBias(v.name);
+  /* Babaji is a man — male voices lead the picker, known female ones sink
+     below every unknown so a female voice is never offered first */
+  const gender = voiceGender(v);
+  score += gender === "male" ? 12 : gender === "female" ? -35 : 0;
   return score;
 }
 
@@ -145,13 +145,14 @@ export function speakableText(s: string): string {
 }
 
 /**
- * Romanize Devanagari runs when the chosen voice cannot read Devanagari
- * (an English/Spanish voice would skip or garble shlokas) — e.g.
- * "यदा यदा हि धर्मस्य" becomes "yada yada hi dharmasya", which an
+ * Romanize Devanagari runs when the voice that will actually speak cannot
+ * read Devanagari (an English/Spanish voice would skip or garble shlokas) —
+ * e.g. "यदा यदा हि धर्मस्य" becomes "yada yada hi dharmasya", which a male
  * Indian-accent English voice pronounces beautifully.
  */
-export function romanizeForVoice(text: string, target: SpeechLang): string {
-  if (target === "hi") return text; /* Devanagari voice — keep as-is */
+export function romanizeForVoice(text: string, voiceLang: string): string {
+  /* Devanagari-capable voices (hi-IN and sister scripts) keep the script */
+  if (/^(hi|mr|ne|sa|sd)(?:[-_]|$)/i.test(normLang(voiceLang))) return text;
   if (!/[\u0900-\u097F]/.test(text)) return text;
   return text.replace(/([\u0900-\u097F\s॥।]+)/g, (run) => ` ${devanagariToRoman(run.trim())} `).replace(/\s{2,}/g, " ");
 }
@@ -197,12 +198,19 @@ export function speak(text: string, opts: SpeakOptions): () => void {
   const synth = window.speechSynthesis;
   synth.cancel(); /* clear anything queued */
 
-  const clean = romanizeForVoice(speakableText(text), opts.lang).slice(0, 1500);
+  /* the voice that will actually speak decides whether Devanagari stays:
+     a male en-GB/en-US Babaji voice reads the romanized shloka instead of
+     garbling it, a Devanagari-capable voice keeps the script */
+  const resolvedLang = opts.voice?.lang ?? (opts.lang === "en" ? "en-IN" : opts.lang === "hi" ? "hi-IN" : "es-ES");
+  const clean = romanizeForVoice(speakableText(text), resolvedLang).slice(0, 1500);
   const chunks = splitUtterances(clean);
   let started = false;
   let ended = false;
   let cancelled = false;
   let pauseTimer: number | undefined;
+  /* Babaji's pitch is gender-aware: men 0.72, unknown hedged deeper, a
+     forced female voice pitched down hard to sound as masculine as it can */
+  const pitch = babajiPitch(opts.voice ? voiceGender(opts.voice) : "unknown");
 
   const fireEnd = () => {
     if (!ended) {
@@ -220,7 +228,7 @@ export function speak(text: string, opts: SpeakOptions): () => void {
     const chunk = chunks[i];
     const last = i === chunks.length - 1;
     const u = new SpeechSynthesisUtterance(chunk);
-    u.lang = opts.lang === "en" ? "en-IN" : opts.lang === "hi" ? "hi-IN" : "es-ES";
+    u.lang = resolvedLang;
     if (opts.voice) {
       try {
         u.voice = opts.voice;
@@ -229,7 +237,7 @@ export function speak(text: string, opts: SpeakOptions): () => void {
       }
     }
     u.rate = opts.rate ?? DEFAULT_PACE; /* calm, measured pace */
-    u.pitch = PRAVACHAN_PITCH; /* slightly deep, warm, soothing */
+    u.pitch = pitch; /* deep, warm, masculine pravachan voice */
     u.onstart = () => {
       if (!started) {
         started = true;

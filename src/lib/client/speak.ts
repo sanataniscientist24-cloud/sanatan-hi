@@ -3,20 +3,24 @@
 /**
  * SANATAN HI — SANATANI BABAJI voice engine.
  *
- * Speaks an answer in the deep, calm voice of SANATANI BABAJI:
+ * Babaji speaks with an INDIAN accent, Hindi by default:
  *
- *   1. Latin-script text (English / Spanish / romanized Sanskrit)
- *      → server TTS  POST /api/tts  (xiaochen @ 0.85 speed — deep, steady)
- *      → fallback: Web Speech API with deep pitch (0.72) + calm rate (0.88)
+ *   PRIMARY — Web Speech API (the browser's own Indian voices):
+ *     • हिंदी / संस्कृत (Devanagari)  → best Indian male hi-IN voice
+ *       (Microsoft Hemant / Madhur, Prabhat, Ravi …), deepened + slowed
+ *     • English / Español            → Indian-accent en-IN voice first
+ *       (Ravi / Madhur / Prabhat), then hi-IN, then en-GB/en as last picks
+ *     • no Hindi voice on the device → Devanagari is romanized so Babaji
+ *       reads it in his Indian-English accent instead of garbling it
  *
- *   2. Devanagari-dominant text (हिंदी / संस्कृत)
- *      → Web Speech API directly with the browser's best Indian voice
- *        (Hemant / Madhur / Prabhat / Ravi …), deepened + slowed, because
- *        the server narration engine cannot pronounce Devanagari.
+ *   LAST RESORT — POST /api/tts server narration (only when the device has
+ *     no usable speech voices): deep, steady, and the route romanizes any
+ *     Devanagari itself.
  *
+ * The Babaji signature: pitch 0.72 (deep), rate 0.88 (calm, unhurried).
  * Long replies are chunked at sentence boundaries and played sequentially,
- * giving Babaji a natural, unhurried pravachan rhythm. A tiny subscription
- * API surfaces loading/speaking state for the UI (avatar, pill, buttons).
+ * giving a natural pravachan rhythm. A tiny subscription API surfaces
+ * loading/speaking state for the UI (avatar, pill, buttons).
  */
 
 import { devanagariRatio, devanagariToRoman } from "@/lib/ai/translit";
@@ -101,7 +105,7 @@ export function cleanForSpeech(raw: string): string {
   return t.replace(/\s+/g, " ").trim();
 }
 
-/** Romanize Devanagari runs so the narration engine can voice them. */
+/** Romanize Devanagari runs so a Latin-reading voice can handle them. */
 function romanizeDevaRuns(t: string): string {
   return t.replace(
     /[\u0900-\u097F]+(?:\s+[\u0900-\u097F]+)*/g,
@@ -128,7 +132,222 @@ function chunkSpeech(t: string, maxLen: number): string[] {
 }
 
 /* ────────────────────────────────────────────────────────────
- * Path 1 — server TTS (deep, steady narration)
+ * Voice picking — Indian accent first, by design
+ * ──────────────────────────────────────────────────────────── */
+
+/** Known male Indian narration voices (Windows/Edge/Chrome/Android). */
+const INDIAN_MALE = /hemant|madhur|prabhat|ravi\b|raja\b|ashwin|male\b/i;
+
+interface ScoredVoice {
+  voice: SpeechSynthesisVoice;
+  score: number;
+}
+
+/**
+ * Pick the most Babaji-like voice available:
+ *   hi mode → Indian male Hindi voices first (Hemant, Madhur, Prabhat)
+ *   latin   → Indian-accent English (en-IN) first, then a Hindi voice
+ *            reading romanized text, then (only if hinted) es-*, en-*
+ */
+function pickVoice(synth: SpeechSynthesis, mode: "hi" | "latin", langHint?: string): ScoredVoice | null {
+  const voices = synth.getVoices();
+  if (!voices.length) return null;
+  let best: ScoredVoice | null = null;
+
+  const consider = (voice: SpeechSynthesisVoice, score: number) => {
+    const maleBonus = INDIAN_MALE.test(voice.name) ? 6 : 0;
+    const total = score + maleBonus;
+    if (!best || total > best.score) best = { voice, score: total };
+  };
+
+  for (const v of voices) {
+    const lang = (v.lang || "").toLowerCase().replace("_", "-");
+    if (mode === "hi") {
+      /* DEFAULT VOICE = HINDI — the device's best Hindi voice wins */
+      if (lang.startsWith("hi")) consider(v, 40);
+      else if (lang.startsWith("en-in")) consider(v, 24);
+      else if (lang.startsWith("en")) consider(v, 8);
+    } else {
+      if (langHint === "es" && lang.startsWith("es")) {
+        consider(v, 30);
+        continue;
+      }
+      /* Indian-accent English is Babaji's English voice */
+      if (lang.startsWith("en-in")) consider(v, 34);
+      /* a Hindi voice reading romanized Sanskrit/Hindi keeps the accent */
+      else if (lang.startsWith("hi")) consider(v, 26);
+      else if (lang.startsWith("en-gb")) consider(v, 20);
+      else if (lang.startsWith("en")) consider(v, 14);
+      else if (langHint && lang.startsWith(langHint)) consider(v, 18);
+    }
+  }
+  return best;
+}
+
+async function voicesReady(synth: SpeechSynthesis): Promise<boolean> {
+  if (synth.getVoices().length) return true;
+  return new Promise((resolve) => {
+    let settled = false;
+    const done = () => {
+      if (settled) return;
+      settled = true;
+      cleanup();
+      resolve(synth.getVoices().length > 0);
+    };
+    const cleanup = () => {
+      synth.removeEventListener?.("voiceschanged", done);
+      clearTimeout(timer);
+    };
+    synth.addEventListener?.("voiceschanged", done);
+    const timer = setTimeout(done, 900); /* Chrome populates asynchronously */
+  });
+}
+
+/* ────────────────────────────────────────────────────────────
+ * PRIMARY — Web Speech API (Indian-accent Babaji)
+ * ──────────────────────────────────────────────────────────── */
+
+type BrowserStatus = "spoken" | "no-voices" | "blocked" | "stopped";
+
+/**
+ * Speak with the browser's Indian voices — deep pitch (0.72), calm rate
+ * (0.88). Utterances are kept ≤ ~220 chars: many engines hiccup on long
+ * ones, and short utterances give Babaji natural breathing pauses.
+ * Resolves with the outcome so the caller can fall back to the server.
+ */
+function speakViaBrowser(
+  text: string,
+  mode: "hi" | "latin",
+  token: number,
+  langHint?: string,
+  onDone?: () => void
+): Promise<BrowserStatus> {
+  return new Promise((resolve) => {
+    let settled = false;
+    const finish = (status: BrowserStatus) => {
+      if (!settled) {
+        settled = true;
+        resolve(status);
+      }
+    };
+
+    const synth = typeof window !== "undefined" ? window.speechSynthesis : undefined;
+    if (!synth) {
+      finish("no-voices"); /* caller decides the fallback; state stays "loading" */
+      return;
+    }
+    setState("loading");
+
+    void voicesReady(synth).then((ready) => {
+      if (token !== currentToken) {
+        finish("stopped");
+        return;
+      }
+      if (!ready) {
+        finish("no-voices"); /* caller falls back to the server narration */
+        return;
+      }
+
+      let speakMode = mode;
+      let speakText = text;
+      let picked = pickVoice(synth, speakMode, langHint);
+
+      /* Hindi asked, but this device has no Hindi voice — Babaji reads the
+         shloka romanized in his Indian-English accent instead of garbling it */
+      if (speakMode === "hi" && (!picked || !picked.voice.lang.toLowerCase().startsWith("hi"))) {
+        speakText = romanizeDevaRuns(speakText);
+        speakMode = "latin";
+        picked = pickVoice(synth, "latin", "en");
+      }
+
+      const chunks = chunkSpeech(speakText, 220);
+      if (!chunks.length) {
+        setState("idle");
+        finish("spoken");
+        onDone?.();
+        return;
+      }
+
+      const speakNext = (i: number) => {
+        if (token !== currentToken) {
+          finish("stopped"); /* stopBabaji/new call already handled the state */
+          return;
+        }
+        if (i >= chunks.length) {
+          setState("idle");
+          finish("spoken");
+          onDone?.(); /* pravachan complete */
+          return;
+        }
+
+        const u = new SpeechSynthesisUtterance(chunks[i]);
+        if (picked) {
+          u.voice = picked.voice;
+          u.lang = picked.voice.lang || (speakMode === "hi" ? "hi-IN" : "en-IN");
+        } else {
+          u.lang = speakMode === "hi" ? "hi-IN" : "en-IN";
+        }
+        /* the Babaji signature: deep and unhurried */
+        u.pitch = 0.72;
+        u.rate = 0.88;
+        u.volume = 1;
+
+        let started = false;
+        u.onstart = () => {
+          started = true;
+          setState("speaking");
+        };
+        u.onend = () => {
+          if (token !== currentToken) return;
+          speakNext(i + 1);
+        };
+        u.onerror = () => {
+          if (token !== currentToken) {
+            finish("stopped");
+            return;
+          }
+          if (i === 0) finish("blocked"); /* nothing was spoken → server fallback */
+          else {
+            setState("idle");
+            finish("spoken"); /* partial pravachan — end gracefully */
+            onDone?.();
+          }
+        };
+
+        try {
+          synth.speak(u);
+        } catch {
+          finish(i === 0 ? "blocked" : "spoken");
+          if (i > 0) {
+            setState("idle");
+            onDone?.();
+          }
+          return;
+        }
+
+        /* watchdog: if the very first utterance never starts (engine
+           refused), hand over to the server narration */
+        if (i === 0) {
+          setTimeout(() => {
+            if (!settled && token === currentToken && !started && !synth.speaking) {
+              try {
+                synth.cancel();
+              } catch {
+                /* ignore */
+              }
+              finish("blocked"); /* state stays "loading" — fallback takes over */
+            }
+          }, 2500);
+        }
+      };
+
+      speakNext(0);
+    });
+  });
+}
+
+/* ────────────────────────────────────────────────────────────
+ * LAST RESORT — server TTS narration (/api/tts)
  * ──────────────────────────────────────────────────────────── */
 
 function playBlob(blob: Blob, token: number): Promise<"played" | "stopped" | "blocked"> {
@@ -161,42 +380,64 @@ function playBlob(blob: Blob, token: number): Promise<"played" | "stopped" | "bl
           setState("speaking");
         }
       },
-      () => done("blocked") /* autoplay denied → let caller fall back */
+      () => done("blocked") /* autoplay denied */
     );
   });
 }
 
 /**
- * Speak via /api/tts, chunk by chunk.
- * Returns true when handled (spoken or stopped); false when the server
- * path failed and the caller should fall back to Web Speech.
+ * Narrate via the server (used only when the browser has no usable Indian
+ * voices). The route romanizes any Devanagari itself. Chunks are kept at
+ * ~500 chars and prefetched one ahead so synthesis latency overlaps with
+ * playback and the first audio starts as soon as possible.
+ * Returns true when handled; false when the server is unavailable too.
  */
 async function speakViaServer(text: string, token: number, onDone?: () => void): Promise<boolean> {
-  const chunks = chunkSpeech(text, 900);
+  const chunks = chunkSpeech(text, 500);
   if (!chunks.length) return true;
   setState("loading");
 
-  try {
-    let first = true;
-    for (const chunk of chunks) {
-      if (token !== currentToken) return true;
-
+  const fetchChunk = async (chunk: string): Promise<Blob | "failed" | "stopped"> => {
+    if (token !== currentToken) return "stopped";
+    try {
       const res = await fetch("/api/tts", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ text: chunk }),
       });
-      if (!res.ok) return false; /* static host / server error → fallback */
-
-      const blob = await res.blob();
-      if (token !== currentToken) return true;
-
-      const result = await playBlob(blob, token);
-      if (result === "stopped") return true;
-      if (result === "blocked" && first) return false; /* autoplay denied → fallback */
-      first = false;
+      if (!res.ok) return "failed"; /* static host / server error */
+      return await res.blob();
+    } catch {
+      return "failed";
     }
-    if (token === currentToken) onDone?.();
+  };
+
+  try {
+    let nextBlob = await fetchChunk(chunks[0]);
+
+    for (let i = 0; i < chunks.length; i++) {
+      if (nextBlob === "stopped") return true;
+      if (nextBlob === "failed") {
+        if (i === 0) return false; /* nothing played yet → caller gives up gracefully */
+        break; /* mid-pravachan server hiccup — end what was spoken */
+      }
+      const current: Blob = nextBlob;
+
+      /* prefetch the next chunk while this one plays */
+      const prefetch = i + 1 < chunks.length ? fetchChunk(chunks[i + 1]) : null;
+
+      const result = await playBlob(current, token);
+      if (result === "stopped") return true;
+      if (result === "blocked" && i === 0) return false;
+
+      if (!prefetch) break; /* last chunk played */
+      nextBlob = await prefetch;
+    }
+
+    if (token === currentToken) {
+      setState("idle");
+      onDone?.();
+    }
     return true;
   } catch {
     return token !== currentToken; /* stopped counts as handled */
@@ -204,171 +445,19 @@ async function speakViaServer(text: string, token: number, onDone?: () => void):
 }
 
 /* ────────────────────────────────────────────────────────────
- * Path 2 — Web Speech API (Devanagari + universal fallback)
- * ──────────────────────────────────────────────────────────── */
-
-/** Names of known male Indian narration voices, best first. */
-const INDIAN_MALE = /hemant|madhur|prabhat|ravi\b|raja\b|kumar|ashwin|male\b/i;
-
-interface ScoredVoice {
-  voice: SpeechSynthesisVoice;
-  score: number;
-}
-
-/**
- * Pick the most Babaji-like voice available:
- *   hi mode → Indian male Hindi voices first (Hemant, Madhur, Prabhat, Ravi)
- *   latin   → English (India) male voices, then es-* if hinted, then en-*
- */
-function pickVoice(synth: SpeechSynthesis, mode: "hi" | "latin", langHint?: string): ScoredVoice | null {
-  const voices = synth.getVoices();
-  if (!voices.length) return null;
-  let best: ScoredVoice | null = null;
-
-  const consider = (voice: SpeechSynthesisVoice, score: number) => {
-    const maleBonus = INDIAN_MALE.test(voice.name) ? 6 : 0;
-    const total = score + maleBonus;
-    if (!best || total > best.score) best = { voice, score: total };
-  };
-
-  for (const v of voices) {
-    const lang = (v.lang || "").toLowerCase().replace("_", "-");
-    if (mode === "hi") {
-      if (lang.startsWith("hi")) consider(v, 40);
-      else if (lang.startsWith("en-in")) consider(v, 24);
-      else if (lang.startsWith("en")) consider(v, 8);
-    } else {
-      if (langHint === "es" && lang.startsWith("es")) {
-        consider(v, lang.startsWith("es-in") ? 20 : 30);
-        continue;
-      }
-      if (lang.startsWith("en-in")) consider(v, 34);
-      else if (lang.startsWith("en-gb")) consider(v, 20);
-      else if (lang.startsWith("en")) consider(v, 14);
-      else if (lang.startsWith("hi")) consider(v, 26); /* Hindi voice can read romanized Sanskrit */
-      else if (langHint && lang.startsWith(langHint)) consider(v, 18);
-    }
-  }
-  return best;
-}
-
-async function voicesReady(synth: SpeechSynthesis): Promise<boolean> {
-  if (synth.getVoices().length) return true;
-  return new Promise((resolve) => {
-    let settled = false;
-    const done = () => {
-      if (settled) return;
-      settled = true;
-      cleanup();
-      resolve(synth.getVoices().length > 0);
-    };
-    const cleanup = () => {
-      synth.removeEventListener?.("voiceschanged", done);
-      clearTimeout(timer);
-    };
-    synth.addEventListener?.("voiceschanged", done);
-    const timer = setTimeout(done, 700); /* Chrome populates asynchronously */
-  });
-}
-
-/**
- * Speak with the browser's speech synthesis — deep pitch, calm rate.
- * Utterances are kept ≤ ~220 chars: many engines hiccup on long ones,
- * and short utterances give Babaji natural breathing pauses.
- */
-function speakViaBrowser(text: string, mode: "hi" | "latin", token: number, langHint?: string, onDone?: () => void): void {
-  const synth = typeof window !== "undefined" ? window.speechSynthesis : undefined;
-  if (!synth) {
-    setState("idle");
-    return;
-  }
-  setState("loading");
-
-  void voicesReady(synth).then((ready) => {
-    if (token !== currentToken) return;
-    if (!ready) {
-      setState("idle");
-      onDone?.(); /* no voices on this device — recover gracefully */
-      return;
-    }
-
-    const picked = pickVoice(synth, mode, langHint);
-    const chunks = chunkSpeech(text, 220);
-    if (!chunks.length) {
-      setState("idle");
-      return;
-    }
-
-    const speakNext = (i: number) => {
-      if (token !== currentToken) return; /* stopped */
-      if (i >= chunks.length) {
-        setState("idle");
-        if (token === currentToken) onDone?.();
-        return;
-      }
-      const u = new SpeechSynthesisUtterance(chunks[i]);
-      if (picked) {
-        u.voice = picked.voice;
-        u.lang = picked.voice.lang || (mode === "hi" ? "hi-IN" : "en-IN");
-      } else {
-        u.lang = mode === "hi" ? "hi-IN" : "en-IN";
-      }
-      /* the Babaji signature: deep and unhurried */
-      u.pitch = 0.72;
-      u.rate = 0.88;
-      u.volume = 1;
-
-      let started = false;
-      u.onstart = () => {
-        started = true;
-        setState("speaking");
-      };
-      u.onend = () => {
-        if (token !== currentToken) return;
-        speakNext(i + 1);
-      };
-      u.onerror = () => {
-        if (token !== currentToken) return;
-        setState("idle");
-        onDone?.(); /* engine refused this utterance — recover */
-      };
-
-      synth.speak(u);
-
-      /* watchdog: some engines silently refuse after non-gesture contexts;
-         if nothing starts in 2.5 s, stop gracefully */
-      setTimeout(() => {
-        if (token === currentToken && !started && !synth.speaking) {
-          try {
-            synth.cancel();
-          } catch {
-            /* ignore */
-          }
-          setState("idle");
-          onDone?.();
-        }
-      }, 2500);
-      void started;
-    };
-
-    speakNext(0);
-  });
-}
-
-/* ────────────────────────────────────────────────────────────
  * Entry point
  * ──────────────────────────────────────────────────────────── */
 
 export interface SpeakOptions {
-  /** Answer language hint ("hi" | "en" | "sa" | "es" | "auto") — routes fallbacks. */
+  /** Answer language hint ("hi" | "en" | "sa" | "es" | "auto") — routes voice choice. */
   langHint?: string;
   /** invoked when the narration finishes naturally (not when stopped). */
   onDone?: () => void;
 }
 
 /**
- * SANATANI BABAJI speaks the text. Re-entrant: a new call stops any
- * pravachan already in progress.
+ * SANATANI BABAJI speaks the text in his Indian accent — Hindi by default.
+ * Re-entrant: a new call stops any pravachan already in progress.
  */
 export async function speakBabaji(raw: string, opts: SpeakOptions = {}): Promise<void> {
   stopBabaji();
@@ -380,14 +469,26 @@ export async function speakBabaji(raw: string, opts: SpeakOptions = {}): Promise
   const hint = opts.langHint;
   const hiMode = hint === "hi" || hint === "sa" || devanagariRatio(clean) >= 0.3;
 
-  if (hiMode) {
-    speakViaBrowser(clean, "hi", token, undefined, opts.onDone);
-    return;
-  }
+  /* PRIMARY — the device's Indian voice: hi-IN for हिंदी/संस्कृत,
+     en-IN (Indian English) for Latin scripts */
+  const status = await speakViaBrowser(
+    clean,
+    hiMode ? "hi" : "latin",
+    token,
+    hiMode ? undefined : hint,
+    opts.onDone
+  );
 
-  const speakable = romanizeDevaRuns(clean);
-  const handled = await speakViaServer(speakable, token, opts.onDone);
-  if (!handled && token === currentToken) {
-    speakViaBrowser(speakable, "latin", token, hint, opts.onDone);
+  if (status === "spoken" || status === "stopped") return;
+
+  /* LAST RESORT — no usable browser voices: server narration
+     (still deep and calm; the route romanizes Devanagari itself) */
+  if (token === currentToken) {
+    const handled = await speakViaServer(clean, token, opts.onDone);
+    if (!handled && token === currentToken) {
+      /* neither engine can speak on this host — end gracefully */
+      setState("idle");
+      opts.onDone?.();
+    }
   }
 }

@@ -284,7 +284,7 @@ export function Hero({ onSuggestion, onResume, resumeCount = 0, onOpenVoice, lan
               SANATANI BABAJI <span className="font-deva text-sanatan-gold">सनातनी बाबाजी</span>
             </p>
             <p className="mt-0.5 text-[0.68rem] leading-snug text-foreground/65">
-              Every answer is spoken aloud in a deep, calm voice — <span className="font-deva">गहरी, शांत वाणी में।</span>
+              Every answer is spoken aloud in his deep, calm Indian voice — <span className="font-deva">गहरी, शांत भारतीय वाणी · हिंदी में।</span>
             </p>
           </div>
           <div className="flex shrink-0 flex-col gap-1.5">

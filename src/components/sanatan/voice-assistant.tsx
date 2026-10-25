@@ -61,10 +61,10 @@ const STRINGS = {
   suggestions: { en: "Try asking", hi: "पूछकर देखें", sa: "पृच्छत्व", es: "Prueba con" },
   ask: { en: "Ask", hi: "पूछें", sa: "पृच्छ", es: "Preguntar" },
   greeting: {
-    en: "Namaste. I am SANATAN HI. Ask me anything — the Gita, the Ramayana, or the Vedas.",
-    hi: "नमस्ते। मैं सनातन हाय हूँ। गीता, रामायण, वेद — कुछ भी पूछिए।",
-    sa: "नमस्ते। अहं सनातन हाय। गीता, रामायण, वेदाः — किमपि पृच्छतु।",
-    es: "Namaste. Soy SANATAN HI. Pregúntame lo que quieras: la Gita, el Ramayana o los Vedas.",
+    en: "Namaste beta. I am Sanatani Babaji. Ask me anything — the Gita, the Ramayana, or the Vedas.",
+    hi: "नमस्ते बेटा। मैं सनातनी बाबाजी हूँ। गीता, रामायण, वेद — कुछ भी पूछिए, इसी शांत वाणी में उत्तर मिलेगा।",
+    sa: "नमस्ते बेटा। अहं सनातनी बाबाजी। गीता, रामायण, वेदाः — किमपि पृच्छतु।",
+    es: "Namaste beta. Soy Sanatani Babaji. Pregúntame lo que quieras: la Gita, el Ramayana o los Vedas.",
   },
 } as const;
 

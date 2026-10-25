@@ -27,11 +27,11 @@ const CHAT_HISTORY_FLAG = "sanatanChat";
 const STORAGE_KEY = "sanatan-hi-chat-v2";
 const VOICE_KEY = "sanatan-hi-babaji-voice";
 
-/** SANATANI BABAJI's spoken introduction (deep, calm — his signature) */
+/** SANATANI BABAJI's spoken introduction — Hindi by default (उसकी अपनी वाणी) */
 const BABAJI_INTRO =
-  "॥ ॐ ॥ Namaste beta. I am Sanatani Babaji — your voice guide to the eternal Sanatan Dharma. " +
-  "Ask me anything about the Bhagavad Gita, the Ramayana, or the Vedas, and I shall answer in this calm voice. " +
-  "Dharmo rakshati rakshitah.";
+  "॥ ॐ ॥ नमस्ते बेटा। मैं सनातनी बाबाजी हूँ — सनातन धर्म का तुम्हारा वाणी-मार्गदर्शक। " +
+  "गीता, रामायण या वेद — जो भी पूछो, मैं इसी गहरी और शांत वाणी में उत्तर दूँगा। " +
+  "धर्मो रक्षति रक्षितः।";
 
 function uid() {
   return `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`;
@@ -282,13 +282,13 @@ export default function SanatanHIPage() {
     [speakingId, babaji, langs]
   );
 
-  /* hero demo — Babaji introduces himself in his deep, calm voice */
+  /* hero demo — Babaji introduces himself in Hindi, his default voice */
   const hearBabaji = useCallback(() => {
     if (babaji !== "idle") {
       stopBabaji();
       return;
     }
-    void speakBabaji(BABAJI_INTRO, { langHint: "en" });
+    void speakBabaji(BABAJI_INTRO, { langHint: "hi" });
   }, [babaji]);
 
   const toggleVoice = useCallback(() => {

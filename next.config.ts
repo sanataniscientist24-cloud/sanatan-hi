@@ -15,6 +15,19 @@ const nextConfig: NextConfig = {
   output: isExport ? "export" : "standalone",
   basePath: process.env.NEXT_BASE_PATH || "",
   images: { unoptimized: true },
+  /* Dev-mode cross-origin allowance (sandbox preview proxies); extra origins
+     can be appended via NEXT_ALLOWED_DEV_ORIGINS="host1,host2" (comma-separated). */
+  allowedDevOrigins: [
+    "*.space-z.ai",
+    ...(
+      process.env.NEXT_ALLOWED_DEV_ORIGINS
+        ? (process.env.NEXT_ALLOWED_DEV_ORIGINS as string)
+            .split(",")
+            .map((s) => s.trim())
+            .filter(Boolean)
+        : []
+    ),
+  ],
   typescript: {
     ignoreBuildErrors: true,
   },

@@ -1,30 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Geist, Geist_Mono, Noto_Serif_Devanagari, Cormorant_Garamond } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/toaster";
 import { ThemeProvider } from "@/components/theme-provider";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const deva = Noto_Serif_Devanagari({
-  variable: "--font-deva",
-  subsets: ["devanagari"],
-  weight: ["400", "500", "600", "700"],
-});
-
-const display = Cormorant_Garamond({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
-});
+/*
+ * Fonts are resolved from local system stacks defined in globals.css
+ * (:root → --font-geist-sans / --font-geist-mono / --font-deva / --font-display).
+ * This keeps the app 100 % offline — no Google Fonts fetch at build or
+ * runtime — so it builds and runs identically in air-gapped servers,
+ * restricted sandboxes, and any production host (see DEPLOY-HOSTINGER.md).
+ */
 
 export const metadata: Metadata = {
   metadataBase: process.env.NEXT_SITE_URL ? new URL(process.env.NEXT_SITE_URL) : undefined,
@@ -53,9 +38,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} ${deva.variable} ${display.variable} antialiased bg-sanatan-cream text-foreground`}
-      >
+      <body className="antialiased bg-sanatan-cream text-foreground">
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false} disableTransitionOnChange>
           {children}
           <Toaster />

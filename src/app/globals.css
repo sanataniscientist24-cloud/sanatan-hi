@@ -221,6 +221,31 @@ body {
   text-shadow: 0 0 24px color-mix(in srgb, var(--sanatan-saffron) 55%, transparent);
 }
 
+/* ── SanatanDoc vault sections (Bookshelf / Bank / Utsava…) ── */
+
+/* slim scrollbar for horizontal chip strips & shelf rows */
+.slim-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: color-mix(in srgb, var(--sanatan-gold) 45%, transparent) transparent;
+}
+.slim-scroll::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+.slim-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+.slim-scroll::-webkit-scrollbar-thumb {
+  background: color-mix(in srgb, var(--sanatan-gold) 45%, transparent);
+  border-radius: 999px;
+}
+
+/* vertical title on book spines */
+.spine-text {
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+}
+
 /* mandala watermark behind chat */
 .sanatan-watermark {
   background-image: radial-gradient(

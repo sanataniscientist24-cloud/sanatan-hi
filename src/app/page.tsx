@@ -16,6 +16,15 @@ import { OmSigil } from "@/components/sanatan/book-icons";
 import { BabajiAvatar } from "@/components/sanatan/babaji-avatar";
 import { VoiceAssistant } from "@/components/sanatan/voice-assistant";
 import { LangPicker, LangPillSummary } from "@/components/sanatan/lang-picker";
+import { ExploreView } from "@/components/sanatan/sections/explore-view";
+import { BookshelfView } from "@/components/sanatan/sections/bookshelf-view";
+import { BankView } from "@/components/sanatan/sections/bank-view";
+import { ShlokaView } from "@/components/sanatan/sections/shloka-view";
+import { FestivalsView } from "@/components/sanatan/sections/festivals-view";
+import { SadhanaView } from "@/components/sanatan/sections/sadhana-view";
+import { VoiceView } from "@/components/sanatan/sections/voice-view";
+import { ConsultView } from "@/components/sanatan/sections/consult-view";
+import { SECTIONS, type SectionId } from "@/lib/sections";
 import { askSanatanMulti, DEFAULT_LANGS, normalizeLangs, primaryLang, type AppLang } from "@/lib/client/langs";
 import { onBabajiState, speakBabaji, stopBabaji, type BabajiState } from "@/lib/client/speak";
 
@@ -40,6 +49,8 @@ function uid() {
 export default function SanatanHIPage() {
   const [messages, setMessages] = useState<ChatMessageData[]>([]);
   const [view, setView] = useState<ChatView>("menu");
+  /* SanatanDoc vault sections — the chat ("home") remains the heart */
+  const [section, setSection] = useState<SectionId>("home");
   /* default = हिंदी + संस्कृत; English / Español opt-in from the homepage console */
   const [langs, setLangs] = useState<AppLang[]>(DEFAULT_LANGS);
   const [langPickerOpen, setLangPickerOpen] = useState(false);
@@ -207,11 +218,17 @@ export default function SanatanHIPage() {
     }
   }, []);
 
-  /* the chat scrolls to its latest message; the menu starts at its top */
+  /* the chat scrolls to its latest message; the menu & sections start at top */
   useEffect(() => {
+    if (section !== "home") {
+      scrollToTop();
+      return;
+    }
     if (view === "menu") scrollToTop();
     else scrollToBottom();
-  }, [messages, sending, view, scrollToBottom, scrollToTop]);
+  }, [messages, sending, view, section, scrollToBottom, scrollToTop]);
+
+  const gotoSection = useCallback((s: SectionId) => setSection(s), []);
 
   const send = useCallback(
     async (text: string) => {
@@ -255,6 +272,15 @@ export default function SanatanHIPage() {
       }
     },
     [sending, langs, enterChat, voiceOn]
+  );
+
+  /* jump from any section back into the Babaji chat with a question */
+  const askFromSection = useCallback(
+    (q: string) => {
+      setSection("home");
+      void send(q);
+    },
+    [send]
   );
 
   const newChat = () => {
@@ -365,7 +391,14 @@ export default function SanatanHIPage() {
                   </Button>
                 </div>
                 <div className="flex min-h-0 flex-1 flex-col">
-                  <SidebarContent onQuery={(q) => void send(q)} onNavigate={() => setSheetOpen(false)} />
+                  <SidebarContent
+                    onQuery={(q) => {
+                      setSheetOpen(false);
+                      setSection("home");
+                      void send(q);
+                    }}
+                    onNavigate={() => setSheetOpen(false)}
+                  />
                 </div>
               </SheetContent>
             </Sheet>
@@ -516,61 +549,108 @@ export default function SanatanHIPage() {
         <div className="relative mx-auto flex w-full max-w-7xl min-h-0 flex-1 overflow-hidden">
           {/* desktop sidebar */}
           <aside className="hidden w-72 shrink-0 border-r border-sanatan-gold-2/40 bg-sanatan-cream-2/50 lg:block">
-            <SidebarContent onQuery={(q) => void send(q)} />
+            <SidebarContent
+              onQuery={(q) => {
+                setSection("home");
+                void send(q);
+              }}
+            />
           </aside>
 
           {/* chat area */}
           <main className="relative flex min-w-0 flex-1 flex-col">
             <div className="sanatan-watermark pointer-events-none absolute inset-0" aria-hidden />
 
-            <ScrollArea className="sanatan-scroll relative z-10 min-h-0 flex-1">
-              <div ref={scrollRef} className="mx-auto w-full max-w-3xl px-3 py-4 sm:px-5">
-                {view === "chat" && messages.length > 0 ? (
-                  <div className="space-y-5">
-                    {messages.map((m) => (
-                      <ChatMessage
-                        key={m.id}
-                        message={m}
-                        onSuggestion={(s) => void send(s)}
-                        speaking={m.id === speakingId && babaji === "speaking"}
-                        voiceLoading={m.id === speakingId && babaji === "loading"}
-                        onListen={m.role === "assistant" ? (msg) => listenTo(msg) : undefined}
-                      />
-                    ))}
-                  </div>
-                ) : (
-                  <Hero
-                    onSuggestion={(s) => void send(s)}
-                    onResume={messages.length > 0 ? enterChat : undefined}
-                    resumeCount={messages.length}
-                    onOpenVoice={() => setVoiceOpen(true)}
-                    langs={langs}
-                    onLangsChange={setLangs}
-                    voiceOn={voiceOn}
-                    onToggleVoice={toggleVoice}
-                    onHearBabaji={hearBabaji}
-                    speaking={babaji === "speaking"}
-                    voiceLoading={babaji === "loading"}
-                  />
-                )}
-                {sending && <TypingIndicator />}
+            {/* ── section tabs (the SanatanDoc vault) ── */}
+            <nav
+              aria-label="App sections"
+              className="relative z-10 shrink-0 border-b border-sanatan-gold-2/40 bg-sanatan-cream-2/70 px-2 py-1.5"
+            >
+              <div className="slim-scroll mx-auto flex max-w-4xl gap-1 overflow-x-auto px-1">
+                {SECTIONS.map((s) => (
+                  <button
+                    key={s.id}
+                    type="button"
+                    onClick={() => gotoSection(s.id)}
+                    aria-current={section === s.id ? "page" : undefined}
+                    title={s.hi}
+                    className={
+                      "shrink-0 rounded-full px-3 py-1.5 text-[11.5px] font-semibold transition-all active:scale-95 " +
+                      (section === s.id
+                        ? "bg-gradient-to-b from-sanatan-maroon to-sanatan-maroon-2 text-sanatan-gold-2 shadow-[0_3px_12px_rgba(105,32,15,0.35)]"
+                        : "text-sanatan-maroon/70 hover:bg-sanatan-gold/15 hover:text-sanatan-maroon-2 dark:text-sanatan-maroon/75")
+                    }
+                  >
+                    {s.id === "home" && <span className="font-deva mr-1" aria-hidden>ॐ</span>}
+                    {s.label}
+                  </button>
+                ))}
               </div>
+            </nav>
+
+            <ScrollArea className="sanatan-scroll relative z-10 min-h-0 flex-1">
+              {section === "home" ? (
+                <div ref={scrollRef} className="mx-auto w-full max-w-3xl px-3 py-4 sm:px-5">
+                  {view === "chat" && messages.length > 0 ? (
+                    <div className="space-y-5">
+                      {messages.map((m) => (
+                        <ChatMessage
+                          key={m.id}
+                          message={m}
+                          onSuggestion={(s) => void send(s)}
+                          speaking={m.id === speakingId && babaji === "speaking"}
+                          voiceLoading={m.id === speakingId && babaji === "loading"}
+                          onListen={m.role === "assistant" ? (msg) => listenTo(msg) : undefined}
+                        />
+                      ))}
+                    </div>
+                  ) : (
+                    <Hero
+                      onSuggestion={(s) => void send(s)}
+                      onResume={messages.length > 0 ? enterChat : undefined}
+                      resumeCount={messages.length}
+                      onOpenVoice={() => setVoiceOpen(true)}
+                      langs={langs}
+                      onLangsChange={setLangs}
+                      voiceOn={voiceOn}
+                      onToggleVoice={toggleVoice}
+                      onHearBabaji={hearBabaji}
+                      speaking={babaji === "speaking"}
+                      voiceLoading={babaji === "loading"}
+                    />
+                  )}
+                  {sending && <TypingIndicator />}
+                </div>
+              ) : (
+                <div className="mx-auto w-full max-w-4xl px-3 py-4 sm:px-5">
+                  {section === "explore" && <ExploreView onNavigate={gotoSection} />}
+                  {section === "bookshelf" && <BookshelfView onAsk={askFromSection} />}
+                  {section === "bank" && <BankView />}
+                  {section === "shloka" && <ShlokaView />}
+                  {section === "utsava" && <FestivalsView />}
+                  {section === "sadhana" && <SadhanaView />}
+                  {section === "voice" && <VoiceView />}
+                  {section === "consult" && <ConsultView />}
+                </div>
+              )}
             </ScrollArea>
 
-            {/* input */}
-            <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
-              <ChatInput onSend={(v) => void send(v)} disabled={sending} onBeforeRecord={stopBabaji} />
-              {/* compact line on phones (langs live in the header pill) · full line on sm+ */}
-              <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
-                SANATAN HI
-                <span className="hidden sm:inline">
-                  {" · उत्तर-भाषा: हिंदी · संस्कृत · "}
-                  {langs.includes("en") && <>English · </>}
-                  {langs.includes("es") && <>Español · </>}
-                </span>{" "}
-                <span className="font-deva">॥ शुभम् भवतु ॥</span>
-              </p>
-            </div>
+            {/* input — only on the Babaji chat section */}
+            {section === "home" && (
+              <div className="relative z-10 shrink-0 bg-gradient-to-t from-sanatan-cream via-sanatan-cream to-transparent px-3 pb-[calc(0.75rem+env(safe-area-inset-bottom))] pt-2 sm:px-5">
+                <ChatInput onSend={(v) => void send(v)} disabled={sending} onBeforeRecord={stopBabaji} />
+                {/* compact line on phones (langs live in the header pill) · full line on sm+ */}
+                <p className="mt-1.5 text-center text-[0.62rem] text-foreground/50">
+                  SANATAN HI
+                  <span className="hidden sm:inline">
+                    {" · उत्तर-भाषा: हिंदी · संस्कृत · "}
+                    {langs.includes("en") && <>English · </>}
+                    {langs.includes("es") && <>Español · </>}
+                  </span>{" "}
+                  <span className="font-deva">॥ शुभम् भवतु ॥</span>
+                </p>
+              </div>
+            )}
 
             {/* SANATANI BABAJI is speaking — floating stop pill */}
             {babaji !== "idle" && (

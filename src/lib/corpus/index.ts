@@ -8,7 +8,7 @@ import { STOTRA_ENTRIES } from "./stotras";
 import { CONCEPT_ENTRIES } from "./concepts";
 import { RCM_ENTRIES } from "./ram-charit-manas";
 import { YOGA_SUTRA_ENTRIES } from "./yoga-sutras";
-import type { CorpusEntry } from "./types";
+import type { CorpusEntry, BookInfo, SectionInfo, CorpusKind } from "./types";
 
 /** The complete offline corpus of SANATAN HI. */
 export const CORPUS: CorpusEntry[] = [

@@ -15,6 +15,9 @@ export interface ChatMessageData {
   suggestions?: string[];
   intent?: string;
   timeMs?: number;
+  /** which engine produced this reply — "llm" (z.ai) or "offline" (corpus).
+   *  Undefined on the browser-fallback path / legacy cached messages. */
+  engine?: "llm" | "offline";
 }
 
 interface ChatMessageProps {
@@ -71,8 +74,16 @@ export function ChatMessage({ message, onSuggestion, speaking, voiceLoading, onL
                 <span className="hidden sm:inline">SANATANI BABAJI · </span>
                 {message.intent ?? "answer"}
                 {message.timeMs !== undefined && message.timeMs >= 0
-                  ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms · offline corpus"}`
-                  : " · offline corpus"}
+                  ? ` · ${(message.timeMs < 1 ? 1 : message.timeMs) + "ms"}`
+                  : ""}
+                {" · "}
+                {message.engine === "llm"
+                  ? "z.ai LLM · scripture-grounded"
+                  : message.engine === "offline"
+                    ? "offline corpus"
+                    : message.timeMs !== undefined
+                      ? "offline corpus"
+                      : "z.ai LLM"}
               </span>
             </div>
           )}

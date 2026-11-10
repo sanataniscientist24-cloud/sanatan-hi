@@ -15,6 +15,9 @@ import type { ChatResult, ResponseLang } from "@/lib/ai/engine";
 
 export interface AskResult extends ChatResult {
   source: "api" | "browser";
+  /** which engine produced the reply — set by /api/chat ("llm" | "offline"),
+   *  undefined on the browser-fallback path and on legacy cached messages */
+  engine?: "llm" | "offline";
 }
 
 export type AskLang = ResponseLang | "auto";

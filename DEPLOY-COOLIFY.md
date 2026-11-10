@@ -75,6 +75,63 @@ repo. You don't need to do anything special — the build just works.
 
 ---
 
+## How the z.ai LLM plugs into the main chat (24×7)
+
+The main Babaji chat (`POST /api/chat`) now answers with the **z.ai free
+LLM**, grounded in the offline scripture corpus:
+
+1. The **offline retrieval engine** always runs first (instant, free) →
+   fetches the most relevant verses (Sanskrit + Hindi + English + citations)
+   for the question.
+2. Those verses are injected as **context** into the z.ai LLM prompt, which
+   then generates a fluent, scripture-grounded answer in the user's
+   language (Hindi / English / Sanskrit / Spanish), citing real shlokas in
+   Devanagari with translations.
+3. If z.ai is **unavailable, rate-limited, unconfigured or times out**
+   (12 s), the offline engine's reply is returned instead — so every user
+   always gets an answer. The response carries `engine: "llm"` or
+   `engine: "offline"`, and the chat footer shows
+   `z.ai LLM · scripture-grounded` or `offline corpus` accordingly.
+
+### ⚠️ This only works when the domain serves the **server**, not the static Pages site
+
+`www.sanatanhi.com` currently points at **GitHub Pages** (the static
+`NEXT_OUTPUT=export` build). The static export **strips every `/api/*`
+route** — so on Pages the chat silently falls back to the in-browser
+offline engine (no z.ai).
+
+**To make www.sanatanhi.com use the z.ai LLM 24×7, point the domain at the
+Coolify VPS:**
+
+1. **DNS:** change the A records for `@` and `www` from the GitHub Pages
+   IPs to **`YOUR_VPS_IP`** (the same Step 2 records — just edit the value).
+2. **Coolify:** bind `sanatanhi.com` + `www.sanatanhi.com` to the resource
+   (Step 6) — Traefik issues the cert and serves the full server.
+3. **GitHub Pages** (optional cleanup): once the domain serves the VPS you
+   can disable the Pages deploy — either delete `.github/workflows/deploy.yml`
+   or leave it running as a free static mirror at
+   `sanataniscientist24-cloud.github.io/sanatan-hi/` (it won't own the
+   domain anymore). The `public/CNAME` file can stay; it only affects the
+   Pages build, not the Docker image.
+
+> **Quick A/B test** before cutting over: hit `https://YOUR_VPS_IP/api/chat`
+> (after Coolify deploy) vs `https://sanatanhi.com/api/chat`. The VPS
+> returns `{"ok":true,...,"engine":"llm",...}`; the Pages site returns
+> 404 (no such route). Once DNS flips, the domain behaves like the VPS.
+
+### Free-model + rate-limit notes
+
+| Concern | Handling |
+|---|---|
+| Which model? | The SDK's default is a free z.ai model. Pin one explicitly via `ZAI_CHAT_MODEL=glm-4-flash` (or `glm-4-flashx`) in Coolify env vars if you want to be explicit. |
+| Rate limits / quota | If z.ai returns 429/quota, the route catches it and returns the offline reply — users always get an answer. |
+| Latency | LLM call races a 12 s timeout; typical answer in ~3–6 s. The offline fallback returns in <50 ms. |
+| Disable LLM on the server | Set `ZAI_CHAT_ENABLED=0` to force the main chat onto the offline engine (e.g. to conserve quota). The `/api/consult` Guide still uses z.ai. |
+| `/api/consult` (Guide) | Unchanged — uses z.ai LLM directly (no offline fallback, since it answers open questions the corpus can't). |
+| `/api/tts`, `/api/transcribe`, `/api/voice` | Unchanged — z.ai audio routes (need `ZAI_CONFIG_JSON` full config for best results; browser voice ladder is the client-side fallback). |
+
+---
+
 ## Step 1 — Provision the Hostinger VPS
 
 1. **hPanel → VPS → Create server** (or billing wizard *Other → VPS hosting*).

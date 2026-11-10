@@ -36,6 +36,14 @@ services:
       ZAI_BASE_URL: "${ZAI_BASE_URL:-https://api.z.ai/api/paas/v4}"
       ZAI_CONFIG_JSON: "${ZAI_CONFIG_JSON:-}"
 
+      # ── main chat LLM (z.ai free model, scripture-grounded, offline fallback) ──
+      # Omit ZAI_CHAT_MODEL to use the SDK's default (free) model.
+      # Pin a free model e.g. "glm-4-flash" if you want to be explicit.
+      ZAI_CHAT_MODEL: "${ZAI_CHAT_MODEL:-}"
+      # Set to "0" to force the main chat onto the offline engine (e.g. if you
+      # want to conserve z.ai quota). The /api/consult Guide still uses z.ai.
+      ZAI_CHAT_ENABLED: "${ZAI_CHAT_ENABLED:-1}"
+
       # ── runtime ──
       NODE_ENV: production
       PORT: "3000"

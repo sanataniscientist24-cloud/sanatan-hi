@@ -250,6 +250,7 @@ export default function SanatanHIPage() {
           suggestions: data.suggestions,
           intent: data.intent,
           timeMs: data.meta?.timeMs ?? 0,
+          engine: data.engine,
         };
         setMessages((prev) => [...prev, aiMsg]);
 

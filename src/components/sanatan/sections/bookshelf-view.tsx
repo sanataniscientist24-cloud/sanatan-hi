@@ -16,7 +16,7 @@ import { SHELVES, BOOKS, type SanatanBook, type ShelfId } from "@/lib/sanatan-da
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogTitle } from "@/components/ui/dialog";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 
@@ -210,6 +210,9 @@ export function BookshelfView({ onAsk }: { onAsk: (question: string) => void }) 
           showCloseButton={false}
           className="max-h-[85vh] gap-0 overflow-hidden rounded-2xl border-2 border-sanatan-gold-2/70 bg-sanatan-parchment p-0 shadow-[0_24px_80px_rgba(74,21,9,0.4)] sm:max-w-md"
         >
+          <DialogDescription className="sr-only">
+            Book introduction — author, period and what it holds.
+          </DialogDescription>
           {activeBook && (
             <BookDetail book={activeBook} onClose={() => setActiveBook(null)} onAsk={onAsk} />
           )}

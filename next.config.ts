@@ -18,6 +18,8 @@ const nextConfig: NextConfig = {
   /* Dev-mode cross-origin allowance (sandbox preview proxies); extra origins
      can be appended via NEXT_ALLOWED_DEV_ORIGINS="host1,host2" (comma-separated). */
   allowedDevOrigins: [
+    "localhost",
+    "127.0.0.1",
     "*.space-z.ai",
     ...(
       process.env.NEXT_ALLOWED_DEV_ORIGINS

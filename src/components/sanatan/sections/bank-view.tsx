@@ -5,7 +5,7 @@
  *
  * The verified question bank: browse with reveal-answers & source
  * citations, or take a shuffled quiz with instant feedback and a
- * scored review. ~112 questions across 8 streams of knowledge.
+ * scored review. 56 questions across 7 streams of knowledge.
  */
 
 import { useMemo, useState } from "react";

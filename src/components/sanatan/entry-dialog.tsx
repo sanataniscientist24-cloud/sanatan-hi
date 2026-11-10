@@ -42,8 +42,7 @@ export function EntryDialog({ entry, open, onOpenChange, askFor, onAsk }: EntryD
   /* opening an entry deposits +1 punya (once per dialog open) */
   useEffect(() => {
     if (open && entry) depositPunya(1);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [open, entry?.id]);
+  }, [open, entry]);
 
   if (!entry) return null;
 

@@ -1,0 +1,72 @@
+# ─────────────────────────────────────────────────────────────────────────────
+# SANATAN HI — docker-compose for Coolify / standalone Docker hosts
+#
+# Coolify can use this file directly (Build Pack = "Docker Compose") OR
+# auto-detect the Dockerfile (Build Pack = "Dockerfile"). Both paths produce
+# the same running container; this file adds the persistent volume + restart
+# policy + healthcheck wiring in one declarative place.
+#
+# Usage (standalone):
+#   docker compose up -d --build
+#
+# Usage (Coolify): point the resource at this repo; Coolify picks compose up
+# automatically if present, else uses the Dockerfile.
+# ─────────────────────────────────────────────────────────────────────────────
+
+services:
+  sanatan-hi:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: sanatan-hi:latest
+    container_name: sanatan-hi
+    restart: unless-stopped          # 24×7: auto-recover on crash / reboot
+
+    ports:
+      - "${PORT:-3000}:3000"
+
+    environment:
+      # ── z.ai credentials (set ONE of these in Coolify's "Environment Variables") ──
+      # Option A — bare public-platform key:
+      #   ZAI_API_KEY: "paste-your-active-zai-api-key"
+      #   ZAI_BASE_URL: "https://api.z.ai/api/paas/v4"
+      # Option B — full config exported from the Z.ai web-dev environment:
+      #   ZAI_CONFIG_JSON: '{"baseUrl":"...","apiKey":"...","token":"...","chatId":"...","userId":"..."}'
+      ZAI_API_KEY: "${ZAI_API_KEY:-}"
+      ZAI_BASE_URL: "${ZAI_BASE_URL:-https://api.z.ai/api/paas/v4}"
+      ZAI_CONFIG_JSON: "${ZAI_CONFIG_JSON:-}"
+
+      # ── runtime ──
+      NODE_ENV: production
+      PORT: "3000"
+      HOSTNAME: "0.0.0.0"
+      DATABASE_URL: "file:/app/db/custom.db"
+
+    volumes:
+      # SQLite database (future-proof; app is stateless today)
+      - sanatan-db:/app/db
+      # Optional: persist a hand-edited .z-ai-config across rebuilds.
+      # Leave empty to let the entrypoint regenerate it from env vars each start.
+      - sanatan-zai:/home/app
+
+    healthcheck:
+      test: ["CMD", "bun", "-e", "fetch('http://127.0.0.1:3000/api/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 30s
+      timeout: 10s
+      start_period: 25s
+      retries: 3
+
+    # Coolify's own Traefik handles the edge (TLS termination, domain).
+    # On a bare Docker host, put Caddy/Nginx in front (see DEPLOY-COOLIFY.md).
+    networks:
+      - sanatan-net
+
+volumes:
+  sanatan-db:
+    driver: local
+  sanatan-zai:
+    driver: local
+
+networks:
+  sanatan-net:
+    driver: bridge

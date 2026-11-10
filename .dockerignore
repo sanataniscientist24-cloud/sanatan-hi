@@ -1,0 +1,35 @@
+# ── build & runtime noise ──
+node_modules/
+.next/
+out/
+dev.log
+server.log
+
+# ── local env / secrets (never bake into image) ──
+.env
+.env.*
+!.env.example
+.z-ai-config
+
+# ── version control & docs ──
+.git/
+.gitignore
+.github/
+*.md
+!DEPLOY-COOLIFY.md
+!README.md
+
+# ── sandbox / tooling artifacts ──
+skills/
+tool-results/
+tests/
+upload/
+worklog.md
+*.tsbuildinfo
+next-env.d.ts
+
+# ── misc ──
+.DS_Store
+*.log
+.vscode/
+.idea/
